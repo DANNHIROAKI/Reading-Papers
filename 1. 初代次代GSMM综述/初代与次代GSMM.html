@@ -1,0 +1,765 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG2"] path[data-c], mjx-container[jax="SVG2"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>初代与次代GSMM</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='初代与次代gsmm'><span>初代与次代GSMM</span></h1><p><a href='https://doi.org/10.1007/s00253-022-12066-y' target='_blank' class='url'>https://doi.org/10.1007/s00253-022-12066-y</a></p><h1 id='1-摘要'><span>1. 摘要</span></h1><blockquote><p>2️⃣<span>首先明确GSMM是什么(文献里这都没说，无语)</span></p><p>1️⃣<span>文献将GSMM分为了两类</span></p><ol start='' ><li><p><span>初代GSMM：缺乏限制，预测精度极其有限</span></p></li><li><p><span>次代GSMM：初代GSMM+整合组学数据+增加约束+整合不同生物学模型+构建全细胞模型</span></p></li></ol></blockquote><h1 id='2-introduction'><span>2. Introduction</span></h1><blockquote><h2 id='21-gsmm概念与构建'><span>2.1. GSMM概念与构建</span></h2><blockquote><p>1️⃣<span>什么是GSMM：</span></p><ol start='' ><li><p><span>简单理解为就是一种数学模型</span></p></li><li><p><span>基于特定生物体的基因组信息构建，包括了基因、蛋白质、代谢物以及它们之间的相互作用</span></p></li></ol><p>2️⃣<span>GSMM的核心：反应GPRs关系(基因-蛋白质-反应)</span></p><p>3️⃣<span>GSMM构建的方式：可能有上百步骤，但是大致为</span></p><ol start='' ><li><p><span>模型起草</span></p></li><li><p><span>模型细化</span></p></li><li><p><span>模型数学化</span></p></li><li><p><span>模型验证</span></p></li></ol><p>4️⃣<span>GSMM自动化构建工具：RAVEN Toolbox，Model SEED，Merlin，但是构建出的模型仍需修剪</span></p></blockquote><h2 id='22-gsmm分析算法模型应用'><span>2.2. GSMM分析算法：模型应用</span></h2><blockquote><p><span>所有item见</span><a href='https://link.springer.com/article/10.1007/s00253-022-12066-y/tables/1'><span>clik here</span></a></p><p>1️⃣<span>代谢通量(Flux)：</span></p><ol start='' ><li><p><span>单位时间内通过代谢网络中特定代谢途径(pathway)的物质的量</span></p></li><li><p><span>文献中说它反应了分子通过代谢途径的转化率(我觉得是转化速率？)</span></p></li></ol><p>2️⃣<span>FBA通量平衡分析(Flux Balance Analysis)：</span></p><ol start='' ><li><p><span>概述：其实是个很基础的方法，在重建基因组规模代谢网络中模拟代谢的数学方法</span></p></li><li><p><span>大致步骤：假定稳态(代谢物质产销平衡)→设定目标函数(如最大化产量)→线性规划寻求最优解</span></p></li><li><p><span>缺陷：</span></p><ul><li><p><span>只能模拟稳态下的通量分布</span></p></li><li><p><span>受到代谢底物摄取率的限制(constrained by the substrate uptake rate)，使得精度降低</span></p></li></ul></li><li><p><span>其他基于FBA的通量分析算法</span></p></li></ol><figure class='table-figure'><table><thead><tr><th><span>FBA变种</span></th><th><span>描述</span></th><th><span>文献</span></th></tr></thead><tbody><tr><td><span>rFBA</span></td><td><span>纳入转录调控的FBA</span></td><td><a href='https://doi.org/10.1006/jtbi.2001.2405' target='_blank' class='url'>https://doi.org/10.1006/jtbi.2001.2405</a></td></tr><tr><td><span>MD-FBA</span></td><td><span>考虑代谢物稀释的FBA</span></td><td><a href='https://doi.org/10.1186/gb-2010-11-4-r43' target='_blank' class='url'>https://doi.org/10.1186/gb-2010-11-4-r43</a></td></tr><tr><td><span>dFBA</span></td><td><span>考虑酶动力学的FBA</span></td><td><a href='https://doi.org/10.1016/S0006-3495(02)73903-9' target='_blank' class='url'>https://doi.org/10.1016/S0006-3495(02)73903-9</a></td></tr><tr><td><span>cFBA</span></td><td><span>考虑反应热力学的FBA</span></td><td><a href='https://doi.org/10.1371/journal.pone.0064567' target='_blank' class='url'>https://doi.org/10.1371/journal.pone.0064567</a></td></tr></tbody></table></figure><p>3️⃣<span>计算机辅助菌株设计算法(in silico strain design algorithm)</span></p><ol start='' ><li><p><span>in silico来自拉丁语，字面意思是在硅中，引申为通过计算机模拟的实验</span></p><p><span>此外还有in vitro(在实验室)，in vivo(生物体内实验)</span></p></li><li><p><span>该算法的目的：确定遗传修饰目标</span></p></li><li><p><span>分类</span></p><figure class='table-figure'><table><thead><tr><th><span>算法类别</span></th><th><span>简要描述</span></th></tr></thead><tbody><tr><td><span>基因删除</span></td><td><span>识别删除哪些基因能改善微生物性能</span></td></tr><tr><td><span>基因添加</span></td><td><span>添加新基因以改善微生物特性</span></td></tr><tr><td><span>基因上调/下调</span></td><td><span>调节特定基因表达水平，影响代谢途径活性和细胞代谢产物</span></td></tr><tr><td><span>添加异源途径</span></td><td><span>引入其他生物的代谢途径，生产新的代谢产物或提高已有产物生产</span></td></tr></tbody></table></figure></li></ol></blockquote></blockquote><h1 id='3-初代gsmm'><span>3. 初代GSMM</span></h1><blockquote><h2 id='31-典型gsmm'><span>3.1. 典型GSMM</span></h2><blockquote><p><img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240118175841095.png" alt="image-20240118175841095" style="zoom:50%;" /><span>  </span></p><p>1️⃣<span>世界第一个GSMM：1999年流感嗜血杆菌的GSMM，</span><a href='https://doi.org/10.1074/jbc.274.25.17410' target='_blank' class='url'>https://doi.org/10.1074/jbc.274.25.17410</a></p><p>2️⃣<span>截至2021.8的GSMM数量和分布：eukaryotic(真核)</span></p><p><img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240118150015788.png" alt="image-20240118150015788" style="zoom:50%;" /><span> </span></p><p>3️⃣<span>个别物种的GSMM</span></p><ol start='' ><li><p><span>玉米的GSMM具有最多的基因数量，最多的代谢物</span></p></li><li><p><span>人类细胞的GSMM拥有最多的反应数</span></p></li></ol><p>4️⃣<span>不同生物界的GSMM差异</span></p><ol start='' ><li><p><span>平均来讲，植物的GSMM拥有最多的基因</span></p></li><li><p><span>平均来讲，动物的GSMM拥有最多的反应和代谢物</span></p></li></ol><p>5️⃣<span>典型的模型生物有多个GSMM模型：这主要是源于GSMM的迭代升级，致使模型的规模增加，预测准确率也提升</span></p></blockquote><h2 id='32-互作interaction模型'><span>3.2. 互作(Interaction)模型</span></h2><blockquote><p><span>两物种(微生物)间的关系</span></p><p><img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240118152934696.png" alt="image-20240118152934696" style="zoom:50%;" /><span> </span></p><p>1️⃣<span>微生物的互相作用：互利共生(mutualism)、共生(commensalism)、寄生(parasitism)和竞争(competition)</span></p><p>2️⃣<span>模型的构成：三类不同的隔间(compartment)</span></p><ol start='' ><li><p><span>GSMM隔间：每个GSMM有单独隔间，也就是每种微生物单独建模，自身的代谢封闭在自身的隔间</span></p></li><li><p><span>共同体隔间：不同微生物的GSMM放在一起构成隔间，代表微生物之间互相发生代谢物交换</span></p></li><li><p><span>环境隔间：模拟微生物与其周围环境之间的代谢物交换</span></p></li></ol><p>3️⃣<span>用途：主要集中于模拟两种物种之间代谢物的交换，如联合发酵/共生</span></p></blockquote><h2 id='33-泛基因组模型pan-genome-models'><span>3.3. 泛基因组模型(Pan-genome models)</span></h2><blockquote><p><img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240118174519641.png" alt="image-20240118174519641" style="zoom:50%;" /><span> </span></p><p>0️⃣<span>基因组：仅限于一个生物体内，所有遗传物质的总和</span></p><p>1️⃣<span>泛基因组：一个菌种内所有菌株的基因集合</span></p><ol start='' ><li><p><span>种类</span></p><ul><li><p><span>核心基因组(core genome)：所有菌株共有的基因</span></p></li><li><p><span>可变基因组(dispensable genome)：一些菌株特有的基因</span></p></li></ul></li><li><p><span>作用：分析一个种内不同菌株的基因组特性，识别它们之间的表型差异</span></p></li><li><p><span>构建：通过同属微生物</span></p></li></ol><p>3️⃣<span>截至目前，只有三种泛基因组被发表，涉及的物种大多致病(由此泛基因组研究主要集中于，基于代谢能力的致病性分析)</span></p></blockquote><h2 id='34-宏基因组模型meta-genome-models'><span>3.4. 宏基因组模型(Meta-genome models)</span></h2><blockquote><p>1️⃣<span>宏基因组概述：</span></p><ol start='' ><li><p><span>概念：从特定环境样本中提取的所有遗传物质的总和，包括许多微生物的基因组</span></p></li><li><p><span>指标：物种丰富度量化了微生物群落的物种数量，是宏基因组数据的重要指标</span></p></li><li><p><span>构建：基于单微生物的基因组</span></p></li><li><p><span>作用：评估菌株在不同环境下的代谢特征，预测不同物种(菌种)的交互</span></p></li></ol><p>3️⃣<span>目前只有两种宏基因组模型被构建，每个模型需要构建几百个GSMM</span></p></blockquote></blockquote><h1 id='4-次代gsmm'><span>4. 次代GSMM</span></h1><blockquote><h2 id='40-对初代gsmm的思考'><span>4.0. 对初代GSMM的思考</span></h2><blockquote><p>1️⃣<span>初代GSMM其实也存在一个约束，就是底物的摄取速率，当然我觉得其实这是一种无奈的简化</span></p><p>2️⃣<span>初代GSMM还需要引入更多限制和调控，以提高精度</span></p><p><span>PS：GUR(葡萄糖摄取速率)和</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.364ex" height="1.489ex" role="img" focusable="false" viewBox="0 -442 603 658" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.489ex;"><defs><path id="MJX-1-TEX-I-1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D707" xlink:href="#MJX-1-TEX-I-1D707"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>μ</mi></math></mjx-assistive-mml></mjx-container><script type="math/tex">\mu</script><span>(生长速率)的关系，GSMM预测的结果与实际严重不符</span></p><p>3️⃣<span>初代GSMM的改进集中于：</span></p><ol start='' ><li><p><span>整合组学数据</span></p></li><li><p><span>添加约束条件</span></p></li><li><p><span>整合不同生物网络</span></p></li><li><p><span>构建全细胞模型</span></p></li></ol></blockquote><h2 id='41-组学数据的整合'><span>4.1. 组学数据的整合</span></h2><blockquote><h3 id='411-四种组学omics'><span>4.1.1. 四种组学(omics)</span></h3><blockquote><p>1️⃣<span>基因组学(Genomics)</span></p><ol start='' ><li><p><span>含义：研究生物体的全部基因组，通过分析DNA序列来识别和定量基因/弄清功能和交互</span></p></li><li><p><span>基因组注释(annotation)：标记基因组中的遗传元素及其功能，弄清哪些序列编码哪些蛋白/RNA</span></p></li><li><p><span>在GSMM中：基因组学是GSMM的基础，基因组注释结果被用来预测每个基因的功能</span></p></li></ol><p>2️⃣<span>转录组学(Transcriptomics)</span></p><ol start='' ><li><p><span>转录组：特定细胞、组织或生物体中，所有RNA分子(转录产物)的集合</span></p></li><li><p><span>转录组学：研究基因在RNA层面的表达情况，即哪些基因转录成RNA，RNA在特定情况下翻译的水平</span></p></li></ol><p>3️⃣<span>蛋白质组学(Proteomics)</span></p><ol start='' ><li><p><span>蛋白质组：特定范围(个体/细胞/组织)内，所有蛋白质的总集合</span></p></li><li><p><span>蛋白质组学：量化表示所有蛋白的丰度(abundance)，研究蛋白的功能/结构/互相作用</span></p></li></ol><p>4️⃣<span>通量组学(Fluxomics)：</span></p><ol start='' ><li><p><span>通量组：一个细胞内所有代谢通量的集合</span></p></li><li><p><span>通量组学：量化分析通量组，测量分析流量</span></p></li></ol><p>5️⃣<span>代谢组学(metabolomic)</span></p><ol start='' ><li><p><span>代谢物：指参与或由细胞代谢过程产生的小分子化合物，如糖类、脂类、氨基酸和核苷酸</span></p></li><li><p><span>代谢组：一定范围内代谢物的集合</span></p></li><li><p><span>代谢组学：代谢物的分析和定量</span></p></li></ol></blockquote><h3 id='412-组学应用于gsmm提高预测精度'><span>4.1.2. 组学应用于GSMM：提高预测精度</span></h3><blockquote><figure class='table-figure'><table><thead><tr><th><span>模型名称</span></th><th><span>组学数据整合</span></th></tr></thead><tbody><tr><td><span>ME-model(代谢和基因表达模型)</span></td><td><span>转录组学</span></td></tr><tr><td><span>GIMME(基因通过代谢和表达调节而失活)</span></td><td><span>基因表达数据</span></td></tr><tr><td><span>iMAT(综合代谢分析工具)</span></td><td><span>转录组学和蛋白质组学</span></td></tr><tr><td><span>IOMA(整合组学-代谢分析算法)</span></td><td><span>蛋白质组学和代谢组学</span></td></tr><tr><td><span>GSMM结合13C通量组学数据</span></td><td><span>通量组学</span></td></tr></tbody></table></figure></blockquote></blockquote><h2 id='42-添加约束条件'><span>4.2. 添加约束条件</span></h2><blockquote><p>1️⃣<span>所谓限制是什么限制</span></p><ol start='' ><li><p><span>整合动力学(kinetics)：如反应速率常数和底物浓度对酶活性的影响</span></p></li><li><p><span>整合热力学(thermodynamics)：考虑化学反应的热力学特性，如吉布斯自由能变化，以确保模型中的代谢反应在热力学上是可行</span></p></li><li><p><span>考虑酶学特性：如酶的活性，特异性，异构效应</span></p></li><li><p><span>整合蛋白质(酶)3D模型：了解其功能和与其他分子的相互作用</span></p></li></ol><p>2️⃣<span>实例</span></p><figure class='table-figure'><table><thead><tr><th><span>名称</span></th><th><span>限制内容</span></th><th><span>基本描述</span></th></tr></thead><tbody><tr><td><span>k-ecoli457</span></td><td><span>动力学（km和kcat值）</span></td><td><span>基于大肠杆菌核心GSMM</span></td></tr><tr><td><span>GSMMs (多种细菌)</span></td><td><span>热力学（ΔrG′o）</span></td><td><span>基于不动杆菌ADP1的GSMMs</span></td></tr><tr><td><span>GECKO</span></td><td><span>酶学限制</span></td><td><span>MATLAB/Python工具包</span></td></tr><tr><td><span>ecYeast7</span></td><td><span>酶学限制</span></td><td><span>\</span></td></tr><tr><td><span>ec_iML1515</span></td><td><span>酶学限制</span></td><td><span>\</span></td></tr><tr><td><span>iJO1366 (E. coli)</span></td><td><span>3D结构信息</span></td><td><span>将参与代谢的蛋白质3D结构信息整合到模型中</span></td></tr></tbody></table></figure></blockquote><h2 id='43-整合不同生物网络'><span>4.3. 整合不同生物网络</span></h2><blockquote><p>1️⃣<span>其实除了GSMM，还有其他生物网络(biological networks)，以下为几种</span></p><ol start='' ><li><p><span>基因调控网络(GRNs, Gene Regulatory Networks)</span></p><ul><li><p><span>描述基因之间的调控关系</span></p></li><li><p><span>例如一个转录因子可以激活或抑制特定基因的转录，从而影响该基因的表达水平</span></p></li></ul></li><li><p><span>蛋白质相互作用网络(PPIs, Protein-Protein Interaction Networks)</span></p><ul><li><p><span>描述蛋白质之间的相互作用</span></p></li><li><p><span>例如信号传导、代谢途径和细胞结构维持</span></p></li></ul></li><li><p><span>信号转导网络(STNs, Signal Transduction Networks)</span></p><ul><li><p><span>涉及细胞内的信号传递过程</span></p></li><li><p><span>这部分详见</span><a href='https://github.com/DANNHIROAKI/XJTU-BIOL200913-BIO/blob/main/%E7%AC%94%E8%AE%B0/6.%20%E7%BB%86%E8%83%9E%E7%9A%84%E9%80%9A%E8%AE%AF%E4%B8%8E%E4%BF%A1%E5%8F%B7%E8%BD%AC%E5%AF%BC.pdf'><span>here</span></a><span>.</span></p></li></ul></li></ol><p>2️⃣<span>实例</span></p><figure class='table-figure'><table><thead><tr><th><span>名称</span></th><th><span>结合内容</span></th><th><span>基本描述</span></th></tr></thead><tbody><tr><td><span>MTBPROM2.0</span></td><td><span>GSMM与GRN</span></td><td><span>更准确模拟基因删除效应</span></td></tr><tr><td><span>iFBA模型</span></td><td><span>GSMM, GRN, STN</span></td><td><span>动态模拟代谢、调控、信号</span></td></tr></tbody></table></figure><p><span>  我其实觉得有必要多了解</span><a href='https://doi.org/10.1093/bioinformatics/btn352'><span>iFBA模型</span></a><span>，目测有用机器学习爆改的潜力</span></p></blockquote><h2 id='44-构建全细胞模型whole-cell-model'><span>4.4. 构建全细胞模型(whole-cell model)</span></h2><blockquote><p><span>简单理解就是GSMM-pro-plus-max</span></p><p>1️⃣<span>全细胞模型是什么</span></p><ol start='' ><li><p><span>最为复杂的生物学网络</span></p></li><li><p><span>作用之一：描述细胞大分子(cellular macromolecular)的形成</span></p></li><li><p><span>作用之二：研究生物大分子和代谢系统间的互相作用机制</span></p></li><li><p><span>构建：将所有细胞活动(代谢模块化)→搞清模块之间的相互作用→数字化建模细胞活动</span></p></li></ol><p>2️⃣<span>根据文中提到的文献，全细胞模型的功能为</span></p><ol start='' ><li><p><span>预测细胞行为</span></p></li><li><p><span>资源分配计算</span></p></li><li><p><span>基因与表型关系</span></p></li><li><p><span>描述细胞生命周期</span></p></li></ol><p>3️⃣<span>构建全细胞模型的挑战：要很多数据，数据一致性，数据整合，计算资源大，模型验证，需合作</span></p></blockquote></blockquote><h1 id='5-gsmm在生物工业的应用'><span>5. GSMM在生物工业的应用</span></h1><blockquote><p><span>(industrial biotechnology)</span></p><h2 id='51-预测细胞表型phenotypes'><span>5.1. 预测细胞表型(phenotypes)</span></h2><blockquote><p>1️⃣<span>表型：细胞在特定条件下的形态、大小、结构、代谢活动</span></p><p>2️⃣<span>通过计算不同条件下的代谢通量分布，比如基于不同底物摄取率，来模拟细胞的最大生长率</span></p><p>3️⃣<span>识别关键基因，如通过单基因删除算法来确定必需基因</span></p><p>4️⃣<span>GSMM可以模拟在不同条件下的细胞生长，为发酵过程的优化提供参考</span></p></blockquote><h2 id='52-指导代谢工程'><span>5.2. 指导代谢工程</span></h2><blockquote><p>1️⃣<span>方法：模拟全局层面上的不同策略，去除竞争途径/增强合成途径/消除反馈抑制/引入异源途径</span></p><p>2️⃣<span>效果：引导合理的菌株设计，提高代谢工程的效率</span></p></blockquote></blockquote><h1 id='6-gsmm在人类健康的应用'><span>6. GSMM在人类健康的应用</span></h1><blockquote><p>1️⃣<span>研究代谢失调</span></p><p>2️⃣<span>发现生物标志物和药物靶标</span></p><p>3️⃣<span>癌症研究：预测针对癌细胞增殖的潜在途径</span></p></blockquote><h1 id='7-gsmm的未来'><span>7. GSMM的未来</span></h1><blockquote><p><span>关注这一点：</span></p><p>1️⃣<span>传统GSMMs中大多数参数是固定的，这限制了模型预测的准确性</span></p><p>2️⃣<span>机器学习方法的发展，提供了一种不需要固定约束参数、可以自动修改参数的新途径，从而提高模型的准确性</span></p><p>3️⃣<span>尝试将机器学习方法与GSMMs结合，以精确预测代谢通量的调控和复杂条件下的相互作用</span></p></blockquote><p>&nbsp;</p></div></div>
+</body>
+</html>
