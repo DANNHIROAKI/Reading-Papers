@@ -1,7 +1,3 @@
-# 深度学习和GSMM
-
-https://doi.org/10.1371/journal.pcbi.1007084
-
 # 1. 摘要
 
 > :one:一些相对独立发展的领域
@@ -111,7 +107,7 @@ https://doi.org/10.1371/journal.pcbi.1007084
 > >
 > > 2. 分类：基于连接/转换/模型的整合respectively早期/中期/晚期模型
 > >
-> >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240121140459653.png" alt="image-20240121140459653" style="zoom:50%;" /> 
+> >    <img src="https://i-blog.csdnimg.cn/direct/0c8a5d8598e94ad298e16c1d72251d3a.png" alt="image-20240121140459653" style="zoom:50%;" /> 
 > >
 > > 3. PS：机器学习中，处理跨越多个数据源的算法aka多模态/多视角学习算法
 > >
@@ -159,7 +155,7 @@ https://doi.org/10.1371/journal.pcbi.1007084
 > >
 > > ### 4.1.3. 基于约束的数据整合和通量组生成
 > >
-> > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240121163352740.png" style="zoom: 67%;" />    
+> > > <img src="https://i-blog.csdnimg.cn/direct/dd80eb6e943c44d1b0b297a50d1986c8.png" style="zoom: 67%;" />    
 > > >
 > > > :one:构建一个人工编辑的GSMM，用于记录细胞中发生的所有反应
 > > >
@@ -179,7 +175,7 @@ https://doi.org/10.1371/journal.pcbi.1007084
 > >
 > > ### 4.2.2. 特定环境(限制)GSMM的构建
 > >
-> > > ![image-20240121163509021](https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240121163509021.png)
+> > > <img src="https://i-blog.csdnimg.cn/direct/a324cc213bc6450685db13798f212ffb.png" alt="image-20240121163509021" style="zoom: 67%;" /> 
 > >
 > > ### 4.2.3. 组学数据的整合(上图第三步)
 > >
@@ -200,7 +196,7 @@ https://doi.org/10.1371/journal.pcbi.1007084
 > >
 > > :three:将二者结合的研究鲜有，但是2019年以前的大致有[这些](https://journals.plos.org/ploscompbiol/article/figure/image?download&size=large&id=10.1371/journal.pcbi.1007084.t001)，可分类为
 > >
-> > ![image-20240121170107243](https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240121170107243.png)
+> > <img src="https://i-blog.csdnimg.cn/direct/f59ec8a5a3e1429ebe19866c9a82383a.png" alt="image-20240121170107243" style="zoom:67%;" />
 > >
 > > 1. 有监督/无监督通量组学分析：在通用GSMM上执行FBA或相关技术→获得通量数据→用作无监督或有监督机器学习的输入
 > > 2. 有监督/无监督多组学分析：用高通量分析技术获得多组学数据集→不同源数据归一化→用作无监督或有监督机器学习的输入

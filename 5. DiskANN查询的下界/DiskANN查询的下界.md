@@ -151,7 +151,7 @@
 > >    | $D(s, q)$ | $D(a, q)$ | 分析思路                                                     |
 > >    | :-------: | :-------: | ------------------------------------------------------------ |
 > >    |    远     |  远$+$近  | 通过初步不等式得出$d_i$与 $D(a, q)$ 关系$\to$算法在$\log _\alpha \cfrac{2}{\epsilon}$步内结束 |
-> >    |    近     |    远     | 通过上下界$\to{}$算法在$O\left(\log _\alpha \frac{\Delta}{(\alpha-1) \epsilon}\right)$步内结束 |
+> >    |    近     |    远     | 通过上下界$\to{}$算法在$O\left(\log _\alpha \cfrac{\Delta}{(\alpha-1) \epsilon}\right)$步内结束 |
 > >    |    近     |    近     | 通过不等式结合$D_{\min}$和$D_{\max}$$\to{}$算法在$O\left(\log _\alpha \Delta\right)$步内结束 |
 > >
 > >    - 注意$D(a, q)$中$a$表示$q$的最邻近点
