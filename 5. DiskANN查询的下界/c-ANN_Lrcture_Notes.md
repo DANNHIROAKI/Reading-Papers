@@ -127,14 +127,14 @@
 > > >
 > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240803124118507.png" alt="image-20240803124118507" style="zoom:45%;" />  
 > > >
-> > > 1. 定义每层结点：$Y_i$层的点即为$S$的$2^i$-样本网$(i=0,1,...,h)$​ 
+> > > 1. 定义每层结点：$Y_i$层的点即为$S$的$2^i$-样本网$(i=0,1,...,h)$​  
 > > >    - $Y_h$只有一个对象，并且$2^h\geq{}\text{diam}(S)$ 
 > > >    - 框定$|Y_i|\leq{}n$后，使得$G$的空间复杂度变为了$O(hn)$​ 
-> > > 2. 定义结点的连接
+> > > 2. 定义结点的连接 
 > > >    - 对于$y\in{}Y_{i}$与$z\in{}Y_{i-1}$如果满足$\operatorname{dist}(y, z) \leq 7 \cdot 2^i$则建立有向连接$y\longrightarrow{}z$ ​
 > > >    - 用$N_i^{+}(y)$表示 $y$ 的出度$\text{(out-neighbors)}$ 
 > > >
-> > > :two:结构的性质：$\left|N_i^{+}(y)\right|=2^{O(\lambda)}$即$\left|N_i^{+}(y)\right|$随着$\lambda$​的增加指数级增加
+> > > :two:结构的性质：$\left|N_i^{+}(y)\right|=2^{O(\lambda)}$即$\left|N_i^{+}(y)\right|$随着$\lambda$​的增加指数级增加 
 > >
 > > ### $\textbf{1.3.3. Query}$  
 > >
