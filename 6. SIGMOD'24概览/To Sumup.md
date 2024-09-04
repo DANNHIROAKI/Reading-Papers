@@ -261,9 +261,80 @@
 
 
 
+#### **:point_right:==COSMO: A Large-Scale E-commerce Common Sense Knowledge Generation and Serving System at Amazon==** 
+
+:classical_building:机构：Amazon  
+
+:arrow_right:领域：
+
+- Computing methodologies → Knowledge representation and reasoning
+- Information systems → Web mining  
+
+:books:摘要：
+
+- 背景：现有电商图谱(产品属性-用户-商家关系)无法有效发现用户意图/反应用户思维
+- COSMO是个啥：可扩展系统，基于用户行为→构建用户知识图谱→为搜索导航提供服务
+- COSMO构建流程：
+  - 知识提取：用LLM从亚马逊大数据中提取初始知识
+  - 筛选：引入一个(基于人工标注数据)分类器，判断哪些知识可靠/不可靠并筛选
+  - 去噪：采用指令微调，进一步筛掉与人类认知有偏差的知识，==最终得到高质量的知识==
+- COSMO已经被部署在亚马逊的搜索和导航系统中
+
 
 
 ## :wheel_of_dharma:Industry Session 3: Cloud Storage  
+
+#### **:point_right:==LETUS: A Log-Structured Efficient Trusted Universal BlockChain Storage==** 
+
+:classical_building:机构：蚂蚁集团
+
+:arrow_right:领域：
+
+- Information systems → Data management systems  
+- Security and privacy → Database and storage security  
+
+:books:摘要：提出了LETUS，用于区块链的高效/安全的通用存储系统
+
+- 背景：区块链爆炸增长，传统两层式存储结构已无法满足需求
+- LETUS系统的主要特点
+  - 打破传统两层架构：将认证数据结构(ADS)放到存储引擎，从而优化了存储和IO
+  - 提出了新型ADS：结合Merkle树+增量编码(delta-encoding)功能，称作DMM-Tree
+  - 改进的索引机制：基于版本的索引，用变种B树来索引ADS生成的数据页
+  - 通用性：适用各种区块链
+
+- LETUS已经在蚂蚁链的商业应用中部署，例如2023年亚运会的NFT项目和数字火炬点燃活动
+
+
+
+#### **:point_right:==Vortex: A Stream-oriented Storage Engine For Big Data Analytics==** 
+
+:classical_building:机构：Google
+
+:arrow_right:领域：Information systems → Stream management
+
+:books:摘要：提出了Vortex，一个为Google BigQuery构建的**实时分析存储引擎**，支持对数据流的实时分析
+
+- 背景：
+  - 企业需要处理海量数据，尤其是对于连续数据流(streaming data)
+  - 传统数据系统分为流处理引擎/批处理系统，后者在处理实时数据时不佳
+-  关于Vortex
+  - 设计：专为数据流设计但也支持批处理，将两种操作集成到了同一个系统中
+  - 能力：处理PB级别的数据摄取(持续流入与分析)，能以亚秒级响应用户的实时查询
+
+
+
+#### **:point_right:==Native Cloud Object Storage in Db2 Warehouse: Implementing a Fast and Cost-Efficient Cloud Storage Architecture==** 
+
+:classical_building:机构：IBM
+
+:arrow_right:领域：Information systems → Database management system engines  
+
+:books:摘要：提出了**Db2 Warehouse**存储架构的现代化改造，以适应云环境
+
+- 传统存储系统的局限性
+  - 小块存储：通常以4KB大小的数据页为存储单位
+
+
 
 
 
