@@ -161,8 +161,6 @@
 
 ## :wheel_of_dharma:Industry Session 2: LLMs and ML Applications  
 
-
-
 #### **:point_right:==Similarity Joins of Sparse Features==**
 
 :classical_building:机构：Uber
@@ -172,12 +170,96 @@
 - Information systems → Clustering  
 - Theory of computation → MapReduce algorithms  
 
-:books:摘要：提出了Fast Scalable Sparse Joiner (FSSJ)算法，用于在大规模系数数据尚进行相似性连接
+:books:摘要：提出了Fast Scalable Sparse Joiner (FSSJ)算法，用于在大规模稀疏数据上进行相似性连接
 
-- 背景
+- 一些前置知识和背景
   - 相似性连接：在两个数据集中，找出相似性超过某个阈值的记录对
-  - 稀疏特征：平均每个Tuple只有少数Attributes被赋值
-- 关于FSSJ：引入Quasi-Prefix Filtering的新方法
+  - 前缀过滤：相似性连接的一种技术
+    - 含义：对比属性的前N个属性(前缀)，如果两个记录的前缀不匹配，则默认不相似
+    - 存在的问题：某些元素在数据集中很流行/元素分布极其不均时，过滤效率会下降
+  - 稀疏特征：比如平均每个Tuple只有少数Attributes被赋值
+- 本文工作：关于FSSJ，引入Quasi-Prefix Filtering的新方法
+  - 针对频繁出现的流行元素做出优化，最流行元素不会被当作前缀来过滤
+  - 传统前缀过滤需对所有记录排序，然后广播给所有计算结点。准前缀过滤避免了广播操作
+
+
+
+#### **:point_right:==FinSQL: Model-Agnostic LLMs-based Text-to-SQL Framework for Financial Analysis==**
+
+:classical_building:机构：浙江大学
+
+:arrow_right:领域：Information systems → Structured Query Language  
+
+:books:摘要：金融领域Text-to-SQL的挑战与解决
+
+- 背景：Text-to-SQL
+  - 含义：通过自然语言生成SQL
+  - 问题与挑战：金融领域缺乏实用的Text-to-SQL基准数据集，现有Text-to-SQL没考虑金融数据库特点
+- 本文的工作
+  - BULL数据集：收集的一个实用的Text-to-SQL基准数据集
+  - FinSQL框架：一个基于大语言模型的Text-to-SQL框架，处理方法包括提示词构建/参数微调/输出校准
+
+
+
+#### **:point_right:==Rock: Cleaning Data by Embedding ML in Logic Rules==**
+
+:classical_building:机构：关河智图/深圳计算机研究院
+
+:arrow_right:领域：Information systems → Information integration  
+
+:books:摘要：提出一个基于ML的Rock系统，用来清洗Relational Data(就是Relational Database中的数据)
+
+- Rock的核心：结合机器学习/逻辑推理，通过将ML分类器嵌入为谓词来清洗数据
+- Rock的清洗任务：注意以下任务在Rock中可做到多任务协同处理
+  - 实体解析：将不同事物指向(识别并归类为)一个实体
+  - 冲突解决：捕捉不同实体之间的语义不一致(比如数据源1说A是20岁/数据源2说A是30岁)并解决
+  - 及时性推断：根据数据的属性值，判断这些值是否过期并更新
+  - 不完整信息补全
+- Rock的其它功能
+  - 自发从数据中发现规则
+  - 对大规模数据采取批处理模式
+  - 随数据更新而逐步更新
+
+
+
+#### **:point_right:==Data-Juicer: A One-Stop Data Processing System for Large Language Models==**
+
+:classical_building:机构：阿里巴巴
+
+:arrow_right:领域：Information systems → Information integration  
+
+:books:摘要：提出了一个新的Data-Juicer系统，能够为LLM的训练生成多样化的数据组合(data recipes)
+
+- 背景：数据与LLM
+  - 数据在LLM的重要性：LLM的关键在于使用了==庞大的/异构的/高质量的==数据
+  - 数据组合：从不用来源混合而成的数据，用于训练LLM，决定了LLM的性能
+- 现有的问题：开源工具无法满足多样化数据需求，以及新数据源
+- Data-Juicer能干啥
+  - 对于异构且庞大的数据，能高效生成各种数据组合
+  - 能更高效评估数据组合对LLMs性能的影响
+
+
+
+#### **:point_right:==The Hopsworks Feature Store for Machine Learning==** 
+
+:classical_building:机构：Hopsworks(瑞典软件公司)
+
+:arrow_right:领域：
+
+- Information systems → Database design and models  
+- Database management system engines.  
+
+:books:摘要：提出了Hopsworks机器学习特征存储(Feature Store)系统
+
+- 背景：ML系统中的数据管理
+  - 含义：是ML-Sys中处理/存储/组织数据，确保数据用于训练推理的过程，是ML-Sys最具挑战的部分
+  - 特征存储：管理ML数据的统一平台，贯穿了特征工程/训练/推理
+- Hopsworks特征存储平台：用于管理特征数据，解决了如下问题
+  - 特征重用：特征在不同机器学习任务中重复使用
+  - 数据转换：组织/执行特征过程的数据转换过程
+  - 确保一致性：保证特征工程/训练/推理时，数据是正确且一致的
+
+
 
 
 
