@@ -331,14 +331,116 @@
 
 :books:摘要：提出了**Db2 Warehouse**存储架构的现代化改造，以适应云环境
 
-- 传统存储系统的局限性
-  - 小块存储：通常以4KB大小的数据页为存储单位
+- 背景
+  - 传统小块存储：以4KB大小的数据页为存储单位(适合随机存取/块级IO)，但在云环境数据库中成本高
+  - 云对象存储：在处理大规模数据时，比传统小块存储成本更低
+- 存在的问题：将传统存储$\xrightarrow{迁移}$云对象存储成本巨大，因此需要新的架构
+-  对**Db2 Warehouse**架构的改进
+  - 将Log-Structured Merge(LSM)树整合到Db2 Warehouse系统，以管理大规模写入/查询
+  - 保留传统数据页格式，避免对传统数据库内核大幅重构
 
 
+
+#### **:point_right:==ESTELLE: An Efficient and Cost-effective Cloud Log Engine==** 
+
+:classical_building:机构：电子科大/华为
+
+:arrow_right:领域：
+
+- Information systems → DBMS engine architectures  
+- Structured text search  
+
+:books:摘要：提出了ESTELLE，转为云环境设计的日志引擎，用于管理大规模的日志数据
+
+- 背景：
+  - 日志的重要性：监控/调试/分析的核心数据
+  - 日志的特性：高频写入，低频检索，大量存储；这也是本文模型所要满足的
+- ESTELLE的设计与特点
+  - 采用了一种低成本日志索引框架，可根据需求灵活引用索引机制
+  - 分离计算和存储，以分离读写操作，从而确保系统能同时查询和写入
+  - 设计了一个近乎无锁的写入过程，以适应高频快速写入需求
+- ESTELLE存储与查询优化
+  - 采取对象存储技术(以对象为单位存储，包含数据/元数据/主键)
+  - 采取Log Bloom Filter和近似倒排索引，根据场景优化查询
+
+
+
+#### **:point_right:==TimeCloth: Fast Point-in-Time Database Recovery in The Cloud==** 
+
+:classical_building:机构：阿里巴巴
+
+:arrow_right:领域：
+
+- Information systems → Database utilities and tools  
+- Point-in-time copies  
+- Storage recovery strategies  
+- Database recovery  
+
+:books:摘要：提出了TimeCloth，一种专为云环境设计的通用恢复机制，以优化用户触发的数据库恢复
+
+- 背景：关于用户触发的数据库恢复
+  - 特点：相比于因故障触发的恢复，需要更加考量用户的需求，如细粒度(精确程度)/时间点
+  - 现有方案：与底层数据库引擎高度集成，难以处理用户触发的恢复
+- TimeCloth的设计：专注实现**次线性恢复时间**，满足用户对恢复的特定要求
+  - 恢复模块：包括了几种机制，高效日志过滤/将非冲突日志并行回放/合并日志以减少工作量
+  - 导入模块：实现了透明的基于FUSE的延迟加载机制+智能预取功能
+- TimeCloth已经在阿里云上投入生产
 
 
 
 ## :wheel_of_dharma:Indusrty Session 4: Cloud Databases  
+
+#### **:point_right:==Proactive Resume and Pause of Resources for Microsoft Azure SQL Database Serverless==**  
+
+:classical_building:机构：微软
+
+:arrow_right:领域：Computer systems organization → Self-organizing autonomic computing  
+
+:books:摘要：提出了一种针对云数据库的**主动资源分配**基础设施，并用于无服务器的Azure SQL数据库
+
+- 背景：为云数据库分配资源
+  - 反应式：传统的方法，即根据当前需求分配资源
+  - 主动式：创新方法，结合当前需求+预期需求来分配资源
+- 本文的模型
+  - 要干啥：在**资源的高可用性**/**运营成本的降低**/**主动策略的计算开销**之间找到接近最优的平衡点
+  - 干了啥：用于管理数百万个无服务器的Azure SQL数据库
+
+
+
+#### **:point_right:==Vertically Autoscaling Monolithic Applications with CaaSPER==**  
+
+:classical_building:机构：微软
+
+:arrow_right:领域：Information systems → Data management systems  
+
+:books:摘要：提出了CaaSPER垂直自动扩展算法，旨在优化Kubernetes平台上DBaaS的资源管理
+
+- 一些基本概念
+
+  - Kubernetes平台：管理云应用程序的开源平台，云应用分为有状态(对DB操作有赖于历史数据)/无状态
+
+  - 垂直扩展/水平扩展：增加单个服务器或节点的资源来提升处理能力/增加服务器节点数
+
+    :warning:Kubernetes通过垂直扩展来应对负载波动
+
+- 现状问题
+
+  - Kubernetes平台上，客户为应对峰值负载会过度分配资源(负载下降时也没有缩减资源)
+  - 现有的垂直自动扩展工具在及时缩减资源或应对CPU限流时表现不佳
+
+- CaaSPER的提出
+
+  - 是个啥：结合反应式(负载临界时主动调整)+主动式(预测负载变化以主动调整)的垂直自动扩展算法
+  - 为了啥：保持**最佳的CPU利用率**，减少资源浪费
+  - 其它特性：允许用户选择能效模式/性能模式，可扩展性(与平台无关)
+
+
+
+
+
+
+
+
 
 
 
