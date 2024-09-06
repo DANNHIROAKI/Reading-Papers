@@ -641,7 +641,7 @@
 > > > - Information systems → Data management systems  
 > > > - Storage management
 > > >
-> > > :books:摘要：介绍了字节新提出的ByteGraph 3.0(BG3)模型，用来处理大规模图像数据
+> > > :books:摘要：介绍了字节新提出的ByteGraph 3.0(BG3)模型，用来处理大规模图结构数据
 > > >
 > > > - 背景
 > > >   - 字节旗下产品(Tiktok/抖音/头条)每天生成大量图
@@ -655,17 +655,42 @@
 > >
 > > > :classical_building:机构：米兰理工
 > > >
-> > > :arrow_right:领域：Triggers是数据库的一种自动化操作，即==特定事件发生时自动执行一系列预定操作==
+> > > :arrow_right:领域：Triggers(触发器)是数据库的一种自动化操作，即==特定事件发生时自动执行一系列预定操作==
 > > >
 > > > - Information systems → Triggers and rules  
 > > > - Graph-based database models
 > > > - Theory of computation → Database query languages (principles)  
 > > >
-> > > :books:摘要：
+> > > :books:摘要：提出了PG-Triggers的概念，是一个针对属性图(Property Graphs)添加触发器的方案
 > > >
-> > > ABSTRACT
+> > > - 回顾一下属性图：一种图数据库模型，用于存储+管理图数据库，由以下三种结构组成
 > > >
-> > > 
+> > >   | 图数据库结构 | 对应关系数据库结构 |                  举例                   |
+> > >   | :----------: | :----------------: | :-------------------------------------: |
+> > >   |    Nodes     |       Entity       |               学生，老师                |
+> > >   |  Properties  |     Attribute      | 学生(StuID/成绩)，老师(Course/TecherID) |
+> > >   |    Edges     |    Relationship    |       学生$\xleftarrow{授课}$老师       |
+> > >
+> > > - 背景：
+> > >
+> > >   - 现状：图数据库正在进行标准化工作
+> > >   - 作者要干啥呢：为图数据库引入PG-Triggers，以支持类似SQL的触发机制
+> > >
+> > > - PG-Triggers (说的是写啥，反正在我辽阔的知识盲区中)
+> > >
+> > >   - 定义了触发器的语法和语义
+> > >   - Neo4j 实现：将PG-Triggers翻译成Neo4j图数据库中的APOC触发器
+> > >     - Neo4j：一个库，用于增强Neo4j的Cypher查询语言的功能
+> > >     - APOC触发器：一种触发结构，让Neo4j在数据变化时执行预定操作
+> > >   - Memgraph 实现：在这个库也实现了以下，为证明PG-Triggers的机制不仅适用于Neo4j
+> >
+> > **:point_down:==GraphScope Flex: LEGO-like Graph Computing Stack==**  
+> >
+> > > :classical_building:机构：阿里巴巴
+> > >
+> > > :arrow_right:领域：Computer systems organization → n-tier architectures.  
+> > >
+> > > :books:摘要：提出了GraphScope Flex(GraphScope系统的升级)，
 > > >
 > > > 
 
