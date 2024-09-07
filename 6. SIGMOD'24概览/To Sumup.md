@@ -473,9 +473,9 @@
 > > >   - 复杂的全局模型：一个可在Redshift实例剑转移的复杂模型，基于不同实例的共享知识预测
 > > >
 >
-> ## 2.5. Cloud Database Architecture(**==<span style="color: red;">最佳论文</span>==**)
+> ## 2.5. Cloud Database Architecture
 >
-> > **:point_down:==PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory==**  
+> > **:point_down:==PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory==**(**==<span style="color: red;">最佳论文</span>==**)  
 > >
 > > > :classical_building:机构：阿里巴巴
 > > >
@@ -690,7 +690,10 @@
 > > >
 > > > :arrow_right:领域：Computer systems organization → n-tier architectures.  
 > > >
-> > > :books:摘要：提出了GraphScope Flex(GraphScope系统的升级)，
+> > > :books:摘要：提出了GraphScope Flex(GraphScope系统的升级)
+> > >
+> > > - 背景
+> > >   - 关于
 > > >
 > > > 
 
