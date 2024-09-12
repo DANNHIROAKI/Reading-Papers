@@ -692,10 +692,71 @@
 > > >
 > > > :books:摘要：提出了GraphScope Flex(GraphScope系统的升级)
 > > >
-> > > - 背景
-> > >   - 关于
+> > > - 关于GraphScope
+> > >   - 是个啥：用于图遍历+分析+学习的综合解决方案
+> > >   - 遇到的困难：不够万能(处理各种编程接口/App/Data时不够多样)
+> > > - 关于GraphScope Flex
+> > >   - 目标：解决GraphScope所面对的多样性挑战，权衡资源和效益，提供灵活和用户友好
+> > >   - 模块化：采取类似乐高积木的模块化，允许用户根据需求组合定制
+> > > - 结果评估
+> > >   - GraphScope Flex在LDBC社交网络基准测试中实现了2.4倍的吞吐量提升
+> > >   - GraphScope Flex在Graphalytics基准测试中达到了最高55.7倍的加速比
+> > >   - 在实际应用中，GraphScope Flex表现出高达2,400倍的性能提升
 > > >
-> > > 
+> >
+> > **:point_down:==Bouncer: Admission Control with Response Time Objectives for Low-latency Online Data Systems==**  
+> >
+> > > :classical_building:机构：领英/微软
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - General and reference → Empirical studies  
+> > > - Information systems → Main memory engines
+> > > - Database utilities and tools  
+> > >
+> > > :books:摘要：提出了Bouncer(一种查询接纳控制策略)，在流量激增时确保查询能尽快响应
+> > >
+> > > - 背景：
+> > >   - 现实背景：互联网公司在经历突发流量时，需采取策略让查询满足**响应时间目标(SLOs)**
+> > >   - 查询接纳控制策略：(尤其在流量暴增时)用于控制接受/拒绝用户的查询请求
+> > > - 关于Bouncer策略
+> > >   - 是啥：一种查询接纳控制策略
+> > >   - 基本原理：低成本估算当前响应时间分布→判断新查询是否能在SLOs内完成→拒绝/接受
+> > >   - 其它策略/原理
+> > >     - 查询分类：为不同类别的查询设置不同的SLO
+> > >     - 早期拒绝策略：帮助客户端迅速作出反应，避免系统浪费资源在无效的查询上
+> > >     - 避免饥饿策略：确保某些类别的查询不会被完全拒绝，防止查询类型长期得不到服务
+> > > - 评估与结果
+> > >   - Bouncer有效避免了饥饿
+> > >   - Bouncer通过较少的总体拒绝次数，达到总体较小的系统开销
+> > >     - 高负载下，让已接纳的查询保持接近其SLO
+> > >     - 其它查询则不能达到SLO
+> >
+> > **:point_down:==NPA: Improving Large-scale Graph Neural Networks with Non-parametric Attention==**  
+> >
+> > > :classical_building:机构：北京大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data mining  
+> > > - Computing methodologies → Machine learning  
+> > >
+> > > :books:摘要：设计了非参数化(Non-parametric)GNN与非参数化注意力(PNA)
+> > >
+> > > - 基础背景：
+> > >   - 传统GNN：GNN处理大规模图数据时，可扩展性差
+> > >   - 以往研究：通过GNN高采样技术来提交扩展性
+> > >   - 现在研究：非参数化GNN训练不依赖大量可训练参数，许多场景下扩展性都很强
+> > > - 另一个背景：非参数化GNN的局限
+> > >   - 过平滑问题：由于特征的过度传播，随着传播层数增加，网络性能急剧下降
+> > >   - 忽略了特征的影响：非参数化GNN传播时只考虑了图结构，忽略了特征的影响
+> > > - NPA模块的提出
+> > >   - 是啥：一个可插拔的模块，兼容现有非参数化GNN，使其同时支持可扩展性+更深架构
+> > >   - 原理：引入注意力机制，通过传播时权衡特诊&图结构的重要性，来优化特征传播
+> > > - 验证与实验
+> > >   - NPA在七个同构图/五个异构图中表现优异
+> > >   - 在大规模数据集**ogbn-papers100M**上，NPA 实现了**最先进的性能**
+> > >   - 一言蔽之：**高性能，高扩展性，支持更深网络结构**
 
 # 3. Demonstrations
 
