@@ -762,7 +762,304 @@
 
 > ## 3.1. Group A
 >
-> > 
+> > **:point_down:==Demonstration of Ver: View Discovery in the Wild==**  
+> >
+> > > :classical_building:机构：芝加哥大学
+> > >
+> > > :arrow_right:领域：Information systems → Information integration  
+> > >
+> > > :books:摘要：展示了Ver1数据发现系统
+> > >
+> > > - 能干啥：在没提供连接路径信息的大型表格库中，识别出Project-Join视图
+> > > - 解决了啥问题
+> > >   - 技术问题：面对大规模表格，要能快速找出视图
+> > >   - 认为问题：如何帮用户理解+使用这些视图(因为导航结果复杂性/路径链接多样性等)
+> >
+> > **:point_down:==Comquest: Large Scale User Comment Crawling and Integration==**  
+> >
+> > > :classical_building:机构：天普大学/IBM
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Deep web  
+> > > - Web crawling  
+> > > - Information integration
+> > > - Information systems applications.  
+> > >
+> > > :books:摘要：展示了名为 **Comquest** 的评论抓取系统，利用Web API来收集大量网站用户评论
+> > >
+> > > - 问题背景
+> > >   - 用户的评论对于下游应用有重要价值
+> > >   - 评论数据受限于特定平台，使得数据可用性受限，群体多样化受限
+> > > - Comquest 系统的设计
+> > >   - 能干啥：(跨平台)抓取与特定新闻话题或故事相关的评论数据
+> > >   - 怎么干：通过深度学习抓取API参数→发送HTTP请求到第三方评论系统的API→收集评论
+> > >   - 广泛性：不仅适用于新闻网站，还可与任何用户评论网站配合使用
+> >
+> > **:point_down:==QueryShield: Cryptographically Secure Analytics in the Cloud==**  
+> >
+> > > :classical_building:机构：波士顿大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Security and privacy → Cryptography  
+> > > - Information systems → Data management systems  
+> > >
+> > > :books:摘要：展示了QueryShield，为云端数据分析提供加密安全服务，以保护隐私+简化多方安全计算
+> > >
+> > > - QueryShield 的功能
+> > >   - 数据分析描述发布：
+> > >     - 数据分析师$\xrightarrow[\text{QueryShield}]{发布分析描述}$数据所有者
+> > >     - 数据所有者在保证隐私前提下，选择参与计算以获利/公益
+> > >   - 数据隐私保障：提供多方安全计算技术，为关系数据库/时间序列分析，提供隐私保护
+> > > - QueryShield 的特性：用户友好，封装了多方安全计算(MPC)的复杂计算，非专家也可使用
+> > > - 文中演示的三个场景：四人就业信息调查+信用评分 异常分析+医学场景
+> >
+> > **:point_down:==SIERRA: A Counterfactual Thinking-based Visual Interface for Property Graph Query Construction==**  
+> >
+> > > :classical_building:机构：南洋理工
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Human-centered computing → Visualization systems and tools  
+> > > - Information systems → Query languages  
+> > >
+> > > :books:摘要：展示了新型视觉查询界面(VQI) SIERRA，帮不会图查询语言(Cypher)用户构建属性图数据库
+> > >
+> > > -  背景知识
+> > >
+> > >   - 属性图：一种图数据库模型，用于存储+管理图数据库，由以下三种结构组成
+> > >
+> > >     | 图数据库结构 | 对应关系数据库结构 |                  举例                   |
+> > >     | :----------: | :----------------: | :-------------------------------------: |
+> > >     |    Nodes     |       Entity       |               学生，老师                |
+> > >     |  Properties  |     Attribute      | 学生(StuID/成绩)，老师(Course/TecherID) |
+> > >     |    Edges     |    Relationship    |       学生$\xleftarrow{授课}$老师       |
+> > >
+> > >   - 视觉查询界面：一种帮助用户建立数据库的图形化界面，而无需编写代码(比如SQL)
+> > >
+> > > - 背景：
+> > >
+> > >   - 属性图大受欢迎，但特定查询语言构成了门槛→视觉查询界面
+> > >   - 现有视觉查询界面虽然易用，但未充分考虑HCI规律和心理学
+> > >
+> > > - SIERRA 的设计创新：解决了现有视觉查询界面在可用性和美观性上的不足
+> > >
+> > >   - 理论驱动的设计：采用**反事实思维**，结合HCI/可视化/心理学原则，使得界面直观易用
+> > >   - 标签复合图(LCG)：引入标签复合图，展示图的结构
+> > >   - 视觉形状定义语言：融入在SIERRA的设计里，在查询构建过程中引导用户创建和维护LCG
+> >
+> > **:point_down:==Sawmill: From Logs to Causal Diagnosis of Large Systems==**  
+> >
+> > > :classical_building:机构： MIT
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Software and its engineering → System administration  
+> > > - Computing methodologies → Causal reasoning and diagnostics  
+> > > - Natural language generation  
+> > >
+> > > :books:摘要：展示了Swamill系统，用来从复杂**日志文件**中提取**因果关系**
+> > >
+> > > - 背景：
+> > >   - 因果分析在**复杂系统**的动态中至关重要
+> > >   - 计算机作为复杂系统，很多信息都在**半结构化**的日志文件中，难以提取因果
+> > > - Sawmill 系统的设计与功能
+> > >   - 数据转换与清理：**半结构化**原始日志数据$\xrightarrow{\text{Sawmill}}$适合因果分析的**结构化**表示形式
+> > >   - 可理解的变量命名：系统会自动地，将从日志中提取出的变量，命名为人类可理解的名称
+> > >   - 聚合变量生成：Sawmill根据用户选择的因果单元，生成相关的聚合变量
+> > > - Sawmill能干啥
+> > >   - 高效地将日志数据转化为可以进行因果推理的模型，并进行探索式因果发现
+> > >   - 允许用户通过交互式界面参与，从而使用现有的工具进行因果推理
+> >
+> > **:point_down:==Demonstrating REmatch: A Novel RegEx Engine for Finding all Matches==**  
+> >
+> > > :classical_building:机构： 牛津大学/智利天主教大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Theory of computation → Regular languages  
+> > > - Information systems → Information retrieval
+> > >
+> > > :books:摘要：展示了名为REmatch的正则表达式(RegEx)引擎
+> > >
+> > > - 背景知识
+> > >
+> > >   - 正则表达式：一种用于**模式匹配**的工具，如以下示例
+> > >
+> > >     ```txt
+> > >     (1) 电子邮件的正则匹配表达式^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$
+> > >     (2) 123-456-7890类型的表达式被正则表达式\d{3}-\d{3}-\d{4}匹配
+> > >     ```
+> > >
+> > >   - 正则表达式引擎：用于解析+匹配正则表达式，并返回结果
+> > >
+> > > - REmatch引擎的设计
+> > >
+> > >   - 基于枚举算法理论，找到文档中给定模式的所有匹配项
+> > >   - 区别于传统正则引擎，REmatch无需使用复杂非标准操作符，就能找到嵌套和重叠的匹配项
+> > >   - 时间复杂度与逐字符输出匹配结果的时间成比例
+> > >
+> > > - 用户界面：https://rematch.cl
+> > >
+> > > - 应用场景：DNA序列分析，语言分析，如本文展示例子所示
+> >
+> > **:point_down:==ASQP-RL Demo: Learning Approximation Sets for Exploratory Queries==**  
+> >
+> > > :classical_building:机构： 宾夕法尼亚大学/Aviv大学
+> > >
+> > > :arrow_right:领域：Information systems → Data management systems   
+> > >
+> > > :books:摘要：展示了ASQP-RL系统，用于优化针对大规模外部数据的非聚合查询
+> > >
+> > > - 背景：处理大规模外部数据库的查询很耗时，尤其当内存有限时
+> > > - ASQP-RL原理
+> > >   - 用户发起**非聚合查询**(SELECT/PROJECT/JOIN)
+> > >   - ASQP-RL运行强化学习算法选择外部数据库一个子集
+> > >     - 此处强化学习算法的原理：通过局部数据子集来近似全局数据查询的结果
+> > >   - ASQP-RL将选择的子集加载到本地，成为**近似集**
+> > >   - ASQP-RL对已经物理化(本地化)的子集执行快速的查询
+> > > - ASQP-RL的优势：
+> > >   - 查询时间速快
+> > >   - 查询结果准确(虽然只取了子集，但效果和取整体差不多)
+> > >   - 针对聚合查询也有良好效果
+> >
+> > **:point_down:==IMBridge: Impedance Mismatch Mitigation between Database Engine and Prediction Query Execution==**  
+> >
+> > > :classical_building:机构： 华东师大/蚂蚁集团
+> > >
+> > > :arrow_right:领域：Information systems → Query optimization  
+> > >
+> > > :books:摘要：展示了IMBridge系统，旨在弥合[数据库引擎$\leftrightarrow$机器学习预测]间的**阻抗不匹配**问题
+> > >
+> > > - 背景知识
+> > >   - ML×DB：机器学习模型可用于对存储在数据库的数据执行分析
+> > >   - Python UDF：看起来很高级，其实就是Python User-Defined Function的意思
+> > >   - 阻抗不匹配：两个系统或组件之间差异过大，导致无法交互，协调效率差
+> > > - 研究背景
+> > >   - 阻抗不匹配：
+> > >     - 当前数据库在查询引擎中引入Python UDF(预测函数)，以在处理查询时执行ML推理
+> > >     - 数据库无法理解预测函数语义
+> > >   - 推理上下文重复：传统方法中，没调用一次预测函数，都要重新设置上下文环境
+> > >   - 不匹配的批量大小：源于数据库操作与预测函数的批量处理之间缺乏协调，影响吞吐
+> > > - IMBridge 系统的解决方案
+> > >   - 通过预测函数重写器→消除多余的推理上下文设置
+> > >   - 引入了一个解耦的预测操作符→统一数据库与预测函数的批大小
+> >
+> > **:point_down:==ASM in Action: Fast and Practical Learned Cardinality Estimation==**  
+> >
+> > > :classical_building:机构： 浦项科技大学/洛桑联邦理工大学
+> > >
+> > > :arrow_right:领域：Information systems → Query optimization  
+> > >
+> > > :books:摘要：展示了名为ASM的基数估计器
+> > >
+> > > - 背景
+> > >   - 基数估算：用于估计查询结果/中间结果的大小，从而反向优化查询
+> > >   - 现有问题：
+> > >     - 基于机器学习的基数估算器能够显著提高估算精度
+> > >     - 实际部署中，ML无法与数据库查询优化器结合，导致性能不佳
+> > > - ASM的改进
+> > >   - 使用自动回归模型，即利用历史数据对当前查询结果进行预测
+> > >   - 从数据库中进行适当的采样
+> > >   - 利用多维统计合并，在复杂多维数据上提供更高效的基数估算
+> > > - ASM能干啥：
+> > >   - 显著提升了基数估算器的效率，尤其是在复杂/多维查询情况下
+> > >   - 更容易与现有的数据库查询优化器集成，避免了“估算精度高但执行效率低”的问题
+> >
+> > **:point_down:==The Game Of Recourse: Simulating Algorithmic Recourse over Time to Improve Its Reliability and Fairness==**  
+> >
+> > > :classical_building:机构： 纽约大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data management systems;  
+> > > - Social and professional topics → Socio-technical systems
+> > > - Human centered computing;  
+> > >
+> > > :books:摘要：讨论了算法反应(Algorithmic Recourse)概念，并提供了一种通过模拟生成相关数据的方法
+> > >
+> > > - 背景知识
+> > >   - 算法反应：为在算法系统中得到不利结果的人提供建议，使其采取行动改变结果
+> > >   - 算法反应的目的：发挥人的主观能动性，从而让人对算法有更多控制权
+> > >   - 算法反应的困境：缺乏公开可用的数据集
+> > > - 关于The Game Of Recourse
+> > >   - 是啥：一个基于代理的模拟
+> > >   - 干啥：生成现实的算法反应数据
+> > >   - 灵感：来自于康威的“生命游戏”Conway’s Game of Life (笑)
+> > >   - 特性：可靠性+公平性
+> > > - 开放访问： https://game-of-recourse.streamlit.app 
+> >
+> > **:point_down:==RobOpt: A Tool for Robust Workload Optimization Based on Uncertainty-Aware Machine Learning==**  
+> >
+> > > :classical_building:机构： 渥太华大学/IBM
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Query optimization  
+> > > - Computing methodologies → Uncertainty quantification  
+> > > - Supervised learning by regression
+> > >
+> > > :books:摘要：展示了RobOpt系统，旨在解决关系型数据库管理系统(R-DBMS)中的查询优化问题
+> > >
+> > > - 背景知识
+> > >   - 优化器：R-DBMS依赖于查询优化器，为从查询选择最优计划，以达到优化目的
+> > >   - 优化器原理：依赖于数据库中达到统计信息(数据分布/查询条件)→估计查询的代价和参数
+> > > - 研究背景
+> > >   - 传统优化器的缺陷：
+> > >     - 传统优化器的参数估计准确性差，执行查询总是非最优
+> > >     - 传统优化器基于特定场景
+> > >   - 基于机器学习优化器的缺陷：处理不同工作负载时，通常会选择次优方案，从而优化不力
+> > > - RobOpt 的提出
+> > >   - 是啥：针对工作负载的**鲁棒查询优化器**，使得查询计划的选择更加稳健
+> > >     - **鲁棒查询优化器**：在面对不确定性/系统波动，仍然选出最优计划的优化器
+> > >   - 原理
+> > >     - 使用数据库的**查询日志**作为输入
+> > >     - 通过日志中的历史数据，训练出一个**基于风险感知的学习代价模型**
+> > >     - 在执行优化器时，考虑风险因素，并采取风险感知的计划策略
+> > >     - 可以在工作负载级别/单个查询级别上分析查询样本。都可做出最优选择
+> > > - RobOpt 的优势
+> > >   - 鲁棒性：在不确定较大的场景任然保持稳定性+高性能
+> > >   - 灵活性：可部署在任何R-DBMS上
+> >
+> > **:point_down:==Demonstrating CAESURA: Language Models as Multi-Modal Query Planners==**  
+> >
+> > > :classical_building:机构： 达姆城工业大学
+> > >
+> > > :arrow_right:领域：Information systems → Semi-structured data  
+> > >
+> > > :books:摘要：展示了**CAESURA**系统，用于将数据库技术与LLM结合，从而处理多模态数据
+> > >
+> > > - 背景与背景知识
+> > >   - 多模态数据
+> > >     - 含义：指包含不同形式的数据，比如表格/文本/图像
+> > >     - 应用：在基于LLM的问答系统中，需要enable用户去查询多模态数据
+> > >   - RAG(Retrieval Augmented Generation)
+> > >     - 是啥：一种扩展LLM的技术
+> > >     - 干啥：先从向量数据库中检索相关数据→将数据输入LLM来计算查询结果
+> > >     - 弊端：LLM推理成本很高，LLM只能处理有限数据(对大规模RAG束手无策)
+> > > - CAESURA 的提出
+> > >   - 是啥：一种数据库优先的多模态问答系统
+> > >   - 核心思想：使用 LLM 的推理能力→翻译自然语言查询→生成数据库执行计划
+> > >   - 工作流程
+> > >     - 用户通过自然语言，提出查询
+> > >     - CAESURA 使用 LLM 将查询翻译成数据库可以执行的查询计划
+> > >     - 数据库系统(而非LLM)执行查询
+> > >   - 优势：
+> > >     - 得益于LLM，从而(通过转换自然语言)能处理多模态数据
+> > >     - 得益于数据库系统，可以快速处理(而非是让LLM进行高成本的推理)
+> > >     - 扩展性好，能够处理大规模的数据集，不想RAG数据一大就阿巴阿巴
+> >
+> > **:point_down:==Demonstration of Udon: Line-by-line Debugging of User-Defined Functions in Data Workflows==**  
+> >
+> > > :classical_building:机构： 加州大学欧文分校
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data management systems  
+> > > - Software and its engineering → Software testing and debugging  
+> > >
+> > > :books:摘要：
 >
 > ## 3.1. Group B
 >
