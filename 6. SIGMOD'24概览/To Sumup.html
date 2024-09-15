@@ -1,0 +1,846 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG2"] path[data-c], mjx-container[jax="SVG2"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>To Sumup</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='1-keynotes'><span>1. Keynotes  </span></h1><blockquote><p>👇<mark><strong><span>The Limitations of Data, Machine Learning and Us</span></strong></mark></p><blockquote><p>🏛<span>机构：智利大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Social and professional topics → Computing / technology policy</span></p></li><li><p><span>Computing methodologies → Machine learning</span></p></li><li><p><span>Information systems → Data management systems</span></p></li></ul><p>📚<span>概述：</span></p><ul><li><p><span>讨论了以下主题</span></p><ul><li><p><span>监督学习/输入监督学习的数据的局限</span></p></li><li><p><span>人类适用机器学习时的社会/认知偏见</span></p></li><li><p><span>人工智能使用的监管措施</span></p></li></ul></li></ul></blockquote><h5 id='the-journey-to-a-knowledgeable-assistant-with-retrieval-augmented-generation-rag'>👇<mark><strong><span>The Journey to A Knowledgeable Assistant with Retrieval-Augmented Generation (RAG)  </span></strong></mark><span>  </span></h5><blockquote><p>🏛<span>机构：Facebook (Meta)</span></p><p>📚<span>概述：</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>多个研究领域(DB/NLP/AI)都致力于在一定时间提供正确信息</span></p></li><li><p><span>近年LLM提出，但也可能会输出错误/虚假信息</span></p></li></ul></li><li><p><span>本文工作：</span></p><ul><li><p><span>通过实验，评估LLMs在回答</span><strong><span>事实性问题</span></strong><span>的可靠性</span></p></li><li><p><span>构建Retrieval-Augmented Generation(RAG)联邦系统，整合LLM训练集以外知识，提高回答可靠性</span></p></li><li><p><span>将RAG用到多模态/不同文化/个性化回答</span></p></li></ul></li></ul></blockquote><p>👇<strong><mark><span>Making Data Management Better with Vectorized Query Processing</span></mark></strong><span> </span></p><blockquote><p>📚<span>概述：</span></p><ul><li><p><span>主要回顾/展望了矢量化查询</span></p></li><li><p><span>矢量化查询是啥</span></p><ul><li><p><span>传统的查询：逐行处理(tuple-at-a-time)</span></p></li><li><p><span>矢量化查询：每次处理一批固定大小的数据(称之为Vector)，可实现CPU优化/缓存友好等</span></p></li></ul></li></ul></blockquote></blockquote><h1 id='2-industry-session'><span>2. Industry Session</span></h1><blockquote><h2 id='21-query-engines'><span>2.1. Query Engines</span></h2><blockquote><p><strong>👇<mark><span>Apache Arrow DataFusion: A Fast, Embeddable, Modular Analytic Query Engine</span></mark></strong><span>   </span></p><blockquote><p>🏛<span>机构：Apache </span></p><p>📚<span>概述：</span></p><ul><li><p><span>介绍了Apache Arrow DataFusion：一个基于Apache Arrow的查询引擎，强调快速/可嵌入/可扩展</span></p><ul><li><p><span>Apache Arrow：跨平台数据处理工具，提供高效的内存模型</span></p></li><li><p><span>DataFusion：用Rust编写，具有性能+安全性的优势</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Unified Query Optimization in the Fabric Data Warehouse</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：微软</span></p><p>➡️<span>领域：Information systems → Query optimization  </span></p><p>📚<span>概述：</span></p><ul><li><p><span>背景：微软曾推出了Parallel Data Warehouse，是一种查询大量数据的并行系统</span></p></li><li><p><span>本文：介绍了微软最新提出的Fabric DW</span></p><ul><li><p><span>文章对比了Fabric DW与传统的Parallel Data Warehouse</span></p></li><li><p><span>新的优化器考虑了现代环境中的需求，如动态资源分配/计算存储分离等</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Measures in SQL</span></mark><span>  </span></strong><span> </span></p><blockquote><p>🏛<span>机构：Google  </span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Relational database query languages  </span></p></li><li><p><span>Data analytics  </span></p></li><li><p><span>Online analytical processing  </span></p></li></ul><p>📚<span>概述：</span></p><ul><li><p><span>背景：SQL已被广泛采用，但传统的SQL任然缺乏</span><em><span>可组合计算</span></em><span>的能力</span></p></li><li><p><span>本文：提出一种新型的附加列，叫做Measure(度量)</span></p><ul><li><p><span>如何操作带度量的表：和普通表操作方法一样</span></p></li><li><p><span>带度量的SQL的优势：可在保留SQL语义同时，通过调用Measure解决更复杂的查询</span></p></li><li><p><span>度量如何计算得到：通过上下文(上下文敏感表达式)得到度量的值</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>ByteCard: Enhancing ByteDance’s Data Warehouse with Learned Cardinality Estimation</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：ByteDance  </span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Computing methodologies → Machine learning  </span></p></li></ul><p>📚<span>概述：</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>关于ByteHouse：字节公司开发的云原生数据分析引擎，用于处理超大规模数据的复杂分析任务</span></p><p>⚠️<span>云原生数据库：指专门为云环境设计和优化的数据库系统</span></p></li><li><p><span>关于基数估计：预测查询结果的数量(大小)，直接影响优化器的决策，是有护额的瓶颈所在</span></p></li></ul></li><li><p><span>ByteCard的引入：融合最近在基数估计方面的进展，构建了兼顾可靠/实用的基数估计模型</span></p></li></ul></blockquote><p><strong>👇<mark><span>Automated Multidimensional Data Layouts in Amazon Redshift</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：Amazon</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data layout</span></p></li><li><p><span>Autonomous database administration</span></p></li><li><p><span>Online analytical processing engines  </span></p></li></ul><p>📚<span>概述：</span></p><ul><li><p><span>背景：关于数据布局技术，其是DB/DW中优化存储和访问效率的策略，常见为以下几种</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>种类</span></th><th><span>概述</span></th><th><span>示例(T=Tuple/A=Attribute)</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>行存储</span></td><td><span>一行数据连续存储</span></td><td><span>T1/A1→T1/A2→....→T1/An→T2/A1→....→Tm/An</span></td></tr><tr><td style='text-align:center;' ><span>列存储</span></td><td><span>一列数据连续存储</span></td><td><span>T1/A1→T2/A1→....→Tm/A1→T1/A2→....→Tm/An</span></td></tr><tr><td style='text-align:center;' ><span>排序键</span></td><td><span>数据按Key排序后存储</span></td><td><span>N/A</span></td></tr><tr><td style='text-align:center;' ><a href='https://blog.csdn.net/qq_64091900/article/details/141219405'><span>索引</span></a></td><td><span>建立表</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="2.058ex" role="img" focusable="false" viewBox="0 -898.8 1000 909.8" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-6-TEX-N-2194" d="M263 479Q267 501 271 506T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H835Q729 349 696 475Q691 493 691 500Q691 511 711 511Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q144 292 194 349T263 479Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2194" xlink:href="#MJX-6-TEX-N-2194"></use></g></g><g data-mml-node="mpadded" transform="translate(264.2,798.8) scale(0.707)"><g transform="translate(333,-200)"><g data-mml-node="mspace"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">↔</mo></mstyle><mpadded width="+0.667em" lspace="0.333em" voffset="-.2em" height="-.2em"><mspace depth=".25em"></mspace></mpadded></mover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xleftrightarrow{}</script><span>内存位置的索引</span></td><td><span>B+树，哈希表</span></td></tr></tbody></table></figure></li><li><p><span>本文的工作1：提出了多维数据布局(MDDL)</span></p><ul><li><p><span>核心方法：传统方法是基于一组列对表进行排序，MDDL是</span><mark><span>基于一组谓词(查询条件)对表进行排序</span></mark></p></li><li><p><span>优点：是的查询高度的定制化</span></p></li></ul></li><li><p><span>本文的工作2：提出一种自动化学习算法，基于历史工作负载，</span><mark><span>自动学习每个表最佳的MDDL</span></mark><span> </span></p></li></ul></blockquote><p><strong>👇<mark><span>Automated Clustering Recommendation With Database Zone Maps</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Oracle  </span></p><p>➡️<span>领域：Theory of computation → Database query processing and optimization (theory)</span></p><p>📚<span>概述：一言蔽之，主要讲了区间图/自动聚类在数据仓库中的应用</span></p><ul><li><p><span>背景：关于区间图(Zone Maps)</span></p><ul><li><p><span>结构：将表划分为Zone，存储每个区域的最大/最小值</span></p></li><li><p><span>工作原理：支持查询时，读取区间的最大/最小值，选择跳过/不跳过该区间，从而减少扫描工作量</span></p></li><li><p><span>优势：</span><strong><span>在按某列排序/聚类处理后的数据上表现优越</span></strong><span> </span></p></li></ul></li><li><p><span>本文的工作：自动分析工作负载→推荐聚类方案(线性聚类和z-order聚类)→建区间图→提高查询性能</span></p></li></ul></blockquote></blockquote><h2 id='22-llms-and-ml-applications'><span>2.2. LLMs and ML Applications</span></h2><blockquote><p><strong>👇<mark><span>Similarity Joins of Sparse Features</span></mark></strong></p><blockquote><p>🏛<span>机构：Uber</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Clustering  </span></p></li><li><p><span>Theory of computation → MapReduce algorithms  </span></p></li></ul><p>📚<span>概述：提出了Fast Scalable Sparse Joiner (FSSJ)算法，用于在大规模稀疏数据上进行相似性连接</span></p><ul><li><p><span>一些前置知识和背景</span></p><ul><li><p><span>相似性连接：在两个数据集中，找出相似性超过某个阈值的记录对</span></p></li><li><p><span>前缀过滤：相似性连接的一种技术</span></p><ul><li><p><span>含义：对比属性的前N个属性(前缀)，如果两个记录的前缀不匹配，则默认不相似</span></p></li><li><p><span>存在的问题：某些元素在数据集中很流行/元素分布极其不均时，过滤效率会下降</span></p></li></ul></li><li><p><span>稀疏特征：比如平均每个Tuple只有少数Attributes被赋值</span></p></li></ul></li><li><p><span>本文工作：关于FSSJ，引入Quasi-Prefix Filtering的新方法</span></p><ul><li><p><span>针对频繁出现的流行元素做出优化，最流行元素不会被当作前缀来过滤</span></p></li><li><p><span>传统前缀过滤需对所有记录排序，然后广播给所有计算结点。准前缀过滤避免了广播操作</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>FinSQL: Model-Agnostic LLMs-based Text-to-SQL Framework for Financial Analysis</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：浙江大学</span></p><p>➡️<span>领域：Information systems → Structured Query Language  </span></p><p>📚<span>概述：金融领域Text-to-SQL的挑战与解决</span></p><ul><li><p><span>背景：Text-to-SQL</span></p><ul><li><p><span>含义：通过自然语言生成SQL</span></p></li><li><p><span>问题与挑战：金融领域缺乏实用的Text-to-SQL基准数据集，现有Text-to-SQL没考虑金融数据库特点</span></p></li></ul></li><li><p><span>本文的工作</span></p><ul><li><p><span>BULL数据集：收集的一个实用的Text-to-SQL基准数据集</span></p></li><li><p><span>FinSQL框架：一个基于大语言模型的Text-to-SQL框架，处理方法包括提示词构建/参数微调/输出校准</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Rock: Cleaning Data by Embedding ML in Logic Rules</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：关河智图/深圳计算机研究院</span></p><p>➡️<span>领域：Information systems → Information integration  </span></p><p>📚<span>概述：提出一个基于ML的Rock系统，用来清洗Relational Data(就是Relational Database中的数据)</span></p><ul><li><p><span>Rock的核心：结合机器学习/逻辑推理，通过将ML分类器嵌入为谓词来清洗数据</span></p></li><li><p><span>Rock的清洗任务：注意以下任务在Rock中可做到多任务协同处理</span></p><ul><li><p><span>实体解析：将不同事物指向(识别并归类为)一个实体</span></p></li><li><p><span>冲突解决：捕捉不同实体之间的语义不一致(比如数据源1说A是20岁/数据源2说A是30岁)并解决</span></p></li><li><p><span>及时性推断：根据数据的属性值，判断这些值是否过期并更新</span></p></li><li><p><span>不完整信息补全</span></p></li></ul></li><li><p><span>Rock的其它功能</span></p><ul><li><p><span>自发从数据中发现规则</span></p></li><li><p><span>对大规模数据采取批处理模式</span></p></li><li><p><span>随数据更新而逐步更新</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Data-Juicer: A One-Stop Data Processing System for Large Language Models</span></mark></strong></p><blockquote><p>🏛<span>机构：阿里巴巴</span></p><p>➡️<span>领域：Information systems → Information integration  </span></p><p>📚<span>概述：提出了一个新的Data-Juicer系统，能够为LLM的训练生成多样化的数据组合(data recipes)</span></p><ul><li><p><span>背景：数据与LLM</span></p><ul><li><p><span>数据在LLM的重要性：LLM的关键在于使用了</span><mark><span>庞大的/异构的/高质量的</span></mark><span>数据</span></p></li><li><p><span>数据组合：从不用来源混合而成的数据，用于训练LLM，决定了LLM的性能</span></p></li></ul></li><li><p><span>现有的问题：开源工具无法满足多样化数据需求，以及新数据源</span></p></li><li><p><span>Data-Juicer能干啥</span></p><ul><li><p><span>对于异构且庞大的数据，能高效生成各种数据组合</span></p></li><li><p><span>能更高效评估数据组合对LLMs性能的影响</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>The Hopsworks Feature Store for Machine Learning</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：Hopsworks(瑞典软件公司)</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Database design and models  </span></p></li><li><p><span>Database management system engines.  </span></p></li></ul><p>📚<span>概述：提出了Hopsworks机器学习特征存储(Feature Store)系统</span></p><ul><li><p><span>背景：ML系统中的数据管理</span></p><ul><li><p><span>含义：是ML-Sys中处理/存储/组织数据，确保数据用于训练推理的过程，是ML-Sys最具挑战的部分</span></p></li><li><p><span>特征存储：管理ML数据的统一平台，贯穿了特征工程/训练/推理</span></p></li></ul></li><li><p><span>Hopsworks特征存储平台：用于管理特征数据，解决了如下问题</span></p><ul><li><p><span>特征重用：特征在不同机器学习任务中重复使用</span></p></li><li><p><span>数据转换：组织/执行特征过程的数据转换过程</span></p></li><li><p><span>确保一致性：保证特征工程/训练/推理时，数据是正确且一致的</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>COSMO: A Large-Scale E-commerce Common Sense Knowledge Generation and Serving System at Amazon</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：Amazon  </span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Computing methodologies → Knowledge representation and reasoning</span></p></li><li><p><span>Information systems → Web mining  </span></p></li></ul><p>📚<span>概述：</span></p><ul><li><p><span>背景：现有电商图谱(产品属性-用户-商家关系)无法有效发现用户意图/反应用户思维</span></p></li><li><p><span>COSMO是个啥：可扩展系统，基于用户行为→构建用户知识图谱→为搜索导航提供服务</span></p></li><li><p><span>COSMO构建流程：</span></p><ul><li><p><span>知识提取：用LLM从亚马逊大数据中提取初始知识</span></p></li><li><p><span>筛选：引入一个(基于人工标注数据)分类器，判断哪些知识可靠/不可靠并筛选</span></p></li><li><p><span>去噪：采用指令微调，进一步筛掉与人类认知有偏差的知识，</span><mark><span>最终得到高质量的知识</span></mark></p></li></ul></li><li><p><span>COSMO已经被部署在亚马逊的搜索和导航系统中</span></p></li></ul></blockquote></blockquote><h2 id='23-cloud-storage'><span>2.3. Cloud Storage</span></h2><blockquote><p><strong>👇<mark><span>LETUS: A Log-Structured Efficient Trusted Universal BlockChain Storage</span></mark></strong></p><blockquote><p>🏛<span>机构：蚂蚁集团</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Security and privacy → Database and storage security  </span></p></li></ul><p>📚<span>概述：提出了LETUS，用于区块链的高效/安全的通用存储系统</span></p><ul><li><p><span>背景：区块链爆炸增长，传统两层式存储结构已无法满足需求</span></p></li><li><p><span>LETUS系统的主要特点</span></p><ul><li><p><span>打破传统两层架构：将认证数据结构(ADS)放到存储引擎，从而优化了存储和IO</span></p></li><li><p><span>提出了新型ADS：结合Merkle树+增量编码(delta-encoding)功能，称作DMM-Tree</span></p></li><li><p><span>改进的索引机制：基于版本的索引，用变种B树来索引ADS生成的数据页</span></p></li><li><p><span>通用性：适用各种区块链</span></p></li></ul></li><li><p><span>LETUS已经在蚂蚁链的商业应用中部署，例如2023年亚运会的NFT项目和数字火炬点燃活动</span></p></li></ul></blockquote><p><strong>👇<mark><span>Vortex: A Stream-oriented Storage Engine For Big Data Analytics</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：Google</span></p><p>➡️<span>领域：Information systems → Stream management</span></p><p>📚<span>概述：提出了Vortex，一个为Google BigQuery构建的</span><strong><span>实时分析存储引擎</span></strong><span>，支持对数据流的实时分析</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>企业需要处理海量数据，尤其是对于连续数据流(streaming data)</span></p></li><li><p><span>传统数据系统分为流处理引擎/批处理系统，后者在处理实时数据时不佳</span></p></li></ul></li><li><p><span>关于Vortex</span></p><ul><li><p><span>设计：专为数据流设计但也支持批处理，将两种操作集成到了同一个系统中</span></p></li><li><p><span>能力：处理PB级别的数据摄取(持续流入与分析)，能以亚秒级响应用户的实时查询</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Native Cloud Object Storage in Db2 Warehouse: Implementing a Fast and Cost-Efficient Cloud Storage Architecture</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：IBM</span></p><p>➡️<span>领域：Information systems → Database management system engines  </span></p><p>📚<span>概述：提出了</span><strong><span>Db2 Warehouse</span></strong><span>存储架构的现代化改造，以适应云环境</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>传统小块存储：以4KB大小的数据页为存储单位(适合随机存取/块级IO)，但在云环境数据库中成本高</span></p></li><li><p><span>云对象存储：在处理大规模数据时，比传统小块存储成本更低</span></p></li></ul></li><li><p><span>存在的问题：将传统存储</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="4.178ex" height="3.262ex" role="img" focusable="false" viewBox="0 -1359.7 1846.8 1441.7" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><defs><path id="MJX-7-TEX-S4-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path id="MJX-7-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-7-TEX-S4-2192" transform="translate(846.8,0)"></use><svg width="946.8" height="865" x="0" y="-182" viewBox="236.7 -182 946.8 865"><use data-c="2212" xlink:href="#MJX-7-TEX-S4-2212" transform="scale(1.825,1)"></use></svg></g></g><g data-mml-node="mpadded" transform="translate(0,870.8) scale(0.707)"><g transform="translate(278,-200)"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">迁</text></g><g data-mml-node="mtext" transform="translate(894.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">移</text></g><g data-mml-node="mspace" transform="translate(1778.8,0)"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">→</mo></mstyle><mpadded width="+0.833em" lspace="0.278em" voffset="-.2em" height="-.2em"><mtext>迁</mtext><mtext>移</mtext><mspace depth=".25em"></mspace></mpadded></mover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xrightarrow{迁移}</script><span>云对象存储成本巨大，因此需要新的架构</span></p></li><li><p><span>对</span><strong><span>Db2 Warehouse</span></strong><span>架构的改进</span></p><ul><li><p><span>将Log-Structured Merge(LSM)树整合到Db2 Warehouse系统，以管理大规模写入/查询</span></p></li><li><p><span>保留传统数据页格式，避免对传统数据库内核大幅重构</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>ESTELLE: An Efficient and Cost-effective Cloud Log Engine</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：电子科大/华为</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → DBMS engine architectures  </span></p></li><li><p><span>Structured text search  </span></p></li></ul><p>📚<span>概述：提出了ESTELLE，转为云环境设计的日志引擎，用于管理大规模的日志数据</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>日志的重要性：监控/调试/分析的核心数据</span></p></li><li><p><span>日志的特性：高频写入，低频检索，大量存储；这也是本文模型所要满足的</span></p></li></ul></li><li><p><span>ESTELLE的设计与特点</span></p><ul><li><p><span>采用了一种低成本日志索引框架，可根据需求灵活引用索引机制</span></p></li><li><p><span>分离计算和存储，以分离读写操作，从而确保系统能同时查询和写入</span></p></li><li><p><span>设计了一个近乎无锁的写入过程，以适应高频快速写入需求</span></p></li></ul></li><li><p><span>ESTELLE存储与查询优化</span></p><ul><li><p><span>采取对象存储技术(以对象为单位存储，包含数据/元数据/主键)</span></p></li><li><p><span>采取Log Bloom Filter和近似倒排索引，根据场景优化查询</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>TimeCloth: Fast Point-in-Time Database Recovery in The Cloud</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：阿里巴巴</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Database utilities and tools  </span></p></li><li><p><span>Point-in-time copies  </span></p></li><li><p><span>Storage recovery strategies  </span></p></li><li><p><span>Database recovery  </span></p></li></ul><p>📚<span>概述：提出了TimeCloth，一种专为云环境设计的通用恢复机制，以优化用户触发的数据库恢复</span></p><ul><li><p><span>背景：关于用户触发的数据库恢复</span></p><ul><li><p><span>特点：相比于因故障触发的恢复，需要更加考量用户的需求，如细粒度(精确程度)/时间点</span></p></li><li><p><span>现有方案：与底层数据库引擎高度集成，难以处理用户触发的恢复</span></p></li></ul></li><li><p><span>TimeCloth的设计：专注实现</span><strong><span>次线性恢复时间</span></strong><span>，满足用户对恢复的特定要求</span></p><ul><li><p><span>恢复模块：包括了几种机制，高效日志过滤/将非冲突日志并行回放/合并日志以减少工作量</span></p></li><li><p><span>导入模块：实现了透明的基于FUSE的延迟加载机制+智能预取功能</span></p></li></ul></li><li><p><span>TimeCloth已经在阿里云上投入生产</span></p></li></ul></blockquote></blockquote><h2 id='24-cloud-databases'><span>2.4. Cloud Databases  </span></h2><blockquote><p><strong>👇<mark><span>Proactive Resume and Pause of Resources for Microsoft Azure SQL Database Serverless</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：微软</span></p><p>➡️<span>领域：Computer systems organization → Self-organizing autonomic computing  </span></p><p>📚<span>概述：提出了一种针对云数据库的</span><strong><span>主动资源分配</span></strong><span>基础设施，并用于无服务器的Azure SQL数据库</span></p><ul><li><p><span>背景：为云数据库分配资源</span></p><ul><li><p><span>反应式：传统的方法，即根据当前需求分配资源</span></p></li><li><p><span>主动式：创新方法，结合当前需求+预期需求来分配资源</span></p></li></ul></li><li><p><span>本文的模型</span></p><ul><li><p><span>要干啥：在</span><strong><span>资源的高可用性</span></strong><span>/</span><strong><span>运营成本的降低</span></strong><span>/</span><strong><span>主动策略的计算开销</span></strong><span>之间找到接近最优的平衡点</span></p></li><li><p><span>干了啥：用于管理数百万个无服务器的Azure SQL数据库</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Vertically Autoscaling Monolithic Applications with CaaSPER</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：微软</span></p><p>➡️<span>领域：Information systems → Data management systems  </span></p><p>📚<span>概述：提出了CaaSPER垂直自动扩展算法，旨在优化Kubernetes平台上DBaaS的资源管理</span></p><ul><li><p><span>一些基本概念</span></p><ul><li><p><span>Kubernetes平台：管理云应用程序的开源平台，云应用分为有状态(对DB操作有赖于历史数据)/无状态</span></p></li><li><p><span>垂直扩展/水平扩展：增加单个服务器或节点的资源来提升处理能力/增加服务器节点数</span></p></li></ul><p>⚠️<span>Kubernetes通过垂直扩展来应对负载波动 </span></p></li><li><p><span>现状问题</span></p><ul><li><p><span>Kubernetes平台上，客户为应对峰值负载会过度分配资源(负载下降时也没有缩减资源)</span></p></li><li><p><span>现有的垂直自动扩展工具在及时缩减资源或应对CPU限流时表现不佳</span></p></li></ul></li><li><p><span>CaaSPER的提出</span></p><ul><li><p><span>是个啥：结合反应式(负载临界时主动调整)+主动式(预测负载变化以主动调整)的垂直自动扩展算法</span></p></li><li><p><span>为了啥：保持</span><strong><span>最佳的CPU利用率</span></strong><span>，减少资源浪费</span></p></li><li><p><span>其它特性：允许用户选择能效模式/性能模式，可扩展性(与平台无关)</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Flux: Decoupled Auto-Scaling for Heterogeneous Query Workload in Alibaba AnalyticDB</span></mark></strong><span> </span></p><blockquote><p>🏛<span>机构：阿里巴巴</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data warehouses  </span></p></li><li><p><span>Autonomous database administration</span></p></li></ul><p>📚<span>概述：提出了Flux，一个专为阿里巴巴AnalyticDB设计的云原生</span><strong><span>负载</span><mark><span>自动扩展</span></mark><span>平台</span></strong><span>，用于优化异构查询</span></p><ul><li><p><span>背景(当前遇到的问题)</span></p></li><li><p><span>云数据仓库需要处理各种异构工作负载，比如在线事务/临时查询/ETL(抽取+转换+加载)</span></p></li><li><p><span>当长/短期查询混合执行时，并发控制+多任务执行会过于复杂</span></p></li><li><p><span>传统</span><strong><span>自动扩展机制</span></strong><span>在处理混合工作时，可能导致资源利用不平衡(有些过度分配/有些又不足)</span></p></li><li><p><span>关于Flux</span></p></li><li><p><span>是啥：云原生的自动扩展平台，具有</span><strong><span>解耦的自动扩展架构</span></strong><span>，专用于</span><mark><span>处理异构查询工作负载</span></mark></p></li><li><p><span>架构：</span></p><ul><li><p><span>性能优化：将长/短期查询机制分开处理</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-9-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-9-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo accent="false" stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\to</script><span>消除了传统系统中由于并发控制导致的瓶颈</span></p></li><li><p><span>资源弹性：利用无服务器容器实例来动态分配资源</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-9-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-9-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo accent="false" stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\to</script><span>资源分配可快速响应负载变化</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Intelligent Scaling in Amazon Redshift</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Amazon</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → DBMS engine architectures  </span></p></li><li><p><span>Relational parallel and distributed DBMSs  </span></p></li><li><p><span>Autonomous database administration</span></p></li><li><p><span>Online analytical processing engines  </span></p></li></ul><p>📚<span>概述：提出了基于AI的RAIS，用于解决云数据仓库在处理多样化工作负载时的</span><mark><span>自动扩展</span></mark><span>问题</span></p><ul><li><p><span>背景：阿里巴巴和亚马逊真是神奇的对手，两篇论文的论调都差不多，什么工作负载多样云云</span></p></li><li><p><span>关于RAIS</span></p><ul><li><p><span>是啥：一组基于AI驱动的扩展/优化技术</span></p></li><li><p><span>干啥：确保数据仓库能根据负载需求，从垂直/水平扩展(动态调整)资源</span></p></li><li><p><span>咋干：动态(响应)分配资源+自动优化数据仓库规模，这二者都是基于AI所完成的</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Stage: Query Execution Time Prediction in Amazon Redshift</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Amazon/MIT</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Database performance evaluation;  </span></p></li><li><p><span>Relational database model </span></p></li></ul><p>📚<span>概述：这个好理解，就是一种新的查询时间预测器，称之为Stage predictor，应用在Amazon Redshift</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>在DBMS中查询时间的准确预测极为关键，关系到优化/资源分配等</span></p></li><li><p><span>现有预测技术存在一些问题，比如Cold Start(无历史数据时表现差)，工作负载变化大时预测不准</span></p></li></ul></li><li><p><span>Stage predictor：一个分层执行的时间预测器，结合了以下三种模型</span></p><ul><li><p><span>执行时间缓存：缓存过去的执行时间，预测时优先使用历史数据</span></p></li><li><p><span>轻量级本地模型：针对特定数据库实例进行优化，即对每个实例个性化预测</span></p></li><li><p><span>复杂的全局模型：一个可在Redshift实例剑转移的复杂模型，基于不同实例的共享知识预测</span></p></li></ul></li></ul></blockquote></blockquote><h2 id='25-cloud-database-architecture'><span>2.5. Cloud Database Architecture</span></h2><blockquote><p><strong>👇<mark><span>PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory</span></mark></strong><span>(</span><strong><mark><span style="color: red;"><span>最佳论文</span></span></mark></strong><span>)  </span></p><blockquote><p>🏛<span>机构：阿里巴巴</span></p><p>➡️<span>领域：Information systems → Relational database model  </span></p><p>📚<span>概述：提出了PolarDB-MP，多主结构+云原生数据库，旨在解决主从数据库中写入吞吐量受限问题</span></p><ul><li><p><span>关于什么是主从数据库</span></p><ul><li><p><span>主数据库：位于核心结点，处理所有写操作，将写操作同步到从数据库</span></p></li><li><p><span>从数据库：位于辅助结点，处理所有读操作，接收来自主数据库的更新从而保持一致</span></p></li></ul><p>🌘<span>这种做法的好处在于提高了读性能，坏处在于写必须经过主数据库→</span><mark><span>限制了写性能</span></mark></p></li><li><p><span>关于PolarDB-MP</span></p><ul><li><p><span>是多主数据库，即允许多个结点成为主数据库，分散了写的负载</span></p></li><li><p><span>利用了</span><mark><strong><span>分离式共享内存和存储</span></strong></mark><span>架构</span></p><ul><li><p><span>分离式架构：计算资源与存储资源分开设置在不同结点，二者都可独立扩展</span></p></li><li><p><span>共享内存/存储：多个结点可访问同一组内存/存储资源，本模型实质上每个结点可访问所有数据</span></p></li></ul></li><li><p><span>允许事务在单个节点上处理</span></p></li></ul></li><li><p><span>关于PolarDB-MP的核心组件Polar Multi-Primary Fusion Server (PMFS)</span></p><ul><li><p><span>设计思想：建立在分离式内存共享上，负责全局事务调节+缓冲区融合，采取了远程直接内存访问</span></p></li><li><p><span>主要功能：事务融合(跨结点事务一致)，缓冲区融合(跨结点内存共享)，锁融合(跨界点并发控制)</span></p></li></ul></li><li><p><span>关于</span><strong><span>PolarDB-MP</span></strong><span>引入的LLSN设计：为不同结点生成的写前日志，建立一个部分顺序的结构</span></p></li></ul></blockquote><p><strong>👇<mark><span>Amazon MemoryDB: A Fast and Durable Memory-First Cloud Database</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Amazon</span></p><p>➡️<span>领域：Information systems → Main memory engines  </span></p><p>📚<span>概述：提出了</span><strong><span>基于云内存的数据库服务</span></strong><span>Amazon MemoryDB for Redis</span></p><ul><li><p><span>关于Amazon MemoryDB for Redis的主要特点</span></p><ul><li><p><span>内存高性能：MemoryDB将数据直接放在内存中，可以高速读写</span></p></li><li><p><span>高耐久性：除了将数据放在内存中，MemoryDB还会异步地将数据复制到外存中，防丢失</span></p></li><li><p><span>与Redis：MemoryDB基于Redis，兼容Redis(在Redis上运行的app可直接在MemoryDB上运行)</span></p></li><li><p><span>可扩展性：用户可按需(负载增加时)扩展存储/计算资源</span></p></li><li><p><span>高可用性：可多区部署，多区备份</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Extending Polaris to Support Transactions</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：微软</span></p><p>➡️<span>领域：Information systems → Data management systems  </span></p><p>📚<span>概述：对Polaris系统的增强</span></p><ul><li><p><span>关于Polaris：一个云原生的分布式查询处理器</span></p><ul><li><p><span>传统的Polaris：仅支持只读事务(查询)</span></p></li><li><p><span>增强的Polaris：支持所有常规事务(插入/删除/更新/加载)</span></p></li></ul></li><li><p><span>关于日志结构存储</span></p><ul><li><p><span>原理：当插入/跟新/删除时，先把变更按顺序写入日志，一段时间后合并执行日志以更改实际数据</span></p></li><li><p><span>不可变性：一旦数据被写入，就不会再发生改变，新的数据不会覆盖而是追加 (避免了频繁磁盘修改)</span></p></li></ul><p>🌊<span>增强的Polaris正是采用了日志结构存储，利用其不可变性，大大提高了写入效率</span></p></li><li><p><span>其它Polaris的技术特性</span></p><ul><li><p><span>使用</span><strong><span>快照隔离</span></strong><span>语义(Snapshot Isolation/一种事务隔离级别)来保持数据一致，支持多表/多语句事务</span></p></li><li><p><span>支持T-SQL，即为微软的Fabric平台提供完整的T-SQL支持</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>BigLake: BigQuery’s Evolution toward a Multi-Cloud Lakehouse</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Google</span></p><p>➡️<span>领域：Information systems → Data management systems  engines  </span></p><p>📚<span>概述：介绍了</span><strong><span>BigLake</span></strong><span>的设计及其在Google Cloud的BigQuery中的演变</span></p><ul><li><p><span>BigQuery是啥：Google Cloud的云原生分布式查询处理器</span></p></li><li><p><span>现今遇到的挑战</span></p><ul><li><p><span>数据管理的复杂性：很多企业需要统一管理数据仓库/数据湖，但这又是俩不同结构的系统</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>结构</span></th><th><span>简单说明</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>数据库</span></td><td><span>用于实时存储、管理结构化数据，支持事务处理。</span></td></tr><tr><td style='text-align:center;' ><span>数据仓库</span></td><td><span>集成多个数据源，用于大规模数据分析和报表生成。</span></td></tr><tr><td style='text-align:center;' ><span>数据湖</span></td><td><span>存储原始、未处理的多种格式数据，支持大数据分析和机器学习。</span></td></tr></tbody></table></figure></li><li><p><span>如何整合不同格式的数据和表格</span></p></li><li><p><span>非结构化数据的处理：AI/ML工作负载处理需要处理的正是非结构化的数据，如何让它们高效处理？</span></p></li><li><p><span>多云部署：很多企业会用不同的云平台，如何让多个云平台运行相同服务？</span></p></li></ul></li><li><p><span>BigLake：通过以下创新，是的数据仓库和数据湖得以结合</span></p><ul><li><p><span>BigLake Tables：使得BigQuery能处理分析不同格式的数据</span></p></li><li><p><span>BigLake Object Tables：使BigQuery能处理非结构化数据，从而进行AI/ML处理</span></p></li><li><p><span>Omni平台：使得BigQuery可以在非谷歌云平台运行</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Predicate Caching: Query-Driven Secondary Indexing for Cloud Data Warehouses</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：Amazon</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data scans  </span></p></li><li><p><span>Online analytical processing engines  </span></p></li><li><p><span>Data warehouses  </span></p></li></ul><p>📚<span>概述：提出了云数据仓库中</span><strong><span>提高查询性能</span></strong><span>的新方法，叫做谓词缓存</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>云数据仓库(比如Amazon Redshift)已成为查询处理的标准</span></p></li><li><p><span>用户和系统经常发送相同的查询，导致查询性能遇到瓶颈</span></p></li><li><p><span>当前系统的优化有赖于查询结果的缓存，但结果缓存会因为插入/删除/更新而过时</span></p></li></ul></li><li><p><span>为了解决上述问题，提出了谓词缓存(一种新的二级索引)</span></p><ul><li><p><span>是啥：一种用于优化数据库查询性能的二级索引技术</span></p></li><li><p><span>干啥：解决传统缓存方法，在处理重复查询时面临的</span><strong><span>缓存过时</span></strong><span>问题</span></p></li></ul></li><li><p><span>谓词缓存的原理：以如下为例子阐述</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>UserID (基础表)</span></th><th style='text-align:center;' ><span>Name</span></th><th style='text-align:center;' ><span>Age</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>1</span></td><td style='text-align:center;' ><span>Alice</span></td><td style='text-align:center;' ><span>25</span></td></tr><tr><td style='text-align:center;' ><span>2</span></td><td style='text-align:center;' ><span>Bob</span></td><td style='text-align:center;' ><span>30</span></td></tr><tr><td style='text-align:center;' ><span>3</span></td><td style='text-align:center;' ><span>Carol</span></td><td style='text-align:center;' ><span>35</span></td></tr><tr><td style='text-align:center;' ><span>4</span></td><td style='text-align:center;' ><span>Dave</span></td><td style='text-align:center;' ><span>40</span></td></tr></tbody></table></figure><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="sql"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="sql"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 36px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">SELECT</span> <span class="cm-operator">*</span> <span class="cm-keyword">FROM</span> Users <span class="cm-keyword">WHERE</span> Age <span class="cm-operator">&gt;</span> <span class="cm-number">30</span><span class="cm-punctuation">;</span> <span class="cm-comment">-- 查询结果如下</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>UserID (结果表)</span></th><th style='text-align:center;' ><span>Name</span></th><th style='text-align:center;' ><span>Age</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>3</span></td><td style='text-align:center;' ><span>Carol</span></td><td style='text-align:center;' ><span>35</span></td></tr><tr><td style='text-align:center;' ><span>4</span></td><td style='text-align:center;' ><span>Dave</span></td><td style='text-align:center;' ><span>40</span></td></tr></tbody></table></figure><ul><li><p><span>传统的查询：缓存结果表的结果，下次发起相同查询时(若基础表没更新)直接输出缓存</span></p></li><li><p><span>谓词缓存查询：不会缓存结果，转而缓存基础表中</span><mark><span>满足查询条件</span></mark><span>的对象的范围，例如</span></p><ul><li><p><span>缓存：执行上述查询，缓存会记录范围[35, 40]</span></p></li><li><p><span>更新：当基础表发生改变时，缓存也只要改变谓词范围(相比换掉整个结果表好得多)</span></p></li><li><p><span>再查询：利用缓存的范围信息，快速定位符合的数据</span></p></li></ul></li></ul></li><li><p><span>谓词缓存的其它特性</span></p><ul><li><p><span>可在查询执行时动态构建(摘要里也没细说)</span></p></li><li><p><span>谓词缓存是轻量级的(还是那句话，比缓存整张表好多了)，并且能够在线维护</span></p></li></ul></li></ul></blockquote></blockquote><h2 id='26-graph-data-management'><span>2.6. Graph Data Management </span></h2><blockquote><p><strong>👇<mark><span>BG3: A Cost Effective and I/O Efficient Graph Database in ByteDance</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：字节</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Storage management</span></p></li></ul><p>📚<span>概述：介绍了字节新提出的ByteGraph 3.0(BG3)模型，用来处理大规模图结构数据</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>字节旗下产品(Tiktok/抖音/头条)每天生成大量图</span></p></li><li><p><span>ByteGraph是字节的分布式图数据库，但随负载量增加显得力不从心</span></p></li></ul></li><li><p><span>关于ByteGraph 3.0：ByteGraph的升级版本，主要结构包含</span></p><ul><li><p><span>图存储引擎：内存索引是基于BW-Tree(一种适合图数据存储的树形数据结构)，采取云存储</span></p></li><li><p><span>负载感知的空间回收机制：根据负载情况优化存储空间，减少写放大(写入量&lt;&lt;请求空间)</span></p></li><li><p><span>轻量级主从同步机制：保证扩展系统时，多个结点间的数据同步且一致，有利于实时处理</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>PG-Triggers: Triggers for Property Graphs</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：米兰理工</span></p><p>➡️<span>领域：Triggers(触发器)是数据库的一种自动化操作，即</span><mark><span>特定事件发生时自动执行一系列预定操作</span></mark></p><ul><li><p><span>Information systems → Triggers and rules  </span></p></li><li><p><span>Graph-based database models</span></p></li><li><p><span>Theory of computation → Database query languages (principles)  </span></p></li></ul><p>📚<span>概述：提出了PG-Triggers的概念，是一个针对属性图(Property Graphs)添加触发器的方案</span></p><ul><li><p><span>回顾一下属性图：一种图数据库模型，用于存储+管理图数据库，由以下三种结构组成</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>图数据库结构</span></th><th style='text-align:center;' ><span>对应关系数据库结构</span></th><th style='text-align:center;' ><span>举例</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>Nodes</span></td><td style='text-align:center;' ><span>Entity</span></td><td style='text-align:center;' ><span>学生，老师</span></td></tr><tr><td style='text-align:center;' ><span>Properties</span></td><td style='text-align:center;' ><span>Attribute</span></td><td style='text-align:center;' ><span>学生(StuID/成绩)，老师(Course/TecherID)</span></td></tr><tr><td style='text-align:center;' ><span>Edges</span></td><td style='text-align:center;' ><span>Relationship</span></td><td style='text-align:center;' ><span>学生</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="4.195ex" height="3.262ex" role="img" focusable="false" viewBox="0 -1359.7 1854.4 1441.7" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><defs><path id="MJX-10-TEX-S4-2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path><path id="MJX-10-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2190" xlink:href="#MJX-10-TEX-S4-2190"></use><svg width="954.4" height="865" x="900" y="-182" viewBox="238.6 -182 954.4 865"><use data-c="2212" xlink:href="#MJX-10-TEX-S4-2212" transform="scale(1.84,1)"></use></svg></g></g><g data-mml-node="mpadded" transform="translate(0,870.8) scale(0.707)"><g transform="translate(556,-200)"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">授</text></g><g data-mml-node="mtext" transform="translate(894.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">课</text></g><g data-mml-node="mspace" transform="translate(1789.5,0)"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">←</mo></mstyle><mpadded width="+0.833em" lspace="0.556em" voffset="-.2em" height="-.2em"><mtext>授</mtext><mtext>课</mtext><mspace depth=".25em"></mspace></mpadded></mover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xleftarrow{授课}</script><span>老师</span></td></tr></tbody></table></figure></li><li><p><span>背景：</span></p><ul><li><p><span>现状：图数据库正在进行标准化工作</span></p></li><li><p><span>作者要干啥呢：为图数据库引入PG-Triggers，以支持类似SQL的触发机制</span></p></li></ul></li><li><p><span>PG-Triggers (说的是写啥，反正在我辽阔的知识盲区中)</span></p><ul><li><p><span>定义了触发器的语法和语义</span></p></li><li><p><span>Neo4j 实现：将PG-Triggers翻译成Neo4j图数据库中的APOC触发器</span></p><ul><li><p><span>Neo4j：一个库，用于增强Neo4j的Cypher查询语言的功能</span></p></li><li><p><span>APOC触发器：一种触发结构，让Neo4j在数据变化时执行预定操作</span></p></li></ul></li><li><p><span>Memgraph 实现：在这个库也实现了以下，为证明PG-Triggers的机制不仅适用于Neo4j</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>GraphScope Flex: LEGO-like Graph Computing Stack</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：阿里巴巴</span></p><p>➡️<span>领域：Computer systems organization → n-tier architectures.  </span></p><p>📚<span>概述：提出了GraphScope Flex(GraphScope系统的升级)</span></p><ul><li><p><span>关于GraphScope</span></p><ul><li><p><span>是个啥：用于图遍历+分析+学习的综合解决方案</span></p></li><li><p><span>遇到的困难：不够万能(处理各种编程接口/App/Data时不够多样)</span></p></li></ul></li><li><p><span>关于GraphScope Flex</span></p><ul><li><p><span>目标：解决GraphScope所面对的多样性挑战，权衡资源和效益，提供灵活和用户友好</span></p></li><li><p><span>模块化：采取类似乐高积木的模块化，允许用户根据需求组合定制</span></p></li></ul></li><li><p><span>结果评估</span></p><ul><li><p><span>GraphScope Flex在LDBC社交网络基准测试中实现了2.4倍的吞吐量提升</span></p></li><li><p><span>GraphScope Flex在Graphalytics基准测试中达到了最高55.7倍的加速比</span></p></li><li><p><span>在实际应用中，GraphScope Flex表现出高达2,400倍的性能提升</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Bouncer: Admission Control with Response Time Objectives for Low-latency Online Data Systems</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：领英/微软</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>General and reference → Empirical studies  </span></p></li><li><p><span>Information systems → Main memory engines</span></p></li><li><p><span>Database utilities and tools  </span></p></li></ul><p>📚<span>概述：提出了Bouncer(一种查询接纳控制策略)，在流量激增时确保查询能尽快响应</span></p><ul><li><p><span>背景：</span></p><ul><li><p><span>现实背景：互联网公司在经历突发流量时，需采取策略让查询满足</span><strong><span>响应时间目标(SLOs)</span></strong></p></li><li><p><span>查询接纳控制策略：(尤其在流量暴增时)用于控制接受/拒绝用户的查询请求</span></p></li></ul></li><li><p><span>关于Bouncer策略</span></p><ul><li><p><span>是啥：一种查询接纳控制策略</span></p></li><li><p><span>基本原理：低成本估算当前响应时间分布→判断新查询是否能在SLOs内完成→拒绝/接受</span></p></li><li><p><span>其它策略/原理</span></p><ul><li><p><span>查询分类：为不同类别的查询设置不同的SLO</span></p></li><li><p><span>早期拒绝策略：帮助客户端迅速作出反应，避免系统浪费资源在无效的查询上</span></p></li><li><p><span>避免饥饿策略：确保某些类别的查询不会被完全拒绝，防止查询类型长期得不到服务</span></p></li></ul></li></ul></li><li><p><span>评估与结果</span></p><ul><li><p><span>Bouncer有效避免了饥饿</span></p></li><li><p><span>Bouncer通过较少的总体拒绝次数，达到总体较小的系统开销</span></p><ul><li><p><span>高负载下，让已接纳的查询保持接近其SLO</span></p></li><li><p><span>其它查询则不能达到SLO</span></p></li></ul></li></ul></li></ul></blockquote><p><strong>👇<mark><span>NPA: Improving Large-scale Graph Neural Networks with Non-parametric Attention</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：北京大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data mining  </span></p></li><li><p><span>Computing methodologies → Machine learning  </span></p></li></ul><p>📚<span>概述：设计了非参数化(Non-parametric)GNN与非参数化注意力(PNA)</span></p><ul><li><p><span>基础背景：</span></p><ul><li><p><span>传统GNN：GNN处理大规模图数据时，可扩展性差</span></p></li><li><p><span>以往研究：通过GNN高采样技术来提交扩展性</span></p></li><li><p><span>现在研究：非参数化GNN训练不依赖大量可训练参数，许多场景下扩展性都很强</span></p></li></ul></li><li><p><span>另一个背景：非参数化GNN的局限</span></p><ul><li><p><span>过平滑问题：由于特征的过度传播，随着传播层数增加，网络性能急剧下降</span></p></li><li><p><span>忽略了特征的影响：非参数化GNN传播时只考虑了图结构，忽略了特征的影响</span></p></li></ul></li><li><p><span>NPA模块的提出</span></p><ul><li><p><span>是啥：一个可插拔的模块，兼容现有非参数化GNN，使其同时支持可扩展性+更深架构</span></p></li><li><p><span>原理：引入注意力机制，通过传播时权衡特诊&amp;图结构的重要性，来优化特征传播</span></p></li></ul></li><li><p><span>验证与实验</span></p><ul><li><p><span>NPA在七个同构图/五个异构图中表现优异</span></p></li><li><p><span>在大规模数据集</span><strong><span>ogbn-papers100M</span></strong><span>上，NPA 实现了</span><strong><span>最先进的性能</span></strong></p></li><li><p><span>一言蔽之：</span><strong><span>高性能，高扩展性，支持更深网络结构</span></strong></p></li></ul></li></ul></blockquote></blockquote></blockquote><h1 id='3-demonstrations'><span>3. Demonstrations</span></h1><blockquote><h2 id='31-group-a'><span>3.1. Group A</span></h2><blockquote><p><strong>👇<mark><span>Demonstration of Ver: View Discovery in the Wild</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：芝加哥大学</span></p><p>➡️<span>领域：Information systems → Information integration  </span></p><p>📚<span>概述：展示了Ver1数据发现系统</span></p><ul><li><p><span>能干啥：在没提供连接路径信息的大型表格库中，识别出Project-Join视图</span></p></li><li><p><span>解决了啥问题</span></p><ul><li><p><span>技术问题：面对大规模表格，要能快速找出视图</span></p></li><li><p><span>认为问题：如何帮用户理解+使用这些视图(因为导航结果复杂性/路径链接多样性等)</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Comquest: Large Scale User Comment Crawling and Integration</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：天普大学/IBM</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Deep web  </span></p></li><li><p><span>Web crawling  </span></p></li><li><p><span>Information integration</span></p></li><li><p><span>Information systems applications.  </span></p></li></ul><p>📚<span>概述：展示了名为 </span><strong><span>Comquest</span></strong><span> 的评论抓取系统，利用Web API来收集大量网站用户评论</span></p><ul><li><p><span>问题背景</span></p><ul><li><p><span>用户的评论对于下游应用有重要价值</span></p></li><li><p><span>评论数据受限于特定平台，使得数据可用性受限，群体多样化受限</span></p></li></ul></li><li><p><span>Comquest 系统的设计</span></p><ul><li><p><span>能干啥：(跨平台)抓取与特定新闻话题或故事相关的评论数据</span></p></li><li><p><span>怎么干：通过深度学习抓取API参数→发送HTTP请求到第三方评论系统的API→收集评论</span></p></li><li><p><span>广泛性：不仅适用于新闻网站，还可与任何用户评论网站配合使用</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>QueryShield: Cryptographically Secure Analytics in the Cloud</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：波士顿大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Security and privacy → Cryptography  </span></p></li><li><p><span>Information systems → Data management systems  </span></p></li></ul><p>📚<span>概述：展示了QueryShield，为云端数据分析提供加密安全服务，以保护隐私+简化多方安全计算</span></p><ul><li><p><span>QueryShield 的功能</span></p><ul><li><p><span>数据分析描述发布：</span></p><ul><li><p><span>数据分析师</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="9.917ex" height="5.152ex" role="img" focusable="false" viewBox="0 -1359.7 4383.4 2277.2" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -2.076ex;"><defs><path id="MJX-45-TEX-S4-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path id="MJX-45-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-45-TEX-N-51" d="M56 341Q56 499 157 602T388 705Q521 705 621 601T722 341Q722 275 703 218T660 127T603 63T555 25T525 9Q524 8 524 8H523Q524 5 526 -1T537 -21T555 -47T581 -67T615 -76Q653 -76 678 -56T706 -3Q707 10 716 10Q721 10 728 5L727 -13Q727 -88 697 -140T606 -193Q563 -193 538 -166T498 -83Q483 -23 483 -8L471 -11Q459 -14 435 -18T388 -22Q254 -22 155 81T56 341ZM607 339Q607 429 586 496T531 598T461 649T390 665T318 649T248 598T192 496T170 339Q170 143 277 57Q301 39 305 39L304 42Q304 44 304 46Q301 53 301 68Q301 101 325 128T391 155Q454 155 495 70L501 58Q549 91 578 164Q607 234 607 339ZM385 18Q404 18 425 23T459 33T472 40Q471 47 468 57T449 88T412 115Q398 117 386 117Q367 117 353 102T338 67Q338 48 351 33T385 18Z"></path><path id="MJX-45-TEX-N-75" d="M383 58Q327 -10 256 -10H249Q124 -10 105 89Q104 96 103 226Q102 335 102 348T96 369Q86 385 36 385H25V408Q25 431 27 431L38 432Q48 433 67 434T105 436Q122 437 142 438T172 441T184 442H187V261Q188 77 190 64Q193 49 204 40Q224 26 264 26Q290 26 311 35T343 58T363 90T375 120T379 144Q379 145 379 161T380 201T380 248V315Q380 361 370 372T320 385H302V431Q304 431 378 436T457 442H464V264Q464 84 465 81Q468 61 479 55T524 46H542V0Q540 0 467 -5T390 -11H383V58Z"></path><path id="MJX-45-TEX-N-65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z"></path><path id="MJX-45-TEX-N-72" d="M36 46H50Q89 46 97 60V68Q97 77 97 91T98 122T98 161T98 203Q98 234 98 269T98 328L97 351Q94 370 83 376T38 385H20V408Q20 431 22 431L32 432Q42 433 60 434T96 436Q112 437 131 438T160 441T171 442H174V373Q213 441 271 441H277Q322 441 343 419T364 373Q364 352 351 337T313 322Q288 322 276 338T263 372Q263 381 265 388T270 400T273 405Q271 407 250 401Q234 393 226 386Q179 341 179 207V154Q179 141 179 127T179 101T180 81T180 66V61Q181 59 183 57T188 54T193 51T200 49T207 48T216 47T225 47T235 46T245 46H276V0H267Q249 3 140 3Q37 3 28 0H20V46H36Z"></path><path id="MJX-45-TEX-N-79" d="M69 -66Q91 -66 104 -80T118 -116Q118 -134 109 -145T91 -160Q84 -163 97 -166Q104 -168 111 -168Q131 -168 148 -159T175 -138T197 -106T213 -75T225 -43L242 0L170 183Q150 233 125 297Q101 358 96 368T80 381Q79 382 78 382Q66 385 34 385H19V431H26L46 430Q65 430 88 429T122 428Q129 428 142 428T171 429T200 430T224 430L233 431H241V385H232Q183 385 185 366L286 112Q286 113 332 227L376 341V350Q376 365 366 373T348 383T334 385H331V431H337H344Q351 431 361 431T382 430T405 429T422 429Q477 429 503 431H508V385H497Q441 380 422 345Q420 343 378 235T289 9T227 -131Q180 -204 113 -204Q69 -204 44 -177T19 -116Q19 -89 35 -78T69 -66Z"></path><path id="MJX-45-TEX-N-53" d="M55 507Q55 590 112 647T243 704H257Q342 704 405 641L426 672Q431 679 436 687T446 700L449 704Q450 704 453 704T459 705H463Q466 705 472 699V462L466 456H448Q437 456 435 459T430 479Q413 605 329 646Q292 662 254 662Q201 662 168 626T135 542Q135 508 152 480T200 435Q210 431 286 412T370 389Q427 367 463 314T500 191Q500 110 448 45T301 -21Q245 -21 201 -4T140 27L122 41Q118 36 107 21T87 -7T78 -21Q76 -22 68 -22H64Q61 -22 55 -16V101Q55 220 56 222Q58 227 76 227H89Q95 221 95 214Q95 182 105 151T139 90T205 42T305 24Q352 24 386 62T420 155Q420 198 398 233T340 281Q284 295 266 300Q261 301 239 306T206 314T174 325T141 343T112 367T85 402Q55 451 55 507Z"></path><path id="MJX-45-TEX-N-68" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 124T102 167T103 217T103 272T103 329Q103 366 103 407T103 482T102 542T102 586T102 603Q99 622 88 628T43 637H25V660Q25 683 27 683L37 684Q47 685 66 686T103 688Q120 689 140 690T170 693T181 694H184V367Q244 442 328 442Q451 442 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path id="MJX-45-TEX-N-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path id="MJX-45-TEX-N-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path id="MJX-45-TEX-N-64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="munderover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-45-TEX-S4-2192" transform="translate(3383.4,0)"></use><svg width="3483.4" height="865" x="0" y="-182" viewBox="870.8 -182 3483.4 865"><use data-c="2212" xlink:href="#MJX-45-TEX-S4-2212" transform="scale(6.716,1)"></use></svg></g></g><g data-mml-node="mpadded" transform="translate(0,-779.3) scale(0.707)"><g transform="translate(278,150)"><g data-mml-node="mtext"><use data-c="51" xlink:href="#MJX-45-TEX-N-51"></use><use data-c="75" xlink:href="#MJX-45-TEX-N-75" transform="translate(778,0)"></use><use data-c="65" xlink:href="#MJX-45-TEX-N-65" transform="translate(1334,0)"></use><use data-c="72" xlink:href="#MJX-45-TEX-N-72" transform="translate(1778,0)"></use><use data-c="79" xlink:href="#MJX-45-TEX-N-79" transform="translate(2170,0)"></use><use data-c="53" xlink:href="#MJX-45-TEX-N-53" transform="translate(2698,0)"></use><use data-c="68" xlink:href="#MJX-45-TEX-N-68" transform="translate(3254,0)"></use><use data-c="69" xlink:href="#MJX-45-TEX-N-69" transform="translate(3810,0)"></use><use data-c="65" xlink:href="#MJX-45-TEX-N-65" transform="translate(4088,0)"></use><use data-c="6C" xlink:href="#MJX-45-TEX-N-6C" transform="translate(4532,0)"></use><use data-c="64" xlink:href="#MJX-45-TEX-N-64" transform="translate(4810,0)"></use></g><g data-mml-node="mspace" transform="translate(5366,0)"></g></g></g><g data-mml-node="mpadded" transform="translate(6.7,870.8) scale(0.707)"><g transform="translate(278,-200)"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">发</text></g><g data-mml-node="mtext" transform="translate(894.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">布</text></g><g data-mml-node="mtext" transform="translate(1778.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">分</text></g><g data-mml-node="mtext" transform="translate(2673.5,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">析</text></g><g data-mml-node="mtext" transform="translate(3568.3,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">描</text></g><g data-mml-node="mtext" transform="translate(4452.3,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">述</text></g><g data-mml-node="mspace" transform="translate(5347,0)"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><munderover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">→</mo></mstyle><mpadded width="+0.833em" lspace="0.278em" voffset=".15em" depth="-.15em"><mtext>QueryShield</mtext><mspace height=".75em"></mspace></mpadded><mpadded width="+0.833em" lspace="0.278em" voffset="-.2em" height="-.2em"><mtext>发</mtext><mtext>布</mtext><mtext>分</mtext><mtext>析</mtext><mtext>描</mtext><mtext>述</mtext><mspace depth=".25em"></mspace></mpadded></munderover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xrightarrow[\text{QueryShield}]{发布分析描述}</script><span>数据所有者</span></p></li><li><p><span>数据所有者在保证隐私前提下，选择参与计算以获利/公益</span></p></li></ul></li><li><p><span>数据隐私保障：提供多方安全计算技术，为关系数据库/时间序列分析，提供隐私保护</span></p></li></ul></li><li><p><span>QueryShield 的特性：用户友好，封装了多方安全计算(MPC)的复杂计算，非专家也可使用</span></p></li><li><p><span>文中演示的三个场景：四人就业信息调查+信用评分 异常分析+医学场景</span></p></li></ul></blockquote><p><strong>👇<mark><span>SIERRA: A Counterfactual Thinking-based Visual Interface for Property Graph Query Construction</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：南洋理工</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Human-centered computing → Visualization systems and tools  </span></p></li><li><p><span>Information systems → Query languages  </span></p></li></ul><p>📚<span>概述：展示了新型视觉查询界面(VQI) SIERRA，帮不会图查询语言(Cypher)用户构建属性图数据库</span></p><ul><li><p><span>背景知识</span></p><ul><li><p><span>属性图：一种图数据库模型，用于存储+管理图数据库，由以下三种结构组成</span></p><figure class='table-figure'><table><thead><tr><th style='text-align:center;' ><span>图数据库结构</span></th><th style='text-align:center;' ><span>对应关系数据库结构</span></th><th style='text-align:center;' ><span>举例</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>Nodes</span></td><td style='text-align:center;' ><span>Entity</span></td><td style='text-align:center;' ><span>学生，老师</span></td></tr><tr><td style='text-align:center;' ><span>Properties</span></td><td style='text-align:center;' ><span>Attribute</span></td><td style='text-align:center;' ><span>学生(StuID/成绩)，老师(Course/TecherID)</span></td></tr><tr><td style='text-align:center;' ><span>Edges</span></td><td style='text-align:center;' ><span>Relationship</span></td><td style='text-align:center;' ><span>学生</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="4.195ex" height="3.262ex" role="img" focusable="false" viewBox="0 -1359.7 1854.4 1441.7" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><defs><path id="MJX-10-TEX-S4-2190" d="M944 261T944 250T929 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q121 283 158 314T215 375T247 434T264 480L267 497Q269 503 270 505T275 509T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H929Q944 261 944 250Z"></path><path id="MJX-10-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2190" xlink:href="#MJX-10-TEX-S4-2190"></use><svg width="954.4" height="865" x="900" y="-182" viewBox="238.6 -182 954.4 865"><use data-c="2212" xlink:href="#MJX-10-TEX-S4-2212" transform="scale(1.84,1)"></use></svg></g></g><g data-mml-node="mpadded" transform="translate(0,870.8) scale(0.707)"><g transform="translate(556,-200)"><g data-mml-node="mtext"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">授</text></g><g data-mml-node="mtext" transform="translate(894.8,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">课</text></g><g data-mml-node="mspace" transform="translate(1789.5,0)"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">←</mo></mstyle><mpadded width="+0.833em" lspace="0.556em" voffset="-.2em" height="-.2em"><mtext>授</mtext><mtext>课</mtext><mspace depth=".25em"></mspace></mpadded></mover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xleftarrow{授课}</script><span>老师</span></td></tr></tbody></table></figure></li><li><p><span>视觉查询界面：一种帮助用户建立数据库的图形化界面，而无需编写代码(比如SQL)</span></p></li></ul></li><li><p><span>背景：</span></p><ul><li><p><span>属性图大受欢迎，但特定查询语言构成了门槛→视觉查询界面</span></p></li><li><p><span>现有视觉查询界面虽然易用，但未充分考虑HCI规律和心理学</span></p></li></ul></li><li><p><span>SIERRA 的设计创新：解决了现有视觉查询界面在可用性和美观性上的不足</span></p><ul><li><p><span>理论驱动的设计：采用</span><strong><span>反事实思维</span></strong><span>，结合HCI/可视化/心理学原则，使得界面直观易用</span></p></li><li><p><span>标签复合图(LCG)：引入标签复合图，展示图的结构</span></p></li><li><p><span>视觉形状定义语言：融入在SIERRA的设计里，在查询构建过程中引导用户创建和维护LCG</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Sawmill: From Logs to Causal Diagnosis of Large Systems</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： MIT</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Software and its engineering → System administration  </span></p></li><li><p><span>Computing methodologies → Causal reasoning and diagnostics  </span></p></li><li><p><span>Natural language generation  </span></p></li></ul><p>📚<span>概述：展示了Swamill系统，用来从复杂</span><strong><span>日志文件</span></strong><span>中提取</span><strong><span>因果关系</span></strong></p><ul><li><p><span>背景：</span></p><ul><li><p><span>因果分析在</span><strong><span>复杂系统</span></strong><span>的动态中至关重要</span></p></li><li><p><span>计算机作为复杂系统，很多信息都在</span><strong><span>半结构化</span></strong><span>的日志文件中，难以提取因果</span></p></li></ul></li><li><p><span>Sawmill 系统的设计与功能</span></p><ul><li><p><span>数据转换与清理：</span><strong><span>半结构化</span></strong><span>原始日志数据</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="6.844ex" height="3.19ex" role="img" focusable="false" viewBox="0 -1327.9 3025 1409.9" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.186ex;"><defs><path id="MJX-65-TEX-S4-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path id="MJX-65-TEX-S4-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-65-TEX-N-53" d="M55 507Q55 590 112 647T243 704H257Q342 704 405 641L426 672Q431 679 436 687T446 700L449 704Q450 704 453 704T459 705H463Q466 705 472 699V462L466 456H448Q437 456 435 459T430 479Q413 605 329 646Q292 662 254 662Q201 662 168 626T135 542Q135 508 152 480T200 435Q210 431 286 412T370 389Q427 367 463 314T500 191Q500 110 448 45T301 -21Q245 -21 201 -4T140 27L122 41Q118 36 107 21T87 -7T78 -21Q76 -22 68 -22H64Q61 -22 55 -16V101Q55 220 56 222Q58 227 76 227H89Q95 221 95 214Q95 182 105 151T139 90T205 42T305 24Q352 24 386 62T420 155Q420 198 398 233T340 281Q284 295 266 300Q261 301 239 306T206 314T174 325T141 343T112 367T85 402Q55 451 55 507Z"></path><path id="MJX-65-TEX-N-61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z"></path><path id="MJX-65-TEX-N-77" d="M90 368Q84 378 76 380T40 385H18V431H24L43 430Q62 430 84 429T116 428Q206 428 221 431H229V385H215Q177 383 177 368Q177 367 221 239L265 113L339 328L333 345Q323 374 316 379Q308 384 278 385H258V431H264Q270 428 348 428Q439 428 454 431H461V385H452Q404 385 404 369Q404 366 418 324T449 234T481 143L496 100L537 219Q579 341 579 347Q579 363 564 373T530 385H522V431H529Q541 428 624 428Q692 428 698 431H703V385H697Q696 385 691 385T682 384Q635 377 619 334L559 161Q546 124 528 71Q508 12 503 1T487 -11H479Q460 -11 456 -4Q455 -3 407 133L361 267Q359 263 266 -4Q261 -11 243 -11H238Q225 -11 220 -3L90 368Z"></path><path id="MJX-65-TEX-N-6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path id="MJX-65-TEX-N-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"></path><path id="MJX-65-TEX-N-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mover"><g data-mml-node="mstyle"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-65-TEX-S4-2192" transform="translate(2025,0)"></use><svg width="2125" height="865" x="0" y="-182" viewBox="531.3 -182 2125 865"><use data-c="2212" xlink:href="#MJX-65-TEX-S4-2212" transform="scale(4.097,1)"></use></svg></g></g><g data-mml-node="mpadded" transform="translate(0,870.8) scale(0.707)"><g transform="translate(278,-200)"><g data-mml-node="mtext"><use data-c="53" xlink:href="#MJX-65-TEX-N-53"></use><use data-c="61" xlink:href="#MJX-65-TEX-N-61" transform="translate(556,0)"></use><use data-c="77" xlink:href="#MJX-65-TEX-N-77" transform="translate(1056,0)"></use><use data-c="6D" xlink:href="#MJX-65-TEX-N-6D" transform="translate(1778,0)"></use><use data-c="69" xlink:href="#MJX-65-TEX-N-69" transform="translate(2611,0)"></use><use data-c="6C" xlink:href="#MJX-65-TEX-N-6C" transform="translate(2889,0)"></use><use data-c="6C" xlink:href="#MJX-65-TEX-N-6C" transform="translate(3167,0)"></use></g><g data-mml-node="mspace" transform="translate(3445,0)"></g></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mstyle scriptlevel="0"><mo data-mjx-texclass="REL">→</mo></mstyle><mpadded width="+0.833em" lspace="0.278em" voffset="-.2em" height="-.2em"><mtext>Sawmill</mtext><mspace depth=".25em"></mspace></mpadded></mover></math></mjx-assistive-mml></mjx-container><script type="math/tex">\xrightarrow{\text{Sawmill}}</script><span>适合因果分析的</span><strong><span>结构化</span></strong><span>表示形式</span></p></li><li><p><span>可理解的变量命名：系统会自动地，将从日志中提取出的变量，命名为人类可理解的名称</span></p></li><li><p><span>聚合变量生成：Sawmill根据用户选择的因果单元，生成相关的聚合变量</span></p></li></ul></li><li><p><span>Sawmill能干啥</span></p><ul><li><p><span>高效地将日志数据转化为可以进行因果推理的模型，并进行探索式因果发现</span></p></li><li><p><span>允许用户通过交互式界面参与，从而使用现有的工具进行因果推理</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Demonstrating REmatch: A Novel RegEx Engine for Finding all Matches</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 牛津大学/智利天主教大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Theory of computation → Regular languages  </span></p></li><li><p><span>Information systems → Information retrieval</span></p></li></ul><p>📚<span>概述：展示了名为REmatch的正则表达式(RegEx)引擎</span></p><ul><li><p><span>背景知识</span></p><ul><li><p><span>正则表达式：一种用于</span><strong><span>模式匹配</span></strong><span>的工具，如以下示例</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="txt"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="txt"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 36px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>2</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(1) 电子邮件的正则匹配表达式^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(2) 123-456-7890类型的表达式被正则表达式\d{3}-\d{3}-\d{4}匹配</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 46px;"></div><div class="CodeMirror-gutters" style="height: 46px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre></li><li><p><span>正则表达式引擎：用于解析+匹配正则表达式，并返回结果</span></p></li></ul></li><li><p><span>REmatch引擎的设计</span></p><ul><li><p><span>基于枚举算法理论，找到文档中给定模式的所有匹配项</span></p></li><li><p><span>区别于传统正则引擎，REmatch无需使用复杂非标准操作符，就能找到嵌套和重叠的匹配项</span></p></li><li><p><span>时间复杂度与逐字符输出匹配结果的时间成比例</span></p></li></ul></li><li><p><span>用户界面：</span><a href='https://rematch.cl' target='_blank' class='url'>https://rematch.cl</a></p></li><li><p><span>应用场景：DNA序列分析，语言分析，如本文展示例子所示</span></p></li></ul></blockquote><p><strong>👇<mark><span>ASQP-RL Demo: Learning Approximation Sets for Exploratory Queries</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 宾夕法尼亚大学/Aviv大学</span></p><p>➡️<span>领域：Information systems → Data management systems   </span></p><p>📚<span>概述：展示了ASQP-RL系统，用于优化针对大规模外部数据的非聚合查询</span></p><ul><li><p><span>背景：处理大规模外部数据库的查询很耗时，尤其当内存有限时</span></p></li><li><p><span>ASQP-RL原理</span></p><ul><li><p><span>用户发起</span><strong><span>非聚合查询</span></strong><span>(SELECT/PROJECT/JOIN)</span></p></li><li><p><span>ASQP-RL运行强化学习算法选择外部数据库一个子集</span></p><ul><li><p><span>此处强化学习算法的原理：通过局部数据子集来近似全局数据查询的结果</span></p></li></ul></li><li><p><span>ASQP-RL将选择的子集加载到本地，成为</span><strong><span>近似集</span></strong></p></li><li><p><span>ASQP-RL对已经物理化(本地化)的子集执行快速的查询</span></p></li></ul></li><li><p><span>ASQP-RL的优势：</span></p><ul><li><p><span>查询时间速快</span></p></li><li><p><span>查询结果准确(虽然只取了子集，但效果和取整体差不多)</span></p></li><li><p><span>针对聚合查询也有良好效果</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>IMBridge: Impedance Mismatch Mitigation between Database Engine and Prediction Query Execution</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 华东师大/蚂蚁集团</span></p><p>➡️<span>领域：Information systems → Query optimization  </span></p><p>📚<span>概述：展示了IMBridge系统，旨在弥合[数据库引擎</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-90-TEX-N-2194" d="M263 479Q267 501 271 506T288 511Q308 511 308 500Q308 493 303 475Q293 438 278 406T246 352T215 315T185 287T165 270H835Q729 349 696 475Q691 493 691 500Q691 511 711 511Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H165Q167 228 182 216T211 189T244 152T277 96T303 25Q308 7 308 0Q308 -11 288 -11Q281 -11 278 -11T272 -7T267 2T263 21Q245 94 195 151T73 236Q58 242 55 247Q55 254 59 257T73 264Q144 292 194 349T263 479Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2194" xlink:href="#MJX-90-TEX-N-2194"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">↔</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex">\leftrightarrow</script><span>机器学习预测]间的</span><strong><span>阻抗不匹配</span></strong><span>问题</span></p><ul><li><p><span>背景知识</span></p><ul><li><p><span>ML×DB：机器学习模型可用于对存储在数据库的数据执行分析</span></p></li><li><p><span>Python UDF：看起来很高级，其实就是Python User-Defined Function的意思</span></p></li><li><p><span>阻抗不匹配：两个系统或组件之间差异过大，导致无法交互，协调效率差</span></p></li></ul></li><li><p><span>研究背景</span></p><ul><li><p><span>阻抗不匹配：</span></p><ul><li><p><span>当前数据库在查询引擎中引入Python UDF(预测函数)，以在处理查询时执行ML推理</span></p></li><li><p><span>数据库无法理解预测函数语义</span></p></li></ul></li><li><p><span>推理上下文重复：传统方法中，没调用一次预测函数，都要重新设置上下文环境</span></p></li><li><p><span>不匹配的批量大小：源于数据库操作与预测函数的批量处理之间缺乏协调，影响吞吐</span></p></li></ul></li><li><p><span>IMBridge 系统的解决方案</span></p><ul><li><p><span>通过预测函数重写器→消除多余的推理上下文设置</span></p></li><li><p><span>引入了一个解耦的预测操作符→统一数据库与预测函数的批大小</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>ASM in Action: Fast and Practical Learned Cardinality Estimation</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 浦项科技大学/洛桑联邦理工大学</span></p><p>➡️<span>领域：Information systems → Query optimization  </span></p><p>📚<span>概述：展示了名为ASM的基数估计器</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>基数估算：用于估计查询结果/中间结果的大小，从而反向优化查询</span></p></li><li><p><span>现有问题：</span></p><ul><li><p><span>基于机器学习的基数估算器能够显著提高估算精度</span></p></li><li><p><span>实际部署中，ML无法与数据库查询优化器结合，导致性能不佳</span></p></li></ul></li></ul></li><li><p><span>ASM的改进</span></p><ul><li><p><span>使用自动回归模型，即利用历史数据对当前查询结果进行预测</span></p></li><li><p><span>从数据库中进行适当的采样</span></p></li><li><p><span>利用多维统计合并，在复杂多维数据上提供更高效的基数估算</span></p></li></ul></li><li><p><span>ASM能干啥：</span></p><ul><li><p><span>显著提升了基数估算器的效率，尤其是在复杂/多维查询情况下</span></p></li><li><p><span>更容易与现有的数据库查询优化器集成，避免了“估算精度高但执行效率低”的问题</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>The Game Of Recourse: Simulating Algorithmic Recourse over Time to Improve Its Reliability and Fairness</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 纽约大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems;  </span></p></li><li><p><span>Social and professional topics → Socio-technical systems</span></p></li><li><p><span>Human centered computing;  </span></p></li></ul><p>📚<span>概述：讨论了算法反应(Algorithmic Recourse)概念，并提供了一种通过模拟生成相关数据的方法</span></p><ul><li><p><span>背景知识</span></p><ul><li><p><span>算法反应：为在算法系统中得到不利结果的人提供建议，使其采取行动改变结果</span></p></li><li><p><span>算法反应的目的：发挥人的主观能动性，从而让人对算法有更多控制权</span></p></li><li><p><span>算法反应的困境：缺乏公开可用的数据集</span></p></li></ul></li><li><p><span>关于The Game Of Recourse</span></p><ul><li><p><span>是啥：一个基于代理的模拟</span></p></li><li><p><span>干啥：生成现实的算法反应数据</span></p></li><li><p><span>灵感：来自于康威的“生命游戏”Conway’s Game of Life (笑)</span></p></li><li><p><span>特性：可靠性+公平性</span></p></li></ul></li><li><p><span>开放访问： </span><a href='https://game-of-recourse.streamlit.app' target='_blank' class='url'>https://game-of-recourse.streamlit.app</a><span> </span></p></li></ul></blockquote><p><strong>👇<mark><span>RobOpt: A Tool for Robust Workload Optimization Based on Uncertainty-Aware Machine Learning</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 渥太华大学/IBM</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Query optimization  </span></p></li><li><p><span>Computing methodologies → Uncertainty quantification  </span></p></li><li><p><span>Supervised learning by regression</span></p></li></ul><p>📚<span>概述：展示了RobOpt系统，旨在解决关系型数据库管理系统(R-DBMS)中的查询优化问题</span></p><ul><li><p><span>背景知识</span></p><ul><li><p><span>优化器：R-DBMS依赖于查询优化器，为从查询选择最优计划，以达到优化目的</span></p></li><li><p><span>优化器原理：依赖于数据库中达到统计信息(数据分布/查询条件)→估计查询的代价和参数</span></p></li></ul></li><li><p><span>研究背景</span></p><ul><li><p><span>传统优化器的缺陷：</span></p><ul><li><p><span>传统优化器的参数估计准确性差，执行查询总是非最优</span></p></li><li><p><span>传统优化器基于特定场景</span></p></li></ul></li><li><p><span>基于机器学习优化器的缺陷：处理不同工作负载时，通常会选择次优方案，从而优化不力</span></p></li></ul></li><li><p><span>RobOpt 的提出</span></p><ul><li><p><span>是啥：针对工作负载的</span><strong><span>鲁棒查询优化器</span></strong><span>，使得查询计划的选择更加稳健</span></p><ul><li><p><strong><span>鲁棒查询优化器</span></strong><span>：在面对不确定性/系统波动，仍然选出最优计划的优化器</span></p></li></ul></li><li><p><span>原理</span></p><ul><li><p><span>使用数据库的</span><strong><span>查询日志</span></strong><span>作为输入</span></p></li><li><p><span>通过日志中的历史数据，训练出一个</span><strong><span>基于风险感知的学习代价模型</span></strong></p></li><li><p><span>在执行优化器时，考虑风险因素，并采取风险感知的计划策略</span></p></li><li><p><span>可以在工作负载级别/单个查询级别上分析查询样本。都可做出最优选择</span></p></li></ul></li></ul></li><li><p><span>RobOpt 的优势</span></p><ul><li><p><span>鲁棒性：在不确定较大的场景任然保持稳定性+高性能</span></p></li><li><p><span>灵活性：可部署在任何R-DBMS上</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Demonstrating CAESURA: Language Models as Multi-Modal Query Planners</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 达姆城工业大学</span></p><p>➡️<span>领域：Information systems → Semi-structured data  </span></p><p>📚<span>概述：展示了</span><strong><span>CAESURA</span></strong><span>系统，用于将数据库技术与LLM结合，从而处理多模态数据</span></p><ul><li><p><span>背景与背景知识</span></p><ul><li><p><span>多模态数据</span></p><ul><li><p><span>含义：指包含不同形式的数据，比如表格/文本/图像</span></p></li><li><p><span>应用：在基于LLM的问答系统中，需要enable用户去查询多模态数据</span></p></li></ul></li><li><p><span>RAG(Retrieval Augmented Generation)</span></p><ul><li><p><span>是啥：一种扩展LLM的技术</span></p></li><li><p><span>干啥：先从向量数据库中检索相关数据→将数据输入LLM来计算查询结果</span></p></li><li><p><span>弊端：LLM推理成本很高，LLM只能处理有限数据(对大规模RAG束手无策)</span></p></li></ul></li></ul></li><li><p><span>CAESURA 的提出</span></p><ul><li><p><span>是啥：一种数据库优先的多模态问答系统</span></p></li><li><p><span>核心思想：使用 LLM 的推理能力→翻译自然语言查询→生成数据库执行计划</span></p></li><li><p><span>工作流程</span></p><ul><li><p><span>用户通过自然语言，提出查询</span></p></li><li><p><span>CAESURA 使用 LLM 将查询翻译成数据库可以执行的查询计划</span></p></li><li><p><span>数据库系统(而非LLM)执行查询</span></p></li></ul></li><li><p><span>优势：</span></p><ul><li><p><span>得益于LLM，从而(通过转换自然语言)能处理多模态数据</span></p></li><li><p><span>得益于数据库系统，可以快速处理(而非是让LLM进行高成本的推理)</span></p></li><li><p><span>扩展性好，能够处理大规模的数据集，不想RAG数据一大就阿巴阿巴</span></p></li></ul></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Demonstration of Udon: Line-by-line Debugging of User-Defined Functions in Data Workflows</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 加州大学欧文分校</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Software and its engineering → Software testing and debugging  </span></p></li></ul><p>📚<span>概述：展示了Udon调试器，用于在大数据处理系统中，逐行调试复杂用户自定义函数(UDF)</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>编程语言的差异：</span></p><ul><li><p><span>大数据系统由C/C++/Java编写</span></p></li><li><p><span>用户用Python分析处理，比如机器学习API有99%都是python</span></p></li><li><p><span>UDF成为bridge their gap的重要工具</span></p></li></ul></li><li><p><span>UDF调试的挑战：需要协同不同编程语言+大数据规模庞大(开销高)</span></p></li></ul></li><li><p><span>Udon 的解决方案</span></p><ul><li><p><span>逐行调试：用户可设断点+逐行单步走，可以在调试UDF时修改代码</span></p></li><li><p><span>单个元组调试：允许UDF在单个Tuple上执行，逐行检查运行情况</span></p></li><li><p><span>调试原语：包含了现代化调试原语，比如设断点+代码检查+动态修改代码</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>UniTS: A Universal Time Series Analysis Framework Powered by Self-Supervised Representation Learning</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 哈工大</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Computing methodologies → Machine learning  </span></p></li><li><p><span>Mathematics of computing → Time series analysis  </span></p></li></ul><p>📚<span>概述：展示UniTS框架，用于解决时序分析中的问题，比如部分标注数据/领域漂移</span></p><ul><li><p><span>背景问题：时间序列预测的一些挑战</span></p><ul><li><p><span>部分标注：即不是所有数据都被完整标注，即不是所有数据都有正确标签</span></p></li><li><p><span>领域漂移：应用于某模型的领域，在新的领域表现不佳</span></p></li></ul></li><li><p><span>UniTS 框架的设计</span></p><ul><li><p><span>自监督表征学习：使得模型在标签不完整时，通过学习内在结构+表征，提升分析效果</span></p></li><li><p><span>Sklearn 风格 API：尊重用户习惯，开发者可灵活使用该架构</span></p></li><li><p><span>用户友好GUI：高度封装，好看，傻子也能用</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>ChatPipe: Orchestrating Data Preparation Pipelines by Optimizing Human-ChatGPT Interactions</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 人大</span></p><p>➡️<span>领域：Information systems → Data analytics  </span></p><p>📚<span>概述：展示了ChatPipe新系统，通过与ChatGPT对话来简化机器学习的数据准备过程</span></p><ul><li><p><span>关于数据准备</span></p><ul><li><p><span>是啥：数据清洗，转换。处理等</span></p></li><li><p><span>将ChatGPT用于数据准备</span></p><ul><li><p><span>咋整：根据用户提示生成代码，运行代码来进行数据准备</span></p></li><li><p><span>缺陷：需用户引导ChatGPT因此需具备一定编程基础+生成的代码无法滚回(需从头引导)</span></p></li></ul></li></ul></li><li><p><span>ChatPipe 系统的设计</span></p><ul><li><p><span>套壳ChatGPT：不仅与ChatGPT无缝交互</span></p></li><li><p><span>操作推荐：智能提示用户下一步操作，从而更好的引导ChatGPT</span></p></li><li><p><span>版本控制与滚回：允许用户滚回到以前的版本。无需从头还是引导</span></p></li></ul></li><li><p><span>Demo Session</span></p><ul><li><p><span>被集成到了一个Web应用里</span></p></li><li><p><span>在Kaggle数据集上可完成高效准备</span></p></li></ul></li></ul></blockquote></blockquote><h2 id='31-group-b'><span>3.1. Group B</span></h2><blockquote><p><strong>👇<mark><span>Responsible Model Selection with Virny and VirnyView</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 乌克兰天主教大学/纽约大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Social and professional topics → Socio-technical systems</span></p></li><li><p><span>Human centered computing  </span></p></li></ul><p>📚<span>概述：展示了Virny软件库和与之配套的交互工具VirnyView，用户模型审计+模型选择</span></p><ul><li><p><span>模型审计：对机器学习模型进行系统性评估和分析，涵盖准确性/稳定性/鲁棒性</span></p></li><li><p><span>关于Virny软件库</span></p><ul><li><p><span>特性：模块化+可扩展性，用户可根据需求扩展其功能</span></p></li><li><p><span>技术手段</span></p><ul><li><p><span>具有一套评估机器学习性能的公平性指标，其中包括很多新指标</span></p></li><li><p><span>提供了一套基于多个敏感属性(性别/种族)的分析功能，用于评估在不同人群的表现</span></p></li></ul></li></ul></li><li><p><span>VirnyView工具：一个配套的交互工具，提供可视化界面，封装了模型审计和选择的过程</span></p></li><li><p><span>开放访问：</span><a href='https://github.com/DataResponsibly/Virny' target='_blank' class='url'>https://github.com/DataResponsibly/Virny</a><span> and </span><a href='https://r-ai.co/VirnyView' target='_blank' class='url'>https://r-ai.co/VirnyView</a></p></li></ul></blockquote><p><strong>👇<mark><span>Property Graph Stream Processing In Action with Seraph</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构： 乱七八糟</span></p><p>➡️<span>领域： 乱七八糟</span></p><p>📚<span>概述：介绍了Seraph，一种基于Cypher的查询语言，专注于处理流图数据+连续查询 </span></p><ul><li><p><span>背景</span></p><ul><li><p><span>图数据模型的普及+Cypher查询语言的推广→图数据分析越来越重要</span></p></li><li><p><span>现有的图查询语言(Cypher)在处理流图数据存在局限，如不可连续查询</span></p><ul><li><p><span>流图数据，就是实时性高的图数据</span></p></li></ul></li></ul></li><li><p><span>关于两种编程语言</span></p><ul><li><p><span>声明式(declarative)：用户只需描述需求就可得结果，具体每一步怎么做不用管，比如SQL</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="sql"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="sql"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 36px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">SELECT</span> name <span class="cm-keyword">FROM</span> students <span class="cm-keyword">WHERE</span> age <span class="cm-operator">&gt;</span> <span class="cm-number">18</span><span class="cm-punctuation">;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="height: 23px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre></li><li><p><span>命令式(Imperative)：需用户明确每一步该怎么做，比如Python</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="python"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51562px; left: 36px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 28px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>4</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -28px; width: 28px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">result</span> <span class="cm-operator">=</span> []</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> <span class="cm-variable">student</span> <span class="cm-keyword">in</span> <span class="cm-variable">students</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">if</span> <span class="cm-variable">student</span>.<span class="cm-property">age</span> <span class="cm-operator">&gt;</span> <span class="cm-number">18</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -28px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable cm-error">result</span>.<span class="cm-property">append</span>(<span class="cm-variable">student</span>.<span class="cm-property">name</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 92px;"></div><div class="CodeMirror-gutters" style="height: 92px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre></li></ul></li><li><p><span>关于Seraph</span></p><ul><li><p><span>核心创新点：基于Cypher，支持</span><strong><span>本地连续查询</span></strong><span>，可在</span><strong><span>流图数据</span></strong><span>上查询并给出实时结果</span></p></li><li><p><span>特性</span></p><ul><li><p><span>是声明式(declarative)语言</span></p></li><li><p><span>向后兼容了Cypher，即Cypher语言也可在Seraph中使用</span></p></li><li><p><span>有严格的形式化定义，即用符号+表达式来描述问题</span></p></li></ul></li></ul></li><li><p><span>其它</span></p><ul><li><p><span>Seraph还提供了一个web用户界面</span></p></li><li><p><span>演示视频：</span><a href='https://riccardotommasini.github.io/seraph/' target='_blank' class='url'>https://riccardotommasini.github.io/seraph/</a></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Property Graph Stream Processing In Action with Seraph</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：智利的一堆大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Data management systems  </span></p></li><li><p><span>Database query processing  </span></p></li><li><p><span>Graph-based database models  </span></p></li></ul><p>📚<span>概述：展示了MillenniumDB，一种高性能开源图数据库</span></p><ul><li><p><span>背景与问题</span></p><ul><li><p><span>知识图谱的数据多样性：包含文本/图像/表格/视频/音频，图数据库还需支持多个共存DB</span></p></li><li><p><span>多种数据具备需要互相操作的需求，因此更需要处理和查询多样化的数据格式</span></p></li></ul></li><li><p><span>MillenniumDB 的特点</span></p><ul><li><p><span>支持多模态+多模型：支持属性图模型，语义网络式RDF，以及结合这二者的多层图模型</span></p></li><li><p><span>支持的查询语言：</span></p><ul><li><p><span>支持属性图和多层图上的类似 Cypher 的查询语言</span></p></li><li><p><span>支持在 RDF 数据上执行 SPARQL 1.1 查询</span></p></li></ul></li><li><p><span>优化的查询引擎：</span></p><ul><li><p><span>结合了最坏情况最优连接算法+统的关系型查询优化技术</span></p></li><li><p><span>支持多种图特定任务，如路径查找、模式识别和多模态数据的相似性搜索</span></p></li></ul></li></ul></li><li><p><span>Demo Session：在TelarKG/BibKG/Wikidata等图谱上表现良好</span></p></li></ul></blockquote><p><strong>👇<mark><span>IDE: A System for Iterative Mislabel Detection</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：北理</span></p><p>➡️<span>领域：Information systems → Data cleaning  </span></p><p>📚<span>概述：介绍了IDE系统，用于在ML训练种解决标签错误的问题，提高标签的质量以利于训练</span></p><ul><li><p><span>背景及背景知识</span></p><ul><li><p><span>标签错误：即在数据集种标注错误标签</span></p></li><li><p><span>标签错误的后果：会让DL模型性能雪崩，因为DL赖于高质量标签</span></p></li><li><p><span>获取高质量标签过程需要人工验证，成本极高</span></p></li></ul></li><li><p><span>IDE 系统的介绍</span></p><ul><li><p><span>采用一种</span><strong><span>迭代检测</span></strong><span>和修复错误标签的方法</span></p><ul><li><p><span>每次迭代种，IDE使用早期损失观察+基于影响的验证，来识别错误标签</span></p></li><li><p><span>对于识别出的错误标签，系统随之做出修复</span></p></li></ul></li><li><p><span>当系统检测到早期损失观察不再有效时，自动终止迭代</span></p></li><li><p><span>对于难以确定标签的实例，IDE会生成伪标签，这也可以提高总体的标签质量</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>A Demonstration of GPTuner: A GPT-Based Manual-Reading Database Tuning System</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：四川大学</span></p><p>➡️<span>领域：Information systems → Database administration  </span></p><p>📚<span>概述：提出了名为GPTuner的DBMS自动调优系统</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>可配置参数(knobs)对数据库系统影响很大，但人为调整这些参数到最优及其困难</span></p></li><li><p><span>目前已有的机器学习自动调整系统有赖于黑箱优化，忽略了数据库领域知识</span></p></li></ul></li><li><p><span>GPTuner 的提出</span></p><ul><li><p><span>核心：GPTuner系统利用LLM，通过阅读数据库文档/手册等，讲黑箱优化与领域知识结合</span></p></li><li><p><span>用户与专家的合作</span></p><ul><li><p><span>用户：GPTuner解读参数特性提供定见解，以帮助优化，无需用户深入掌握优化知识</span></p></li><li><p><span>专家：通过自然语言输入调优建议，进一步增强GPTuner功能</span></p></li></ul></li></ul></li></ul></blockquote><p><strong>👇<mark><span>Demonstrating 𝜆-Tune: Exploiting Large Language Models for Workload-Adaptive Database System Tuning</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：康奈尔大学</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Information systems → Query optimization  </span></p></li><li><p><span>Autonomous database administration</span></p></li><li><p><span>Human-centered computing → Natural language interfaces</span></p></li></ul><p>📚<span>概述：展示了</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.319ex" height="1.597ex" role="img" focusable="false" viewBox="0 -694 583 706" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.027ex;"><defs><path id="MJX-95-TEX-I-1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D706" xlink:href="#MJX-95-TEX-I-1D706"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>λ</mi></math></mjx-assistive-mml></mjx-container><script type="math/tex">\lambda</script><span>-Tune模型，可根据工作负载自动化自适应为数据库系统调优</span></p><ul><li><p><span>背景</span></p><ul><li><p><span>还是knobs的调优，目的在于根据数据库的硬件+查询负载来优化配置</span></p></li><li><p><span>传统调优方法依赖大量计算资源(GPU)和时间</span></p></li></ul></li><li><p><span>𝜆-Tune 的创新之处</span></p><ul><li><p><span>利用LLMs来理解和处理文本数据，不需要额外训练(零次学习)直接生成配置建议</span></p><ul><li><p><span>零次学习：模型在</span><strong><span>没有见过</span></strong><span>某类训练数据情况下，对这些类别做出正确预测</span></p></li></ul></li><li><p><span>系统根据DB系统+硬件规格+查询负载，通过自动生成提示，生成适合的调优建议</span></p></li><li><p><span>采取一种工作负载压缩方法，只提取最优洞察力的工作负载特征</span></p></li></ul></li><li><p><span>𝜆-Tune 的优势</span></p><ul><li><p><span>计算资源小：无需耗时的调优与训练(零次学习)</span></p></li><li><p><span>性能提升</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>User-friendly, Interactive, and Configurable Explanations for Graph Neural Networks with Graph Views</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：浙江大学等</span></p><p>➡️<span>领域：</span></p><ul><li><p><span>Computing methodologies → Neural networks  </span></p></li><li><p><span>Information systems → Graph-based database models  </span></p></li></ul><p>📚<span>概述：介绍了名为GVEX的系统，用于为用户提供友好+可交互的GNNs行为解释</span></p><ul><li><p><span>问题背景</span></p><ul><li><p><span>GNN对图数据分析表现优异，但其具有黑箱特性，内部工作原理难以解释</span></p></li><li><p><span>目前对于GNNs的解释方法，仅限于对特定实例，且生成的解释结构过大(难以直观理解)</span></p></li></ul></li><li><p><span>GVEX 系统的创新点</span></p><ul><li><p><span>提供了用户友好+交互式的界面，以及个性化的配置(选择感兴趣类别/结点数量)</span></p></li><li><p><span>利用事实+反事实属性，以及这些节点在GNN消息传递的聚合影响，生成高质量解释子图</span></p></li><li><p><span>生成双层解释结构，包含图模式+解释子图</span></p></li></ul></li></ul></blockquote><p><strong>👇<mark><span>OpenIVM: a SQL-to-SQL Compiler for Incremental Computations</span></mark></strong><span>  </span></p><blockquote><p>🏛<span>机构：荷兰国家数学和计算机科学研究学会/滑铁卢大学</span></p><p>➡️<span>领域：Information systems → Database query processing  </span></p><p>📚<span>概述：展示了名为OpenIVM的SQL-to-SQL编译器，专用于增量视图维护(IVM)</span></p><ul><li><p><span>增量视图维护(IVM)</span></p><ul><li><p><span>作用：用于在基础数据插入/更新/删除时，快速更新数据库中物化视图</span></p><ul><li><p><span>物化视图：所预测的查询结果，存储在数据库中，用于查询优化</span></p></li></ul></li><li><p><span>现有IVM的局限：通常在独立的系统中实现IVM的计算，需要额外计算系统及资源</span></p></li></ul></li><li><p><span>OpenIVM 的创新之处</span></p><ul><li><p><span>核心理念：通过现有的SQL查询引擎执行所有IVM，而非额外系统，减少开发/计算成本</span></p></li><li><p><span>支持跨系统：能协调OLTP和OLAP系统工作</span></p><ul><li><p><span>OLTP(在线事务处理)：负责处理DBMS基础的表插入/更新/删除</span></p></li><li><p><span>OLAP()：存储和维护物化视图</span></p></li><li><p><span>二者协调的方式：OLTP</span></p></li></ul></li></ul></li></ul></blockquote></blockquote></blockquote><h1 id='4-panels'><span>4. Panels  </span></h1><blockquote><p>&nbsp;</p></blockquote><h1 id='5-tutorials'><span>5. Tutorials</span></h1><blockquote><p>&nbsp;</p></blockquote><h1 id='6-workshop-summaries'><span>6. Workshop Summaries  </span></h1><blockquote><p>&nbsp;</p></blockquote></div></div>
+</body>
+</html>
