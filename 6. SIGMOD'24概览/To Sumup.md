@@ -1059,11 +1059,178 @@
 > > > - Information systems → Data management systems  
 > > > - Software and its engineering → Software testing and debugging  
 > > >
-> > > :books:摘要：
+> > > :books:摘要：展示了Udon调试器，用于在大数据处理系统中，逐行调试复杂用户自定义函数(UDF)
+> > >
+> > > - 背景
+> > >   - 编程语言的差异：
+> > >     - 大数据系统由C/C++/Java编写
+> > >     - 用户用Python分析处理，比如机器学习API有99%都是python
+> > >     - UDF成为bridge their gap的重要工具
+> > >   - UDF调试的挑战：需要协同不同编程语言+大数据规模庞大(开销高)
+> > > - Udon 的解决方案
+> > >   - 逐行调试：用户可设断点+逐行单步走，可以在调试UDF时修改代码
+> > >   - 单个元组调试：允许UDF在单个Tuple上执行，逐行检查运行情况
+> > >   - 调试原语：包含了现代化调试原语，比如设断点+代码检查+动态修改代码
+> >
+> > **:point_down:==UniTS: A Universal Time Series Analysis Framework Powered by Self-Supervised Representation Learning==**  
+> >
+> > > :classical_building:机构： 哈工大
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Computing methodologies → Machine learning  
+> > > - Mathematics of computing → Time series analysis  
+> > >
+> > > :books:摘要：展示UniTS框架，用于解决时序分析中的问题，比如部分标注数据/领域漂移
+> > >
+> > > - 背景问题：时间序列预测的一些挑战
+> > >   - 部分标注：即不是所有数据都被完整标注，即不是所有数据都有正确标签
+> > >   - 领域漂移：应用于某模型的领域，在新的领域表现不佳
+> > > - UniTS 框架的设计
+> > >   - 自监督表征学习：使得模型在标签不完整时，通过学习内在结构+表征，提升分析效果
+> > >   - Sklearn 风格 API：尊重用户习惯，开发者可灵活使用该架构
+> > >   - 用户友好GUI：高度封装，好看，傻子也能用
+> >
+> > **:point_down:==ChatPipe: Orchestrating Data Preparation Pipelines by Optimizing Human-ChatGPT Interactions==**  
+> >
+> > > :classical_building:机构： 人大
+> > >
+> > > :arrow_right:领域：Information systems → Data analytics  
+> > >
+> > > :books:摘要：展示了ChatPipe新系统，通过与ChatGPT对话来简化机器学习的数据准备过程
+> > >
+> > > - 关于数据准备
+> > >   - 是啥：数据清洗，转换。处理等
+> > >   - 将ChatGPT用于数据准备
+> > >     - 咋整：根据用户提示生成代码，运行代码来进行数据准备
+> > >     - 缺陷：需用户引导ChatGPT因此需具备一定编程基础+生成的代码无法滚回(需从头引导)
+> > > - ChatPipe 系统的设计
+> > >   - 套壳ChatGPT：不仅与ChatGPT无缝交互
+> > >   - 操作推荐：智能提示用户下一步操作，从而更好的引导ChatGPT
+> > >   - 版本控制与滚回：允许用户滚回到以前的版本。无需从头还是引导
+> > > - Demo Session
+> > >   - 被集成到了一个Web应用里
+> > >   - 在Kaggle数据集上可完成高效准备
 >
 > ## 3.1. Group B
 >
-> > 
+> > **:point_down:==Responsible Model Selection with Virny and VirnyView==**  
+> >
+> > > :classical_building:机构： 乌克兰天主教大学/纽约大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data management systems  
+> > > - Social and professional topics → Socio-technical systems
+> > > - Human centered computing  
+> > >
+> > > :books:摘要：展示了Virny软件库和与之配套的交互工具VirnyView，用户模型审计+模型选择
+> > >
+> > > - 模型审计：对机器学习模型进行系统性评估和分析，涵盖准确性/稳定性/鲁棒性
+> > > - 关于Virny软件库
+> > >   - 特性：模块化+可扩展性，用户可根据需求扩展其功能
+> > >   - 技术手段
+> > >     - 具有一套评估机器学习性能的公平性指标，其中包括很多新指标
+> > >     - 提供了一套基于多个敏感属性(性别/种族)的分析功能，用于评估在不同人群的表现
+> > > - VirnyView工具：一个配套的交互工具，提供可视化界面，封装了模型审计和选择的过程
+> > >
+> > > - 开放访问：https://github.com/DataResponsibly/Virny and https://r-ai.co/VirnyView
+> >
+> > **:point_down:==Property Graph Stream Processing In Action with Seraph==**  
+> >
+> > > :classical_building:机构： 乱七八糟
+> > >
+> > > :arrow_right:领域： 乱七八糟
+> > >
+> > > :books:摘要：介绍了Seraph，一种基于Cypher的查询语言，专注于处理流图数据+连续查询 
+> > >
+> > > - 背景
+> > >
+> > >   - 图数据模型的普及+Cypher查询语言的推广→图数据分析越来越重要
+> > >   - 现有的图查询语言(Cypher)在处理流图数据存在局限，如不可连续查询
+> > >     - 流图数据，就是实时性高的图数据
+> > >
+> > > - 关于两种编程语言
+> > >
+> > >   - 声明式(declarative)：用户只需描述需求就可得结果，具体每一步怎么做不用管，比如SQL
+> > >
+> > >     ```sql
+> > >     SELECT name FROM students WHERE age > 18;
+> > >     ```
+> > >
+> > >   - 命令式(Imperative)：需用户明确每一步该怎么做，比如Python
+> > >
+> > >     ```python
+> > >     result = []
+> > >     for student in students:
+> > >         if student.age > 18:
+> > >             result.append(student.name)
+> > >     ```
+> > >
+> > > - 关于Seraph
+> > >
+> > >   - 核心创新点：基于Cypher，支持**本地连续查询**，可在**流图数据**上查询并给出实时结果
+> > >   - 特性
+> > >     - 是声明式(declarative)语言
+> > >     - 向后兼容了Cypher，即Cypher语言也可在Seraph中使用
+> > >     - 有严格的形式化定义，即用符号+表达式来描述问题
+> > >
+> > > - 其它
+> > >
+> > >   - Seraph还提供了一个web用户界面
+> > >   - 演示视频：https://riccardotommasini.github.io/seraph/
+> >
+> > **:point_down:==Property Graph Stream Processing In Action with Seraph==**  
+> >
+> > > :classical_building:机构：智利的一堆大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data management systems  
+> > > - Database query processing  
+> > > - Graph-based database models  
+> > >
+> > > :books:摘要：展示了MillenniumDB，一种高性能开源图数据库
+> > >
+> > > - 背景与问题
+> > >   - 知识图谱的数据多样性：包含文本/图像/表格/视频/音频，图数据库还需支持多个共存DB
+> > >   - 多种数据具备需要互相操作的需求，因此更需要处理和查询多样化的数据格式
+> > > - MillenniumDB 的特点
+> > >   - 支持多模态+多模型：支持属性图模型，语义网络式RDF，以及结合这二者的多层图模型
+> > >   - 支持的查询语言：
+> > >     - 支持属性图和多层图上的类似 Cypher 的查询语言
+> > >     - 支持在 RDF 数据上执行 SPARQL 1.1 查询
+> > >   - 优化的查询引擎：
+> > >     - 结合了最坏情况最优连接算法+统的关系型查询优化技术
+> > >     - 支持多种图特定任务，如路径查找、模式识别和多模态数据的相似性搜索
+> > > - Demo Session：在TelarKG/BibKG/Wikidata等图谱上表现良好
+> >
+> > **:point_down:==IDE: A System for Iterative Mislabel Detection==**  
+> >
+> > > :classical_building:机构：北理
+> > >
+> > > :arrow_right:领域：Information systems → Data cleaning  
+> > >
+> > > :books:摘要：介绍了IDE系统，用于在ML训练种解决标签错误的问题，提高标签的质量以利于训练
+> > >
+> > > -  背景及背景知识
+> > >   - 标签错误：即在数据集种标注错误标签
+> > >   - 标签错误的后果：会让DL模型性能雪崩，因为DL赖于高质量标签
+> > >   - 获取高质量标签过程需要人工验证，成本极高
+> > > - IDE 系统的介绍
+> > >   - 采用一种**迭代检测**和修复错误标签的方法
+> > >     - 每次迭代种，IDE使用早期损失观察+基于影响的验证，来识别错误标签
+> > >     - 对于识别出的错误标签，系统随之做出修复
+> > >   - 当系统检测到早期损失观察不再有效时，自动终止迭代
+> > >   - 对于难以确定标签的实例，IDE会生成伪标签，这也可以提高总体的标签质量
+> >
+> > **:point_down:==A Demonstration of GPTuner: A GPT-Based Manual-Reading Database Tuning System==**  
+> >
+> > > :classical_building:机构：四川大学
+> > >
+> > > :arrow_right:领域：Information systems → Database administration  
+> > >
+> > > :books:摘要：
 
 # 4. Panels  
 
