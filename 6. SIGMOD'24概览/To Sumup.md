@@ -1315,15 +1315,354 @@
 > > >     - PostgreSQL 处理基础表的更新操作
 > > >     - DuckDB 用于存储和维护这些表的物化视图
 > >
-> > 
+> > **:point_down:==Building Reactive Large Language Model Pipelines with Motion==**  
+> >
+> > > :classical_building:机构：UC Berkeley  
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Data management systems  
+> > > - Computing methodologies → Artificial intelligence  
+> > >
+> > > :books:概述：介绍了Motion，一共用户构建和执行反应式LLM管道的Python框架
+> > >
+> > > - 背景
+> > >   - LLM依赖于提示词，要求提示词有详细信息+丰富上下文，才能高效优化LLM
+> > >   - 反应式LLM管道，指通过引入新信息(用户反馈/历史输入输出)，而**动态改进提示词**
+> > > - Motion 框架的功能
+> > >   - 提供了一共Python框架，方便开发者创建+运行反应式LLM管道
+> > >   - 使用了一种弱一致性模型，即牺牲一定实时性，来减少用户响应延迟
+> >
+> > **:point_down:==Demonstrating Nexus for Correlation Discovery over Collections of Spatio-Temporal Tabular Data==**  
+> >
+> > > :classical_building:机构：芝加哥大学 
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Information integration  
+> > > - Specialized information retrieval
+> > >
+> > > :books:概述：介绍了Nexus系统，帮助用户从**观察数据**中获取**因果关系**
+> > >
+> > > - 背景知识
+> > >
+> > >   - 观察数据：真实世界中采集的最原始数据
+> > >
+> > >   - 因果分析的重要性：能为更好的决策提供依据
+> > >   - 因果分析的策略：先过识别数据中的相关性间接识别因果 (直接识别因果过于困难)
+> > >
+> > > - Nexus 系统的功能
+> > >
+> > >   - 将不同时空范围内的表格数据对其，降低分散/复杂数据的分析成本
+> > >   - 有效处理数据集中可能存在的缺失值
+> > >   - 识别那些可能与因果关系有关的“有趣”相关性
+> >
+> > **:point_down:==Plutus: Understanding Data Distribution Tailoring for Machine Learning==**  
+> >
+> > > :classical_building:机构：美国罗切斯特大学/柏林工业大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Information integration  
+> > > - Computing methodologies → Machine learning  
+> > >
+> > > :books:概述：介绍了**Plutus**工具，用于HCI+模型感知数据获取，集成在SystemDB中
+> > >
+> > > - 背景知识
+> > >   - 出现的问题：ML模型有时候在整个数据集上表现不错，但在特定数据切片上表现差
+> > >     - 数据切片：数据中某些 特定的组合，比如具有特定特征(年龄/性别)的一部分
+> > >   - 表现变差的原因在于：切片的数据**不够多**/质量差
+> > >   - 解决办法：定位让模型表现不好的那部分数据切片，获取更多那部分数据
+> > > - 关于获取新数据的挑战
+> > >   - 传统的众包方法(crowdsourcing)：即从大量个人那里获得数据，但是太贵/效率太低
+> > >   - 外部数据源：从现有外部数据(Data Lake / Data Market)获得数据，更廉价
+> > > - Plutus的设计
+> > >   - 是个啥：一个工具，用于协助人机交互过程，根据机器学习模型需求，智能获取数据
+> > >   - 啥特点：集成在SystemDB中+支持从数据调试到数据获取的完整生命周期
+> > >   - 原理：
+> > >     - 让用户追踪模型表现不佳的具体数据片段
+> > >     - 识别出有问题片段后，连接外部数据源
+> > >     - 与外部数据源交互，从而补充/修补有问题数据
+> > > - 应用场景：Plutus 可以应用于任何需要提升模型表现的场景
+> >
+> > **:point_down:==Multi-Backend Zonal Statistics Execution with Raven==**  
+> >
+> > > :classical_building:机构：柏林工业大学
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Spatial-temporal systems  
+> > > - Applied computing → Earth and atmospheric sciences
+> > >
+> > > :books:概述：展示了Raven，一个区域统计的框架，用于管理遥感卫星激增的数据
+> > >
+> > > - 背景：
+> > >   - 大量遥感数据，对气候监测/灾害管理很有用
+> > >   - 处理这些数据，需要通过区域统计，汇集感兴趣区域内的像素数据
+> > > - 现有问题：
+> > >   - 存在多种空间系统，及其区域统计操作
+> > >   - 他们之间接口/架构/算法差异太大
+> > > - Raven的解决方案
+> > >   - 提供了统一接口，简化了不同系统的协作使用
+> > >   - 支持多后端执行环境，使用户可以轻松在不同系统间进行基准测试和比较
+> > >   - 包含领域特定的Declarative语言+优化技术
+> >
+> > **:point_down:==ShiftScope: Adapting Visualization Recommendations to Users’ Dynamic Data Focus==**  
+> >
+> > > :classical_building:机构：Oregon State University  
+> > >
+> > > :arrow_right:领域：Human-centered computing → Visualization toolkits  
+> > >
+> > > :books:概述：介绍了ShiftScope，一个动态可视化交互系统，用于推荐个性化数据
+> > >
+> > > - 背景问题
+> > >   - 可视化推荐系统，帮助用户在数据探索过程发现重要简介
+> > >   - 但随用户**对数据理解加深**或**目标有变**，现有系统难以适应，导致推荐不再相关
+> > > - ShiftScope的解决方案
+> > >   - 引入一个互动系统，追踪用户对数据的认知变化
+> > >   - 采用**双智能体强化学习框架**
+> > >     - 一个智能体，负责**适应用户数据焦点的变化**
+> > >     - 另一智能体，推荐满足用户当前/未来探索需求的最佳可视化
+> >
+> > **:point_down:==Demonstration of ElasticNotebook: Migrating Live Computational Notebook States==**  
+> >
+> > > :classical_building:机构：伊利诺伊大学槟城分校
+> > >
+> > > :arrow_right:领域：
+> > >
+> > > - Information systems → Computing platforms  
+> > > - Data replication tools  
+> > >
+> > > :books:概述：介绍了**ElasticNotebook**，解决当前Jupyter Notebook中会话状态不可保存的问题
+> > >
+> > > - 当前Jupyter Notebook的弊端：
+> > >   - 会话结束后(如开始运行一段Python)，用户定义的变量/机器学习模型会丢失
+> > >   - 当前笔记本无法有效的持久化会话状态
+> > > - ElasticNotebook的解决方案
+> > >   - 提供绘画状态**实时迁移**，用户可以**计算检查点/恢复**来保存并恢复会话状态
+> > >   - 前端：允许用户配置**定期创建会话状态的检查点**
+> > >   - 后端：使用轻量级监控技术，可以高效**复制会话状态**
 
 # 4. Panels  
 
-> 
+> **:point_down:==The Future of Graph Analytics==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：乱七八糟
+> >
+> > :books:概述：讨论了近年来图技术在工业和学术界的发展，以及未来图分析系统可能面临的挑战
+> >
+> > - 背景与现状
+> >   - 过去20年，图数据在工业界需求暴增，在学术界有关图处理也取得进展
+> >   - 图查询语言也在不断演变
+> > - 讨论围绕以下问题展开
+> >   - 是否需要更**表达力强的语言和库**来分析图中的关系
+> >   - 是否需要新的**混合OLTP/OLAP架构**来提升性能和扩展性
+> >   - 用户对**图分析工作负载和基准**的期望是什么
+> >   - 图机器学习将如何影响图分析系统
+> >   - 如何让图分析系统适应图形数据的**动态变化**
+>
+> **:point_down:==The Future of Graph Analytics==**  
+>
+> > :classical_building:机构：微软
+> >
+> > :books:概述：讨论了DBMS从本地到公有云的迁移，及这种迁移对系统中ML应用的影响
+> >
+> > - 背景
+> >   - DBMS转变：
+> >     - 数据库管理逐渐向公有云转移，数据库开发者变成了操作者
+> >     - 使得我们可以通过**遥测反馈循环**来进行系统的整体优化
+> >   - ML for Systems 的兴起：通过利用数据反馈，机器学习被广泛用于优化系统性能和管理
+> >   - LLM的影响：LLM已经成为数据库系统优化中的一个有趣元素
+> > - 讨论的主题
+> >   - **ML for Systems 的实际应用**和**鲁棒性**如何
+> >   - **大语言模型**在系统优化中能起到什么作用
+> >   - 涉及具体的工程考虑和开放性的未来行业发展问题
 
 # 5. Tutorials
 
-> 
+> **:point_down:==Demystifying Data Management for Large Language Models==**  
+>
+> > :classical_building:机构：卡内基梅隆大学/北京大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Information systems applications  
+> > - Computing methodologies → Machine learning
+> > - Artificial intelligence  
+> > - Distributed computing methodologies  
+> >
+> > :books:概述：关于LLMs时代数据管理的教程，讨论了开发+部署LLM过程中数据管理方面的挑战
+> >
+> > - 背景：LLMs在训练和部署过程中需要管理大量数据，使得数据管理至关重要
+> > - 教程内容
+> >   - 如何在 LLM 的**开发和部署**阶段管理知识和参数数据
+> >   - 强调了在数据管理中如何平衡效率与有效性
+>
+> **:point_down:==SmartNICs in the Cloud: The Why, What and How of In-network Processing for Data-Intensive Applications==**  
+>
+> > :classical_building:机构：达姆城工业大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Hardware → Networking hardware  
+> > - Networks → Programmable networks  
+> > - Information systems → Database query processing
+> >
+> > :books:概述：讨论了数据中心/云计算中，资源分离/智能网口卡(SmartNICs)/智能交换机的作用
+> >
+> > - 关于资源分离
+> >   - 是啥：在云计算系统中，将CPU/内存独立为不同部分
+> >     - 分离任务：将传统的计算资源(CPU/内存/存储)独立出来
+> >   - 好处：enable了良好的可扩展性，提高了资源利用率
+> >   - 坏处：增大了网络的处理和开销成本
+> > - 关于智能硬件
+> >   - 有啥：智能网络接口卡(SmartNICs)+智能交换机(Smart Switches)等，作为**可编程硬件**
+> >   - 能干啥：
+> >     - 在网络层中：执行云系统中的分离任务，以降低开销
+> >     - 在应用层中：执行更高级的操作，比如SQL查询/机器学习流水
+> > - Tutorial内容
+> >   - 讲解**SmartNICs**的工作原理
+> >   - 探讨如何**最佳利用**这些智能硬件
+>
+> **:point_down:==Learned Query Optimizer: What is New and What is Next==**  
+>
+> > :classical_building:机构：阿里巴巴
+> >
+> > :arrow_right:领域：Information systems → Data management systems  
+> >
+> > :books:概述：讨论了学习型查询优化器，即如何将机器学习应用于数据库的查询优化
+> >
+> > - 背景：机器学习应用于查询，体现出了优越性，具备广泛实验依据
+> > - Tutorial内容
+> >   - 将用于查询优化的机器学习组件分类，分别介绍其代表性方法
+> >   - 展示一些基准测试的结果和原型应用
+> >   - 展示了一个前沿系统，通过逐步指导，降低开发和部署学习型算法的难度
+> > - 未来方向：文中说的一塌糊涂，我也不好总结了
+>
+> **:point_down:==Distributed Transaction Processing in Untrusted Environments==**  
+>
+> > :classical_building:机构：美国一堆无关紧要的大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Distributed database transactions  
+> > - Computer systems organization → Fault-tolerant network topologies
+> > - Networks → Network protocol design  
+> >
+> > :books:概述：为开发者提供一个**系统化的框架**来分析拜占庭容错协议，便于选择和使用
+> >
+> > - 关于拜占庭容错协议(BFT)
+> >   - 是啥：用于分布式系统(如去中心化的数据管理系统)中的共识机制
+> >   - 干啥：解决系统中可能存在的**恶意节点**或**故障节点**的问题
+> >   - 原理：当系统中某一结点出现不可靠行为后，仍能让诚实结点就系统状态达成一致
+> > - 背景：BFT协议的快速发展，使选择合适的协议变得困难，开发者难以弄清哪种协议最适合
+> > - Tutorial内容
+> >   - 介绍了一个设计空间，即协议设计时各种设计因素和选项，比如
+> >     - 基础设施设置，网络环境/结点分布/拓扑结构
+> >     - 通信方式，比如广播/流量控制
+> >     - 社会选择属性，比如公平性等
+> >   - 介绍了设计权衡(如下)，帮助开发者理解各协议的差异
+> >     - 性能 vs. 可靠性
+> >     - 公平性 vs. 效率
+> >     - 通信开销 vs. 扩展性
+>
+> **:point_down:==Responsible Sharing of Spatiotemporal Data==**  
+>
+> > :classical_building:机构：芝加哥大学/俄亥俄州立大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data exchange  
+> > - Spatial-temporal systems  
+> >
+> > :books:概述：讨论了**时空数据共享**中的挑战和解决方案，尤其注重保护隐私
+> >
+> > - 时空数据：带有时间和空间维度的数据，比如某事某地的气象数据
+> > - 背景
+> >   - 越累越多的应用场景有赖于时空数据，比如自动驾驶
+> >   - 涉及到时空数据共享，需要有新的**隐私标准+机器学习技术**的融合
+> > - 设计的挑战
+> >   - 时空数据设计隐私，比如个人的位置/时间等
+> >   - 如何提高数据使用价值同时，严格执行隐私保护措施？
+> > - 如何解决挑战
+> >   - 现代数据共享机制
+> >     - 让数据相关方设定精确的**数据使用共享条款**
+> >     - 用**强大的数据基础设施**来保障数据安全
+> >   - 隐私和分析的平衡：即确保隐私合规的同时，实现数据的有效利用
+>
+> **:point_down:==Querying Graph Databases at Scale==**  
+>
+> > :classical_building:机构：智利大学/智利天主教大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Query languages for non-relational engines
+> > - Graph-based database models  
+> >
+> > :books:概述：关于**图数据库查询**算法和数据结构的教程，重点关注可以在现实世界知识图谱扩展的算法
+> >
+> > - Part1
+> >   - 介绍**图数据库**，在查询**知识图谱**具有优势
+> >     - 知识图谱：将信息以图形式结构化表示的模型
+> >   - 介绍图数据模型和不同的**查询语言**
+> > - Part2：讨论如何高效评估图模式查询
+> >   - 引入了**最坏情况下最优的连接技术**，将其与传统连接算法对比
+> > - Part3：
+> >   - 介绍如何高效评估**路径查询** 
+> >   - 如何构建紧凑的表示，来处理指数暴增的路径集合
+> > - Part4：介绍压缩数据结构的最新进展
+>
+> **:point_down:==Cognitive Psychology Meets Data Management: State of the Art and Future Directions==**  
+>
+> > :classical_building:机构：南洋理工
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Query languages for non-relational engines
+> > - Graph-based database models  
+> >
+> > :books:概述：讨论了引入**认知心理学理论**来改进DBMS，以追求以人为中心的设计
+> >
+> > - 问题背景：数据库系统中，数据定义/数据库操作语言(SQL)是给人设计的，需要追求以人为中心
+> > - 认知心理学
+> >   - 研究人类如何思考和处理信息
+> >   - 文章提出，通过结合**认知心理学理论**，可以优化 DBMS 的设计，提高人机交互效率
+> > - 然后就是回顾过去技术+未来研究方向了，瞎几把鬼扯了一堆，我都感到尴尬
+>
+> **:point_down:==Vector Database Management Techniques and Systems==**  
+>
+> > :classical_building:机构：北京大学/普渡大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Query languages for non-relational engines
+> > - Graph-based database models  
+> >
+> > :books:概述：讨论了**特征向量数据库管理系统（VDBMSs）**
+> >
+> > - 特征向量数据库管理系统 (Vector Database Management Systems)
+> >   - 是啥：专门设计用于存储+管理+查询特征向量的DBMS
+> >   - 特征向量：用于在ML/DL中表示数据对象(图像/文本/高维数据)
+> > - 关于特征向量的特点(挑战)
+> >   - 语义相似性，需基于**相似性**来进行比较，在数据库中不(像传统数据一样)可精确匹配
+> >   - 向量的数据规模巨大，储存和比较昂贵
+> >   - 缺乏可索引结构
+> >   - 有时需混合查询(例如数值+特征向量一起查询)
+> > - VDBMSs的关键技术议题
+> >   - 查询处理：如何衡量向量间的相似性(相似性评分)+向量查询的类型+查询接口
+> >   - 存储索引：向量压缩和基于磁盘的索引
+> >   - 查询优化和执行：比如混合查询处理，硬件加速，分布式搜索
+>
+> **:point_down:==An Overview of Continuous Querying in (Modern) Data Systems==**  
+>
+> > :classical_building:机构：里昂第一大学
+> >
+> > :arrow_right:领域：乱七八糟
+> >
+> > :books:概述：
 
 # 6. Workshop Summaries  
 
