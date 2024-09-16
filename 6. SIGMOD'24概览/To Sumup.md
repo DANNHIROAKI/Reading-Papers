@@ -1662,7 +1662,59 @@
 > >
 > > :arrow_right:领域：乱七八糟
 > >
-> > :books:概述：
+> > :books:概述：介绍了连续查询(aka常驻查询/查询流)的概念及发展
+> >
+> > - 概念的起源
+> >   - 1992年由 Terry 等人提出
+> >   - 旨在处理随时间变化的数据，持续监控和处理数据流
+> > - 早期发展：
+> >   - 应用在关系模型上，通过代数扩展/演算/语义来表达
+> >   - 查询的语义和应用集中于传统的DBMS
+> > - 最近的进展
+> >   - 流数据库(Streaming Databases, SDS)显著发展，支持处理实时数据流
+> >   - 连续查询扩展到了图数据库(Graph DBMS)，知识图谱等
+> >     - 比如流图(Streaming Graphs)的连续处理技术
+>
+> **:point_down:==SIMDified Data Processing - Foundations, Abstraction, and Advanced Techniques==**  
+>
+> > :classical_building:机构：德累斯顿工业大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Computer systems organization → Single instruction, multiple data  
+> > - Information systems → Database query processing  
+> > - Main memory engines  
+> >
+> > :books:概述：介绍了如何利用**单指令多数据(ISMD)**技术，来加速DBMS的查询执行
+> >
+> > - 第一部分
+> >   - 解释了SIMD是啥：一种并行计算技术，让一个CPU同时处理对多个数据元素执行相同操作
+> >   - 解释了SIMD的引入背景
+> >   - 解释了SIMD的传统应用，如何加速查询处理
+> > - 第二部分
+> >   - SIMD硬件发展
+> >   - 展示了，如何使用统一的抽象层来处理不同处理器的 SIMD 扩展
+> > - 第三部分：介绍了应对未来挑战的高级技术
+> >   - 对于更宽和灵活大小的 SIMD 寄存器的处理方法
+>
+> **:point_down:==Machine Learning for Databases: Foundations, Paradigms, and Open problems==**  
+>
+> > :classical_building:机构：南洋理工
+> >
+> > :arrow_right:领域：Information systems → Data management systems  
+> >
+> > :books:概述：介绍了**机器学习用于数据库(ML4DB)**领域，讨论了最新进展/挑战
+> >
+> > - 介绍ML4DB基础与应用：
+> >   - ML可为DB提升性能，提供新的可能性
+> > - 介绍两种主要应用范式
+> >   - 将**机器学习模型**直接==替代==现有的**数据库组件** (如查询优化器/索引系统)
+> >   - 利用机器学习==增强==传统数据库组件 (更为常见)
+> > - ML4DB目前主要的挑战
+> >   - 如何在数据库中高效地集成和运行机器学习模型
+> >   - 数据漂移问题，即数据库中数据的模式随时间变化，而导致模型性能下降
+>
+> 
 
 # 6. Workshop Summaries  
 
