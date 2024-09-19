@@ -1714,8 +1714,207 @@
 > >   - 如何在数据库中高效地集成和运行机器学习模型
 > >   - 数据漂移问题，即数据库中数据的模式随时间变化，而导致模型性能下降
 >
-> 
+> **:point_down:==Applications and Computation of the Shapley Value in Databases and Machine Learning==**  
+>
+> > :classical_building:机构：Simon Fraser University / 杜克大学
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Computing methodologies → Machine learning  
+> >
+> > :books:概述：围绕Shapley值的应用和计算问题，介绍其在数据库/机器学习领域的作用
+> >
+> > - 关于Shapley是什么
+> >   - 源于博弈论：旨在通过公平分配各个参与者的贡献，来解决分配问题
+> >   - 很难计算：源于其组合性质，被证明为\#P-hard问题
+> > - Shapley的应用与挑战
+> >   - 近年来在机器学习/数据库广泛使用，比如解释机器学习模型输出/评估特征贡献
+> >   - 有很多研究致力于高效Shapley值计算，比如在特定场景寻求替代
+> > - 本论文：从**算法机制和应用假设**的角度来综述Shapley值的应用及其计算方法
+> >   - 介绍Shapley值的基本概念+在数据库和机器学习中的广泛应用
+> >   - 讨论Shapley值计算的挑战，比如一些前沿的快速计算+近似计算
+> >   - 探索了在特定应用背景下的替代解决方案
+>
+> **:point_down:==Beyond Bloom: A Tutorial on Future Feature-Rich Filters==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：
+> >
+> > - Theory of computation → Data structures design and analysis  
+> > - Bloom filters and hashing  
+> >
+> > :books:概述：讨论了过滤器的重要性/现状，以及在数据密集型的新发展
+> >
+> > - 过滤器的概念：
+> >   - 是什么：存储数据集合的“近似表示”来节省内存空间
+> >     - “近似表示”意味着，过滤器判断一个元素是否属于集合时，只能做近似(可能返回假阳性)
+> >   - 比如：Bloom过滤器/商过滤器/Cuckoo过滤器
+> >   - 用途：**快速判断元素是否属于一个集合**，在处理密集型数据是减少储存和计算量
+> >     - 应用场景有：数据库/存储引擎/计算生物学/网安
+> > - 过滤器的进展与限制
+> >   - 进展：开发出了具有更好性能和更多特性的过滤器，优化了数据结构在不同场景的表现
+> >   - 限制：现有设计只能克服一些局限，却往往牺牲了效率
+> > - Tutorial
+> >   - 帮助数据库社区了解过滤器理论和实践的最新进展
+> >   - 展示**使用现代过滤器API重新设计应用**的真实案例
+> >   - 讨论未解决的**研究问题** 
 
 # 6. Workshop Summaries  
 
-> 
+> **:point_down:==International Workshop on Data Management on New Hardware (DaMoN)==**  
+>
+> > :classical_building:机构：达姆施塔特工业大学/MIT
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Computer systems organization → Architectures  
+> >
+> > :books:概述：
+> >
+> > - 背景：新硬件(多核CPU/GPU)的发展
+> > - 困难：传统数据库架构难以适配新硬件，导致计算性能/扩展性不佳
+> > - 研讨会结论：跨学科合作，重新设计数据库算法+架构
+>
+> **:point_down:==Second Workshop on Simplicity in Management of Data (SiMoD)==**  
+>
+> > :classical_building:机构：甲骨文/Simon Fraser University 
+> >
+> > :arrow_right:领域：Information systems → Data management systems  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：现代数据库系统太复杂
+> > - 问题：复杂设计尽管功能强大，但维护性差，实际应用中难以不出错
+> > - 研讨会结论：应该提出简单且有效的查询优化/存储设计/数据库
+>
+> **:point_down:==Seventh International Workshop on Exploiting Artificial Intelligence Techniques for Data Management (aiDM)==**  
+>
+> > :classical_building:机构：乱七八糟，但居然有墨尔本大学的Renata，我的恩师哈哈哈
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Database management system engines  
+> > - Computing methodologies → Artificial intelligence  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：AI技术被广泛应用于处理多种数据类型并优化数据管理系统
+> > - 问题：当前数据库只要用来存储+检索，未能充分利用AI技术就行深层次优化
+> > - 研讨会：讨论了查询优化/自动调优/自主数据库等等与AI的集成
+>
+> **:point_down:==Eighth Workshop on Data Management for End-to-End Machine Learning (DEEM)==**  
+>
+> > :classical_building:机构：UC Berkeley / 微软
+> >
+> > :books:概述：
+> >
+> > - 背景 ：机器学习应用中数据管理日益复杂，尤其是ML流水中的大规模数管理
+> > - 问题：
+> >   - 数据预处理+模型选择+部署等步骤复杂
+> >   - 需要支持多样化用户群体
+> >   - 涉及人机交互/合规性等问题
+> > - 研讨会：如何通过AI优化数据管理+ML流水+隐私保护+数据清洗+多模态数据管理等
+>
+> **:point_down:==GRADES-NDA’24: 7th Joint Workshop on Graph Data Management Experiences & Systems (GRADES) and Network Data Analytics (NDA)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：Information systems → Graph-based database models  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：
+> >   - 网络结构化数据在多个领域广泛应用
+> >   - 图数据管理和分析变得越来越重要
+> > - 问题：处理大规模图数据时，数据异质性、动态变化和质量低下的问题很常见
+> > - 研讨会：讨论了图查询语言+动态图管理+异构网络上的机器学习等
+>
+> **:point_down:==Fourth International Workshop on Big Data in Emergent Distributed Environments (BiDEDE)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：Information systems → Data management systems  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：新型分布式环境(边缘计算/无服务器计算)，为处理大规模异构数据提供了新方式
+> > - 问题：新型分布式环境，面临复杂均衡/容错/数据分配等问题和挑战
+> > - 研讨会：探讨在新型分布式环境中使用AI/数据集成/事务管理等.....
+>
+> **:point_down:==Eighth Workshop on Human-In-the-Loop Data Analytics (HILDA)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Humancentered computing  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：关于人与数据交互，应将人类作为数据系统中的核心参与者
+> > - 问题：传统数据管理系统，忽视了人类认知和时间的限制(以至于让人类认知成为瓶颈)
+> > - 研讨会：探讨人与LLM交互/数据可视化/数据清理
+>
+> **:point_down:==Third International Workshop on Data Systems Education (DataEd’24)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Applied computing → Education  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：随着数据科学需求的增加，数据系统的教育需求愈大
+> > - 问题：数据库教育和计算机科学教育社区之间互动较少，难以分享互补的观点和经验
+> > - 研讨会：探讨数据系统教育的教学实践+课程设计+AI与数据管理结合等
+>
+> **:point_down:==First Workshop on Governance, Understanding and Integration of Data for Effective and Responsible AI (GUIDE-AI)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Computing methodologies → Artificial intelligence  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：数据驱动的自动化系统在高风险应用中广泛部署，数据管理在AI设计中的作用变得关键
+> > - 问题：现有AI研究集中于算法优化，忽视了数据治理
+> > - 研讨会：讨论数据治理、透明性、数据质量管理和AI系统的公平性与隐私保护等关键问题
+>
+> **:point_down:==First Workshop on Quantum Computing and Quantum-Inspired Technology for Data-Intensive Systems and Applications (Q-Data)==**  
+>
+> > :classical_building:机构：乱七八糟
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Data management systems  
+> > - Computer systems organization → Quantum computing  
+> >
+> > :books:概述：
+> >
+> > - 背景 ：量子计算的发展，使得研究者开始探索其在数据密集系统的潜力
+> > - 问题：量子计算和传统计算结合的技术复杂性增加
+> > - 研讨会：探讨量子计算、量子启发式硬件在数据库优化、数据处理系统和自动化数据库中的应用
+>
+> **:point_down:==Tenth International Workshop on Testing Database Systems (DBTest)==**  
+>
+> > :classical_building:机构：微软/NUS
+> >
+> > :arrow_right:领域：
+> >
+> > - Information systems → Database management system engines   
+> > - Software and its engineering → Software testing and debugging
+> >
+> > :books:概述：
+> >
+> > - 背景 ：数据存储量和硬件技术的发展，数据库系统和数据密集型系统的测试需求日益增加
+> > - 问题：测试和评估数据库系统的复杂性不断增加(云计算，大数据)
+> > - 研讨会：探讨数据库系统的测试方法、性能评估、可靠性、安全性等问题
