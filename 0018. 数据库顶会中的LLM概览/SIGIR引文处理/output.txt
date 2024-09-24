@@ -1,0 +1,642 @@
+title = {TRAD: Enhancing LLM Agents with Step-Wise Thought Retrieval and Aligned Decision},
+url = {https://doi.org/10.1145/3626772.3657788},
+
+title = {"In-Context Learning" or: How I learned to stop worrying and love "Applied Information Retrieval"},
+url = {https://doi.org/10.1145/3626772.3657842},
+
+title = {CorpusLM: Towards a Unified Language Model on Corpus for Knowledge-Intensive Tasks},
+url = {https://doi.org/10.1145/3626772.3657778},
+
+title = {A Setwise Approach for Effective and Highly Efficient Zero-shot Ranking with Large Language Models},
+url = {https://doi.org/10.1145/3626772.3657813},
+
+title = {Unsupervised Large Language Model Alignment for Information Retrieval via Contrastive Feedback},
+url = {https://doi.org/10.1145/3626772.3657689},
+
+title = {MetaHKG: Meta Hyperbolic Learning for Few-shot Temporal Reasoning},
+url = {https://doi.org/10.1145/3626772.3657711},
+
+title = {Transformer-based Reasoning for Learning Evolutionary Chain of Events on Temporal Knowledge Graph},
+url = {https://doi.org/10.1145/3626772.3657706},
+
+title = {LDRE: LLM-based Divergent Reasoning and Ensemble for Zero-Shot Composed Image Retrieval},
+url = {https://doi.org/10.1145/3626772.3657740},
+
+title = {NativE: Multi-modal Knowledge Graph Completion in the Wild},
+url = {https://doi.org/10.1145/3626772.3657800},
+
+title = {Contrast then Memorize: Semantic Neighbor Retrieval-Enhanced Inductive Multimodal Knowledge Graph Completion},
+url = {https://doi.org/10.1145/3626772.3657838},
+
+title = {EditKG: Editing Knowledge Graph for Recommendation},
+url = {https://doi.org/10.1145/3626772.3657723},
+
+title = {Amazon-KG: A Knowledge Graph Enhanced Cross-Domain Recommendation Dataset},
+url = {https://doi.org/10.1145/3626772.3657880},
+
+title = {YAGO 4.5: A Large and Clean Knowledge Base with a Rich Taxonomy},
+url = {https://doi.org/10.1145/3626772.3657876},
+
+title = {Ranked List Truncation for Large Language Model-based Re-Ranking},
+url = {https://doi.org/10.1145/3626772.3657864},
+
+title = {Efficient Inverted Indexes for Approximate Retrieval over Learned Sparse Representations},
+url = {https://doi.org/10.1145/3626772.3657769},
+
+title = {GUITAR: Gradient Pruning toward Fast Neural Ranking},
+url = {https://doi.org/10.1145/3626772.3657728},
+
+title = {Neural Passage Quality Estimation for Static Pruning},
+url = {https://doi.org/10.1145/3626772.3657765},
+
+title = {Revisiting Document Expansion and Filtering for Effective First-Stage Retrieval},
+url = {https://doi.org/10.1145/3626772.3657850},
+
+title = {Unsupervised Cross-Domain Image Retrieval with Semantic-Attended Mixture-of-Experts},
+url = {https://doi.org/10.1145/3626772.3657826},
+
+title = {Invisible Relevance Bias: Text-Image Retrieval Models Prefer AI-Generated Images},
+url = {https://doi.org/10.1145/3626772.3657750},
+
+title = {COMI: COrrect and MItigate Shortcut Learning Behavior in Deep Neural Networks},
+url = {https://doi.org/10.1145/3626772.3657729},
+
+title = {Simple but Effective Raw-Data Level Multimodal Fusion for Composed Image Retrieval},
+url = {https://doi.org/10.1145/3626772.3657727},
+
+title = {Fine-grained Textual Inversion Network for Zero-Shot Composed Image Retrieval},
+url = {https://doi.org/10.1145/3626772.3657831},
+
+title = {The Treatment of Ties in Rank-Biased Overlap},
+url = {https://doi.org/10.1145/3626772.3657700},
+
+title = {Uncontextualized significance considered dangerous},
+url = {https://doi.org/10.1145/3626772.3657827},
+
+title = {Can We Trust Recommender System Fairness Evaluation? The Role of Fairness and Relevance},
+url = {https://doi.org/10.1145/3626772.3657832},
+
+title = {What Matters in a Measure? A Perspective from Large-Scale Search Evaluation},
+url = {https://doi.org/10.1145/3626772.3657845},
+
+title = {CIRAL: A Test Collection for CLIR Evaluations in African Languages},
+url = {https://doi.org/10.1145/3626772.3657884},
+
+title = {ACORDAR 2.0: A Test Collection for Ad Hoc Dataset Retrieval with Densely Pooled Datasets and Question-Style Queries},
+url = {https://doi.org/10.1145/3626772.3657866},
+
+title = {Browsing and Searching Metadata of TREC},
+url = {https://doi.org/10.1145/3626772.3657873},
+
+title = {Large Language Models for Intent-Driven Session Recommendations},
+url = {https://doi.org/10.1145/3626772.3657688},
+
+title = {Sequential Recommendation with Latent Relations based on Large Language Model},
+url = {https://doi.org/10.1145/3626772.3657762},
+
+title = {Enhancing Sequential Recommenders with Augmented Knowledge from Aligned Large Language Models},
+url = {https://doi.org/10.1145/3626772.3657782},
+
+title = {IDGenRec: LLM-RecSys Alignment with Textual ID Learning},
+url = {https://doi.org/10.1145/3626772.3657821},
+
+title = {Data-efficient Fine-tuning for LLM-based Recommendation},
+url = {https://doi.org/10.1145/3626772.3657807},
+
+title = {Reinforcement Learning-based Recommender Systems with Large Language Models for State Reward and Action Modeling},
+url = {https://doi.org/10.1145/3626772.3657767},
+
+title = {OpenP5: An Open-Source Platform for Developing, Training, and Evaluating LLM-based Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657883},
+
+title = {Fair Sequential Recommendation without User Demographics},
+url = {https://doi.org/10.1145/3626772.3657703},
+
+title = {CaDRec: Contextualized and Debiased Recommender Model},
+url = {https://doi.org/10.1145/3626772.3657799},
+
+title = {Going Beyond Popularity and Positivity Bias: Correcting for Multifactorial Bias in Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657749},
+
+title = {Adaptive Fair Representation Learning for Personalized Fairness in Recommendations via Information Alignment},
+url = {https://doi.org/10.1145/3626772.3657709},
+
+title = {Configurable Fairness for New Item Recommendation Considering Entry Time of Items},
+url = {https://doi.org/10.1145/3626772.3657694},
+
+title = {Fair Recommendations with Limited Sensitive Attributes: A Distributionally Robust Optimization Approach},
+url = {https://doi.org/10.1145/3626772.3657822},
+
+title = {Generative Retrieval via Term Set Generation},
+url = {https://doi.org/10.1145/3626772.3657797},
+
+title = {Planning Ahead in Generative Retrieval: Guiding Autoregressive Generation through Simultaneous Decoding},
+url = {https://doi.org/10.1145/3626772.3657746},
+
+title = {Large Language Models and Future of Information Retrieval: Opportunities and Challenges},
+url = {https://doi.org/10.1145/3626772.3657848},
+
+title = {GraphGPT: Graph Instruction Tuning for Large Language Models},
+url = {https://doi.org/10.1145/3626772.3657775},
+
+title = {Instruction-based Hypergraph Pretraining},
+url = {https://doi.org/10.1145/3626772.3657715},
+
+title = {LLM-enhanced Cascaded Multi-level Learning on Temporal Heterogeneous Graphs},
+url = {https://doi.org/10.1145/3626772.3657731},
+
+title = {Course Recommender Systems Need to Consider the Job Market},
+url = {https://doi.org/10.1145/3626772.3657847},
+
+title = {Leave No Patient Behind: Enhancing Medication Recommendation for Rare Disease Patients},
+url = {https://doi.org/10.1145/3626772.3657785},
+
+title = {MIRROR: A Multi-View Reciprocal Recommender System for Online Recruitment},
+url = {https://doi.org/10.1145/3626772.3657776},
+
+title = {MIND Your Language: A Multilingual Dataset for Cross-lingual News Recommendation},
+url = {https://doi.org/10.1145/3626772.3657867},
+
+title = {MealRec+: A Meal Recommendation Dataset with Meal-Course Affiliation for Personalization and Healthiness},
+url = {https://doi.org/10.1145/3626772.3657857},
+
+title = {Negative Sampling Techniques for Dense Passage Retrieval in a Multilingual Setting},
+url = {https://doi.org/10.1145/3626772.3657854},
+
+title = {Steering Large Language Models for Cross-lingual Information Retrieval},
+url = {https://doi.org/10.1145/3626772.3657819},
+
+title = {Multilingual Meta-Distillation Alignment for Semantic Retrieval},
+url = {https://doi.org/10.1145/3626772.3657812},
+
+title = {DAC: Quantized Optimal Transport Reward-based Reinforcement Learning Approach to Detoxify Query Auto-Completion},
+url = {https://doi.org/10.1145/3626772.3657779},
+
+title = {Enhanced Packed Marker with Entity Information for Aspect Sentiment Triplet Extraction},
+url = {https://doi.org/10.1145/3626772.3657734},
+
+title = {Exogenous and Endogenous Data Augmentation for Low-Resource Complex Named Entity Recognition},
+url = {https://doi.org/10.1145/3626772.3657754},
+
+title = {C-Pack: Packed Resources For General Chinese Embeddings},
+url = {https://doi.org/10.1145/3626772.3657878},
+
+title = {QuanTemp: A real-world open-domain benchmark for fact-checking numerical claims},
+url = {https://doi.org/10.1145/3626772.3657874},
+
+title = {ACE-2005-PT: Corpus for Event Extraction in Portuguese},
+url = {https://doi.org/10.1145/3626772.3657872},
+
+title = {Who To Align With: Feedback-Oriented Multi-Modal Alignment in Recommendation Systems},
+url = {https://doi.org/10.1145/3626772.3657701},
+
+title = {Multimodality Invariant Learning for Multimedia-Based New Item Recommendation},
+url = {https://doi.org/10.1145/3626772.3658596},
+
+title = {IISAN: Efficiently Adapting Multimodal Representation for Sequential Recommendation with Decoupled PEFT},
+url = {https://doi.org/10.1145/3626772.3657725},
+
+title = {EEG-SVRec: An EEG Dataset with User Multidimensional Affective Engagement Labels in Short Video Recommendation},
+url = {https://doi.org/10.1145/3626772.3657890},
+
+title = {Dataset and Models for Item Recommendation Using Multi-Modal User Interactions},
+url = {https://doi.org/10.1145/3626772.3657881},
+
+title = {The Power of Noise: Redefining Retrieval for RAG Systems},
+url = {https://doi.org/10.1145/3626772.3657834},
+
+title = {IM-RAG: Multi-Round Retrieval-Augmented Generation Through Learning Inner Monologues},
+url = {https://doi.org/10.1145/3626772.3657760},
+
+title = {Towards a Search Engine for Machines: Unified Ranking for Multiple Retrieval-Augmented Large Language Models},
+url = {https://doi.org/10.1145/3626772.3657733},
+
+title = {Optimization Methods for Personalizing Large Language Models through Retrieval Augmentation},
+url = {https://doi.org/10.1145/3626772.3657783},
+
+title = {FeB4RAG: Evaluating Federated Search in the Context of Retrieval Augmented Generation},
+url = {https://doi.org/10.1145/3626772.3657853},
+
+title = {Dynamic Demonstration Retrieval and Cognitive Understanding for Emotional Support Conversation},
+url = {https://doi.org/10.1145/3626772.3657695},
+
+title = {Broadening the View: Demonstration-augmented Prompt Learning for Conversational Recommendation},
+url = {https://doi.org/10.1145/3626772.3657755},
+
+title = {Doing Personal LAPS: LLM-Augmented Dialogue Construction for Personalized Multi-Session Conversational Search},
+url = {https://doi.org/10.1145/3626772.3657815},
+
+title = {Towards Human-centered Proactive Conversational Agents},
+url = {https://doi.org/10.1145/3626772.3657843},
+
+title = {TREC iKAT 2023: A Test Collection for Evaluating Conversational and Interactive Knowledge Assistants},
+url = {https://doi.org/10.1145/3626772.3657860},
+
+title = {ProCIS: A Benchmark for Proactive Retrieval in Conversations},
+url = {https://doi.org/10.1145/3626772.3657869},
+
+title = {An Empirical Analysis on Multi-turn Conversational Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657893},
+
+title = {UGNCL: Uncertainty-Guided Noisy Correspondence Learning for Efficient Cross-Modal Matching},
+url = {https://doi.org/10.1145/3626772.3657806},
+
+title = {Universal Adversarial Perturbations for Vision-Language Pre-trained Models},
+url = {https://doi.org/10.1145/3626772.3657781},
+
+title = {Semi-supervised Prototype Semantic Association Learning for Robust Cross-modal Retrieval},
+url = {https://doi.org/10.1145/3626772.3657756},
+
+title = {Self-Improving Teacher Cultivates Better Student: Distillation Calibration for Multimodal Large Language Models},
+url = {https://doi.org/10.1145/3626772.3657692},
+
+title = {M3oE: Multi-Domain Multi-Task Mixture-of Experts Recommendation Framework},
+url = {https://doi.org/10.1145/3626772.3657686},
+
+title = {Hypergraph Convolutional Network for User-Oriented Fairness in Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657737},
+
+title = {DHMAE: A Disentangled Hypergraph Masked Autoencoder for Group Recommendation},
+url = {https://doi.org/10.1145/3626772.3657699},
+
+title = {Are We Really Achieving Better Beyond-Accuracy Performance in Next Basket Recommendation?},
+url = {https://doi.org/10.1145/3626772.3657835},
+
+title = {NFARec: A Negative Feedback-Aware Recommender Model},
+url = {https://doi.org/10.1145/3626772.3657809},
+
+title = {Behavior-Contextualized Item Preference Modeling for Multi-Behavior Recommendation},
+url = {https://doi.org/10.1145/3626772.3657696},
+
+title = {AutoDCS: Automated Decision Chain Selection in Deep Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657818},
+
+title = {Adaptive In-Context Learning with Large Language Models for Bundle Generation},
+url = {https://doi.org/10.1145/3626772.3657808},
+
+title = {EasyRL4Rec: An Easy-to-use Library for Reinforcement Learning Based Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657868},
+
+title = {SM-RS: Single- and Multi-Objective Recommendations with Contextual Impressions and Beyond-Accuracy Propensity Scores},
+url = {https://doi.org/10.1145/3626772.3657863},
+
+title = {Modeling User Fatigue for Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657802},
+
+title = {Characterizing Information Seeking Processes with Multiple Physiological Signals},
+url = {https://doi.org/10.1145/3626772.3657793},
+
+title = {To Search or to Recommend: Predicting Open-App Motivation with Neural Hawkes Process},
+url = {https://doi.org/10.1145/3626772.3657732},
+
+title = {UniSAR: Modeling User Transition Behaviors between Search and Recommendation},
+url = {https://doi.org/10.1145/3626772.3657811},
+
+title = {Explainability for Transparent Conversational Information-Seeking},
+url = {https://doi.org/10.1145/3626772.3657768},
+
+title = {Evaluating Search System Explainability with Psychometrics and Crowdsourcing},
+url = {https://doi.org/10.1145/3626772.3657796},
+
+title = {Sequential Recommendation with Collaborative Explanation via Mutual Information Maximization},
+url = {https://doi.org/10.1145/3626772.3657770},
+
+title = {Beyond Accuracy: Investigating Error Types in GPT-4 Responses to USMLE Questions},
+url = {https://doi.org/10.1145/3626772.3657882},
+
+title = {Hierarchical Semantics Alignment for 3D Human Motion Retrieval},
+url = {https://doi.org/10.1145/3626772.3657804},
+
+title = {Enhancing Dataset Search with Compact Data Snippets},
+url = {https://doi.org/10.1145/3626772.3657837},
+
+title = {When MOE Meets LLMs: Parameter Efficient Fine-tuning for Multi-task Medical Applications},
+url = {https://doi.org/10.1145/3626772.3657722},
+
+title = {Resources for Combining Teaching and Research in Information Retrieval Coursework},
+url = {https://doi.org/10.1145/3626772.3657886},
+
+title = {OEHR: An Orthopedic Electronic Health Record Dataset},
+url = {https://doi.org/10.1145/3626772.3657885},
+
+title = {SuicidEmoji: Derived Emoji Dataset and Tasks for Suicide-Related Social Content},
+url = {https://doi.org/10.1145/3626772.3657852},
+
+title = {A Large Scale Test Corpus for Semantic Table Search},
+url = {https://doi.org/10.1145/3626772.3657877},
+
+title = {JDivPS: A Diversified Product Search Dataset},
+url = {https://doi.org/10.1145/3626772.3657888},
+
+title = {An E-Commerce Dataset Revealing Variations during Sales},
+url = {https://doi.org/10.1145/3626772.3657870},
+
+title = {LADy 💃: A Benchmark Toolkit for Latent Aspect Detection Enriched with Backtranslation Augmentation},
+url = {https://doi.org/10.1145/3626772.3657894},
+
+title = {DDPO: Direct Dual Propensity Optimization for Post-Click Conversion Rate Estimation},
+url = {https://doi.org/10.1145/3626772.3657817},
+
+title = {Deep Pattern Network for Click-Through Rate Prediction},
+url = {https://doi.org/10.1145/3626772.3657777},
+
+title = {Counterfactual Ranking Evaluation with Flexible Click Models},
+url = {https://doi.org/10.1145/3626772.3657810},
+
+title = {Deep Automated Mechanism Design for Integrating Ad Auction and Allocation in Feed},
+url = {https://doi.org/10.1145/3626772.3657774},
+
+title = {CWRCzech: 100M Query-Document Czech Click Dataset and Its Application to Web Relevance Ranking},
+url = {https://doi.org/10.1145/3626772.3657851},
+
+title = {Exploring Multi-Scenario Multi-Modal CTR Prediction with a Large Scale Dataset},
+url = {https://doi.org/10.1145/3626772.3657865},
+
+title = {AFDGCF: Adaptive Feature De-correlation Graph Collaborative Filtering for Recommendations},
+url = {https://doi.org/10.1145/3626772.3657724},
+
+title = {Exploring the Individuality and Collectivity of Intents behind Interactions for Graph Collaborative Filtering},
+url = {https://doi.org/10.1145/3626772.3657738},
+
+title = {Content-based Graph Reconstruction for Cold-start Item Recommendation},
+url = {https://doi.org/10.1145/3626772.3657801},
+
+title = {SIGformer: Sign-aware Graph Transformer for Recommendation},
+url = {https://doi.org/10.1145/3626772.3657747},
+
+title = {TransGNN: Harnessing the Collaborative Power of Transformers and Graph Neural Networks for Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657721},
+
+title = {Lightweight Embeddings for Graph Collaborative Filtering},
+url = {https://doi.org/10.1145/3626772.3657820},
+
+title = {Leveraging LLMs for Unsupervised Dense Retriever Ranking},
+url = {https://doi.org/10.1145/3626772.3657798},
+
+title = {Dimension Importance Estimation for Dense Information Retrieval},
+url = {https://doi.org/10.1145/3626772.3657691},
+
+title = {Graded Relevance Scoring of Written Essays with Dense Retrieval},
+url = {https://doi.org/10.1145/3626772.3657744},
+
+title = {Scaling Laws For Dense Retrieval},
+url = {https://doi.org/10.1145/3626772.3657743},
+
+title = {Diffusion Models for Generative Outfit Recommendation},
+url = {https://doi.org/10.1145/3626772.3657719},
+
+title = {Collaborative Filtering Based on Diffusion Models: Unveiling the Potential of High-Order Connectivity},
+url = {https://doi.org/10.1145/3626772.3657742},
+
+title = {Denoising Diffusion Recommender Model},
+url = {https://doi.org/10.1145/3626772.3657825},
+
+title = {Graph Signal Diffusion Model for Collaborative Filtering},
+url = {https://doi.org/10.1145/3626772.3657759},
+
+title = {Multi-granular Adversarial Attacks against Black-box Neural Ranking Models},
+url = {https://doi.org/10.1145/3626772.3657704},
+
+title = {Axiomatic Causal Interventions for Reverse Engineering Relevance Computation in Neural Retrieval Models},
+url = {https://doi.org/10.1145/3626772.3657841},
+
+title = {A Reproducibility Study of PLAID},
+url = {https://doi.org/10.1145/3626772.3657856},
+
+title = {Systematic Evaluation of Neural Retrieval Models on the Touch\'{e} 2020 Argument Retrieval Subset of BEIR},
+url = {https://doi.org/10.1145/3626772.3657861},
+
+title = {Resources for Brewing BEIR: Reproducible Reference Models and Statistical Analyses},
+url = {https://doi.org/10.1145/3626772.3657862},
+
+title = {Optimal Transport Enhanced Cross-City Site Recommendation},
+url = {https://doi.org/10.1145/3626772.3657757},
+
+title = {Disentangled Contrastive Hypergraph Learning for Next POI Recommendation},
+url = {https://doi.org/10.1145/3626772.3657726},
+
+title = {Large Language Models for Next Point-of-Interest Recommendation},
+url = {https://doi.org/10.1145/3626772.3657840},
+
+title = {CLLP: Contrastive Learning Framework Based on Latent Preferences for Next POI Recommendation},
+url = {https://doi.org/10.1145/3626772.3657730},
+
+title = {OpenSiteRec: An Open Dataset for Site Recommendation},
+url = {https://doi.org/10.1145/3626772.3657875},
+
+title = {A Taxation Perspective for Fair Re-ranking},
+url = {https://doi.org/10.1145/3626772.3657766},
+
+title = {Fairness-Aware Exposure Allocation via Adaptive Reranking},
+url = {https://doi.org/10.1145/3626772.3657794},
+
+title = {The Impact of Group Membership Bias on the Quality and Fairness of Exposure in Ranking},
+url = {https://doi.org/10.1145/3626772.3657752},
+
+title = {Optimizing Learning-to-Rank Models for Ex-Post Fair Relevance},
+url = {https://doi.org/10.1145/3626772.3657751},
+
+title = {Unbiased Learning-to-Rank Needs Unconfounded Propensity Estimation},
+url = {https://doi.org/10.1145/3626772.3657772},
+
+title = {Unbiased Learning to Rank Meets Reality: Lessons from Baidu's Large-Scale Search Dataset},
+url = {https://doi.org/10.1145/3626772.3657892},
+
+title = {Scenario-Adaptive Fine-Grained Personalization Network: Tailoring User Behavior Representation to the Scenario Context},
+url = {https://doi.org/10.1145/3626772.3657803},
+
+title = {Scaling Sequential Recommendation Models with Transformers},
+url = {https://doi.org/10.1145/3626772.3657816},
+
+title = {A Generic Behavior-Aware Data Augmentation Framework for Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657682},
+
+title = {CMCLRec: Cross-modal Contrastive Learning for User Cold-start Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657839},
+
+title = {FineRec: Exploring Fine-grained Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657761},
+
+title = {SelfGNN: Self-Supervised Graph Neural Networks for Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657716},
+
+title = {EulerFormer: Sequential User Behavior Modeling with Complex Vector Attention},
+url = {https://doi.org/10.1145/3626772.3657805},
+
+title = {Bootstrap Deep Metric for Seed Expansion in Attributed Networks},
+url = {https://doi.org/10.1145/3626772.3657687},
+
+title = {Grand: A Fast and Accurate Graph Retrieval Framework via Knowledge Distillation},
+url = {https://doi.org/10.1145/3626772.3657773},
+
+title = {Intent Distribution based Bipartite Graph Representation Learning},
+url = {https://doi.org/10.1145/3626772.3657739},
+
+title = {TGOnline: Enhancing Temporal Graph Learning with Adaptive Online Meta-Learning},
+url = {https://doi.org/10.1145/3626772.3657791},
+
+title = {A Dual-Embedding Based DQN for Worker Recruitment in Spatial Crowdsourcing with Social Network},
+url = {https://doi.org/10.1145/3626772.3657718},
+
+title = {Scalable Community Search over Large-scale Graphs based on Graph Transformer},
+url = {https://doi.org/10.1145/3626772.3657771},
+
+title = {Efficient Community Search Based on Relaxed k-Truss Index},
+url = {https://doi.org/10.1145/3626772.3657708},
+
+title = {Untargeted Adversarial Attack on Knowledge Graph Embeddings},
+url = {https://doi.org/10.1145/3626772.3657702},
+
+title = {Poisoning Decentralized Collaborative Recommender System and Its Countermeasures},
+url = {https://doi.org/10.1145/3626772.3657814},
+
+title = {Revisit Targeted Model Poisoning on Federated Recommendation: Optimize via Multi-objective Transport},
+url = {https://doi.org/10.1145/3626772.3657764},
+
+title = {LoRec: Combating Poisons with Large Language Model for Robust Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657684},
+
+title = {Improving the Accuracy of Locally Differentially Private Community Detection by Order-consistent Data Perturbation},
+url = {https://doi.org/10.1145/3626772.3657836},
+
+title = {Unmasking Privacy: A Reproduction and Evaluation Study of Obfuscation-based Perturbation Techniques for Collaborative Filtering},
+url = {https://doi.org/10.1145/3626772.3657858},
+
+title = {ReFer: Retrieval-Enhanced Vertical Federated Recommendation for Full Set User Benefit},
+url = {https://doi.org/10.1145/3626772.3657763},
+
+title = {GPT4Rec: Graph Prompt Tuning for Streaming Recommendation},
+url = {https://doi.org/10.1145/3626772.3657720},
+
+title = {LLaRA: Large Language-Recommendation Assistant},
+url = {https://doi.org/10.1145/3626772.3657690},
+
+title = {Let Me Do It For You: Towards LLM Empowered Recommendation via Tool Learning},
+url = {https://doi.org/10.1145/3626772.3657828},
+
+title = {On Generative Agents in Recommendation},
+url = {https://doi.org/10.1145/3626772.3657844},
+
+title = {Drop your Decoder: Pre-training with Bag-of-Word Prediction for Dense Passage Retrieval.},
+url = {https://doi.org/10.1145/3626772.3657792},
+
+title = {Generative Retrieval as Multi-Vector Dense Retrieval},
+url = {https://doi.org/10.1145/3626772.3657697},
+
+title = {I3: Intent-Introspective Retrieval Conditioned on Instructions},
+url = {https://doi.org/10.1145/3626772.3657745},
+
+title = {Reinforcing Long-Term Performance in Recommender Systems with User-Oriented Exploration Policy},
+url = {https://doi.org/10.1145/3626772.3657714},
+
+title = {Treatment Effect Estimation for User Interest Exploration on Recommender Systems},
+url = {https://doi.org/10.1145/3626772.3657736},
+
+title = {Sequential Recommendation for Optimizing Both Immediate Feedback and Long-term Retention},
+url = {https://doi.org/10.1145/3626772.3657829},
+
+title = {Disentangling ID and Modality Effects for Session-based Recommendation},
+url = {https://doi.org/10.1145/3626772.3657748},
+
+title = {Large Language Models are Learnable Planners for Long-Term Recommendation},
+url = {https://doi.org/10.1145/3626772.3657683},
+
+title = {On the Evaluation of Machine-Generated Reports},
+url = {https://doi.org/10.1145/3626772.3657846},
+
+title = {Evaluating Generative Ad Hoc Information Retrieval},
+url = {https://doi.org/10.1145/3626772.3657849},
+
+title = {Large Language Models can Accurately Predict Searcher Preferences},
+url = {https://doi.org/10.1145/3626772.3657707},
+
+title = {Are Large Language Models Good at Utility Judgments?},
+url = {https://doi.org/10.1145/3626772.3657784},
+
+title = {Rethinking the Evaluation of Dialogue Systems: Effects of User Feedback on Crowdworkers and LLMs},
+url = {https://doi.org/10.1145/3626772.3657712},
+
+title = {A Workbench for Autograding Retrieve/Generate Systems},
+url = {https://doi.org/10.1145/3626772.3657871},
+
+title = {CIQA: A Coding Inspired Question Answering Model},
+url = {https://doi.org/10.1145/3626772.3657830},
+
+title = {Let Me Show You Step by Step: An Interpretable Graph Routing Network for Knowledge-based Visual Question Answering},
+url = {https://doi.org/10.1145/3626772.3657790},
+
+title = {MTMS: Multi-teacher Multi-stage Knowledge Distillation for Reasoning-Based Machine Reading Comprehension},
+url = {https://doi.org/10.1145/3626772.3657824},
+
+title = {Exploring the Trade-Off within Visual Information for MultiModal Sentence Summarization},
+url = {https://doi.org/10.1145/3626772.3657753},
+
+title = {Flexible and Adaptable Summarization via Expertise Separation},
+url = {https://doi.org/10.1145/3626772.3657789},
+
+title = {Disentangling Instructive Information from Ranked Multiple Candidates for Multi-Document Scientific Summarization},
+url = {https://doi.org/10.1145/3626772.3657705},
+
+title = {ChroniclingAmericaQA: A Large-scale Question Answering Dataset based on Historical American Newspaper Pages},
+url = {https://doi.org/10.1145/3626772.3657891},
+
+title = {ArabicaQA: A Comprehensive Dataset for Arabic Question Answering},
+url = {https://doi.org/10.1145/3626772.3657889},
+
+title = {TriviaHG: A Dataset for Automatic Hint Generation from Factoid Questions},
+url = {https://doi.org/10.1145/3626772.3657855},
+
+title = {Pacer and Runner: Cooperative Learning Framework between Single- and Cross-Domain Sequential Recommendation},
+url = {https://doi.org/10.1145/3626772.3657710},
+
+title = {Aiming at the Target: Filter Collaborative Information for Cross-Domain Recommendation},
+url = {https://doi.org/10.1145/3626772.3657713},
+
+title = {Identifiability of Cross-Domain Recommendation via Causal Subspace Disentanglement},
+url = {https://doi.org/10.1145/3626772.3657758},
+
+title = {On the Negative Perception of Cross-domain Recommendations and Explanations},
+url = {https://doi.org/10.1145/3626772.3657735},
+
+title = {DeCoCDR: Deployable Cloud-Device Collaboration for Cross-Domain Recommendation},
+url = {https://doi.org/10.1145/3626772.3657786},
+
+title = {Mutual Information-based Preference Disentangling and Transferring for Non-overlapped Multi-target Cross-domain Recommendations},
+url = {https://doi.org/10.1145/3626772.3657780},
+
+title = {Multi-Domain Sequential Recommendation via Domain Space Learning},
+url = {https://doi.org/10.1145/3626772.3657685},
+
+title = {Capability-aware Prompt Reformulation Learning for Text-to-Image Generation},
+url = {https://doi.org/10.1145/3626772.3657787},
+
+title = {M2-RAAP: A Multi-Modal Recipe for Advancing Adaptation-based Pre-training towards Effective and Efficient Zero-shot Video-text Retrieval},
+url = {https://doi.org/10.1145/3626772.3657833},
+
+title = {Short Video Ordering via Position Decoding and Successor Prediction},
+url = {https://doi.org/10.1145/3626772.3657795},
+
+title = {CaLa: Complementary Association Learning for Augmenting Comoposed Image Retrieval},
+url = {https://doi.org/10.1145/3626772.3657823},
+
+title = {CFIR: Fast and Effective Long-Text To Image Retrieval for Large Corpora},
+url = {https://doi.org/10.1145/3626772.3657741},
+
+title = {CaseLink: Inductive Graph Learning for Legal Case Retrieval},
+url = {https://doi.org/10.1145/3626772.3657693},
+
+title = {Explicitly Integrating Judgment Prediction with Legal Document Retrieval: A Law-Guided Generative Approach},
+url = {https://doi.org/10.1145/3626772.3657717},
+
+title = {Event Grounded Criminal Court View Generation with Cooperative (Large) Language Models},
+url = {https://doi.org/10.1145/3626772.3657698},
+
+title = {Legal Statute Identification: A Case Study using State-of-the-Art Datasets and Methods},
+url = {https://doi.org/10.1145/3626772.3657879},
+
+title = {CivilSum: A Dataset for Abstractive Summarization of Indian Court Decisions},
+url = {https://doi.org/10.1145/3626772.3657859},
+
+title = {LeCaRDv2: A Large-Scale Chinese Legal Case Retrieval Dataset},
+url = {https://doi.org/10.1145/3626772.3657887},
+
