@@ -195,10 +195,10 @@
 > >
 > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20240803185122335.png" alt="image-20240803185122335" style="zoom: 33%;" /> 
 > >
-> >    | $\textbf{Case}$ |         $\exist{}e_i使D\in[0,r]$         |       $\exist{}e_i使D\in{}[r,cr]$        |     $\exist{}e_i使D\in[cr,\infin{}]$     | 返回对象               |
-> >    | :-------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | ---------------------- |
+> >    | $\textbf{Case}$ |         $\exist{}e_i使D\in[0,r]$         |       $\exist{}e_i使D\in{}[r,cr]$        |     $\exist{}e_i使D\in[cr,\infin{}]$     |        返回对象        |
+> >    | :-------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------: |
 > >    | $\text{Case 1}$ | <span style="color:#00FF00;">一定</span> | <span style="color:#FF9900;">可能</span> | <span style="color:#FF9900;">可能</span> | 满足$D\leq{cr}$的$e_i$ |
-> >    | $\text{Case 2}$ |  <span style="color:red;">不可能</span>  |  <span style="color:red;">不可能</span>  |  <span style="color:red;">不可能</span>  | 返回寂寞               |
+> >    | $\text{Case 2}$ |  <span style="color:red;">不可能</span>  |  <span style="color:red;">不可能</span>  |  <span style="color:red;">不可能</span>  |          寂寞          |
 > >    | $\text{Case 3}$ |  <span style="color:red;">不可能</span>  | <span style="color:#00FF00;">一定</span> | <span style="color:#FF9900;">可能</span> | 满足$D\leq{cr}$的$e_i$ |
 > >
 > > :two:引理：按以下步骤，可回答$S$上所有$c^{2}\text{-ANN}$查询
