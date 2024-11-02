@@ -76,13 +76,13 @@
 > > 2. 存储层次架构：
 > >
 > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241031001314018.png" alt="image-20241031001314018" width=640 />  
-> >    
+> >
 > >    - 不同$\text{SM}$能够$\text{Access}
 > >    - 显存与缓存之间的带宽极高，但是相比$\text{GPU}$的运算能力仍然有瓶颈
 > >
 > > :two:$\text{CPU}$与$\text{GPU}$
 > >
-> > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241030213159183.png" alt="image-20241030175627888" width=540 /> 
+> > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102011403143.png" alt="image-20241030175627888" width=600 /> 
 > >
 > > 1. $\text{CPU/}\text{GPU}$结构对比    
 > >
@@ -94,9 +94,9 @@
 > >
 > > 2. $\text{CPU} \xleftrightarrow[数据/指令传输]{\text{PCIe}} \text{GPU}$交互
 > >
-> >    |          | $\text{GPU}$               | $\text{CPU}$ |
-> >    | :------: | -------------------------- | ------------ |
-> >    | 逻辑地位 | 外设                       | 主机         |
+> >    |          | $\text{GPU}$       | $\text{CPU}$         |
+> >    | :------: | ------------------ | -------------------- |
+> >    | 逻辑地位 | 外设               | 主机                 |
 > >    | 任务分配 | 控制逻辑和任务调度 | 执行大量并行计算任务 |
 > >
 > > :three:$\text{CUDA}$编程模型
@@ -314,21 +314,25 @@
 
 # 4. BANG简述
 
-> <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241031194540440.png" alt="image-20241031194540440" width=520 /> 
->
+ 
+
 > :three:重排
 >
 > 1. 重排流程：
 >
 >    |    时间    | 操作                                                         |         位置         |
->    | :--------: | ------------------------------------------------------------ | :------------------: |
+>   | :--------: | ------------------------------------------------------------ | :------------------: |
 >    | 搜索过程中 | 用一个数据结构，存储每个$\text{Iter}$中向$\text{CPU}$发送的全精度候选点 | **$\text{CPU/GPU}$** |
 >    | 搜索完成后 | 计算所有候选点到查询点距离，按全精度距离排序后选取前若干     |     $\text{GPU}$     |
 > 
 > 2. 重排目的：用小成本(仅极小部分即候选点以全精度送往$\text{GPU}$)，补偿由压缩距离产生的误差
 
-# 5. BANG详述
+# $\textbf{5. BANG}$的总体架构
 
+> ## $\textbf{5.1. }$第一阶段: $\textbf{PQ}$表
+>
+> 
+>
 > ## 5.1. BANG的搜索算法
 >
 > > :one:在$\text{Vamana}$图上的并行化$\text{GreedySearch}$  
@@ -436,13 +440,39 @@
 > >    |  $\text{Work}$  | 算法串行执行总耗时                           | $O((m \cdot \text{subspace\_size}) \cdot 256 \cdot \rho)$ |
 > >    |  $\text{Span}$  | 算法并行执行耗时，即**最耗时串行步骤**的耗时 |         $O(m \cdot \text{subspace\_size}) = O(d)$         |
 >
-> ## 5.3. 面向减少$\textbf{PCIe}$传输的优化
+> ## 5.3. 全精度向量的异步传输
 >
-> > :one:优化$1$：只传输最低限度所需信息
+> > :one:异步传输的基础
 > >
-> > 1. 每次迭代中传输的内容：$\text{CPU}\xrightarrow[\text{PCIe}]{邻居集N_i}\text{GPU}$与$\text{CPU}\xleftarrow[\text{PCIe}]{当前节点u_i^*}\text{GPU}$ 
-> > 2. 结束迭代后传输的内容：最终的近似最邻近列表
+> > 1. 硬件基础：图在内存以**点全精度向量$+$邻居信息连续且定长存储**组织$\to$使可以==顺序访问==向量/邻居
 > >
-> > :two:优化$2$：结合高级的$\text{CUDA}$功能
+> >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102014141202.png" alt="image-20241102014141202" width=620 /> 
+> >
+> > 2. 软件基础：高级的$\text{CUDA}$功能
+> >
+> >    - 异步拷贝：使数据传输时$\text{GPU}$可执行其它任务
+> >    - $\text{CUDA}$流：即$\text{CUDA}$核心可并行处理的指令序列
+> >
+> > :two:异步传输的实现
+> >
+> > 1. 传输的逻辑：
+> >
+> >    - 时序逻辑：两次$\text{CPU}\leftrightarrows\text{GPU}$传输间，一边让$\text{CUDA}$核心执行计算/一边持续传递全精度向量
+> >
+> >      <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102022201146.png" alt="image-20241102020932074" width=500 /> 
+> >
+> >    - 存取逻辑：得益于顺序存取，故启动异步传输时只需**顺序移动指针**就可获得全精度向量
+> >
+> > 2. 相关的$\text{CUDA}$函数：
+> >
+> >    |     $\text{CUDA}$函数     | 功能                                                |
+> >    | :-----------------------: | --------------------------------------------------- |
+> >    |    `cudaMemcpyAsync()`    | 实现异步拷贝，即使得数据传输/计算同时进行           |
+> >    | `cudaStreamSynchronize()` | 实现数据依赖，即等必要的数据传完后再执行有关计算/流 |
+> >
+>
+> 
+>
+> > 
 
  
