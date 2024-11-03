@@ -62,7 +62,7 @@
 >
 > > :one:计算单元组织架构
 > >
-> > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241030201057518.png" alt="image-20241030201057518" width=680 /> 
+> > <img src="https://i-blog.csdnimg.cn/direct/b3cf163a83eb4444bb6c8f28bed191bd.png" alt="image-20241030201057518" width=680 />  
 > >
 > > |       结构        | 功能                                                         |
 > > | :---------------: | ------------------------------------------------------------ |
@@ -72,7 +72,7 @@
 > >
 > > :two:存储层次架构：
 > >
-> > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241031001314018.png" alt="image-20241031001314018" width=600 />  
+> > <img src="https://i-blog.csdnimg.cn/direct/368cb19cecae49b1acf1f44ce08a88ee.png" alt="image-20241031001314018" width=600 />  
 > >
 > > 1. 不同$\text{SM}$能够$\text{Access}$相同的$\text{L2 Cache}$ 
 > >
@@ -118,7 +118,7 @@
 > >
 > > 2. 线程在计算单元的映射：线程层次$\xleftrightarrow{层次对应}\text{GPU}$物理架构
 > >
-> >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241030233145491.png" alt="image-20241030230857521" width=680 /> 
+> >    <img src="https://i-blog.csdnimg.cn/direct/90f180ea252f4709a5d85895fc018edb.png" alt="image-20241030230857521" width=680 />  
 > >
 > >    - 注意$\text{SM}$和$\text{Block}$不必$\text{1v1}$对应也可$\text{Nv1}$对应
 > >
@@ -132,7 +132,7 @@
 >
 > ## $\textbf{2.3. CPU}$与$\textbf{GPU}$ 
 >
-> > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102011403143.png" alt="image-20241030175627888" width=600 /> 
+> > <img src="https://i-blog.csdnimg.cn/direct/cb730a77c937406d94a3d3f5b3866698.png" alt="image-20241030175627888" width=600 /> 
 > >
 > > :one:$\text{CPU/}\text{GPU}$结构对比    
 > >
@@ -210,7 +210,7 @@
 > >
 > > ### $\textbf{1.2.2. }$第二阶段: 并行$\textbf{GreedySearch}$主循环
 > >
-> > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/图片的4.png" alt="图片xcxcxcxcxxx3" width=600 /> 
+> > > <img src="https://i-blog.csdnimg.cn/direct/d0fa654caabe41cda34735e21fc3b59f.png" alt="图片xcxcxcxcxxx3" width=600 />  
 > > >
 > > > :one:前$\text{CPU}$阶段：$\text{CPU}$从内存中获取当前在处理节点$u_i^*$的邻居集$N_i$
 > > >
@@ -278,7 +278,7 @@
 > > >
 > > > 2. 流程：
 > > >
-> > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241031100601961.png" alt="image-20241031100601961" width=320 />  
+> > >    <img src="https://i-blog.csdnimg.cn/direct/b3f18db5f34b4d4e89854ecaf934bc44.png" alt="image-20241031100601961" width=320 />  
 > > >
 > > > :two:$\text{PQ}$算法流程
 > > >
@@ -426,7 +426,7 @@
 > > > >
 > > > > :two:$\text{Bloom}$过滤器的原理
 > > > >
-> > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102164205830.png" alt="图片1zxzcfe" width=700 /> 
+> > > > <img src="https://i-blog.csdnimg.cn/direct/228e9efa2b3841ef8cbbc27bd2956806.png" alt="图片1zxzcfe" width=700 /> 
 > > > >
 > > > > 1. 组成结构：长为$z$的布尔数组(初始化为全$0$)$+$$k$个哈希函数
 > > > >
@@ -465,14 +465,14 @@
 > > > >
 > > > > 1. 线程块的分组结构
 > > > >
-> > > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102200735155.png" alt="image-20241102184956227" width=500 /> 
+> > > >    <img src="https://i-blog.csdnimg.cn/direct/c0260cfdcd9f47719edc57e8114514e2.png" alt="image-20241102184956227" width=500 /> 
 > > > >
 > > > >    - 线程块级别：为每个查询$q_i\text{∈}Q_{\rho}$分配一个独立的线程$\text{Block}$ 
 > > > >    - 线程组级别：将所有线程分为$g$组，每组线程数为$n\text{:=}\cfrac{\text{{Sum\_Threads\_Num}}}{g}$ 
 > > > >
 > > > > 2. 关于线程组：负责计算查询点$q_i$与==单个邻居==的距离(故隐式要求$g\text{>}$邻居总数)
 > > > >
-> > > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102210607258.png" alt="image-20241102210157060" width=650 />  
+> > > >    <img src="https://i-blog.csdnimg.cn/direct/39bc3823cf9d4f57a661b71b5283fb8e.png" alt="image-20241102210157060" width=650 />  
 > > > >
 > > > >    - 计算：将$M$个子空间分为${n}$组，组内每个线程==并行地==将自己组内的$\cfrac{M}{n}$个子距离相加
 > > > >
@@ -503,7 +503,7 @@
 > > >
 > > > > :zero:归并排序流程
 > > > >
-> > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241103004334657.png" alt="image-20241103004334657" width=550 /> 
+> > > > <img src="https://i-blog.csdnimg.cn/direct/de3b45faecee48a2ab001894a8caeeb9.png" alt="image-20241103004334657" width=550 /> 
 > > > >
 > > > > 1. 分割过程：将待排序数组等分为左右子数组，再对左右子数组递归式等分，直至不可分割
 > > > > 2. 合并过程：将所有子数组两两递归合并，逐步得到较大有序数组，直到得到完整有序数组
@@ -512,7 +512,7 @@
 > > > >
 > > > > 1. 线程映射：为每个合并操作分配一个线程  
 > > > >
-> > > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241103143638385.png" alt="image-20241103142839348" width=550 /> 
+> > > >    <img src="https://i-blog.csdnimg.cn/direct/226cef80cc7b41878e34495d7dd91b53.png" alt="image-20241103142839348" width=550 /> 
 > > > >
 > > > > 2. 问题所在：随着归并的进行$\to\begin{cases}同时合并的数组减少\to{}并行工作的线程减少\\\\单次合并的数组更长\to{}单线程运行时间变长\end{cases}\to$导致大量线程排序完成前空闲
 > > > >
@@ -520,11 +520,11 @@
 > > > >
 > > > > 1. 线程映射：为合并操作中每个列表的每个元素都分配一个线程
 > > > >
-> > > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241103183520999.png" alt="image-20241103142839348" width=550 /> 
+> > > >    <img src="https://i-blog.csdnimg.cn/direct/d7984b8560cc478db7ddc043a164e419.png" alt="image-20241103142839348" width=550 /> 
 > > > >
 > > > > 2. 并行合并历程：对于给定量已排序的待合并表$A$与$B$
 > > > >
-> > > >    <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241103152045608.png" alt="image-20241103151323537" width=530 /> 
+> > > >    <img src="https://i-blog.csdnimg.cn/direct/54d69f8c279d4cb49374e439b75b0201.png" alt="image-20241103151323537" width=530 />  
 > > > >
 > > > >    - 线程索引： 为两列表中每个元素(邻居)分配一线程，线程索引$=$元素在**自己列表**里的位置索引
 > > > >    - 位置计算：通过二分查找，找出两列表中每个元素插入**对方列表**后的索引
@@ -558,7 +558,7 @@
 > > >
 > > > > :one:合并操作：就是并行合并历程，可理解为上一步归并排序的附加步骤
 > > > >
-> > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241103160215775.png" alt="image-20241103160215775"  width=730 /> 
+> > > > <img src="https://i-blog.csdnimg.cn/direct/a6d18c878c054eef8b50e8e7aa9d812a.png" alt="image-20241103160215775"  width=730 /> 
 > > > >
 > > > > :two:复杂度分析：令$\ell$为列表长度
 > > > >
@@ -577,7 +577,7 @@
 > > > >
 > > > >    - 主存：图在内存以**点全精度向量$+$邻居信息连续且定长存储**组织$\to$使可以==顺序访问==
 > > > >
-> > > >      <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102014141202.png" alt="image-20241102014141202" width=550 /> 
+> > > >      <img src="https://i-blog.csdnimg.cn/direct/ee84c766979b478ca1c99a0e87efc97c.png" alt="image-20241102014141202" width=550 /> 
 > > > >
 > > > >    - $\text{GPU}$内存：专设有一段内存，存储每次迭代异步传来的全精度向量，直到最后完成重排
 > > > >
@@ -590,7 +590,7 @@
 > > > >
 > > > >    - 时序逻辑：两次$\text{CPU}\leftrightarrows\text{GPU}$传输间，并行执行$\to{}\begin{cases}\text{CUDA}核心\text{: }执行计算任务\\\\\text{Copy}引擎\text{: }持续传递全精度向量\end{cases}$ 
 > > > >
-> > > >      <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102214055217.png" alt="image-20241102020932074" width=450 />  
+> > > >      <img src="https://i-blog.csdnimg.cn/direct/e082bb3ec2f34fc5b33cf726fb2e8104.png" alt="image-20241102020932074" width=450 />   
 > > > >
 > > > >    - 存取逻辑：得益于顺序存取，故启动异步传输时只需==顺序移动指针==就可获得全精度向量
 > > > >
@@ -605,14 +605,14 @@
 > > >
 > > > > :one:优化的契机：避免$\text{GPU}$与$\text{CPU}$二者间存在过长的空闲
 > > > >
-> > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/image-20241102220240766.png" alt="image-20241102220240766" width=490 /> 
+> > > > <img src="https://i-blog.csdnimg.cn/direct/b1654b2d4a5c4dba8c860ac803c63dff.png" alt="image-20241102220240766" width=490 /> 
 > > > >
 > > > > 1. <span style="color:red;">当$\text{CPU}$在获取邻居时，$\text{GPU}$必定保持空闲</span>
 > > > > 2. <span style="color:green;">当$\text{GPU}$在计算并更新$\text{WorkList}$的时候，$\text{CPU}$有可能保持空闲</span> 
 > > > >
 > > > > :two:候选(当前)节点的预取优化
 > > > >
-> > > > <img src="https://raw.githubusercontent.com/DANNHIROAKI/New-Picture-Bed/main/img/图sdrgc片3.png" alt="图sdrgc片3"  width=550 /> 
+> > > > <img src="https://i-blog.csdnimg.cn/direct/dc17b4a16b4b4951bb3fa8e7f4f43924.png" alt="图sdrgc片3"  width=550 />  
 > > > >
 > > > > 1. 时序逻辑：如何减少$\text{GPU}$的等待(空闲)时间
 > > > >    - $\text{GPU}$返回真实$u_i^{*}$时$\text{CPU}$就算好了预测$u_i^{*}$的邻居
