@@ -2,4 +2,4 @@
 
 仔细看过的一些文献
 
-精简版放我[CSDN](https://blog.csdn.net/qq_64091900?type=blog)上了
+[CSDN博客](https://blog.csdn.net/qq_64091900?type=blog)上了
