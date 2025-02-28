@@ -56,17 +56,19 @@
 
    - 令$s\text{=}\text{dist}(o_1,o_2)$以及$f_2(x)\text{=}\cfrac{2}{\sqrt{2\pi}} e^{–\frac{x^{2}}{2}}$，碰撞概率为$\displaystyle{}\xi(s)\text{=}P_{\vec{a},b}\left[h_{\vec{a},b}\left(o_{1}\right)\text{=}h_{\vec{a},b}\left(o_{2}\right)\right]\text{=}\int_{0}^{w}\frac{1}{s}f_{2}\left(\frac{t}{s}\right)\left(1–\frac{t}{w}\right)dt\tag{2}$
    - 哈希函数族$h_{\vec{a},b}$是$\left(r, c r, \xi(r), \xi(cr)\right)\text{-}$敏感的
+   - 令$r\text{=1}$则希函数族$h_{\vec{a},b}$是$\left(1, c, \xi(1), \xi(c)\right)\text{-}$敏感的
 
 # $\textbf{3. }$查询感知$\textbf{LSH}$族
 
 :one:$\left(1, c, p_{1}, p_{2}\right)\text{-}$敏感$\text{LSH}$族
 
 1. 以查询感知方式构建$\text{LSH}$函数：
-   - 预处理：先将所有对象$o$以$h_{\vec{a}}(\vec{o})\text{=}\vec{a·}\vec{o}$投影到$\vec{a}$方向上
-   - 查询：使用查询作为锚点来定义宽度为$w$的锚桶，即$\left[h_{\vec{a}}(q)–\cfrac{w}{2}, h_{\vec{a}}(q)\text{+}\cfrac{w}{2}\right]$
+   - 预处理：先将所有对象$o$以$h_{\vec{a}}(\vec{o})\text{=}\vec{a·}\vec{o}$投影到$\vec{a}$方向上，其中$\vec{a}$的每个元素取自标准正态分布
+   - 查询：使用$h_{\vec{a}}(q)$作为锚点来定义宽度为$w$的锚桶，即$\left[h_{\vec{a}}(q)–\cfrac{w}{2}, h_{\vec{a}}(q)\text{+}\cfrac{w}{2}\right]$
+   - 其中$w$的大小由$h_{\vec{a}}(\cdot)$定义
 2. 碰撞：
    - 定义：当一个对象$\vec{o}$落在宽度为$w$的桶内即$\left|h_{\vec{a}}(o)–h_{\vec{a}}(q)\right|\text{≤}\cfrac{w}{2}$时，才称$o,q$之间发生碰撞
-   - 概率：令$\varphi(x)\text{=}\cfrac{1}{\sqrt{2 \pi}} e^{–\frac{x^{2}}{2}}$以及$s\text{=}\text{dist}(o,q)$，则$o,q$之间发生碰撞的概率为$\displaystyle{}p(s)\text{=}\int_{-\frac{w}{2 s}}^{\frac{w}{2 s}} \varphi(x) d x$
+   - 概率：令$\varphi(x)\text{=}\cfrac{1}{\sqrt{2 \pi}} e^{–\frac{x^{2}}{2}}$以及$s\text{=}\text{dist}(o,q)$，则$o,q$之间发生碰撞的概率为$\displaystyle{}p(s)\text{=}\int_{-\frac{w}{2 s}}^{\frac{w}{2 s}} \varphi(x)dx$
 3. 局部敏感性：$h_{\vec{a}}(o)$是$\left(1, c, p(1), p(c)\right)\text{-}$敏感性的
 
 :two:碰撞概率的比较：令$\text{Norm}(x)\text{=}\displaystyle{}\int_{–\infty}^{x}\cfrac{1}{\sqrt{2\pi}} e^{–\frac{x^{2}}{2}}$
@@ -97,7 +99,9 @@
 :four:$\text{QALSH}$的虚拟重哈希
 
 1. 命题$1$：查询感知哈希族$H_{\vec{a}}^{R}(o)\text{=}\cfrac{h_{\vec{a}}(o)}{R}$是$\left(R, cR, p(1), p(c)\right)\text{-}$敏感性的
+   - $h_{\vec{a}}(o)$是$\left(1, c, p(1), p(c)\right)\text{-}$敏感性的
 2. 定义第$R$轮的锚(中心)桶为$B^{R}\text{=}\left[H_{\vec{a}}^{R}(q)–\cfrac{w}{2}, H_{\vec{a}}^{R}(q)\text{+}\cfrac{w}{2}\right]$，其中$B^{1}\text{=}\left[h_{\vec{a}}(q)–\cfrac{w}{2}, h_{\vec{a}}(q)\text{+}\cfrac{w}{2}\right]$ 
+   - $B^{R}\text{=}\left[\cfrac{h_{\vec{a}}(q)}{R}–\cfrac{w}{2}, \cfrac{h_{\vec{a}}(q)}{R}\text{+}\cfrac{w}{2}\right]$
 3. 找到$q$的$(R,c)\text{-NN}$：需要检查特定$R$轮次的中心桶$B^{R}$
 4. 找到$q$的$c\text{-ANN}$：需要逐轮检查每一轮次的中心桶$B^{R}$，其中$R\text{∈}\{1, c, c^{2}, c^{3}, \ldots\}$
 
@@ -111,7 +115,7 @@
 
 1. 预处理
    - 哈希表：数据库中的每个对象$o_i$都有一个$\text{ID}_{o_i}$，$h_{\vec{a}}$的哈希表$T\text{=}\left(h_{\vec{a}}(o_i),\text{ID}_{o_i}\right)$
-   - 索引：对表$T$中所有条目按照$h_{\vec{a}}(o_i)$升序排序，然后通过$\text{B}^+$索引
+   - 索引：对表$T$中所有条目按照$h_{\vec{a}}(o_i)$升序排序，然后通过$\text{B}^+$索引，每个哈希表对应一个$\text{B}^+$索引
 2. 桶划分的动态定位
    - 设定一个桶宽$w$
    - 当查询$q$到来时，执行$(R,c)\text{-NN}$搜索时，需要利用$\text{B}^+$树快速找到$B^{R}\text{=}\left[h_{\vec{a}}(q)–\cfrac{wR}{2}, h_{\vec{a}}(q)\text{+}\cfrac{wR}{2}\right]$ 范围内的对象
@@ -128,7 +132,7 @@
 
 :two:搜索过程
 
-1. 计算哈希值：给定查询对象$q$，计算每个基函数的哈希值$H_{a_i}^R(q)$
+1. 计算哈希值：给定查询对象$q$，计算每个基函数的哈希值$H_{a_i}^R(q)\text{=}\cfrac{h_{\vec{a_i}}(q)}{R}$
 2. 定位中心桶：划定每个中心桶的范围为$B^{R}\text{=}\left[H_{\vec{a_i}}^{R}(q)–\cfrac{w}{2}, H_{\vec{a_i}}^{R}(q)\text{+}\cfrac{w}{2}\right]$，用$\text{B}^+$树查询各自哈希表，得到落入各自中心桶的所有元素
 3. 收集碰撞数：对于每个对象$o$，统计其出现在了多少个中心桶中，记为$\text{\#Col}(o)$ 
 4. 识别频繁对象：设定阈值$l$，如果$\text{\#Col}(o)\text{>}l$则认为对象$o$是频繁的
@@ -145,7 +149,7 @@
 
 ## $\textbf{4.1. QALSH}$用于$\boldsymbol{c}\textbf{-ANN}$搜索
 
-:one:算法$1$的流程：
+:one:算法$1$的流程：从$R\text{=}1$开始在
 
 1. 初始化：设置初始的搜索半径为$R\text{=}1$，以及候选集$C$为空
 2. 循环访问：当候选集的大小小于$\beta{n}$时，执行以下步骤
