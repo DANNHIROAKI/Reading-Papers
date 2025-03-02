@@ -1,0 +1,217 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+\usepackage[square,sort,comma,numbers]{natbib}
+
+% ready for submission
+\usepackage[preprint]{neurips_2024}
+%\usepackage{tikz}
+%\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links (change box color with linkbordercolor)
+    citecolor=OliveGreen,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+%\newcommand{\name}{\textsc{Maven}}
+\newcommand{\name}{\textsc{Muvera}}
+\usepackage{makecell}
+\usepackage{subfig}
+
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{framed}
+\usepackage{graphicx,float,wrapfig}
+\usepackage{macros}
+
+\newcommand{\Prx}{\mathop{\Pr}}
+\newcommand{\Ex}{\mathop{\E}}
+\newcommand{\Varx}{\mathop{\Var}}
+
+\newcommand{\CH}{\textsc{Chamfer}}
+\newcommand{\dproj}{d_{\texttt{proj}}}
+\newcommand{\ksim}{k_{\texttt{sim}}}
+\newcommand{\reps}{R_{\texttt{reps}}}
+\newcommand{\dfinal}{d_{\texttt{final}}}
+\newcommand{\nCH}{\textsc{NChamfer}}
+\newcommand{\dfde}{d_{\texttt{FDE}}}
+\newcommand{\fde}{\mathbf{F}}
+\newcommand{\fdeq}{\mathbf{F}_{\text{q}}}
+\newcommand{\fded}{\mathbf{F}_{\text{doc}}}
+\newcommand{\buckets}{B}
+
+
+\title{MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings}
+
+
+\author{%
+Laxman Dhulipala \\
+ Google Research and UMD \\
+%\texttt{laxmand@google.com}
+\And
+Majid Hadian \\
+Google DeepMind \\
+%\texttt{majidh@google.com}
+\And
+Rajesh Jayaram\thanks{Corresponding Author: \texttt{rkjayaram@google.com}} \\
+Google Research \\
+%\texttt{rkjayaram@google.com}
+\AND
+Jason Lee\\
+Google Research \\
+%\texttt{jdlee@google.com}
+\And
+Vahab Mirrokni \\
+Google Research \\
+%\texttt{mirrokni@google.com}
+}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Neural embedding models have become a fundamental component of modern information retrieval (IR) pipelines. These models produce a single embedding $x \in \R^d$ per data-point, allowing for fast retrieval via highly optimized maximum inner product search (MIPS) algorithms. Recently, beginning with the landmark ColBERT paper, \textit{multi-vector models}, which produce a set of embedding per data point, have achieved markedly superior performance for IR tasks. Unfortunately, using these models for IR is computationally expensive due to the increased complexity of multi-vector retrieval and scoring. 
+
+In this paper, we introduce $\name$ (\textbf{Mu}lti-\textbf{Ve}ctor \textbf{R}etrieval \textbf{A}lgorithm), a retrieval mechanism which reduces \textit{multi-vector} similarity search to \textit{single-vector} similarity search. 
+This enables the usage of off-the-shelf MIPS solvers for multi-vector retrieval. 
+$\name$ asymmetrically generates \textit{Fixed Dimensional Encodings} (FDEs) of queries and documents, which are vectors whose inner product approximates multi-vector similarity. We prove that FDEs give high-quality $\epsilon$-approximations, thus providing the first single-vector proxy for multi-vector similarity with theoretical guarantees.
+Empirically, we find that FDEs achieve the same recall as prior state-of-the-art heuristics while retrieving 2-5$\times$ fewer candidates. Compared to prior state of the art implementations, $\name$ achieves consistently good end-to-end recall and latency across a diverse set of the BEIR retrieval datasets, achieving an average of 10$\%$ improved recall with $90\%$ lower latency. 
+
+
+\end{abstract}
+
+\section{Introduction}
+
+Over the past decade, the use of neural embeddings for representing data has become a central tool for information retrieval (IR)~\cite{zhang2016neural}, among many other tasks such as clustering and classification~\cite{muennighoff2022mteb}. 
+Recently, \emph{multi-vector} (MV) representations, introduced by the \textit{late-interaction} framework in ColBERT~\cite{khattab2020colbert}, have been shown to deliver significantly improved performance on popular IR benchmarks. ColBERT and its variants \cite{gao2021coil,hofstatter2022introducing,lee2024rethinking,lin2024fine,qian2022multi,santhanam2021colbertv2,wang2021pseudo,yao2021filip} produce \textit{multiple} embeddings per query or document by generating one embedding per token. The query-document similarity is then scored via the \emph{Chamfer Similarity} (§\ref{sec:Chamfer}), also known as the MaxSim operation, between the two sets of vectors. These multi-vector representations have many advantages over single-vector (SV) representations, such as better
+interpretability \cite{formal2021white,wang2023reproducibility} and generalization \cite{lupart2023ms,formal2022match,zhan2022evaluating,weller2023nevir}. 
+
+
+
+ Despite these advantages, multi-vector retrieval is inherently more expensive than single-vector retrieval. Firstly, producing one embedding per token increases the number of embeddings in a dataset by orders of magnitude.
+Moreover, due to the non-linear Chamfer similarity scoring, there is a lack of optimized systems for multi-vector retrieval. 
+Specifically, single-vector retrieval is generally accomplished via Maximum Inner Product Search (MIPS) algorithms, which have been highly-optimized over the past few decades \cite{guo2016quantization}. However, SV MIPS alone cannot be used for MV retrieval. This is because the MV similarity is the \emph{sum} of the SV similarities of each embedding in a query to the nearest embedding in a document. Thus, a document containing a token with high similarity to a single query token may not be very similar to the query overall.
+Thus, in an effort to close the gap between SV and MV retrieval, there has been considerable work in recent years to design custom MV retrieval algorithms with improved efficiency \cite{santhanam2022plaid, engels2024dessert, hofstatter2022introducing, qian2022multi}.
+
+\begin{figure}
+\vspace{-2em}
+    \centering
+ \includegraphics[width = \textwidth]{plots/MAVEN_Diagrams.001.png}
+    \caption{\small $\name$'s two-step retrieval process, comapred to PLAID's multi-stage retrieval process. Diagram on the right from Santhanam et. al. \cite{santhanam2022plaid} with permission.}
+    \label{fig:MAVEN}
+\end{figure}
+
+ 
+ The most prominent approach to MV retrieval is to employ a multi-stage pipeline beginning with single-vector MIPS. The basic version of this approach is as follows: in the initial stage, the most similar document tokens are found for each of the query tokens using SV MIPS. Then the corresponding documents containing these tokens are gathered together and rescored with the original Chamfer similarity. We refer to this method as the \textit{single-vector heuristic}. 
+ ColBERTv2~\cite{santhanam2021colbertv2} and its optimized retrieval engine PLAID~\cite{santhanam2022plaid}
+ are based on this approach, with the addition of several intermediate stages of pruning. In particular, PLAID employs a complex \textit{four}-stage retrieval and pruning process to gradually reduce the number of final candidates to be scored (Figure \ref{fig:MAVEN}). Unfortunately, as described above, employing SV MIPS on individual query embeddings can fail to find the true MV nearest neighbors. Additionally, this process is expensive, since it requires querying a significantly larger MIPS index for \emph{every} query embedding (larger because there are multiple embeddings per document). 
+ Finally, these multi-stage pipelines are complex and highly sensitive to parameter setting, as recently demonstrated in a reproducibility study \cite{macavaney2024reproducibility}, making them difficult to tune. To address these challenges
+ and bridge the gap between single and multi-vector retrieval, 
+ in this paper we seek to design faster and simplified MV retrieval algorithms.  
+ 
+ 
+\paragraph{Contributions.}
+We propose $\name$: a multi-vector retrieval mechanism based on a light-weight and provably correct reduction to single-vector MIPS. $\name$ employs a fast, data-oblivious transformation from a set of vectors to a single vector, allowing for retrieval via highly-optimized MIPS solvers before a single stage of re-ranking. Specifically, $\name$ transforms query and document MV sets $Q,P \subset \R^d$ into single fixed-dimensional vectors $\vec{q}, \vec{p}$, called \emph{Fixed Dimensional Encodings} (FDEs), such that the the dot product $\vec{q} \cdot \vec{p}$ approximates the multi-vector similarity between $Q,P$ (§\ref{sec:fde}).  Empirically, we show that retrieving with respect to the FDE dot product significantly outperforms the single vector heuristic at recovering the Chamfer nearest neighbors (§\ref{sec:fde-experimental}). For instance, on MS MARCO, our FDEs Recall$@N$ surpasses the Recall$@$2-5N achieved by the SV heuristic while scanning a similar total number of floats in the search. 
+
+
+We prove in (§\ref{sec:fde-theory}) that our FDEs have strong approximation guarantees; specifically, the FDE dot product gives an $\eps$-approximation to the true MV similarity. This gives the first algorithm with provable guarantees for Chamfer similarity search with strictly faster than brute-force runtime (Theorem \ref{thm:FDE-ANN}). Thus, $\name$ provides the first principled method for MV retrieval via a SV proxy. 
+
+
+We compare the end-to-end retrieval performance of $\name$ to PLAID on several of the BEIR IR datasets, including the well-studied MS MARCO dataset. 
+We find \name{} to be a robust and efficient retrieval mechanism; across the datasets we evaluated, \name{} obtains an average of 10\% higher recall, while requiring 90\% lower latency on average compared with PLAID. Additionally, $\name$ crucially incorporates a vector compression technique called {\em product quantization} that enables us to compress the FDEs by 32$\times$ (i.e., storing 10240 dimensional FDEs using 1280 bytes) while incurring negligible quality loss, resulting in a significantly smaller memory footprint. 
+
+
+
+\subsection{Chamfer Similarity and the Multi-Vector Retrieval Problem}\label{sec:Chamfer}
+Given two sets of vectors $Q,P \subset \R^d$, the \emph{Chamfer Similarity} is given by 
+\begin{equation*}
+\CH(Q,P) = \sum_{q \in Q} \max_{p \in P} \langle q,p\rangle
+\end{equation*}
+where $\langle \cdot ,\cdot\rangle$ is the standard vector inner product.  
+Chamfer similarity is the default method of MV similarity used in the \textit{late-interaction} architecture of ColBERT, which includes systems like ColBERTv2 \cite{santhanam2021colbertv2},
+Baleen \cite{khattab2021baleen}, Hindsight \cite{paranjape2021hindsight}, DrDecr \cite{li2021learning}, and XTR \cite{lee2024rethinking}, among many others. These models encode queries and documents as sets $Q,P \subset \R^d$ (respectively), where the query-document similarity is given by $\CH(Q,P)$. We note that Chamfer Similarity (and its distance variant) itself has a long history of study in the computer vision (e.g.,~\cite{barrow1977parametric,athitsos2003estimating,sudderth2004visual,fan2017point,jiang2018gal}) and graphics~\cite{li2019lbs} communities, and had been previously used in the ML literature to compare sets of embeddings~\cite{kusner2015word,wan2019transductive,atasu19a,bakshi2024near}. In these works, Chamfer is also referred to as \emph{MaxSim} or the \emph{relaxed earth mover distance}; we choose the terminology \textit{Chamfer} due to its historical precedence \cite{barrow1977parametric}.
+
+In this paper, we study the problem of Nearest Neighbor Search (NNS) with respect to the Chamfer Similarity. Specifically, we are given a dataset $D = \{P_1,\dots, P_n\}$ where each $P_i \subset \R^d$ is a set of vectors. Given a query subset $Q \subset \R^d$, the goal is to quickly recover the nearest neighbor $P^* \in D$, namely:
+\[P^* = \arg \max_{P_i \in D} \CH(Q,P_i)\] 
+
+For the retrieval system to be scalable, this must be achieved in time significantly faster than brute-force scoring each of the $n$ similarities $\CH(Q,P_i)$.  
+
+
+\subsection{Our Approach: Reducing Multi-Vector Search to Single-Vector MIPS}
+ $\name$ is a streamlined procedure that directly reduces the Chamfer Similarity Search to MIPS. For a pre-specified target dimension $\dfde$, $\name$ produces randomized mappings $\fdeq:2^{\R^d}\to \R^{\dfde}$ (for queries) and $\fded:2^{\R^d}\to \R^{\dfde}$ (for documents) such that, for all query and document  multivector representations $Q,P \subset \R^d$ , we have:
+\[\langle \fdeq(Q) , \fded(P) \rangle \approx \CH(Q,P) \]
+We refer to the vectors $\fdeq(Q) , \fded(P) $ as \emph{Fixed Dimensional Encodings} (FDEs). $\name$ first applies $\fded$ to each document representation $P \in D$, and indexes the set $\{\fded(P)\}_{P \in D}$ into a MIPS solver. Given a query $Q \subset \R^d$, $\name$ quickly computes $\fdeq(Q)$ and feeds it to the MIPS solver to recover top-$k$ most similar document FDE's $\fded(P)$. Finally, we re-rank these candidates by the original Chamfer similarity. See Figure \ref{fig:MAVEN} for an overview. We remark that one important advantage of the FDEs is that the functions $ \fdeq, \fded$ are \emph{data-oblivious}, making them robust to distribution shifts, and easily usable in streaming settings.  
+
+
+\subsection{Related Work on Multi-Vector Retrieval}
+
+The early multi-vector retrieval systems, such as ColBERT \cite{khattab2020colbert}, all implement optimizations of the previously described SV heuristic, where the initial set of candidates is found by querying a MIPS index for every query token $q \in Q$. 
+In ColBERTv2 \cite{santhanam2021colbertv2}, the document token embeddings are first clustered via k-means, and the first round of scoring using cluster centroids instead of the original token. 
+This technique was further optimized in PLAID \cite{santhanam2022plaid} by employing a four-stage pipeline to progressively prune candidates before a final reranking (Figure \ref{fig:MAVEN}).
+
+
+An alternative approach with proposed in DESSERT \cite{engels2024dessert}, whose authors also pointed out the limitations of the SV heuristic, and proposed an algorithm based on Locality Sensitive Hashing (LSH) \cite{HIM12}. 
+They prove that their algorithm recovers $\eps$-approximate nearest neighbors in time $\tilde{O}(n |Q| T  )$, where $T$ is roughly the maximum number of document tokens $p \in P_i$ that are similar to any query token $q \in Q$, which can be as large as $\max_i |P_i|$. Thus, in the worst case, their algorithm runs no faster than brute-force. Conversely, our algorithm recovers $\eps$-approximate nearest neighbors and \emph{always} runs in time $\tilde{O}(n|Q|)$. Experimentally, DESSERT is 2-5$\times$ faster than PLAID, but attains worse recall (e.g. 2-2.5$\%$ R$@$1000 on MS MARCO). Conversely, we match and sometimes strongly exceed PLAID's recall with up to 5.7$\times$ lower latency. Additionally, DESSERT still employs an initial filtering stage based on $k$-means clustering of individual query token embeddings (in the manner of ColBERTv2), thus they do not truly avoid the aforementioned limitations of the SV heuristic.
+
+
+
+
+
+\section{Fixed Dimensional Encodings}
+\label{sec:fde}
+\input{FDE}
+
+
+\input{experiments}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion} \label{sec:conclusion}
+
+In this paper, we presented $\name$: a principled and practical MV retrieval algorithm which reduces MV similarity to SV similarity by constructing Fixed Dimensional Encoding (FDEs) of a MV representation. 
+We prove that FDE dot products give high-quality approximations to Chamfer similarity (§\ref{sec:fde-theory}). Experimentally, we show that FDEs are a much more effective proxy for MV similarity, since they require retrieving 2-4$\times$ fewer candidates to achieve the same recall as the SV Heuristic (§\ref{sec:fde-experimental}). 
+We complement these results with an end-to-end evaluation of $\name$, 
+showing that it achieves an average of 10\% improved recall with 90\% lower latency compared with PLAID.
+Moreover, despite the extensive optimizations made by PLAID  to the SV Heuristic, we still achieve significantly better latency on $5$ out of $6$ BEIR datasets we consider (§\ref{sec:eval}). 
+Given their retrieval efficiency compared to the SV heuristic, we believe that there are still significant gains to be obtained by optimizing the FDE method, and leave further exploration of this to future work.  
+
+\textbf{Broader Impacts and Limitations: }
+While retrieval is an important component of LLMs, which themselves have broader societal impacts, these impacts are unlikely to result from our retrieval algorithm. 
+Our contribution simply improves the efficiency of retrieval, without enabling any fundamentally new capabilities. As for limitations, while we outperformed PLAID, sometimes significantly, on $5$ out of the $6$ datasets we studied, we did not outperform PLAID on MS MARCO, possibly due to their system having been carefully tuned for MS MARCO given its prevalence. 
+Additionally, we did not study the effect that the average number of embeddings $m_{avg}$ per document has on retrieval quality of FDEs; 
+this is an interesting direction for future work. 
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{main}
+\newpage
+
+\appendix
+\input{Appendix_Theory}
+\input{Appendix_FDE_Experiments}
+\input{AppendixExperiments}
+
+%\input{Checklist}
+
+
+\end{document}

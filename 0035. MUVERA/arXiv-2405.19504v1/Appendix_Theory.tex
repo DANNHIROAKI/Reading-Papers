@@ -1,0 +1,166 @@
+
+\section{Missing Proofs from Section \ref{sec:fde-theory}} \label{app:theory}
+In this section, we provide the missing proofs in Section \ref{sec:fde-theory}. For convenience, we also reproduce theorem statements as they appear in the main text before the proofs. We begin by analyzing the runtime to compute query and document FDEs, as well as the sparsity of the queries. 
+\begin{lemma}\label{lem:runtime}
+For any FDE parameters $\ksim,\dproj,\reps \geq$ and sets $Q,P \subset \R^d$, we can compute $\fdeq(Q)$ in time $T_q : = O(\reps |Q|d ( \dproj + \ksim ))$, and $\fdeq(P)$ in time $O(T_q + \reps |P| 2^{\ksim} \ksim)$. Moreover, $\fdeq(Q)$ has at most $O(|Q|\dproj \reps)$ non-zero entries. 
+\end{lemma}
+\begin{proof}
+We first consider the queries. To generate the queries, we must first project each of the $|Q|$ queries via the inner random linear productions $\bpsi_i:\R^{d} \to \R^{\dproj}$, which requires $O(|Q| d \dproj \reps )$ time to perform the matrix-query products for all repetitions. Next, we must compute $\varphi_i(q)$ for each $q \in Q$ and repetition $i \in [\reps]$, Each such value can be compute in $d \cdot \ksim$ time to multiply the $q \in \R^d$ by the $\ksim$ Gaussian vectors. Thus the total running time for this step i $O(\reps |Q| d \ksim)$. Finally, summing the relevant values into the FDE once $\varphi_i(q),\bpsi_i(q)$ are computed can be done in $O(|Q|\dproj)$ time. For sparsity, note that only the coordinate blocks in the FDE corresponding to clusters $k$ in a repetition $i$ with at least one $q \in |Q|$ with $\bvarphi_i(q) = k$ are non-zero, and there can be at most $O(\reps |Q|)$ of these blocks, each of which has $O(\dproj)$ coordinates.
+
+The document runtime is similar, except with the additional complexity required to carry out the \texttt{fill\_empty\_clusters} option. For each repetition, the runtime required to find the closest $p \in P$ to a give cluster $k$ is $O(|P| \cdot \ksim)$, since we need to run over all $|p|$ values of $\bvarphi(p)$ and check how many bits disagree with $k$. Thus, the total runtime is $O(\reps |P| B \ksim) = O(\reps |P| 2^{\ksim} \ksim)$.
+\end{proof}
+
+In what follows, we will need the following standard fact that random projections approximately preserve dot products. The proof is relatively standard, and can be found in \cite{arriaga2006algorithmic}, or see results on approximate matrix product~\cite{woodruff2014sketching} for more general bounds. 
+\begin{fact}[\cite{arriaga2006algorithmic}]\label{fact:JL}
+Fix $\eps,\delta>0$. For any $d \geq 1$ and $x,y \in \R^d$, let $S \in \R^{t \times d}$ by a matrix of independent entries distributed uniformly over $\{1,-1\}$, where $t= O(1/\eps^2 \cdot \log \delta^{-1})$. Then we have $\ex{\langle Sx, Sy \rangle} = \langle x, y \rangle$, and moreover with probability at least $1-\delta$ we have \[|\langle Sx, Sy \rangle - \langle x, y \rangle| \leq \eps  \|x\|_2 \|y\|_2\]
+\end{fact}
+
+To anaylze the approximations of our FDEs, we begin by proving an upper bound on the value of the FDE dot product. In fact, we prove a stronger result: we show that our FDEs have the desirable property of being \emph{one-sided estimators} -- namely, they never overestimate the true Chamfer similarity. This is summarized in the following Lemma.
+\begin{lemma}[One-Sided Error Estimator]\label{lem:oneside}
+Fix any sets $Q,P \subset \R^d$ of unit vectors with $|Q| + |P| = m$. Then if $d=\dproj$, we always have % $ \fdeq, \fded$ without random projections (Equation \ref{eqn:define-FDE}), deterministically satisfy
+ \[\frac{1}{|Q|} \left\langle  \fdeq(Q) , \fded(P) \right\rangle \leq  \nCH(Q,P) \]
+ Furthermore, for any $\delta >0$, if we set $\dproj = O(\frac{1}{\eps^2} \log (m/\delta))$, then we have  $\frac{1}{|Q|} \langle \fdeq(Q) , \fded(P) \rangle \leq  \nCH(Q,P) + \eps$ in expectation and with probability at least $1-\delta$. 
+\end{lemma}
+\begin{proof}
+
+First claim simply follows from the fact that the average of a subset of a set of numbers can't be bigger than the maximum number in that set. More formally, we have: 
+\begin{equation}
+    \begin{split}
+    \frac{1}{|Q|}  \left\langle \fdeq(Q) , \fded(P) \right\rangle  
+     & = \frac{1}{|Q|}\sum_{k=1}^{\buckets} \sum_{\substack{q \in Q\\ \bvarphi(q) = k}}  \frac{1}{|P \cap \bvarphi^{-1}(k)|} \sum_{\substack{p \in P \\ \bvarphi(p)=k}} \langle q,p\rangle \\
+     &\leq \frac{1}{|Q|}\sum_{k=1}^{\buckets} \sum_{\substack{q \in Q \\ \bvarphi(q) = k}}  \frac{1}{|P \cap \bvarphi^{-1}(k)|} \sum_{\substack{p \in P \\ \bvarphi(p)=k}}  \max_{p' \in P} \langle q , p'\rangle \\
+       &= \frac{1}{|Q|}\sum_{k=1}^{\buckets} \sum_{\substack{q \in Q \\ \bvarphi(q) = k}} \max_{p' \in p}  \langle q,p\rangle  = \nCH(Q,P) \\
+    \end{split}
+\end{equation}
+  
+    Which completes the first part of the lemma. For the second part, to analyze the case of $\dproj<d$, when inner random projections are used, by applying Fact \ref{fact:JL},  firstly we have $\ex{\langle \bpsi(p), \bpsi(q) } = \langle q, p  \rangle$ for any $q \in Q, p \in P,$, and secondly, after a union bound we over $|P|\cdot|Q| \leq m^2$ pairs, we have $\langle q, p  \rangle =  \langle \bpsi(p), \bpsi(q) \rangle \pm \eps$ simultaneously for all $q \in Q, p \in P,$ with probability $1-\delta$, for any constant $C>1$.  The second part of the Lemma then follows similarly as above. 
+\end{proof}
+
+
+We are now ready to give the proof of our main FDE approximation theorem. 
+
+\textbf{Theorem \ref{thm:FDE-approx} }(FDE Approximation). {\it
+ Fix any $\eps ,\delta > 0$, and sets $Q,P \subset \R^d$ of unit vectors, and let $m=|Q| + |P|$. 
+Then setting $\ksim = O\left(\frac{\log (m\delta^{-1})}{\epsilon}\right)$, $\dproj = O\left(\frac{1}{\eps^2}  \log (\frac{m}{\eps\delta})\right)$, $\reps = 1$, so that $\dfde = (m/\delta)^{O(1/\eps)}$, % so that $\dfde = O(\frac{1}{\eps^2} \cdot (\frac{m}{\delta})^{1/\eps}  \log (\frac{m}{\eps\delta}))$, 
+we have
+ \[  \nCH(Q,P)  - \eps \leq \frac{1}{|Q|}\langle \fdeq(Q) , \fded(P) \rangle \leq  \nCH(Q,P) + \eps  \]
+ in expectation, and with probability at least $1-\delta$. 
+}
+\begin{proof}[Proof of Theorem \ref{thm:FDE-approx}]
+
+The upper bound follows from Lemma \ref{lem:oneside}, so it will suffice to prove the lower bound. 
+We first prove the result in the case when there are no random projections $\bpsi$, and remove this assumption at the end of the proof.
+ Note that, by construction, $\fdeq$ is a linear mapping so that $\fdeq(Q) = \sum_{q \in Q} \fde(q)$, thus
+       \[ \langle \fdeq(Q) , \fded(P) \rangle = \sum_{q \in Q} \langle \fdeq(q) , \fded(P) \rangle \]
+So it will suffice to prove that 
+\begin{equation}\label{eqn:lem2-goal}
+ \pr{ \langle \fdeq(q) , \fded(P) \rangle \geq  \max_{p \in P} \langle q,p\rangle  - \eps} \geq 1-\eps \delta/|Q|
+\end{equation}
+ for all $q \in Q$, since then, by a union bound \ref{eqn:lem2-goal} will hold for all over all $q \in Q$ with probability at least  $1-\eps \delta$, in which case we will have 
+ \begin{equation}
+     \begin{split}
+         \frac{1}{|Q|}\langle \fdeq(Q) , \fded(P) \rangle &\geq \frac{1}{|Q|}\sum_{q \in Q}\left( \max_{p \in P} \langle q,p\rangle -\eps \right)  \\
+         & = \nCH(Q,P) - \eps
+     \end{split}
+ \end{equation}
+which will complete the theorem.
+
+ 
+ 
+ In what follows, for any $x,y \in \R^d$ let $\theta(x,y) \in [0, \pi]$ be the angle between $x,y$.  Now fix any $q \in Q$, and let $p^* = \arg \max_{p \in P} \langle q,p\rangle$, and let $\theta^* = \theta(q,p^*)$.  By construction, there always exists some set of points $S \subset P$ such that 
+\[\langle \fdeq(q) , \fded(P) \rangle  =\left\langle q, \frac{1}{|S|} \sum_{p \in S} p \right\rangle \] 
+Moreover, the RHS of the above equation is always bounded by $1$ in magnitude, since it is an average of dot products of normalized vectors $q,p \in \mathcal{S}^{d-1}$. In particular, there are two cases. In case \textbf{(A)} $S$ is the set of points $p$ with $\bvarphi(p) = \bvarphi(q)$, and in case \textbf{(B)} $S$ is the single point $\arg \min_{p \in P} \|\bvarphi(p) - \bvarphi(q)\|_0$, where $\|x-y\|_0$ denotes the hamming distance between any two bit-strings $x,y \in \{0,1\}^{\ksim}$, and we are interpreting $\bvarphi(p), \bvarphi(q)\in \{0,1\}^{\ksim}$ as such bit-strings. Also let $g_1,\dots,g_{\ksim} \in \R^d$ be the random Gaussian vectors that were drawn to define the partition function $\bvarphi$.  To analyze $S$, we first prove the following:
+\begin{claim}\label{claim:inner1}
+ For any $q \in Q$ and $p \in P$, we have 
+ \[\pr{\left| \|\bvarphi(p) - \bvarphi(q)\|_0 -  \ksim \cdot \frac{\theta(q,p)}{\pi} \right|  >  \sqrt{\eps} \ksim} \leq \left(\frac{\eps\delta }{m^2}\right) \]
+\end{claim}
+\begin{proof}
+Fix any such $p$, and for $i \in [\ksim]$ let $Z_i$ be an indicator random variable that indicates the event that $ \mathbf{1}(\langle g_i , p\rangle > 0) \neq \mathbf{1}(\langle g_i , q\rangle > 0)$. 
+First then note that $\|\bvarphi(p) - \bvarphi(q)\|_0 =\sum_{i=1}^{\ksim} Z_i$. Now by rotational invariance of Gaussians, for a Gaussian vector $g \in \R^d$  we have $\pr{\mathbf{1}(\langle g, x\rangle > 0) \neq \mathbf{1}(\langle g, y\rangle> 0)} = \frac{\theta(x,y)}{\pi}$ for any two vectors $x,y \in \R^d$. It follows that $Z_i$ is a Bernoulli random variable with $\ex{Z_i} = \frac{\theta(x,y)}{\pi}$. By a simple application of Hoeffding's inequality, we have
+
+\begin{equation}
+    \begin{split}
+        \pr{\left| \|\bvarphi(p) - \bvarphi(q)\|_0 -  \ksim \cdot \frac{\theta(q,p)}{\pi} \right|  >  \sqrt{\eps} \ksim} &=  \pr{\left| \sum_{i=1}^{\ksim} Z_i -  \ex{\sum_{i=1}^{\ksim} Z_i}\right|  >  \sqrt{\eps} \ksim}  \\
+        & \leq \exp\left(-2\eps \ksim\right)\\
+        & \leq    \left(\frac{\eps\delta }{m^2}\right)
+    \end{split}
+\end{equation}
+where we took $\ksim \geq 1/2 \cdot \log(\frac{m^2}{\eps \delta})/\eps$, which completes the proof.
+\end{proof}
+We now condition on the event in Claim \ref{claim:inner1} occurring for all $p \in P$, which holds with probability at least $1- |P|\cdot \left(\frac{\eps\delta }{m^2}\right) > 1-  \left(\frac{\eps\delta }{m}\right)$ by a union bound. Call this event $\mathcal{E}$, and condition on it in what follows.
+
+
+Now first suppose that we are in case \textbf{(B)}, and the set $S$ of points which map to the cluster $\bvarphi(q)$ is given by $S = \{p'\}$ where $p' = \arg \min_{p \in P} \|\bvarphi(p) - \bvarphi(q)\|_0$. Firstly, if $p' = p^*$, then we are done as $\langle \fdeq(q) , \fded(P)\rangle = \langle q,p^*\rangle$,  and \ref{eqn:lem2-goal} follows. Otherwise, by Claim \ref{claim:inner1} we must have had $|\theta(q,p') - \theta(q,p^*)| \leq \pi \cdot \sqrt{\eps}$. Using that the Taylor expansion of cosine is $\cos(x) = 1-x^2/2 + O(x^4)$, we have 
+\[   |\cos(\theta(q,p')) - \cos (\theta(q,p^*))| \leq O(\eps)\]
+ Thus 
+ \begin{equation}
+     \begin{split}
+         \langle \fdeq(q) , \fded(P)\rangle &= \langle q,p'\rangle \\
+         & = \cos(\theta(q,p')) \\
+         & \geq \cos (\theta(q,p^*)) - O(\eps) \\
+         & =\max_{p \in P} \langle q,p\rangle   - O(\eps) \\
+     \end{split}
+ \end{equation}
+ which proves the desired statement \ref{eqn:lem2-goal} after a constant factor rescaling of $\eps$.
+ 
+ Next, suppose we are in case \textbf{(A)} where $S = \{p \in P \;' | \; \bvarphi(p) = \bvarphi(q)\}$ is non-empty. In this case, $S$ consists of the set of points $p$ with $\|\bvarphi(p) - \bvarphi(q)\|_0 = 0$. From this, it follows again by Claim \ref{claim:inner1} that $\theta(q,p) \leq \sqrt{\eps} \pi$ for any $p \in S$. Thus, by the same reasoning as above, we have
+ \begin{equation}
+     \begin{split}
+         \langle \fdeq(q) , \fded(P)\rangle &=  \frac{1}{|S|}\sum_{p \in S}\cos(\theta(q,p')) \\
+         & \geq \frac{1}{|S|}\sum_{p \in S}(1-O(\eps))\\
+         & \geq \frac{1}{|S|}\sum_{p \in S}( \langle q,p^*\rangle -O(\eps))\\ 
+         & =\max_{p \in P} \langle q,p\rangle   - O(\eps) \\
+     \end{split}
+ \end{equation} 
+ which again proves the desired statement \ref{eqn:lem2-goal} in case \textbf{(A)}, thereby completing the full proof in the case where there are no random projections.
+ 
+ To analyze the expectation, note that using the fact that $| \langle \fdeq(q) , \fded(P)\rangle| \leq 1$ deterministically, the small $O(\eps \delta)$ probability of failure (i.e. the event that $\mathcal{E}$ does not hold) above can introduce at most a $O(\eps \delta) \leq \eps$  additive error into the expectation, which is acceptable after a constant factor rescaling of $\eps$.
+ 
+Finally, to incorporate projections, by standard consequences of the Johnson Lindenstrauss Lemma (Fact \ref{fact:JL}) setting $\dproj = O(\frac{1}{\eps^2} \log\frac{m}{\eps})$ and projecting via a random Gaussian or $\pm 1$ matrix from $\bpsi: \R^d \to \R^{\dproj}$, for any set $S \subset P$ we have that  $ \ex{\langle \bpsi(q), \bpsi(\frac{1}{|S|} \sum_{p \in S} p ) \rangle } = \langle q,\frac{1}{|S|} \sum_{p \in S} p  \rangle$, and moreover that  $\langle q,\frac{1}{|S|} \sum_{p \in S} p  \rangle = \langle \bpsi(q), \bpsi(\frac{1}{|S|} \sum_{p \in S} p ) \rangle \|q\|_2\|\frac{1}{|S|} \sum_{p \in S} p \|_2\pm \eps$ for all $q \in Q,p \in P$ with probability at least $1-\eps \delta$. Note that $\|q\|_2 = 1$, and by triangle inequality $\|\frac{1}{|S|} \sum_{p \in S} p \|_2 \leq \frac{1}{|S|} \sum_{p \in S} \| p \|_2 = 1$. Thus, letting $\fdeq(Q) , \fded(P)$ be the FDE values without the inner projection $\bpsi$ and $\fdeq^{\bpsi}(Q) , \fded^{\bpsi}(P)$ be the FDE values with the inner projection $\bpsi$, conditioned on the above it follows that 
+\begin{equation}
+    \begin{split}
+       \frac{1}{|Q|} \langle \fdeq^{\bpsi}(Q) , \fded^{\bpsi}(P) \rangle & =     \frac{1}{|Q|}\sum_{q \in Q}  \langle \fdeq^{\bpsi}(q) , \fded^{\bpsi}(P) \rangle \\
+       &= \frac{1}{|Q|}\sum_{q \in Q} \left( \langle \fdeq(q) , \fded(P) \rangle \pm \eps\right)\\
+           &= \frac{1}{|Q|} \langle \fdeq(Q) , \fded(P)   \rangle \pm \eps
+    \end{split}
+\end{equation}
+Finally, to analyze the expectation, note that since
+\[\left|\frac{1}{|Q|}\langle \fdeq(Q) , \fded(P) \rangle\right| \leq \frac{1}{|Q|}\sum_{q \in Q} \left|\langle \fdeq(q) , \fded(P) \rangle \right| \leq 1\]
+as before conditioning on this small probability event changes the expectation of \ref{eqn:lem2-goal} by at most a $\eps$ additive factor,  which completes the proof of the Theorem after a constant factor rescaling of $\eps$. 
+ 
+\end{proof}
+
+Equipped with Theorem \ref{thm:FDE-approx}, as well as the sparsity bounds from Lemma \ref{lem:runtime}, we are now prepared to prove our main theorem on approximate nearest neighbor search under the Chamfer Similarity. 
+
+\textbf{Theorem \ref{thm:FDE-ANN}}. {\it
+Fix any $\eps > 0$, query $Q$, and dataset $P = \{P_1,\dots,P_n\}$, where $Q \subset \R^d$ and each $P_i \subset \R^d$ is a set of unit vectors. Let $m=|Q| + \max_{i \in [n]}|P_i|$. 
+Then setting $\ksim = O(\frac{\log m}{\epsilon})$, $\dproj = O(\frac{1}{\eps^2} \log (m/\eps))$ and $\reps = O(\frac{1}{\eps^2}\log n)$ so that $\dfde =  m^{O(1/\eps)} \cdot  \log n$. Then setting $i^* = \arg \max_{i \in [n]}\langle \fdeq(Q) , \fded(P_i) \rangle$, with high probability (i.e. $1-1/\poly(n)$) we have:
+\[ \nCH(Q,P_{i^*}) \geq \max_{i \in [n]} \nCH(Q,P_i) - \eps \]
+Given the query $Q$, the document $P^*$ can be recovered in time $O\left(|Q| \max\{d,n\}  \frac{1}{\eps^4} \log(\frac{m}{\eps}) \log n \right)$. 
+}
+\begin{proof}[Proof of Theorem \ref{thm:FDE-ANN}]
+First note, for a single repetition, for any subset $P_j \in D$, by Theorem \ref{thm:FDE-approx} we have
+\[\ex{\langle \fdeq(Q) , \fded(P_j) \rangle} = \nCH(Q,P) \pm \eps \]
+Moreover, as demonsrated in the proof of Theorem  \ref{thm:FDE-approx}, setting $\delta = 1/10$, we have 
+\[\left|\frac{1}{|Q|}\langle \fdeq(Q) , \fded(P_j) \rangle\right| \leq \frac{1}{|Q|}\sum_{q \in Q} \left|\langle \fdeq(q) , \fded(P_j) \rangle \right| \leq 1\]
+It follows that for each repetition $i \in [\reps]$, letting $\fdeq(Q)^i , \fded(P_j)^i$ be the coordinates in the final FDE vectors coordeesponding to that repetition, the random variable $X_i = \frac{1}{|Q|}\langle \fdeq^i(Q) , \fded^i(P_j)\rangle$ is bounded in $[-1,1]$ and has expectation $\nCH(Q,P_j) \pm \eps$. By Chernoff bounds, averaging over  $\reps = O(\frac{1}{\eps^2}\log(n))$ repetitions, we have 
+
+\begin{equation}\label{eqn:corFinal}
+    \left| \sum_{i=1}^{\reps} \frac{1}{\reps|Q|}\langle \fdeq^i(Q) , \fded^i(P_j) \rangle - \nCH(Q,P_j) \right| \leq 2\eps
+\end{equation}
+with probability $1-1/n^C$ for any arbitrarily large constant $C>1$. Note also that $ \sum_{i=1}^{\reps} \frac{1}{\reps|Q|}\langle \fdeq^i(Q) , \fded^i(P_j)\rangle =  \frac{1}{\reps|Q|}\langle \fdeq(Q) , \fded(P_j)\rangle$, where $\fdeq(Q) , \fded(P_j)$ are the final FDEs. We can then condition on (\ref{eqn:corFinal}) holding for all documents $j \in [n]$, which holds with probability with probability $1-1/n^{C-1}$ by a union bound. Conditioned on this, we have  
+\begin{equation}
+    \begin{split}
+        \nCH(Q,P_{i^*}) &\geq  \frac{1}{\reps|Q|}\langle \fdeq(Q) , \fded(P_{i^*})  \rangle - 2\eps\\
+        &= \max_{j \in [n]}\frac{1}{\reps|Q|}\langle \fdeq(Q) , \fded(P_{j})  \rangle  - 2\eps\\\\
+        & \geq \max_{j \in [n]} \nCH(Q,P_j) - 6\eps
+    \end{split}
+\end{equation}
+which completes the proof of the approximation after a constant factor scaling of $\eps$. The runtime bound follows from the runtime required to compute $\fdeq(Q)$, which is $O(|Q| \reps d (\dproj + \ksim)) = O(|Q| \frac{\log n}{\eps^2} d (\frac{1}{\eps^2} \log(m/\eps) + \frac{1}{\eps}\log m) $, plus the runtime required to brute force search for the nearest dot product. Specifically, note that each of the $n$ FDE dot products can be computed in time proportional to the sparsity of $\fdeq(Q)$, which is at most $O(|Q| \dproj \reps) = O(|Q| \frac{1}{\eps^4} \log(m/\eps) \log n)$. Adding these two bounds together yields the desired runtime. 
+\end{proof}
+
+
+
+
+
+

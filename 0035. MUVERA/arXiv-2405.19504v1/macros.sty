@@ -1,0 +1,419 @@
+\usepackage[utf8]{inputenc} % (sort of) use utf-8 encoding
+\usepackage[english]{babel} % indication of language being used
+\usepackage[T1]{fontenc} % guarantee encoding stuff
+\usepackage{amsmath} % Useful AMS-provided structure
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[linesnumbered,ruled]{algorithm2e}
+% \usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{bbm} % blackboard bold (but not type 1)
+\usepackage{bm} % better bolding
+\usepackage{booktabs} % better tables
+\usepackage{braket}
+%\usepackage{cite} %simple citations
+\usepackage{csquotes}
+\usepackage{enumitem} % helps configure lists
+\usepackage{etoolbox}
+\usepackage{eucal} %j better calligraphic script
+\usepackage{ifxetex}
+%\usepackage[scaled=0.97]{inconsolata}
+\renewcommand*\ttdefault{cmvtt}
+\usepackage{mathtools} % expands mathtools
+\usepackage{microtype} % fixes small typographic errors
+\usepackage{multirow}
+%\usepackage{natbib}
+%\usepackage{mathrsfs}
+%\usepackage{todonotes} % for todos
+\usepackage{stmaryrd}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd} % making arrow diagrams
+\usepackage{thmtools}
+\usepackage{thm-restate} % restatable environment
+\usepackage{turnstile}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}  % verbatim environment + comment environment
+\usepackage{tabu}
+
+
+\usepackage{parskip} % makes paragraph have no indent, some space, fixes itemizes as well
+
+\usepackage{todonotes}
+
+
+\definecolor{b2}{RGB}{51,153,255}
+\definecolor{mygreen}{RGB}{80,180,0}
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\definecolor{citegreen}{HTML}{208054}
+\definecolor{citeblue}{HTML}{0055cc}
+\definecolor{diffcolor}{HTML}{ed4245}
+\definecolor{todopink}{HTML}{A75E81}
+\definecolor{todoorange}{HTML}{c27c0e}
+\definecolor{todoorange}{HTML}{c27c0e}
+
+ %\newcommand{\laxman}[1]{\textcolor{todopink}{[[ Laxman: #1 ]]}}
+% \newcommand{\majid}[1]{\textcolor{darkgreen}{[[ Majid: #1 ]]}}
+% \newcommand{\raj}[1]{\textcolor{todoorange}{[[ Raj: #1 ]]}}
+%% \newcommand{\jason}[1]{\textcolor{red}{[[ Jason: #1 ]]}}
+% \newcommand{\vahab}[1]{\textcolor{olive}{[[ Vahab: #1 ]]}}
+ %\newcommand{\raj}[1]{}
+
+% mostly copied from odonnell.sty and a paper of James R. Lee from the arXiv source
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{itheorem}{Theorem}
+
+\newtheorem{subclaim}{Claim}[theorem]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem*{fact*}{Fact}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem*{exercise*}{Exercise}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem*{hypothesis*}{Hypothesis}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{model}[theorem]{Model}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{openquestion}[theorem]{Open Question}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{protocol}[theorem]{Protocol}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{exercise-easy}[theorem]{Exercise}
+\newtheorem{exercise-med}[theorem]{Exercise}
+\newtheorem{exercise-hard}[theorem]{Exercise$^\star$}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{claim*}{Claim}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem*{observation*}{Observation}
+
+%
+%
+
+\newcommand\whichfont{0}
+% Probability stuff
+\ifnum\whichfont=1
+\renewcommand{\Pr}{\boldsymbol{\operatorname{Pr}}}
+\newcommand{\Cov}{\boldsymbol{\mathrm{Cov}}}
+\newcommand{\E}{\boldsymbol{\mathrm{E}}}
+\newcommand{\Var}{\boldsymbol{\mathrm{Var}}}
+\newcommand{\tv}{\mathsf{TV}}
+\newcommand{\err}{\textsf{err}}
+\else
+\renewcommand{\Pr}{\operatorname{\mathbf{Pr}}}
+\DeclareMathOperator{\Cov}{\mathbf{Cov}}
+\DeclareMathOperator*{\E}{\mathbf{E}}
+\DeclareMathOperator{\Var}{\mathbf{Var}}
+\DeclareMathOperator{\tv}{\mathsf{TV}}
+\fi
+
+% miscellaneous shortcuts
+\newcommand{\Ind}{\boldsymbol{1}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+
+\newcommand{\vphi}{\varphi}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\ot}{\otimes}
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\co}{:}                       %\newcommand{\co}{\colon}
+\newcommand{\bdry}{\partial}
+\newcommand{\grad}{\nabla}
+\newcommand{\symmdiff}{\triangle} \newcommand{\symdiff}{\symmdiff}
+\newcommand{\half}{\tfrac{1}{2}}
+
+% \newcommand{\Set}[1]{\left\{#1\right\}}
+
+%Shyam's Macros
+\newcommand{\BC}{\mathbb C}
+\newcommand{\BE}{\mathbb E}
+\newcommand{\BF}{\mathbb F}
+\newcommand{\BI}{\mathbb I}
+\newcommand{\BN}{\mathbb N}
+\newcommand{\BP}{\mathbb P}
+\newcommand{\BQ}{\mathbb Q}
+\newcommand{\BR}{\mathbb R}
+\newcommand{\BZ}{\mathbb Z}
+
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% better looking epsilon
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\from}{\colon}
+
+
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cQ}{\mathcal Q}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\cU}{\mathcal U}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cW}{\mathcal W}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\cY}{\mathcal Y}
+\newcommand{\cZ}{\mathcal Z}
+
+\newcommand{\bbB}{\mathbb B}
+\newcommand{\bbS}{\mathbb S}
+\newcommand{\bbR}{\mathbb R}
+\newcommand{\bbZ}{\mathbb Z}
+\newcommand{\bbI}{\mathbb I}
+\newcommand{\bbQ}{\mathbb Q}
+\newcommand{\bbP}{\mathbb P}
+\newcommand{\bbE}{\mathbb E}
+
+% number systems
+\newcommand{\R}{\mathbbm R}
+\newcommand{\C}{\mathbbm C}
+\newcommand{\N}{\mathbbm N}
+\newcommand{\Z}{\mathbbm Z}
+\newcommand{\F}{\mathbbm F}
+\newcommand{\Q}{\mathbbm Q}
+
+\newcommand{\bone}{\boldsymbol{1}}
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\bdelta}{\boldsymbol{\delta}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\blambda}{\boldsymbol{\lambda}}
+\newcommand{\bomega}{\boldsymbol{\omega}}
+\newcommand{\bpi}{\boldsymbol{\pi}}
+\newcommand{\bnu}{\boldsymbol{\nu}}
+\newcommand{\bphi}{\boldsymbol{\phi}}
+\newcommand{\bvarphi}{\boldsymbol{\varphi}}
+\newcommand{\bpsi}{\boldsymbol{\psi}}
+\newcommand{\bsigma}{\boldsymbol{\sigma}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+\newcommand{\bzeta}{\boldsymbol{\zeta}}
+\newcommand{\bxi}{\boldsymbol{\xi}}
+\newcommand{\ba}{\boldsymbol{a}}
+\newcommand{\bb}{\boldsymbol{b}}
+\newcommand{\bc}{\boldsymbol{c}}
+\newcommand{\bd}{\boldsymbol{d}}
+\newcommand{\be}{\boldsymbol{e}}
+\newcommand{\boldf}{\boldsymbol{f}}
+\newcommand{\bg}{\boldsymbol{g}}
+\newcommand{\bh}{\boldsymbol{h}}
+\newcommand{\bi}{\boldsymbol{i}}
+\newcommand{\bj}{\boldsymbol{j}}
+\newcommand{\bk}{\boldsymbol{k}}
+\newcommand{\bell}{\boldsymbol{\ell}}
+\newcommand{\bp}{\boldsymbol{p}}
+\newcommand{\br}{\boldsymbol{r}}
+\newcommand{\bs}{\boldsymbol{s}}
+\newcommand{\bt}{\boldsymbol{t}}
+\newcommand{\bu}{\boldsymbol{u}}
+\newcommand{\bv}{\boldsymbol{v}}
+\newcommand{\bw}{\boldsymbol{w}}
+\newcommand{\bx}{{\boldsymbol{x}}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bA}{\boldsymbol{A}}
+\newcommand{\bB}{\boldsymbol{B}}
+\newcommand{\bC}{\boldsymbol{C}}
+\newcommand{\bD}{\boldsymbol{D}}
+\newcommand{\bE}{\boldsymbol{E}}
+\newcommand{\bF}{\boldsymbol{F}}
+\newcommand{\bG}{\boldsymbol{G}}
+\newcommand{\bH}{\boldsymbol{H}}
+\newcommand{\bI}{\boldsymbol{I}}
+\newcommand{\bJ}{\boldsymbol{J}}
+\newcommand{\bL}{\boldsymbol{L}}
+\newcommand{\bP}{\boldsymbol{P}}
+\newcommand{\bQ}{\boldsymbol{Q}}
+\newcommand{\bR}{\boldsymbol{R}}
+\newcommand{\bS}{\boldsymbol{S}}
+\newcommand{\bT}{\boldsymbol{T}}
+\newcommand{\bU}{\boldsymbol{U}}
+\newcommand{\bV}{\boldsymbol{V}}
+\newcommand{\bW}{\boldsymbol{W}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+
+
+% bold calligraphic
+\newcommand{\bcalG}{\boldsymbol{\calG}} \newcommand{\calbG}{\bcalG}
+\newcommand{\bcalH}{\boldsymbol{\calH}}
+\newcommand{\bcalI}{\boldsymbol{\calI}}
+\newcommand{\bcalK}{\boldsymbol{\calK}}
+\newcommand{\bcalX}{\boldsymbol{\calX}} \newcommand{\calbX}{\bcalX}
+\newcommand{\bcalY}{\boldsymbol{\calY}} \newcommand{\calbY}{\bcalY}
+\newcommand{\bcalZ}{\boldsymbol{\calZ}} \newcommand{\calbZ}{\bcalZ}
+\newcommand{\bcalQ}{\boldsymbol{\calQ}}
+
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+
+\newcommand{\psdge}{\succeq}
+\newcommand{\psdg}{\succ}
+\newcommand{\psdle}{\preceq}
+\newcommand{\psdl}{\prec}
+
+\newcommand{\rv}[1]{\boldsymbol{#1}}
+\newcommand{\bbone}{\mathbbm 1}
+\newcommand{\Id}{I}
+
+\newcommand{\littleO}[1]{o(#1)}
+\newcommand{\bigO}[1]{\mathcal{O}\hspace{-0.1cm}\left(#1\right)}
+\newcommand{\bigOmega}[1]{\Omega\left(#1\right)}
+\newcommand{\bigOmegaT}[1]{\widetilde\Omega\left(#1\right)}
+\newcommand{\bigTheta}[1]{\Theta\left(#1\right)}
+
+%Ewin's Macros
+
+\DeclareMathOperator{\nnz}{nnz}
+\DeclareMathOperator{\polylog}{polylog}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\poly}{poly}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\odd}{{\mathrm{odd}}}
+\newcommand{\even}{{\mathrm{even}}}
+\newcommand{\ssketch}{{\textsc{best}}}
+\newcommand{\ssketches}{{\textsc{best}ies}}
+\newcommand{\aamp}{{\textsc{AMP}}}
+\newcommand{\fnleft}{\Big\|}
+\newcommand{\fnright}{\Big\|_{F}}
+\newcommand{\qsvt}{ {(\mathrm{QV})} }
+\DeclareMathOperator{\sr}{sr}
+
+\newcommand{\op}{{\mathrm{op}}}
+
+
+% Macros from CGLLTW
+
+\DeclareMathOperator{\vvec}{vec}
+\DeclareMathOperator{\sq}{SQ}
+\DeclareMathOperator{\q}{Q}
+%\DeclareMathOperator{\s}{S}
+\DeclareMathOperator{\sqcb}{\mathbf{sq}}
+\DeclareMathOperator{\scb}{\mathbf{s}}
+\DeclareMathOperator{\qcb}{\mathbf{q}}
+\DeclareMathOperator{\ncb}{\mathbf{n}}
+\DeclareMathOperator{\pcb}{\mathbf{q}}
+\DeclareMathOperator{\sqrun}{\widetilde{\mathbf{sq}}}
+
+
+\makeatletter
+\newcommand{\aineshDeclarePairedDelimiter}[3]{%
+  \expandafter\DeclarePairedDelimiter\csname RIGHT\string#1\endcsname{#2}{#3}%
+  \newcommand#1{%
+    \@ifstar{\csname RIGHT\string#1\endcsname}
+            {\@ifnextchar[{\csname RIGHT\string#1\endcsname}
+                          {\csname RIGHT\string#1\endcsname*}%
+            }%
+  }%
+}
+\makeatother
+% According to https://tex.stackexchange.com/questions/278382/cause-declarepaireddelimiter-to-switch-starred-and-nonstarred-versions, changes the behavior of DeclarePairedDelimiter to fit with existing commands
+
+
+
+\newcommand{\ex}[1]{\mathop{ \mathbb{E}\left[ #1 \right]}}
+\newcommand{\exx}[2]{\mathop{ \mathbb{E}}_{#1}\left[ #2 \right]}
+\newcommand{\bex}[1]{\mathop{ \mathbb{E}}\left[ #1 \right]}
+\newcommand{\pr}[1]{\operatorname{{\bf Pr}}\left[ #1 \right]}
+\newcommand{\prb}[2]{\operatorname{{\bf Pr}}_{#1}\left[ #2 \right]}
+\DeclareMathOperator{\Span}{Span}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\newcounter{Frame}
+\newenvironment{Frame}[1][htb]{%
+\refstepcounter{Frame}
+    \begin{mdframed}[%
+        frametitle={#1},
+        skipabove=\baselineskip plus 2pt minus 1pt,
+        skipbelow=\baselineskip plus 2pt minus 1pt,
+        linewidth=1.0pt,
+        frametitlerule=true,
+        nobreak=true
+    ]%
+}{%
+    \end{mdframed}
+}
+
+% makes amsthm things work with parskip
+\makeatletter
+\def\thm@space@setup{%
+    \thm@preskip=\parskip \thm@postskip=0pt
+}
+\makeatother
+
+\definecolor{todopink}{HTML}{A75E81}
+\definecolor{todoorange}{HTML}{c27c0e}
+\newcommand{\shyam}[1]{\textcolor{todopink}{[[ Shyam: #1 ]]}}
+\newcommand{\ainesh}[1]{\textcolor{todoorange}{[[ Ainesh: #1 ]]}}
+
+% \newcommand{\shyam}[1]{}
+% \newcommand{\ainesh}[1]{}
+
+\newcommand{\diff}[1]{\textcolor{diffcolor}{#1}}
+
+\newcommand{\ttx}[1]{\texttt{#1}}
+\newcommand\msf[1]{\mathsf{#1}}
+\newcommand{\valg}{v^{\msf{alg}}}
+\newcommand{\vsim}{\tilde v}
+\newcommand{\vssim}{v^{\msf{sim}}}
+\newcommand{\Usim}{U^{\msf{sim}}}
+\newcommand{\Dalg}{\mf D^{\msf{alg}}}
+\newcommand{\Dsim}{\mf D^{\msf{sim}}}
+\newcommand\eqdist{\overset{\msf{d}}{=}}
+\newcommand\deq{\coloneqq}
+
+\newcommand*{\addheight}[2][.5ex]{%
+  \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
+}
+
+
+\newcommand{\law}{\mathsf{law}}
+\newcommand{\GOE}{\mathsf{GOE}}
+\newcommand{\Wishart}{\mathsf{Wishart}}

@@ -1,0 +1,369 @@
+\begin{thebibliography}{10}
+
+\bibitem{AIK08}
+Alexandr Andoni, Piotr Indyk, and Robert Krauthgamer.
+\newblock Earth mover distance over high-dimensional spaces.
+\newblock In {\em Proceedings of the 19th {ACM-SIAM} Symposium on Discrete
+  Algorithms ({SODA}~'2008)}, pages 343--352, 2008.
+
+\bibitem{arriaga2006algorithmic}
+Rosa~I Arriaga and Santosh Vempala.
+\newblock An algorithmic theory of learning: Robust concepts and random
+  projection.
+\newblock {\em Machine learning}, 63:161--182, 2006.
+
+\bibitem{atasu19a}
+Kubilay Atasu and Thomas Mittelholzer.
+\newblock Linear-complexity data-parallel earth mover’s distance
+  approximations.
+\newblock In Kamalika Chaudhuri and Ruslan Salakhutdinov, editors, {\em
+  Proceedings of the 36th International Conference on Machine Learning},
+  volume~97 of {\em Proceedings of Machine Learning Research}, pages 364--373.
+  PMLR, 09--15 Jun 2019.
+
+\bibitem{athitsos2003estimating}
+Vassilis Athitsos and Stan Sclaroff.
+\newblock Estimating 3d hand pose from a cluttered image.
+\newblock In {\em 2003 IEEE Computer Society Conference on Computer Vision and
+  Pattern Recognition, 2003. Proceedings.}, volume~2, pages II--432. IEEE,
+  2003.
+
+\bibitem{bakshi2024near}
+Ainesh Bakshi, Piotr Indyk, Rajesh Jayaram, Sandeep Silwal, and Erik
+  Waingarten.
+\newblock Near-linear time algorithm for the chamfer distance.
+\newblock {\em Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem{barrow1977parametric}
+Harry~G Barrow, Jay~M Tenenbaum, Robert~C Bolles, and Helen~C Wolf.
+\newblock Parametric correspondence and chamfer matching: Two new techniques
+  for image matching.
+\newblock In {\em Proceedings: Image Understanding Workshop}, pages 21--27.
+  Science Applications, Inc, 1977.
+
+\bibitem{B96}
+Yair Bartal.
+\newblock Probabilistic approximation of metric spaces and its algorithmic
+  applications.
+\newblock In {\em Proceedings of the 37th Annual {IEEE} Symposium on
+  Foundations of Computer Science ({FOCS}~'1996)}, 1996.
+
+\bibitem{charikar2002similarity}
+Moses~S Charikar.
+\newblock Similarity estimation techniques from rounding algorithms.
+\newblock In {\em Proceedings of the thiry-fourth annual ACM symposium on
+  Theory of computing}, pages 380--388, 2002.
+
+\bibitem{10.1145/3564246.3585168}
+Xi~Chen, Vincent Cohen-Addad, Rajesh Jayaram, Amit Levi, and Erik Waingarten.
+\newblock Streaming euclidean mst to a constant factor.
+\newblock In {\em Proceedings of the 55th Annual ACM Symposium on Theory of
+  Computing}, STOC 2023, page 156–169, New York, NY, USA, 2023. Association
+  for Computing Machinery.
+
+\bibitem{CJLW22}
+Xi~Chen, Rajesh Jayaram, Amit Levi, and Erik Waingarten.
+\newblock New streaming algorithms for high dimensional emd and mst.
+\newblock In {\em Proceedings of the 54th Annual ACM SIGACT Symposium on Theory
+  of Computing}, pages 222--233, 2022.
+
+\bibitem{cohan2020specter}
+Arman Cohan, Sergey Feldman, Iz~Beltagy, Doug Downey, and Daniel~S Weld.
+\newblock Specter: Document-level representation learning using
+  citation-informed transformers.
+\newblock {\em arXiv preprint arXiv:2004.07180}, 2020.
+
+\bibitem{engels2024dessert}
+Joshua Engels, Benjamin Coleman, Vihan Lakshman, and Anshumali Shrivastava.
+\newblock Dessert: An efficient algorithm for vector set search with vector set
+  queries.
+\newblock {\em Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem{FRT04}
+Jittat Fakcharoenphol, Satish Rao, and Kunal Talwar.
+\newblock A tight bound on approximating arbitrary metrics by tree metrics.
+\newblock {\em Journal of Computer and System Sciences}, 69(3):485--497, 2004.
+
+\bibitem{fan2017point}
+Haoqiang Fan, Hao Su, and Leonidas~J Guibas.
+\newblock A point set generation network for 3d object reconstruction from a
+  single image.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 605--613, 2017.
+
+\bibitem{formal2021white}
+Thibault Formal, Benjamin Piwowarski, and St{\'e}phane Clinchant.
+\newblock A white box analysis of colbert.
+\newblock In {\em Advances in Information Retrieval: 43rd European Conference
+  on IR Research, ECIR 2021, Virtual Event, March 28--April 1, 2021,
+  Proceedings, Part II 43}, pages 257--263. Springer, 2021.
+
+\bibitem{formal2022match}
+Thibault Formal, Benjamin Piwowarski, and St{\'e}phane Clinchant.
+\newblock Match your words! a study of lexical matching in neural information
+  retrieval.
+\newblock In {\em European Conference on Information Retrieval}, pages
+  120--127. Springer, 2022.
+
+\bibitem{gao2021coil}
+Luyu Gao, Zhuyun Dai, and Jamie Callan.
+\newblock Coil: Revisit exact lexical match in information retrieval with
+  contextualized inverted list.
+\newblock {\em arXiv preprint arXiv:2104.07186}, 2021.
+
+\bibitem{guo2016quantization}
+Ruiqi Guo, Sanjiv Kumar, Krzysztof Choromanski, and David Simcha.
+\newblock Quantization based fast inner product search.
+\newblock In {\em Artificial intelligence and statistics}, pages 482--490.
+  PMLR, 2016.
+
+\bibitem{guo2020accelerating}
+Ruiqi Guo, Philip Sun, Erik Lindgren, Quan Geng, David Simcha, Felix Chern, and
+  Sanjiv Kumar.
+\newblock Accelerating large-scale inference with anisotropic vector
+  quantization.
+\newblock In {\em International Conference on Machine Learning}, pages
+  3887--3896. PMLR, 2020.
+
+\bibitem{HIM12}
+Sariel Har{-}Peled, Piotr Indyk, and Rajeev Motwani.
+\newblock Approximate nearest neighbor: Towards removing the curse of
+  dimensionality.
+\newblock {\em Theory of Computing}, 8(1):321--350, 2012.
+
+\bibitem{hofstatter2022introducing}
+Sebastian Hofst{\"a}tter, Omar Khattab, Sophia Althammer, Mete Sertkan, and
+  Allan Hanbury.
+\newblock Introducing neural bag of whole-words with colberter: Contextualized
+  late interactions using enhanced reduction.
+\newblock In {\em Proceedings of the 31st ACM International Conference on
+  Information \& Knowledge Management}, pages 737--747, 2022.
+
+\bibitem{I04b}
+Piotr Indyk.
+\newblock Algorithms for dynamic geometric problems over data streams.
+\newblock In {\em Proceedings of the 36th {ACM} Symposium on the Theory of
+  Computing ({STOC}~'2004)}, pages 373--380, 2004.
+
+\bibitem{jayaram2024massively}
+Rajesh Jayaram, Vahab Mirrokni, Shyam Narayanan, and Peilin Zhong.
+\newblock Massively parallel algorithms for high-dimensional euclidean minimum
+  spanning tree.
+\newblock In {\em Proceedings of the 2024 Annual ACM-SIAM Symposium on Discrete
+  Algorithms (SODA)}, pages 3960--3996. SIAM, 2024.
+
+\bibitem{jayaram2024data}
+Rajesh Jayaram, Erik Waingarten, and Tian Zhang.
+\newblock Data-dependent lsh for the earth mover's distance.
+\newblock In {\em Proceedings of the 56th Annual ACM Symposium on Theory of
+  Computing}, 2024.
+
+\bibitem{diskann}
+Suhas Jayaram~Subramanya, Fnu Devvrit, Harsha~Vardhan Simhadri, Ravishankar
+  Krishnawamy, and Rohan Kadekodi.
+\newblock Diskann: Fast accurate billion-point nearest neighbor search on a
+  single node.
+\newblock {\em Advances in Neural Information Processing Systems}, 32, 2019.
+
+\bibitem{jegou2010product}
+Herve Jegou, Matthijs Douze, and Cordelia Schmid.
+\newblock Product quantization for nearest neighbor search.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  33(1):117--128, 2010.
+
+\bibitem{jiang2018gal}
+Li~Jiang, Shaoshuai Shi, Xiaojuan Qi, and Jiaya Jia.
+\newblock Gal: Geometric adversarial loss for single-view 3d-object
+  reconstruction.
+\newblock In {\em Proceedings of the European conference on computer vision
+  (ECCV)}, pages 802--816, 2018.
+
+\bibitem{khattab2021baleen}
+Omar Khattab, Christopher Potts, and Matei Zaharia.
+\newblock Baleen: Robust multi-hop reasoning at scale via condensed retrieval.
+\newblock {\em Advances in Neural Information Processing Systems},
+  34:27670--27682, 2021.
+
+\bibitem{khattab2020colbert}
+Omar Khattab and Matei Zaharia.
+\newblock Colbert: Efficient and effective passage search via contextualized
+  late interaction over bert.
+\newblock In {\em Proceedings of the 43rd International ACM SIGIR conference on
+  research and development in Information Retrieval}, pages 39--48, 2020.
+
+\bibitem{kusner2015word}
+Matt Kusner, Yu~Sun, Nicholas Kolkin, and Kilian Weinberger.
+\newblock From word embeddings to document distances.
+\newblock In {\em International conference on machine learning}, pages
+  957--966. PMLR, 2015.
+
+\bibitem{kwiatkowski2019natural}
+Tom Kwiatkowski, Jennimaria Palomaki, Olivia Redfield, Michael Collins, Ankur
+  Parikh, Chris Alberti, Danielle Epstein, Illia Polosukhin, Matthew Kelcey,
+  Jacob Devlin, et~al.
+\newblock Natural questions: A benchmark for question answering research.
+\newblock {\em Transactions of the Association for Computational Linguistics},
+  2019.
+
+\bibitem{lee2024rethinking}
+Jinhyuk Lee, Zhuyun Dai, Sai Meher~Karthik Duddu, Tao Lei, Iftekhar Naim,
+  Ming-Wei Chang, and Vincent Zhao.
+\newblock Rethinking the role of token retrieval in multi-vector retrieval.
+\newblock {\em Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem{li2019lbs}
+Chun-Liang Li, Tomas Simon, Jason Saragih, Barnab{\'a}s P{\'o}czos, and Yaser
+  Sheikh.
+\newblock Lbs autoencoder: Self-supervised fitting of articulated meshes to
+  point clouds.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and
+  Pattern Recognition}, pages 11967--11976, 2019.
+
+\bibitem{li2021learning}
+Yulong Li, Martin Franz, Md~Arafat Sultan, Bhavani Iyer, Young-Suk Lee, and
+  Avirup Sil.
+\newblock Learning cross-lingual ir from an english retriever.
+\newblock {\em arXiv preprint arXiv:2112.08185}, 2021.
+
+\bibitem{lin2024fine}
+Weizhe Lin, Jinghong Chen, Jingbiao Mei, Alexandru Coca, and Bill Byrne.
+\newblock Fine-grained late-interaction multi-modal retrieval for retrieval
+  augmented visual question answering.
+\newblock {\em Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem{lupart2023ms}
+Simon Lupart, Thibault Formal, and St{\'e}phane Clinchant.
+\newblock Ms-shift: An analysis of ms marco distribution shifts on neural
+  retrieval.
+\newblock In {\em European Conference on Information Retrieval}, pages
+  636--652. Springer, 2023.
+
+\bibitem{macavaney2024reproducibility}
+Sean MacAvaney and Nicola Tonellotto.
+\newblock A reproducibility study of plaid.
+\newblock {\em arXiv preprint arXiv:2404.14989}, 2024.
+
+\bibitem{parlayann}
+Magdalen~Dobson Manohar, Zheqi Shen, Guy Blelloch, Laxman Dhulipala, Yan Gu,
+  Harsha~Vardhan Simhadri, and Yihan Sun.
+\newblock Parlayann: Scalable and deterministic parallel graph-based
+  approximate nearest neighbor search algorithms.
+\newblock In {\em Proceedings of the 29th ACM SIGPLAN Annual Symposium on
+  Principles and Practice of Parallel Programming}, pages 270--285, 2024.
+
+\bibitem{muennighoff2022mteb}
+Niklas Muennighoff, Nouamane Tazi, Lo{\"\i}c Magne, and Nils Reimers.
+\newblock Mteb: Massive text embedding benchmark.
+\newblock {\em arXiv preprint arXiv:2210.07316}, 2022.
+
+\bibitem{nguyen2016ms}
+Tri Nguyen, Mir Rosenberg, Xia Song, Jianfeng Gao, Saurabh Tiwary, Rangan
+  Majumder, and Li~Deng.
+\newblock Ms marco: A human-generated machine reading comprehension dataset.
+\newblock 2016.
+
+\bibitem{paranjape2021hindsight}
+Ashwin Paranjape, Omar Khattab, Christopher Potts, Matei Zaharia, and
+  Christopher~D Manning.
+\newblock Hindsight: Posterior-guided training of retrievers for improved
+  open-ended generation.
+\newblock {\em arXiv preprint arXiv:2110.07752}, 2021.
+
+\bibitem{qian2022multi}
+Yujie Qian, Jinhyuk Lee, Sai Meher~Karthik Duddu, Zhuyun Dai, Siddhartha
+  Brahma, Iftekhar Naim, Tao Lei, and Vincent~Y Zhao.
+\newblock Multi-vector retrieval as sparse alignment.
+\newblock {\em arXiv preprint arXiv:2211.01267}, 2022.
+
+\bibitem{santhanam2022plaid}
+Keshav Santhanam, Omar Khattab, Christopher Potts, and Matei Zaharia.
+\newblock Plaid: an efficient engine for late interaction retrieval.
+\newblock In {\em Proceedings of the 31st ACM International Conference on
+  Information \& Knowledge Management}, pages 1747--1756, 2022.
+
+\bibitem{santhanam2021colbertv2}
+Keshav Santhanam, Omar Khattab, Jon Saad-Falcon, Christopher Potts, and Matei
+  Zaharia.
+\newblock Colbertv2: Effective and efficient retrieval via lightweight late
+  interaction.
+\newblock {\em arXiv preprint arXiv:2112.01488}, 2021.
+
+\bibitem{sudderth2004visual}
+Erik~B Sudderth, Michael~I Mandel, William~T Freeman, and Alan~S Willsky.
+\newblock Visual hand tracking using nonparametric belief propagation.
+\newblock In {\em 2004 Conference on Computer Vision and Pattern Recognition
+  Workshop}, pages 189--189. IEEE, 2004.
+
+\bibitem{thakur2021beir}
+Nandan Thakur, Nils Reimers, Andreas R{\"u}ckl{\'e}, Abhishek Srivastava, and
+  Iryna Gurevych.
+\newblock Beir: A heterogenous benchmark for zero-shot evaluation of
+  information retrieval models.
+\newblock {\em arXiv preprint arXiv:2104.08663}, 2021.
+
+\bibitem{wachsmuth2018retrieval}
+Henning Wachsmuth, Shahbaz Syed, and Benno Stein.
+\newblock Retrieval of the best counterargument without prior topic knowledge.
+\newblock In {\em Proceedings of the 56th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 241--251, 2018.
+
+\bibitem{wan2019transductive}
+Ziyu Wan, Dongdong Chen, Yan Li, Xingguang Yan, Junge Zhang, Yizhou Yu, and
+  Jing Liao.
+\newblock Transductive zero-shot learning with visual structure constraint.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{wang2021pseudo}
+Xiao Wang, Craig Macdonald, Nicola Tonellotto, and Iadh Ounis.
+\newblock Pseudo-relevance feedback for multiple representation dense
+  retrieval.
+\newblock In {\em Proceedings of the 2021 ACM SIGIR International Conference on
+  Theory of Information Retrieval}, pages 297--306, 2021.
+
+\bibitem{wang2023reproducibility}
+Xiao Wang, Craig Macdonald, Nicola Tonellotto, and Iadh Ounis.
+\newblock Reproducibility, replicability, and insights into dense
+  multi-representation retrieval models: from colbert to col.
+\newblock In {\em Proceedings of the 46th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}, pages 2552--2561, 2023.
+
+\bibitem{weller2023nevir}
+Orion Weller, Dawn Lawrie, and Benjamin Van~Durme.
+\newblock Nevir: Negation in neural information retrieval.
+\newblock {\em arXiv preprint arXiv:2305.07614}, 2023.
+
+\bibitem{woodruff2014sketching}
+David~P Woodruff et~al.
+\newblock Sketching as a tool for numerical linear algebra.
+\newblock {\em Foundations and Trends{\textregistered} in Theoretical Computer
+  Science}, 10(1--2):1--157, 2014.
+
+\bibitem{yang2018hotpotqa}
+Zhilin Yang, Peng Qi, Saizheng Zhang, Yoshua Bengio, William~W Cohen, Ruslan
+  Salakhutdinov, and Christopher~D Manning.
+\newblock Hotpotqa: A dataset for diverse, explainable multi-hop question
+  answering.
+\newblock {\em arXiv preprint arXiv:1809.09600}, 2018.
+
+\bibitem{yao2021filip}
+Lewei Yao, Runhui Huang, Lu~Hou, Guansong Lu, Minzhe Niu, Hang Xu, Xiaodan
+  Liang, Zhenguo Li, Xin Jiang, and Chunjing Xu.
+\newblock Filip: Fine-grained interactive language-image pre-training.
+\newblock {\em arXiv preprint arXiv:2111.07783}, 2021.
+
+\bibitem{zhan2022evaluating}
+Jingtao Zhan, Xiaohui Xie, Jiaxin Mao, Yiqun Liu, Jiafeng Guo, Min Zhang, and
+  Shaoping Ma.
+\newblock Evaluating interpolation and extrapolation performance of neural
+  retrieval models.
+\newblock In {\em Proceedings of the 31st ACM International Conference on
+  Information \& Knowledge Management}, pages 2486--2496, 2022.
+
+\bibitem{zhang2016neural}
+Ye~Zhang, Md~Mustafizur Rahman, Alex Braylan, Brandon Dang, Heng-Lu Chang,
+  Henna Kim, Quinten McNamara, Aaron Angert, Edward Banner, Vivek Khetan,
+  et~al.
+\newblock Neural information retrieval: A literature review.
+\newblock {\em arXiv preprint arXiv:1611.06792}, 2016.
+
+\end{thebibliography}
