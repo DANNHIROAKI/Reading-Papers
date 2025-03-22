@@ -1,0 +1,1027 @@
+# ${\mathrm{I}}^{3}$ Retriever: Incorporating Implicit Interaction in Pre-trained Language Models for Passage Retrieval
+
+# ${\mathrm{I}}^{3}$ 检索器：在预训练语言模型中融入隐式交互以进行段落检索
+
+Qian Dong
+
+董谦
+
+dq22@mails.tsinghua.edu.cn
+
+DCST, Tsinghua University&
+
+清华大学数据科学与信息技术研究所（DCST）&
+
+Quan Cheng Laboratory&
+
+全成实验室&
+
+Zhongguancun Laboratory
+
+中关村实验室
+
+Beijing, China
+
+中国，北京
+
+Yiding Liu
+
+刘一丁
+
+liuyiding.tanh@gmail.com
+
+Baidu Inc.
+
+百度公司
+
+Beijing, China
+
+中国，北京
+
+Qingyao Ai*
+
+艾清瑶*
+
+aiqy@tsinghua.edu.cn
+
+DCST, Tsinghua University&
+
+清华大学数据科学与信息技术研究所（DCST）&
+
+Quan Cheng Laboratory&
+
+全成实验室&
+
+Zhongguancun Laboratory
+
+中关村实验室
+
+Beijing, China
+
+中国，北京
+
+Haitao Li
+
+李海涛
+
+liht22@mails.tsinghua.edu.cn
+
+DCST, Tsinghua University&
+
+清华大学数据科学与信息技术研究所（DCST）&
+
+Quan Cheng Laboratory&
+
+泉城实验室（Quan Cheng Laboratory）
+
+Zhongguancun Laboratory
+
+中关村实验室（Zhongguancun Laboratory）
+
+Beijing, China
+
+中国，北京
+
+Shuaiqiang Wang
+
+王帅强
+
+shqiang.wang@gmail.com
+
+Baidu Inc.
+
+百度公司（Baidu Inc.）
+
+Beijing, China
+
+中国，北京
+
+Yiqun Liu
+
+刘奕群
+
+yiqunliu@tsinghua.edu.cn
+
+DCST, Tsinghua University&
+
+清华大学计算机科学与技术系（DCST, Tsinghua University）
+
+Quan Cheng Laboratory&
+
+泉城实验室（Quan Cheng Laboratory）
+
+Zhongguancun Laboratory
+
+中关村实验室（Zhongguancun Laboratory）
+
+Beijing, China
+
+中国，北京
+
+Dawei Yin
+
+尹大为
+
+yindawei@acm.org
+
+Baidu Inc.
+
+百度公司（Baidu Inc.）
+
+Beijing, China
+
+中国，北京
+
+Shaoping Ma
+
+马少平
+
+msp@tsinghua.edu.cn
+
+DCST, Tsinghua University&
+
+清华大学计算机科学与技术系（DCST, Tsinghua University）
+
+Quan Cheng Laboratory&
+
+全成实验室&
+
+Zhongguancun Laboratory
+
+中关村实验室
+
+Beijing, China
+
+中国，北京
+
+## ABSTRACT
+
+## 摘要
+
+Passage retrieval is a fundamental task in many information systems, such as web search and question answering, where both efficiency and effectiveness are critical concerns. In recent years, neural retrievers based on pre-trained language models (PLM), such as dual-encoders, have achieved huge success. Yet, studies have found that the performance of dual-encoders are often limited due to the neglecting of the interaction information between queries and candidate passages. Therefore, various interaction paradigms have been proposed to improve the performance of vanilla dual-encoders. Particularly, recent state-of-the-art methods often introduce late-interaction during the model inference process. However, such late-interaction based methods usually bring extensive computation and storage cost on large corpus. Despite their effectiveness, the concern of efficiency and space footprint is still an important factor that limits the application of interaction-based neural retrieval models. To tackle this issue, we Incorporate Implicit Interaction into dual-encoders,and propose ${\mathbf{I}}^{3}$ retriever. In particular,our implicit interaction paradigm leverages generated pseudo-queries to simulate query-passage interaction, which jointly optimizes with query and passage encoders in an end-to-end manner. It can be fully pre-computed and cached, and its inference process only
+
+段落检索是许多信息系统（如网络搜索和问答系统）中的一项基础任务，在这些系统中，效率和效果都是至关重要的考量因素。近年来，基于预训练语言模型（PLM）的神经检索器，如双编码器，取得了巨大成功。然而，研究发现，双编码器的性能往往受到限制，因为它忽略了查询和候选段落之间的交互信息。因此，人们提出了各种交互范式来提高普通双编码器的性能。特别是，最近的先进方法通常在模型推理过程中引入后期交互。然而，这种基于后期交互的方法通常会在大型语料库上带来大量的计算和存储成本。尽管这些方法有效，但效率和空间占用问题仍然是限制基于交互的神经检索模型应用的一个重要因素。为了解决这个问题，我们将隐式交互融入双编码器，并提出了${\mathbf{I}}^{3}$检索器。具体来说，我们的隐式交互范式利用生成的伪查询来模拟查询 - 段落交互，它以端到端的方式与查询和段落编码器进行联合优化。它可以完全预先计算并缓存，其推理过程仅
+
+involves simple dot product operation of the query vector and passage vector, which makes it as efficient as the vanilla dual encoders. We conduct comprehensive experiments on MSMARCO and TREC2019 Deep Learning Datasets,demonstrating the ${\mathrm{I}}^{3}$ retriever's superiority in terms of both effectiveness and efficiency. Moreover, the proposed implicit interaction is compatible with special pre-training and knowledge distillation for passage retrieval, which brings a new state-of-the-art performance. The codes are available at https://github.com/Deriq-Qian-Dong/III-Retriever.
+
+涉及查询向量和段落向量的简单点积运算，这使得它与普通双编码器一样高效。我们在MSMARCO和TREC2019深度学习数据集上进行了全面实验，证明了${\mathrm{I}}^{3}$检索器在效果和效率方面的优越性。此外，所提出的隐式交互与用于段落检索的特殊预训练和知识蒸馏兼容，带来了新的先进性能。代码可在https://github.com/Deriq-Qian-Dong/III-Retriever获取。
+
+## CCS CONCEPTS
+
+## 计算机与通信安全会议（CCS）概念
+
+- Information systems $\rightarrow$ Language models; Learning to rank; Similarity measures; Novelty in information retrieval.
+
+- 信息系统 $\rightarrow$ 语言模型；排序学习；相似度度量；信息检索中的新颖性。
+
+## KEYWORDS
+
+## 关键词
+
+Learning to Rank; Language models; Semantic Matching
+
+排序学习；语言模型；语义匹配
+
+## 1 INTRODUCTION
+
+## 1 引言
+
+Passage retrieval is fundamental in modern information retrieval (IR) systems, typically serving as a preceding stage of reranking. The aim of passage retrieval is to find relevant passages from a large corpus for a given query, which is crucial to the final ranking performance $\left\lbrack  {3,{24},{26},{62},{68}}\right\rbrack$ . Conventional methods for passage retrieval (e.g., BM25 [50]) usually consider lexical matching between the terms of query and passage. In recent years, neural retrievers based on pre-trained language models (PLMs) have prospered and achieved the state-of-the-art performance.
+
+段落检索是现代信息检索（IR）系统的基础，通常作为重排序的前一个阶段。段落检索的目的是从大型语料库中为给定查询找到相关段落，这对最终的排序性能至关重要 $\left\lbrack  {3,{24},{26},{62},{68}}\right\rbrack$。传统的段落检索方法（如BM25 [50]）通常考虑查询词和段落词之间的词法匹配。近年来，基于预训练语言模型（PLM）的神经检索器蓬勃发展，并取得了先进的性能。
+
+---
+
+<!-- Footnote -->
+
+*Corresponding author.
+
+* 通讯作者。
+
+<!-- Footnote -->
+
+---
+
+<!-- Media -->
+
+<!-- figureText: Fully-connected Aggregator Feature, Feature, Query Passage ^ Query Passage (b) Dual-encoder Aggregator Feature, Feature, Interactor Query Passage Query Encoder Reconstructor Query Passage (d) ${\mathrm{I}}^{3}$ retriever ${\text{Feature}}_{q,p}$ Cross Encoder Query Passage (a) Cross-encoder Aggregator ${\text{Feature}}_{q,p}$ Interactor Feature ${}_{q}$ Query Passage Encoder Encoder Query Passage (c) Late-interaction encoder -->
+
+<img src="https://cdn.noedgeai.com/0195aed2-0422-793f-b80a-6fbc4ea57f27_1.jpg?x=172&y=262&w=688&h=708&r=0"/>
+
+Figure 1: Illustration of three conventional PLM-based IR models: (a) cross-encoder, (b) dual-encoder, (c) late-interaction encoder, and our proposed (d) ${\mathrm{I}}^{3}$ retriever.
+
+图1：三种传统基于PLM的信息检索模型的示意图：（a）交叉编码器，（b）双编码器，（c）后期交互编码器，以及我们提出的（d）${\mathrm{I}}^{3}$检索器。
+
+<!-- Media -->
+
+In particular, existing PLM-based IR models can be broadly categorized into cross-encoders [40], dual-encoders [24] and late-interaction encoders [16, 25], as shown in Figures 1(a), 1(b) and 1(c), respectively. Without considering the fine-grained interactions between the tokens of query and passage, the major merit of dual-encoders is their high efficiency in inference. Yet, their effectiveness is usually considered sub-optimal compared with cross-encoders or other interaction-based models. Cross-encoders take the concatenation of query and passage as input to perform full interaction that effectively captures relevance features. As query-passage interactions are important factors in relevance modeling [17], cross-encoders usually have superior ranking performance. However, their applications are limited to small collections (e.g., the top passages retrieved by dual-encoders) due to their high inference latency. To combine the merits of both methods, late-interaction encoders adopt separate query/passage encoding and apply lightweight interaction schemes (i.e., late interactions) between the vectors of query and passage. They are usually more effective than dual-encoders for passage retrieval and less computationally expensive than cross-encoders.
+
+具体来说，现有的基于PLM的信息检索模型大致可分为交叉编码器 [40]、双编码器 [24] 和后期交互编码器 [16, 25]，分别如图1（a）、1（b）和1（c）所示。双编码器不考虑查询和段落的标记之间的细粒度交互，其主要优点是推理效率高。然而，与交叉编码器或其他基于交互的模型相比，其效果通常被认为不是最优的。交叉编码器将查询和段落的拼接作为输入，进行全面交互，从而有效地捕捉相关性特征。由于查询 - 段落交互是相关性建模的重要因素 [17]，交叉编码器通常具有优越的排序性能。然而，由于其推理延迟高，其应用仅限于小集合（如双编码器检索到的前几个段落）。为了结合这两种方法的优点，后期交互编码器采用单独的查询/段落编码，并在查询向量和段落向量之间应用轻量级交互方案（即后期交互）。对于段落检索，它们通常比双编码器更有效，并且计算成本比交叉编码器低。
+
+Despite their effectiveness, late-interaction models are still suboptimal for passage retrieval on large corpus, mainly due to two problems. First, effective late-interaction models usually relies on token-level representations of passages to allow subsequent token-level interactions $\left\lbrack  {{25},{52}}\right\rbrack$ ,where the storage cost of such multi-vector passage representation is enormous. Second, compared to dual-encoders, which adopts simple dot-product operation between single-vector representations of queries and passages, late-interaction models still requires extra computation for each query-passage pair. Such cost could be magnified by the scale of massive corpus and eventually cause unacceptable efficiency degeneration [28]. As such, existing late-interaction methods can hardly be applied to real-world scenarios that require low inference latency and storage cost.
+
+尽管后期交互模型很有效，但对于大型语料库上的段落检索而言，它们仍然不是最优的，主要有两个问题。首先，有效的后期交互模型通常依赖于段落的词元级表示，以实现后续的词元级交互 $\left\lbrack  {{25},{52}}\right\rbrack$，而这种多向量段落表示的存储成本巨大。其次，与双编码器（采用查询和段落的单向量表示之间的简单点积运算）相比，后期交互模型仍然需要为每对查询 - 段落进行额外的计算。这种成本会因大规模语料库的规模而放大，最终导致不可接受的效率下降 [28]。因此，现有的后期交互方法很难应用于需要低推理延迟和存储成本的现实场景。
+
+To address these limitations and explore a better solution w.r.t. effectiveness and efficiency for passage retrieval, we propose a novel yet practical paradigm that Incorporates Implicit Interaction $\left( {\mathrm{I}}^{3}\right)$ in dual-encoders. Unlike existing interaction schemes that requires explicit query text as input, the implicit interaction is conducted between a passage and the pseudo-query vectors generated from the passage. Note that the generated pseudo-query vectors are implicit (i.e., latent) without explicit textual interpretation. Such implicit interaction paradigm is appealing, as 1) it is fully decoupled from actual query, and thus allows high online efficiency with offline caching of passage vectors, and 2) compared with using an off-the-shelf generative model [41] to explicitly generate textual pseudo-query, our pseudo-query is represented by latent vectors that are jointly optimized with the dual-encoder backbone, which is more expressive for the downstream retrieval task.
+
+为了解决这些局限性，并探索一种在段落检索的有效性和效率方面更好的解决方案，我们提出了一种新颖且实用的范式，即在双编码器中融入隐式交互 $\left( {\mathrm{I}}^{3}\right)$。与现有的需要显式查询文本作为输入的交互方案不同，隐式交互是在段落和从该段落生成的伪查询向量之间进行的。请注意，生成的伪查询向量是隐式的（即潜在的），没有显式的文本解释。这种隐式交互范式很有吸引力，因为 1) 它与实际查询完全解耦，因此通过对段落向量进行离线缓存可以实现较高的在线效率；2) 与使用现成的生成模型 [41] 显式生成文本伪查询相比，我们的伪查询由与双编码器主干联合优化的潜在向量表示，这对下游检索任务更具表现力。
+
+To conduct implicit interaction, we propose a novel model architecture as shown in Figure 1(d). It advances vanilla dual-encoders with two auxiliary modules. First, we introduce a lightweight generative module namely query reconstructor to generate pseudo-query vectors for a given passage. Next, we apply a query-passage interactor that takes the concatenation of the passage vectors and the generated pseudo-query vectors as input, to perform implicit interaction. The interactor outputs query-aware passage vectors for each passage, which can be pre-computed and cached before deploying the model for online inference. The final query-passage relevance scores can be computed with simple dot-product operation, which gives our model the same high efficiency and low storage cost as dual-encoders. The superior balance between effectiveness and efficiency makes our model more attractive in real-world applications. We summarize our main contributions as follows:
+
+为了进行隐式交互，我们提出了一种如图 1(d) 所示的新颖模型架构。它通过两个辅助模块改进了普通的双编码器。首先，我们引入了一个轻量级的生成模块，即查询重构器，为给定的段落生成伪查询向量。接下来，我们应用一个查询 - 段落交互器，它将段落向量和生成的伪查询向量的拼接作为输入，以执行隐式交互。交互器为每个段落输出查询感知的段落向量，这些向量可以在部署模型进行在线推理之前预先计算并缓存。最终的查询 - 段落相关性得分可以通过简单的点积运算计算得出，这使得我们的模型与双编码器一样具有高效率和低存储成本。在有效性和效率之间的出色平衡使我们的模型在实际应用中更具吸引力。我们总结主要贡献如下：
+
+- We propose a novel PLM-based retrieval model,namely ${\mathrm{I}}^{3}$ retriever, which incorporates implicit interaction in dual-encoders.
+
+- 我们提出了一种基于预训练语言模型（PLM）的新型检索模型，即 ${\mathrm{I}}^{3}$ 检索器，它在双编码器中融入了隐式交互。
+
+- We introduce two modules in ${\mathrm{I}}^{3}$ retriever that are jointly trained with query and passage encoders in an end-to-end manner, i.e., query reconstructor and query-passage interactor. The query reconstructor is able to generate pseudo-queries for the query-passage interactor, which subsequently encodes query-aware information in the final passage vectors.
+
+- 我们在 ${\mathrm{I}}^{3}$ 检索器中引入了两个模块，即查询重构器和查询 - 段落交互器，它们与查询和段落编码器以端到端的方式联合训练。查询重构器能够为查询 - 段落交互器生成伪查询，随后在最终的段落向量中编码查询感知信息。
+
+- We conduct comprehensive evaluation on large scale datasets. The results show that ${\mathrm{I}}^{3}$ is able to achieve superior performance w.r.t both effectiveness and efficiency for passage retrieval. We also conduct a thorough study to clarify the effects of implicit interaction.
+
+- 我们在大规模数据集上进行了全面评估。结果表明，${\mathrm{I}}^{3}$ 在段落检索的有效性和效率方面都能取得优异的性能。我们还进行了深入研究，以阐明隐式交互的效果。
+
+## 2 RELATED WORK
+
+## 2 相关工作
+
+In this section, we briefly review some existing studies with respect to three topics, i.e., traditional neural IR models, PLM-based IR models and query generation for IR.
+
+在本节中，我们简要回顾一些关于三个主题的现有研究，即传统神经信息检索（IR）模型、基于预训练语言模型（PLM）的信息检索模型以及用于信息检索的查询生成。
+
+### 2.1 Conventional Neural IR Models
+
+### 2.1 传统神经信息检索模型
+
+Modern information retrieval systems usually adopt the two-stage paradigm, i.e. retrieval-then-reranking. Neural IR models can be ${\mathrm{I}}^{3}$ Retriever: Incorporating Implicit Interaction in Pre-trained Language Models for Passage Retrieval categorized as either retrievers or rerankers based on their served stage. Retrievers can pre-compute the vector representation of passages in corpus and thus perform efficient retrieval via approximate nearest neighbor algorithms. Therefore, retrievers usually define sophisticated representation learning module. DSSM [21] is a representative neural retriever, which uses the fully-connected network for representation learning. Besides, convolutional networks $\left\lbrack  {{12},{20},{45},{53}}\right\rbrack$ and recurrent networks $\left\lbrack  {{44},{56}}\right\rbrack$ are also widely used for representation learning in neural retrievers. On the other hand, rerankers effectively capture relevance features through sufficient interactions. The interaction module plays a vital role in the effectiveness of rerankers. DRMM [17] designs a matching histogram mapping to model the interaction between terms of query and passage. Conv-KNRM [7] and Arc-II [20] use convolutional networks as the interaction module. However, the computational overhead of rerankers during inference is significantly higher than that of retrievers, and thus rerankers only serve a small set of candidates at the final stage.
+
+现代信息检索系统通常采用两阶段范式，即先检索后重排序。神经信息检索（IR）模型根据其所处阶段可分为检索器（Retriever）或重排序器（Reranker）。检索器可以预先计算语料库中文档的向量表示，从而通过近似最近邻算法进行高效检索。因此，检索器通常会定义复杂的表示学习模块。深度语义匹配模型（DSSM）[21]是一种具有代表性的神经检索器，它使用全连接网络进行表示学习。此外，卷积网络$\left\lbrack  {{12},{20},{45},{53}}\right\rbrack$和循环网络$\left\lbrack  {{44},{56}}\right\rbrack$也广泛用于神经检索器的表示学习。另一方面，重排序器通过充分的交互有效地捕捉相关性特征。交互模块在重排序器的有效性方面起着至关重要的作用。深度相关性匹配模型（DRMM）[17]设计了一个匹配直方图映射来建模查询词和文档词之间的交互。卷积核化神经匹配模型（Conv - KNRM）[7]和Arc - II[20]使用卷积网络作为交互模块。然而，重排序器在推理过程中的计算开销明显高于检索器，因此重排序器仅在最后阶段处理一小部分候选文档。
+
+### 2.2 PLM-based IR models
+
+### 2.2 基于预训练语言模型（PLM）的信息检索模型
+
+PLM-based retriever. PLM-based retrievers usually compute low dimensional representations for the query and passage using the encoder of pre-trained transformer [55], such as BERT [9] and RoBERTa [31]. DPR [24] is the first to leverage PLM for the task of semantic retrieval, while extensive methods are subsequently proposed to improve the effectiveness. In particular, most of the existing PLM-based retrievers improve the model performance from the following aspects. (1) By introducing late-interactions after encoding: ColBERT [25], COIL [16] and ME-BERT [35] are three representative studies that explicitly model the interactions after query/passage encodings. The performance is largely boosted by the interactions compared with DPR (i.e., vanilla dual-encoder), while the late interaction also brings significant computational overhead. (2) By designing effective fine-tuning processes: For example, ANCE [63] proposes to a hard negative sampling technique that greatly improve the effectiveness. Moreover, RocketQAv1 [46] and RocketQAv2 [49] boost the performance of dense retrieval models by leveraging the power of cross-encoder. The relevance features captured through sufficient interaction by the cross-encoder could be properly transferred to retrievers in a cascade or joint training manner. ERNIE-Search [34] narrows the divide between cross-encoder and dual-encoder models through on-the-fly distillation in the process of fine-tuning. ColBERTv2 [52] further improves ColBERT by employing fine-tuning with distillation. (3) By designing pre-training tasks tailored for retrieval: A handful of studies focused on constructing pseudo-training data for retrieval-oriented pre-training, such as ICT [2], COSTA [37], DCE [29], etc. Besides, several studies [27, 32, 33, 58-60, 60, 67] employ weak generative modules (i.e. decoder) to enhance the query/passage encoding through pre-training. Notably, after pre-training, the weak decoder is discarded and only the enhanced encoder is employed as the backbone of retriever. In this work, we propose a novel approach that incorporates implicit interaction modeling into the dual-encoder architecture by introducing a generative module. To the best of our knowledge, this is the first attempt to introduce a generative module as a backbone in a retriever.
+
+基于预训练语言模型的检索器。基于预训练语言模型的检索器通常使用预训练变压器（如BERT[9]和RoBERTa[31]）的编码器为查询和文档计算低维表示。密集段落检索器（DPR）[24]是首个利用预训练语言模型进行语义检索任务的模型，随后提出了大量方法来提高其有效性。特别是，现有的大多数基于预训练语言模型的检索器从以下几个方面改进模型性能。（1）通过在编码后引入后期交互：ColBERT[25]、COIL[16]和ME - BERT[35]是三项具有代表性的研究，它们在查询/文档编码后显式地对交互进行建模。与DPR（即普通双编码器）相比，交互大大提高了性能，但后期交互也带来了显著的计算开销。（2）通过设计有效的微调过程：例如，ANCE[63]提出了一种难负样本采样技术，极大地提高了有效性。此外，RocketQAv1[46]和RocketQAv2[49]通过利用交叉编码器的能力提升了密集检索模型的性能。交叉编码器通过充分交互捕捉到的相关性特征可以以级联或联合训练的方式适当地转移到检索器中。ERNIE - Search[34]在微调过程中通过即时蒸馏缩小了交叉编码器和双编码器模型之间的差距。ColBERTv2[52]通过采用带蒸馏的微调进一步改进了ColBERT。（3）通过设计专门用于检索的预训练任务：少数研究专注于构建用于面向检索的预训练的伪训练数据，如基于隐式上下文训练（ICT）[2]、COSTA[37]、深度对比编码（DCE）[29]等。此外，一些研究[27, 32, 33, 58 - 60, 60, 67]采用弱生成模块（即解码器）通过预训练来增强查询/文档编码。值得注意的是，预训练后，弱解码器被丢弃，仅使用增强后的编码器作为检索器的骨干。在这项工作中，我们提出了一种新颖的方法，通过引入生成模块将隐式交互建模融入双编码器架构。据我们所知，这是首次尝试在检索器中引入生成模块作为骨干。
+
+PLM-based reranker. PLM-based rerankers usually take the concatenated query and passage as input and perform full interaction between query and passage via self-attention $\left\lbrack  {{11},{13},{18}}\right\rbrack$ . In particular, monoBERT [40] is the first work that re-purpose BERT as a reranker. duoBERT [42] integrates monoBERT in a multistage ranking pipeline and further adopts a pairwise classification framework for the final re-ranking. UED [64] utilizes a unified encoder-decoder framework to jointly optimize passage reranking and query generation tasks, demonstrating that these two tasks could facilitate each other. KERM [10] leverages external knowledge graph to more accurately model the interaction between query and passage, and thus achieves the state-of-the-art results. Inspired by the superior performance of PLM-based reranker, our method is equipped with a cross-interaction module that allows effective implicit interaction during passage encoding.
+
+基于预训练语言模型的重排序器。基于预训练语言模型的重排序器通常将拼接后的查询和文档作为输入，并通过自注意力机制$\left\lbrack  {{11},{13},{18}}\right\rbrack$在查询和文档之间进行全面交互。特别是，单BERT（monoBERT）[40]是首个将BERT重新用作重排序器的工作。双BERT（duoBERT）[42]将单BERT集成到多阶段排序管道中，并进一步采用成对分类框架进行最终重排序。统一编码器 - 解码器（UED）[64]利用统一的编码器 - 解码器框架联合优化文档重排序和查询生成任务，表明这两个任务可以相互促进。知识增强的重排序模型（KERM）[10]利用外部知识图谱更准确地建模查询和文档之间的交互，从而取得了最先进的结果。受基于预训练语言模型的重排序器的卓越性能启发，我们的方法配备了一个交叉交互模块，允许在文档编码过程中进行有效的隐式交互。
+
+### 2.3 Query Generation for IR
+
+### 2.3 信息检索中的查询生成
+
+The technique of query generation has been widely adopted in a variety of IR applications. For example, a well-known query generation method, namely doc2query [43], proposes a sequence-to-sequence model trained on relevant query-passage pairs to generate multiple queries for each passage. These generated queries can be considered as a passage expansion for the downstream retrieval task. This approach is effective in mitigating the issue of term mismatch between queries and passages. Moreover, docT5query [41] employs T5 [48] to generate queries and delivers an improved performance over doc2query. More recently, the application of query generation has been examined in the context of pre-training dense retrievers [59], data augmentation [1, 29, 30] and domain adaptation $\left\lbrack  {8,{36},{57},{61}}\right\rbrack$ . However,these studies leverage query generation models as an off-the-shelf tool, which might not be the optimal for the downstream retrieval task. In our study, we introduce a lightweight generative module, i.e., the query reconstructor, which is jointly trained with the retrieval backbone in an end-to-end manner. By doing this, the query reconstructor is learned to generate pseudo-queries that are more helpful for the final retrieval task.
+
+查询生成技术已广泛应用于各种信息检索（IR）应用中。例如，一种著名的查询生成方法，即doc2query [43]，提出了一种基于相关查询 - 段落对训练的序列到序列模型，为每个段落生成多个查询。这些生成的查询可被视为下游检索任务的段落扩展。这种方法能有效缓解查询和段落之间的术语不匹配问题。此外，docT5query [41]采用T5 [48]来生成查询，其性能优于doc2query。最近，查询生成的应用已在预训练密集检索器[59]、数据增强[1, 29, 30]和领域适应$\left\lbrack  {8,{36},{57},{61}}\right\rbrack$等场景中得到研究。然而，这些研究将查询生成模型作为现成工具使用，这可能并非下游检索任务的最优选择。在我们的研究中，我们引入了一个轻量级生成模块，即查询重构器，它与检索主干以端到端的方式联合训练。通过这样做，查询重构器学会生成对最终检索任务更有帮助的伪查询。
+
+## 3 PRELIMINARIES
+
+## 3 预备知识
+
+In this section, we introduce the problem definition of passage retrieval, and present several PLM-based IR methods.
+
+在本节中，我们介绍段落检索的问题定义，并介绍几种基于预训练语言模型（PLM）的信息检索方法。
+
+### 3.1 Problem Definition
+
+### 3.1 问题定义
+
+Modern IR systems usually follow a retrieve-then-rerank pipeline. Given a corpus of passages $\mathcal{G} = {\left\{  {\mathbf{p}}_{i}\right\}  }_{i = 1}^{G}$ ,the aim of retrieval is to find a small set of candidate passages (i.e., $\mathcal{K} = {\left\{  {\mathbf{p}}_{j}^{\mathbf{q}}\right\}  }_{j = 1}^{K}$ ) and $K \ll  G$ ) that is relevant to a specific query $\mathbf{q}$ . In particular,a passage $\mathbf{p}$ is a sequence of words $\mathbf{p} = {\left\{  {w}_{p}\right\}  }_{p = 1}^{\left| \mathbf{p}\right| }$ ,where $\left| \mathbf{p}\right|$ denotes the length of $\mathbf{p}$ . Similarly,a query is a sequence of words $\mathbf{q} = {\left\{  {w}_{q}\right\}  }_{q = 1}^{\left| \mathbf{q}\right| }$ . After the retrieval stage, reranking is conducted to finalize a better permutation on $\mathcal{K}$ ,where more relevant passages are ranked higher.
+
+现代信息检索系统通常遵循先检索后重排序的流程。给定一个段落语料库$\mathcal{G} = {\left\{  {\mathbf{p}}_{i}\right\}  }_{i = 1}^{G}$，检索的目标是找到一小部分与特定查询$\mathbf{q}$相关的候选段落（即$\mathcal{K} = {\left\{  {\mathbf{p}}_{j}^{\mathbf{q}}\right\}  }_{j = 1}^{K}$和$K \ll  G$）。具体来说，一个段落$\mathbf{p}$是一个词序列$\mathbf{p} = {\left\{  {w}_{p}\right\}  }_{p = 1}^{\left| \mathbf{p}\right| }$，其中$\left| \mathbf{p}\right|$表示$\mathbf{p}$的长度。类似地，一个查询是一个词序列$\mathbf{q} = {\left\{  {w}_{q}\right\}  }_{q = 1}^{\left| \mathbf{q}\right| }$。在检索阶段之后，进行重排序以对$\mathcal{K}$进行更好的排列，使更相关的段落排名更高。
+
+It worth noting that retrieval and reranking models usually have different practical concerns. In particular, both efficiency and effectiveness are vital for retrieval models, as real-world scenarios usually require fast retrieval on large scale corpus. On the other hand, reranking models are more concentrated on effectiveness, and they should be able to effectively capture the subtle differences between relevant passages. In this work, our attention is focused on the PLM-based retriever, and we propose a implicit interaction paradigm that achieves the state-of-the-art performance in terms of both effectiveness and efficiency for passage retrieval.
+
+值得注意的是，检索和重排序模型通常有不同的实际考虑因素。具体而言，效率和有效性对于检索模型都至关重要，因为现实场景通常需要对大规模语料库进行快速检索。另一方面，重排序模型更注重有效性，它们应该能够有效捕捉相关段落之间的细微差异。在这项工作中，我们的注意力集中在基于预训练语言模型的检索器上，并提出了一种隐式交互范式，该范式在段落检索的有效性和效率方面都达到了最先进的性能。
+
+### 3.2 PLM-based Retriever and Reranker
+
+### 3.2 基于预训练语言模型的检索器和重排序器
+
+The performance of neural IR models, including retrievers and rerankers, have been significantly boosted by pre-trained language models (PLM), where various ways of leveraging PLM for IR are proposed. As illustrated in Figure 1, PLM-based IR models can be categorized into three types, i.e., dual-encoders, late-interaction encoders and cross-encoders, in terms of the interaction mechanism applied between query and passage. Overall, existing studies indicate that incorporating more interactions between queries and passages in a PLM-based IR method can improve relevance modeling, but it also comes at the cost of extra computational overhead. In the following, we further introduce the detailed structures of these models.
+
+包括检索器和重排序器在内的神经信息检索模型的性能，已通过预训练语言模型（PLM）得到显著提升，人们提出了各种利用预训练语言模型进行信息检索的方法。如图1所示，基于预训练语言模型的信息检索模型根据查询和段落之间应用的交互机制可分为三种类型，即双编码器、后期交互编码器和交叉编码器。总体而言，现有研究表明，在基于预训练语言模型的信息检索方法中引入更多查询和段落之间的交互可以改善相关性建模，但这也会带来额外的计算开销。下面，我们进一步介绍这些模型的详细结构。
+
+Dual-encoder. Dual-encoders employ two PLM-based encoders to respectively encode the query and passage in a latent embedding space. The relevance score $S\left( {\mathbf{q},\mathbf{p}}\right)$ between query and passage is formulated as
+
+双编码器。双编码器使用两个基于预训练语言模型的编码器分别在潜在嵌入空间中对查询和段落进行编码。查询和段落之间的相关性得分$S\left( {\mathbf{q},\mathbf{p}}\right)$表示为
+
+$$
+S\left( {\mathbf{q},\mathbf{p}}\right)  = \text{ Aggregate }\left( {{\mathbb{E}}_{q}{\left( \mathbf{q}\right) }_{\left\lbrack  CLS\right\rbrack  },{\mathbb{E}}_{p}{\left( \mathbf{p}\right) }_{\left\lbrack  CLS\right\rbrack  }}\right) . \tag{1}
+$$
+
+Here, Aggregate $\left( \cdot \right)$ is usually implemented as a simple metric (e.g., dot-product) between query and passage vectors, which is computed by query and passage encoders (i.e., ${\mathbb{E}}_{q}$ and ${\mathbb{E}}_{p}$ ),respectively. The encoders are stacked transformer layers, where we fetch the representation of [CLS] token in the last layer as final query/passage vector.
+
+在这里，聚合函数 $\left( \cdot \right)$ 通常被实现为查询向量和段落向量之间的一种简单度量（例如点积），分别由查询编码器和段落编码器（即 ${\mathbb{E}}_{q}$ 和 ${\mathbb{E}}_{p}$ ）计算得出。编码器是堆叠的Transformer层，我们将最后一层中 [CLS] 标记的表示作为最终的查询/段落向量。
+
+The major merit of dual-encoders lies in its high efficiency. As the query and passage are decoupled at encoding, the passages in large corpus $\mathcal{G}$ can be pre-computed and cached offline. By doing this, substantial computational resources could be saved during the online inference for fast retrieval. However, the limitation is also apparent. The absence of interaction between the query and passage during their encoding leads to an inability to effectively capture complex relevance $\left\lbrack  {{22},{25},{65}}\right\rbrack$ .
+
+双编码器的主要优点在于其高效率。由于查询和段落的编码是解耦的，大型语料库 $\mathcal{G}$ 中的段落可以预先计算并离线缓存。这样做可以在在线推理过程中节省大量计算资源，实现快速检索。然而，其局限性也很明显。查询和段落在编码过程中缺乏交互，导致无法有效捕捉复杂的相关性 $\left\lbrack  {{22},{25},{65}}\right\rbrack$ 。
+
+Cross-encoder. Cross-encoders are considered the most effective PLM-based IR method due to their early incorporation of query-passage interactions. It takes the concatenation of query and passage as input, and computes the relevance score as
+
+交叉编码器。由于交叉编码器早期就引入了查询 - 段落交互，因此被认为是最有效的基于预训练语言模型（PLM）的信息检索（IR）方法。它将查询和段落的拼接作为输入，并计算相关性得分如下
+
+$$
+S\left( {\mathbf{q},\mathbf{p}}\right)  = \mathrm{{FC}}\left( {{\mathbb{E}}_{q,p}{\left( \mathbf{q} \oplus  \mathbf{p}\right) }_{\left\lbrack  CLS\right\rbrack  }}\right) , \tag{2}
+$$
+
+where $\oplus$ means the concatenation operation and ${\mathbb{E}}_{q,p}$ is the PLM encoder. The FC is a fully-connected layer that transforms the [CLS] representation to a relevance score.
+
+其中 $\oplus$ 表示拼接操作，${\mathbb{E}}_{q,p}$ 是预训练语言模型编码器。全连接层（FC）将 [CLS] 表示转换为相关性得分。
+
+Cross-encoders allow full token-level interactions between query and passage via self-attention [9], where relevance features could be adequately captured. This leads to a superior performance in relevance modeling compared with other PLM-based IR models. However, compared with dual-encoders, cross-encoders require extensive online computation, where no intermediate representations could be pre-computed and cached offline. The low efficiency of cross-encoders limits its application for retrieval on large scale corpus, and thus they are mainly designed for reranking stage.
+
+交叉编码器通过自注意力机制 [9] 允许查询和段落之间进行全标记级别的交互，从而能够充分捕捉相关性特征。与其他基于预训练语言模型的信息检索模型相比，这使得它在相关性建模方面表现更优。然而，与双编码器相比，交叉编码器需要大量的在线计算，无法预先计算和离线缓存中间表示。交叉编码器的低效率限制了其在大规模语料库检索中的应用，因此它们主要用于重排序阶段。
+
+Late-interaction encoder. To balance efficiency and effectiveness, the late-interaction paradigm introduces interaction between query and passage after encoding, which can be formulated as
+
+后期交互编码器。为了平衡效率和有效性，后期交互范式在编码后引入了查询和段落之间的交互，其形式可以表示为
+
+$$
+S\left( {\mathbf{q},\mathbf{p}}\right)  = \text{ Aggregate }\left( {\operatorname{Interact}\left( {{\mathbb{E}}_{q}\left( \mathbf{q}\right) ,{\mathbb{E}}_{p}\left( \mathbf{p}\right) }\right) }\right) . \tag{3}
+$$
+
+The Aggregate $\left( \cdot \right)$ operation aggregates the relevance features captured from the Interact $\left( \cdot \right)$ into a relevance score $S\left( {\mathbf{q},\mathbf{p}}\right)$ .
+
+聚合函数 $\left( \cdot \right)$ 操作将从交互函数 $\left( \cdot \right)$ 中捕捉到的相关性特征聚合为一个相关性得分 $S\left( {\mathbf{q},\mathbf{p}}\right)$ 。
+
+ColBERT [25] is a representative of late-interaction method. Its interaction is implemented as the maximum similarity score between each pair of token representations of query and passage in the final layers. Then, these scores are aggregated into a final relevance score, which can be formulated as
+
+ColBERT [25] 是后期交互方法的一个代表。它的交互实现为最后一层中查询和段落的每对标记表示之间的最大相似度得分。然后，这些得分被聚合为一个最终的相关性得分，其形式可以表示为
+
+$$
+S\left( {\mathbf{q},\mathbf{p}}\right)  = \mathop{\sum }\limits_{{q = 1}}^{\left| \mathbf{q}\right| }\mathop{\max }\limits_{{p = 1}}^{\left| \mathbf{p}\right| }\left( {{\mathbb{E}}_{q}{\left( \mathbf{q}\right) }_{{w}_{q}} \cdot  {\mathbb{E}}_{p}{\left( \mathbf{p}\right) }_{{w}_{p}}}\right) . \tag{4}
+$$
+
+To reduce the computational overhead of ColBERT, COIL [16] restricts the interactions to occur solely between pairs of query and passage tokens that have an exact match. More details about these methods can be found in their original papers [16, 25].
+
+为了减少ColBERT的计算开销，COIL [16] 将交互限制为仅在查询和段落中完全匹配的标记对之间进行。关于这些方法的更多细节可以在其原始论文 [16, 25] 中找到。
+
+Similar to dual-encoders, late-interaction encoders also decouple the encoding of query and passage, and thus allow pre-computation of all passage vectors in corpus $\mathcal{G}$ . However,the late interactions still create considerable computational overhead for each query-passage pair. Worse still, they further cost enormous space footprint for caching multi-vector passage vectors, where dual-encoders only need to store single-vector passage vectors.
+
+与双编码器类似，后期交互编码器也将查询和段落的编码解耦，因此允许预先计算语料库 $\mathcal{G}$ 中所有段落的向量。然而，后期交互仍然会为每对查询 - 段落带来相当大的计算开销。更糟糕的是，为了缓存多向量段落向量，它们还需要巨大的存储空间，而双编码器只需要存储单向量段落向量。
+
+Remarks. Overall, former experience tells us that effective interaction usually cost extra computation or storage, where most of the existing studies are proposed to make amends. However, we intend to investigate a different research question: Can we model query-passage interaction without any efficiency degeneration? Noting that the dual-encoders are efficient due to its offline pre-computation of passage vectors, the key to answer this question is how to pre-compute and model query-passage interactions offline. However, this is challenging because the actual queries issued by users are agnostic during the pre-computation, while we can only access to the passages in the corpus. In the next section, we propose a novel method,namely ${\mathrm{I}}^{3}$ retriever,which tackles this challenge to achieve high effectiveness without hurting efficiency.
+
+总结。总体而言，以往的经验告诉我们，有效的交互通常需要额外的计算或存储开销，现有的大多数研究都是为了弥补这一问题。然而，我们打算研究一个不同的问题：我们能否在不降低效率的情况下对查询 - 段落交互进行建模？注意到双编码器由于可以离线预先计算段落向量而具有高效率，回答这个问题的关键在于如何离线预先计算和建模查询 - 段落交互。然而，这具有挑战性，因为在预计算阶段，用户实际发出的查询是未知的，而我们只能访问语料库中的段落。在下一节中，我们提出了一种新的方法，即 ${\mathrm{I}}^{3}$ 检索器，它解决了这一挑战，在不降低效率的情况下实现了高有效性。
+
+## 4 METHOD
+
+## 4 方法
+
+In this section,we present ${\mathrm{I}}^{3}$ retriever,an effective approach that incorporates implicit interaction in dual-encoder. We first introduce the overall architecture, which includes query and passage encoders, query reconstructor and query-passage interactor. Then, we present the details of implicit interaction, and the end-to-end optimization and inference of ${\mathrm{I}}^{3}$ retriever.
+
+在本节中，我们介绍 ${\mathrm{I}}^{3}$ 检索器，这是一种在双编码器中引入隐式交互的有效方法。我们首先介绍整体架构，包括查询编码器、段落编码器、查询重构器和查询 - 段落交互器。然后，我们详细介绍隐式交互以及 ${\mathrm{I}}^{3}$ 检索器的端到端优化和推理过程。
+
+### 4.1 Overall Architecture
+
+### 4.1 整体架构
+
+Figure 2 illustrates the overall architecture of the ${\mathrm{I}}^{3}$ retriever. In particular, we advance the passage encoder of vanilla dual-encoders with two auxiliary modules, i.e., query reconstructor and query-passage interactor. Overall,the workflow of ${\mathrm{I}}^{3}$ can be formulated as follows:
+
+图2展示了${\mathrm{I}}^{3}$检索器的整体架构。具体而言，我们通过两个辅助模块，即查询重构器（query reconstructor）和查询 - 段落交互器（query - passage interactor），改进了普通双编码器的段落编码器。总体而言，${\mathrm{I}}^{3}$的工作流程可表述如下：
+
+<!-- Media -->
+
+<!-- figureText: Query-aware Contrastive Reconstruction Loss Query vectors Query Reconstructor Query Encoder Query Query-passage Interactor Passage Pseudo-queryr vectors vectors Passage Encoder Passage -->
+
+<img src="https://cdn.noedgeai.com/0195aed2-0422-793f-b80a-6fbc4ea57f27_4.jpg?x=149&y=235&w=721&h=381&r=0"/>
+
+Figure 2: The architecture of ${\mathrm{I}}^{3}$ retriever.
+
+图2：${\mathrm{I}}^{3}$检索器的架构。
+
+<!-- Media -->
+
+- Query/Passage encoding. The query and passage encoders (i.e., vanilla dual-encoders) are the backbone of our proposed method. They first encode the tokens of query and passage into latent vectors.
+
+- 查询/段落编码。查询编码器和段落编码器（即普通双编码器）是我们所提出方法的核心。它们首先将查询和段落的标记编码为潜在向量。
+
+- Query reconstruction. Inspired by generative models [47], we introduce a lightweight query reconstructor to generate a pseudo-query for each passage, which can be viewed as a potential query for a specific passage.
+
+- 查询重构。受生成模型[47]的启发，我们引入了一个轻量级的查询重构器，为每个段落生成一个伪查询，该伪查询可被视为特定段落的潜在查询。
+
+- Query-passage interaction. We apply a query-passage inter-actor to conduct cross-encoder-alike interaction between each passage and its pseudo-query. It finalizes a query-aware passage vector, which learns to encode passage information that are vital to its potential query.
+
+- 查询 - 段落交互。我们应用一个查询 - 段落交互器，在每个段落与其伪查询之间进行类似交叉编码器的交互。它最终得到一个查询感知的段落向量，该向量学习编码对其潜在查询至关重要的段落信息。
+
+- Relevance computation. The final relevance score is computed as the dot-product between the query vector produced by query encoder, and the query-aware passage vector produced by the query-passage interactor. The simple relevance metric allows high efficiency for online retrieval.
+
+- 相关性计算。最终的相关性得分计算为查询编码器生成的查询向量与查询 - 段落交互器生成的查询感知段落向量的点积。这种简单的相关性度量方法使得在线检索具有较高的效率。
+
+We refer to such interaction over vanilla dual-encoders as implicit interaction, since it solely relies on generated pseudo-query vectors, rather than textual query terms. Note that the inference of implicit interaction is conducted on the passage side, and thus it could be pre-computed and cached to enable efficient online retrieval. Next, we focus on the two auxiliary modules and elaborate how they are incorporated to conduct implicit interaction.
+
+我们将这种在普通双编码器上进行的交互称为隐式交互，因为它仅依赖于生成的伪查询向量，而不是文本查询词。请注意，隐式交互的推理是在段落端进行的，因此可以预先计算并缓存，以实现高效的在线检索。接下来，我们将重点关注这两个辅助模块，并详细阐述它们是如何结合起来进行隐式交互的。
+
+### 4.2 Incorporating Implicit Interaction
+
+### 4.2 融入隐式交互
+
+Query reconstructor. The query reconstructor is a generative model with stacked transformer layers, which can be viewed as a decoder module for passage encoder. In particular, it takes a set of trainable embedding ${\mathbf{I}}^{0} \in  {\mathbb{R}}^{\bar{q} \times  {d}_{\text{model }}}$ as input vectors,and conduct cross-attention with the output vectors of passage encoding. For simplicity, we use the special token, [MASK], as the initial parameters of ${\mathbf{I}}^{0}$ . Here, $\bar{q}$ is the length of generated queries and ${d}_{\text{model }}$ is the dimension of the embeddings. In each layer $n = 1,\ldots ,N$ ,the output vectors ${\mathbf{I}}^{n}$ are computed as
+
+查询重构器。查询重构器是一个具有堆叠Transformer层的生成模型，可被视为段落编码器的解码器模块。具体而言，它将一组可训练的嵌入${\mathbf{I}}^{0} \in  {\mathbb{R}}^{\bar{q} \times  {d}_{\text{model }}}$作为输入向量，并与段落编码的输出向量进行交叉注意力计算。为简单起见，我们使用特殊标记[MASK]作为${\mathbf{I}}^{0}$的初始参数。这里，$\bar{q}$是生成查询的长度，${d}_{\text{model }}$是嵌入的维度。在每一层$n = 1,\ldots ,N$中，输出向量${\mathbf{I}}^{n}$计算如下
+
+$$
+{\mathcal{A}}_{\left( {\mathbf{I}}^{n - 1},p\right) } = \operatorname{softmax}\left( \frac{\left( {{\mathbf{W}}_{n}^{Q}{\mathbf{I}}^{n - 1}}\right) {\left( {\mathbf{W}}_{n}^{K}{\mathbb{E}}_{p}\left( \mathbf{p}\right) \right) }^{\mathrm{T}}}{\sqrt{{d}_{\text{model }}}}\right) , \tag{5}
+$$
+
+$$
+{\mathbf{I}}^{n} = \mathop{\sum }\limits_{{p = 1}}^{\left| \mathbf{p}\right| }{\mathcal{A}}_{\left( {\mathbf{I}}^{n - 1},p\right) }{\mathbf{W}}_{n}^{V}{\mathbb{E}}_{p}\left( \mathbf{p}\right)  \tag{6}
+$$
+
+where ${\mathcal{A}}_{\left( {\mathbf{I}}^{n - 1},p\right) }$ is the cross-attention between ${\mathbf{I}}^{n - 1}$ and the passage vectors ${\mathbb{E}}_{p}\left( \mathbf{p}\right)$ ,and ${\mathbf{W}}_{n}^{ * }$ are the parameters of query reconstructor. The reconstructed pseudo-query vectors for passage $\mathbf{p}$ is denoted as ${\mathbb{K}}_{q}\left( \mathbf{p}\right)  \mathrel{\text{:=}} {\mathbf{I}}^{N}$ . Notably,the input embedding ${\mathbf{I}}^{0}$ is the same for all passages. By doing this, we can reconstruct pseudo-query vectors ${\mathbb{K}}_{q}\left( \mathbf{p}\right)$ from passage vectors in a query agnostic manner.
+
+其中${\mathcal{A}}_{\left( {\mathbf{I}}^{n - 1},p\right) }$是${\mathbf{I}}^{n - 1}$与段落向量${\mathbb{E}}_{p}\left( \mathbf{p}\right)$之间的交叉注意力，${\mathbf{W}}_{n}^{ * }$是查询重构器的参数。段落$\mathbf{p}$的重构伪查询向量表示为${\mathbb{K}}_{q}\left( \mathbf{p}\right)  \mathrel{\text{:=}} {\mathbf{I}}^{N}$。值得注意的是，所有段落的输入嵌入${\mathbf{I}}^{0}$是相同的。通过这样做，我们可以以与查询无关的方式从段落向量中重构伪查询向量${\mathbb{K}}_{q}\left( \mathbf{p}\right)$。
+
+It worth mentioning that the query reconstructor differs from existing generative language models from two perspectives: 1) Unlike conventional auto-regressive models that generate tokens sequentially,our query reconstructor generates all the $\bar{q}$ vectors in parallel, and thus is more efficient; 2) Our model generates latent vectors rather than actual words to represent the pseudo-query, which is more expressive to represent semantic information for downstream retrieval task.
+
+值得一提的是，查询重构器在两个方面与现有的生成式语言模型不同：1) 与按顺序生成标记的传统自回归模型不同，我们的查询重构器并行生成所有$\bar{q}$向量，因此效率更高；2) 我们的模型生成潜在向量而不是实际单词来表示伪查询，这在表示下游检索任务的语义信息方面更具表现力。
+
+Query-passage interactor. The interactor ${\mathbb{E}}_{q,p}\left( \cdot \right)$ has a cross-encoder-alike structure that stacks multiple transformer layers. It conducts full cross-interaction between passage vectors ${\mathbb{E}}_{p}\left( \mathbf{p}\right)$ and its reconstructed pseudo-query vectors ${\mathbb{K}}_{q}\left( \mathbf{p}\right)$ ,i.e.,implicit interaction. The interactor refines the passage vectors and outputs query-aware passage vectors. Intuitively, the interactor leverages the pseudo-query to encode important knowledge in the query-aware passage vector that might be relevant to real queries. More formally,the ${\mathbb{T}}_{p}\left( \mathbf{p}\right)$ are computed as
+
+查询-段落交互器。交互器 ${\mathbb{E}}_{q,p}\left( \cdot \right)$ 具有类似交叉编码器的结构，该结构堆叠了多个Transformer层。它在段落向量 ${\mathbb{E}}_{p}\left( \mathbf{p}\right)$ 及其重构的伪查询向量 ${\mathbb{K}}_{q}\left( \mathbf{p}\right)$ 之间进行全面的交叉交互，即隐式交互。交互器对段落向量进行细化，并输出查询感知段落向量。直观地说，交互器利用伪查询将可能与真实查询相关的重要知识编码到查询感知段落向量中。更正式地说，${\mathbb{T}}_{p}\left( \mathbf{p}\right)$ 的计算方式如下
+
+$$
+{\mathbb{T}}_{p}\left( \mathbf{p}\right)  = {\mathbb{E}}_{q,p}\left( {{\mathbb{K}}_{q}\left( \mathbf{p}\right)  \oplus  {\mathbb{E}}_{p}\left( \mathbf{p}\right) }\right) , \tag{7}
+$$
+
+where $\oplus$ means the concatenation operation. Finally,we can advance vanilla dual-encoders by rewriting the relevance score $S\left( {\mathbf{q},\mathbf{p}}\right)$ in Eq. 1 as
+
+其中 $\oplus$ 表示拼接操作。最后，我们可以通过将式 1 中的相关性得分 $S\left( {\mathbf{q},\mathbf{p}}\right)$ 重写来改进普通双编码器
+
+$$
+S\left( {\mathbf{q},\mathbf{p}}\right)  = {\mathbb{E}}_{q}{\left( \mathbf{q}\right) }_{\left\lbrack  CLS\right\rbrack  } \cdot  {\mathbb{T}}_{p}{\left( \mathbf{p}\right) }_{\left\lbrack  CLS\right\rbrack  }. \tag{8}
+$$
+
+By introducing query reconstructor and query-passage interactor in passage encoding,our ${\mathrm{I}}^{3}$ retriever is effective and efficient,as 1) it effectively incorporates implicit interaction that encodes vital passage information w.r.t. potential queries, and 2) the implicit interaction is conducted on the passage side in a query agnostic manner, which brings high online inference efficiency that is on par with the vanilla dual-encoder.
+
+通过在段落编码中引入查询重构器和查询 - 段落交互器，我们的 ${\mathrm{I}}^{3}$ 检索器既有效又高效，原因如下：1) 它有效地整合了隐式交互，该交互针对潜在查询对重要的段落信息进行编码；2) 隐式交互以与查询无关的方式在段落端进行，这带来了与普通双编码器相当的高在线推理效率。
+
+### 4.3 Model Optimization
+
+### 4.3 模型优化
+
+Retrieval loss. Following previous work [15],our ${\mathrm{I}}^{3}$ retriever is optimized by the following contrastive loss
+
+检索损失。遵循先前的工作 [15]，我们的 ${\mathrm{I}}^{3}$ 检索器通过以下对比损失进行优化
+
+$$
+{\mathcal{L}}_{c} =  - \log \frac{\exp \left( {S\left( {\mathbf{q},{\mathbf{p}}_{ + }}\right) }\right) }{\exp \left( {S\left( {\mathbf{q},{\mathbf{p}}_{ + }}\right) }\right)  + \mathop{\sum }\limits_{{{\mathbf{p}}_{ - } \in  {\mathcal{N}}_{ - }}}\exp \left( {S\left( {\mathbf{q},{\mathbf{p}}_{ - }}\right) }\right) }, \tag{9}
+$$
+
+where ${\mathcal{N}}_{ - }$ is a set of hard negative passages (denoted as ${\mathbf{p}}_{ - }$ ) for query $\mathbf{q}$ . As illustrated in Figure 3,the fine-tuning process consists of two stages, where the optimized models are called retriever 1 and retriever 2 , respectively. During the training of retriever 1 , the negative samples ${\mathcal{N}}_{ - }$ are BM25 hard negatives. During the training of retriever 2 , hard negatives are also mined using the optimized retriever 1 to complement the negative pool ${\mathcal{N}}_{ - }$ .
+
+其中 ${\mathcal{N}}_{ - }$ 是查询 $\mathbf{q}$ 的一组难负样本段落（表示为 ${\mathbf{p}}_{ - }$）。如图 3 所示，微调过程包括两个阶段，优化后的模型分别称为检索器 1 和检索器 2。在检索器 1 的训练过程中，负样本 ${\mathcal{N}}_{ - }$ 是 BM25 难负样本。在检索器 2 的训练过程中，还使用优化后的检索器 1 挖掘难负样本以补充负样本池 ${\mathcal{N}}_{ - }$。
+
+Reconstruction loss. In addition to the retrieval loss (i.e., Eq. 9), we also introduce an auxiliary reconstruction loss to guide the query reconstructor, which is defined as
+
+重构损失。除了检索损失（即式 9）之外，我们还引入了一个辅助重构损失来指导查询重构器，其定义如下
+
+$$
+{\mathcal{L}}_{r} =  - \mathop{\sum }\limits_{{{w}_{i} \in  \mathbf{q}}}{\mathbf{y}}_{{w}_{i}}\log \left( {{\mathbf{W}}^{R}{\mathbb{K}}_{q}{\left( \mathbf{p}\right) }_{q}}\right) , \tag{10}
+$$
+
+where ${w}_{i}$ is the $i$ -th word of a pseudo query $\mathbf{q}$ and ${y}_{{w}_{i}}$ indicates the word id of ${w}_{i}$ in vocabulary. The pseudo query could be generated by RACE [51] or other keyword extraction methods, such as large language models. ${\mathbf{W}}^{R}$ is the parameter of reconstructor,mapping the dimension of ${\mathbb{K}}_{q}{\left( \mathbf{p}\right) }_{q}$ from ${d}_{\text{model }}$ to vocabulary size.
+
+其中 ${w}_{i}$ 是伪查询 $\mathbf{q}$ 的第 $i$ 个单词，${y}_{{w}_{i}}$ 表示 ${w}_{i}$ 在词汇表中的单词 ID。伪查询可以由 RACE [51] 或其他关键词提取方法（如大语言模型）生成。${\mathbf{W}}^{R}$ 是重构器的参数，将 ${\mathbb{K}}_{q}{\left( \mathbf{p}\right) }_{q}$ 的维度从 ${d}_{\text{model }}$ 映射到词汇表大小。
+
+<!-- Media -->
+
+<!-- figureText: BM25 Mined negatives Retriever 2 negatives Retriever 1 -->
+
+<img src="https://cdn.noedgeai.com/0195aed2-0422-793f-b80a-6fbc4ea57f27_5.jpg?x=244&y=235&w=536&h=148&r=0"/>
+
+Figure 3: Illustration of our fine-tuning pipeline.
+
+图 3：我们的微调流程示意图。
+
+Table 1: Statistics of MSMARCO-DEV and TREC DL 19.
+
+表 1：MSMARCO - 开发集和 TREC DL 19 的统计信息。
+
+<table><tr><td/><td>MSMARCO-DEV</td><td>TREC DL 19</td></tr><tr><td>#Queries</td><td>6980</td><td>43</td></tr><tr><td>#Rel.Psgs.</td><td>7437</td><td>4102</td></tr><tr><td>Rel.Psgs./Query</td><td>1.1</td><td>95.4</td></tr><tr><td>#Graded.Labels</td><td>2</td><td>4</td></tr></table>
+
+<table><tbody><tr><td></td><td>微软机器阅读理解数据集开发集（MSMARCO-DEV）</td><td>文本检索会议深度学习任务19（TREC DL 19）</td></tr><tr><td>查询数量（#Queries）</td><td>6980</td><td>43</td></tr><tr><td>相关段落数量（#Rel.Psgs.）</td><td>7437</td><td>4102</td></tr><tr><td>每个查询的相关段落数（Rel.Psgs./Query）</td><td>1.1</td><td>95.4</td></tr><tr><td>分级标签数量（#Graded.Labels）</td><td>2</td><td>4</td></tr></tbody></table>
+
+<!-- Media -->
+
+The final training loss of ${\mathrm{I}}^{3}$ retriever is the combination of the above-mentioned two losses as
+
+${\mathrm{I}}^{3}$检索器的最终训练损失是上述两种损失的组合，如下所示
+
+$$
+\mathcal{L} = {\mathcal{L}}_{c} + \lambda {\mathcal{L}}_{r} \tag{11}
+$$
+
+where $\lambda$ is a hyper-parameter. All the modules are jointly optimized with this loss in an end-to-end manner.
+
+其中$\lambda$是一个超参数。所有模块都使用此损失以端到端的方式进行联合优化。
+
+### 4.4 Model Inference
+
+### 4.4 模型推理
+
+Offline pre-computation. The computation of query-aware passage vectors ${\mathbb{T}}_{p}\left( \mathbf{p}\right)$ is totally decoupled with online inference w.r.t. a specific query. Therefore, all the passage vectors in the corpus $\mathcal{G}$ could be pre-computed and stored. Note that the pre-computed passage vectors are interacted with pseudo-query vectors generated by the query reconstructor, and thus are more expressive than the passage vectors produced by vanilla dual-encoders. Besides, we adopt single-vector representation for each passage, which avoids massive storage cost.
+
+离线预计算。查询感知段落向量${\mathbb{T}}_{p}\left( \mathbf{p}\right)$的计算与针对特定查询的在线推理完全解耦。因此，语料库$\mathcal{G}$中的所有段落向量都可以预先计算并存储。请注意，预计算的段落向量与查询重构器生成的伪查询向量进行交互，因此比普通双编码器生成的段落向量更具表达力。此外，我们对每个段落采用单向量表示，避免了大量的存储成本。
+
+Online inference. The online inference process is identical to vanilla dual-encoders, and thus our method has the same high efficiency. When a query is received, ${\mathrm{I}}^{3}$ applies the query encoder to compute its vector ${\mathbb{E}}_{q}{\left( \mathbf{q}\right) }_{\left\lbrack  CLS\right\rbrack  }$ . Next,it conducts maximum inner product search (MIPS) over the offline-cached query-aware passage vectors ${\left\{  {\mathbb{T}}_{p}{\left( {\mathbf{p}}_{i}\right) }_{\left\lbrack  CLS\right\rbrack  }\right\}  }_{i = 1}^{G}$ to retrieve a set of relevant passages.
+
+在线推理。在线推理过程与普通双编码器相同，因此我们的方法具有相同的高效率。当接收到一个查询时，${\mathrm{I}}^{3}$应用查询编码器计算其向量${\mathbb{E}}_{q}{\left( \mathbf{q}\right) }_{\left\lbrack  CLS\right\rbrack  }$。接下来，它在离线缓存的查询感知段落向量${\left\{  {\mathbb{T}}_{p}{\left( {\mathbf{p}}_{i}\right) }_{\left\lbrack  CLS\right\rbrack  }\right\}  }_{i = 1}^{G}$上进行最大内积搜索（MIPS），以检索一组相关段落。
+
+Analysis. For the online inference stage, the time complexity of ${\mathrm{I}}^{3}$ retriever is $\mathrm{O}\left( {E + G}\right)$ ,where $E$ and $G$ are the cost of query encoding and MIPS operation over the corpus $\mathcal{G}$ ,respectively. For late-interaction encoder with multi-vector representations, their time complexity is $\mathrm{O}\left( {E + Q \times  P \times  G}\right)$ ,where $Q$ and $P$ indicate the number of vectors representing query and passage, respectively. Moreover, our single-vector representation could be more easily supported by commonly-used indexing techniques [23, 38] Therefore, our method has superior efficiency compared with existing late-interaction encoders.
+
+分析。对于在线推理阶段，${\mathrm{I}}^{3}$检索器的时间复杂度为$\mathrm{O}\left( {E + G}\right)$，其中$E$和$G$分别是查询编码和在语料库$\mathcal{G}$上进行MIPS操作的成本。对于具有多向量表示的后期交互编码器，它们的时间复杂度为$\mathrm{O}\left( {E + Q \times  P \times  G}\right)$，其中$Q$和$P$分别表示表示查询和段落的向量数量。此外，我们的单向量表示可以更轻松地由常用的索引技术支持[23, 38]。因此，与现有的后期交互编码器相比，我们的方法具有更高的效率。
+
+## 5 EXPERIMENTAL SETUP
+
+## 5 实验设置
+
+### 5.1 Datasets
+
+### 5.1 数据集
+
+We use MSMARCO-Passage [39] as the large-scale corpus for our experiments. It consists of around 8.8 million passages. Following previous work $\left\lbrack  {{16},{24},{25},{63}}\right\rbrack$ ,we train our model on MSMARCO-TRAIN query set including 502,939 queries, and evaluated on two widely used query sets, i.e., MSMARCO-DEV and TREC DL 19. MSMARCO-DEV [39] includes 6,980 sparsely-judged queries, each of which has 1.1 relevant passages on average. TREC DL 19 [5] contains 43 densely-judged queries, which are annotated with fine-grained relevance labels, i.e., irrelevant, relevant, highly relevant and perfectly relevant. Such data can be used to evaluate fine-grained ranking performance. Tabel 1 summarizes the detailed information of the two query sets.
+
+我们使用MSMARCO段落数据集[39]作为我们实验的大规模语料库。它包含约880万个段落。遵循先前的工作$\left\lbrack  {{16},{24},{25},{63}}\right\rbrack$，我们在包含502,939个查询的MSMARCO训练查询集上训练我们的模型，并在两个广泛使用的查询集上进行评估，即MSMARCO开发集和TREC DL 19。MSMARCO开发集[39]包含6,980个稀疏判断的查询，每个查询平均有1.1个相关段落。TREC DL 19[5]包含43个密集判断的查询，这些查询带有细粒度的相关性标签，即不相关、相关、高度相关和完全相关。此类数据可用于评估细粒度的排序性能。表1总结了这两个查询集的详细信息。
+
+### 5.2 Baselines
+
+### 5.2 基线模型
+
+We include the following variants of our methods to ensure a fair comparison with baselines:
+
+我们纳入了我们方法的以下变体，以确保与基线模型进行公平比较：
+
+- ${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{1}$ is our proposed method that incorporates implicit interaction in dense retrieval.
+
+- ${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{1}$是我们提出的在密集检索中融入隐式交互的方法。
+
+- ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{2}$ is an improved version of ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$ ,which further leverages the widely-used negative sampling technique [63].
+
+- ${\mathrm{I}}^{3}$检索器${\mathrm{r}}_{2}$是${\mathrm{I}}^{3}$检索器${\mathrm{r}}_{1}$的改进版本，它进一步利用了广泛使用的负采样技术[63]。
+
+- ${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{3}$ is initialized from RetroMAE [32] and fine-tuned with hard negatives, following the baselines.
+
+- ${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{3}$从RetroMAE[32]初始化，并按照基线模型的方式使用难负样本进行微调。
+
+- ${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{4}$ is also initialized from RetroMAE [32] and further distilled using a cross-encoder with the Kullback-Leibler divergence loss function.
+
+- ${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{4}$同样从RetroMAE[32]初始化，并使用交叉编码器和Kullback-Leibler散度损失函数进行进一步蒸馏。
+
+${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{1}$ and ${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{2}$ are compared with dense methods without special pre-training and distillation. We include two sparse retrievers, i.e., BM25 [50] and DeepCT [6], as baselines. We include more dense retrievers, which can be categorized as non-interaction, late-interaction, and early-interaction methods. 1) Non-interaction methods: DPR [24] and ANCE [63] are two widely used baselines that do not consider any form of query-passage interaction; 2) Late-interaction methods: ME-BERT [35], COIL [16] and ColBER [25] apply lightweight interaction after query/passage encoding; 3) Early-interaction methods: DRPQ [54] and DCE [29] model the interaction during the encoding stage. Notably, both DCE and our proposed ${\mathrm{I}}^{3}$ retriever conduct interaction between pseudo-query and passage during passage encoding. The key difference lies in that DCE employs docT5Query [41] to explicitly generate pseudo-queries,while ${\mathrm{I}}^{3}$ retriever utilizes a lightweight reconstruction module to implicitly reconstruct pseudo-query vectors in an end-to-end manner.
+
+${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{1}$和${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{2}$与未经过特殊预训练和蒸馏的密集方法进行了比较。我们纳入了两个稀疏检索器，即BM25 [50]和DeepCT [6]作为基线。我们还纳入了更多的密集检索器，它们可分为非交互、后期交互和早期交互方法。1) 非交互方法：DPR [24]和ANCE [63]是两种广泛使用的基线方法，它们不考虑任何形式的查询 - 段落交互；2) 后期交互方法：ME - BERT [35]、COIL [16]和ColBER [25]在查询/段落编码后应用轻量级交互；3) 早期交互方法：DRPQ [54]和DCE [29]在编码阶段对交互进行建模。值得注意的是，DCE和我们提出的${\mathrm{I}}^{3}$检索器都在段落编码期间进行伪查询和段落之间的交互。关键区别在于，DCE采用docT5Query [41]显式生成伪查询，而${\mathrm{I}}^{3}$检索器利用轻量级重建模块以端到端的方式隐式重建伪查询向量。
+
+${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{3}$ and ${\mathbf{I}}^{3}$ retrieve ${\mathbf{r}}_{4}$ are compared with baselines with special pre-training and distillation, respectively. For dense retrieval models with task-specific pre-training, we include the following methods: coCondenser [15] continues to pre-trained on the target corpus with contrastive loss. Other pre-trained methods, such as SimLM [58], Cot-MAE [60] and RetroMAE [32], employ a bottleneck architecture that learns to compress the passage information into a vector through pre-training. We also include the state-of-the-art methods that facilitate dense retrieval with knowledge distillation: TAS-B [19], RocketQAv2 [49] and ERNIE-Search [34] primarily concentrate on distilling knowledge from a cross-encoder to a single vector retriever. On the other hand, SPLADEv2 [14] and ColBERTv2 [52] focus on distilling knowledge from a cross-encoder to a multi-vector retriever. All baselines with special pre-training or distillation can be categorized as non-interaction retrievers, except for SPLADEv2 [14] and ColBERTv2 [52].
+
+${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{3}$和${\mathbf{I}}^{3}$检索器${\mathbf{r}}_{4}$分别与经过特殊预训练和蒸馏的基线进行比较。对于经过特定任务预训练的密集检索模型，我们纳入了以下方法：coCondenser [15]在目标语料库上继续进行对比损失的预训练。其他预训练方法，如SimLM [58]、Cot - MAE [60]和RetroMAE [32]，采用瓶颈架构，通过预训练学习将段落信息压缩为向量。我们还纳入了利用知识蒸馏促进密集检索的最先进方法：TAS - B [19]、RocketQAv2 [49]和ERNIE - Search [34]主要专注于将知识从交叉编码器蒸馏到单向量检索器。另一方面，SPLADEv2 [14]和ColBERTv2 [52]专注于将知识从交叉编码器蒸馏到多向量检索器。除了SPLADEv2 [14]和ColBERTv2 [52]之外，所有经过特殊预训练或蒸馏的基线都可归类为非交互检索器。
+
+### 5.3 Implementation Details
+
+### 5.3 实现细节
+
+For training ${\mathrm{I}}^{3}$ ,we use the Lamb optimizer [66] with a learning rate of $2\mathrm{e} - 5$ . The model is trained with a batch size of 16 . The ratio of positive and hard negatives is set to 1:127 in the contrastive loss (i.e.,Eq. 9). Besides,the hyper-parameter $\lambda$ in Eq. 11 is decayed with epochs exponentially, starting from an initial value of 1 .
+
+对于${\mathrm{I}}^{3}$的训练，我们使用学习率为$2\mathrm{e} - 5$的Lamb优化器[66]。模型以16的批量大小进行训练。在对比损失（即公式9）中，正样本和难负样本的比例设置为1:127。此外，公式11中的超参数$\lambda$从初始值1开始随训练轮数呈指数衰减。
+
+For the comparison with dense methods without distillation or special pre-training,all the baselines are initialized with ${\mathrm{{BERT}}}_{\text{base }}$ model,except ANCE [63],which utilizes RoBERTa ${}_{\text{base }}$ . In our model, we set the number of layers of query encoder, passage encoder, query reconstructor and query-passage interactor as 6, 6, 3 and 3, respectively. We configure the length of generated query $\bar{q}$ as 32 to cover the majority of queries in the training data. As such, ${\mathrm{I}}^{3}$ retriever has a comparable model size with the baselines on the passage side (i.e., 6+3+3 transformer layers), but fewer parameters on the query side. The query and passage encoders are initialized with ${\mathrm{{BERT}}}_{\text{distill }}$ . For the comparison with distillation or special pre-training, we directly use the RetroMAE [32] to initialize the backbone of ${\mathrm{I}}^{3}$ ,as pre-training is not the main focus of this paper. To minimize the number of parameters introduced, we configure the query reconstructor and query-passage interactor to consist of a single layer. The query reconstructor and query-passage interactor are random initialized. Prior to fine-tuning, the query reconstructor and query-passage interactor undergoes optimization for ${20}\mathrm{\;K}$ steps on passage collection $\mathcal{G}$ via Eq. 11 with $\lambda  = 1$ while keeping the parameters of backbone frozen. The pseudo query, generated by a language model Flan-T5-XL [4] in a zero shot setting, along with its corresponding passage, is regarded as a positive pair.
+
+为了与无蒸馏或特殊预训练的密集方法进行比较，除了使用RoBERTa ${}_{\text{base }}$ 的ANCE [63] 之外，所有基线模型均使用${\mathrm{{BERT}}}_{\text{base }}$ 模型进行初始化。在我们的模型中，我们将查询编码器、段落编码器、查询重构器和查询 - 段落交互器的层数分别设置为6、6、3和3。我们将生成查询$\bar{q}$ 的长度配置为32，以覆盖训练数据中的大多数查询。因此，${\mathrm{I}}^{3}$ 检索器在段落侧的模型大小与基线模型相当（即6 + 3 + 3个Transformer层），但在查询侧的参数较少。查询编码器和段落编码器使用${\mathrm{{BERT}}}_{\text{distill }}$ 进行初始化。为了与有蒸馏或特殊预训练的方法进行比较，由于预训练不是本文的主要关注点，我们直接使用RetroMAE [32] 来初始化${\mathrm{I}}^{3}$ 的主干网络。为了尽量减少引入的参数数量，我们将查询重构器和查询 - 段落交互器配置为单层。查询重构器和查询 - 段落交互器进行随机初始化。在微调之前，查询重构器和查询 - 段落交互器在段落集合$\mathcal{G}$ 上通过公式11以$\lambda  = 1$ 进行${20}\mathrm{\;K}$ 步优化，同时冻结主干网络的参数。由语言模型Flan - T5 - XL [4] 在零样本设置下生成的伪查询及其对应的段落被视为正样本对。
+
+Our proposed model is implemented with PyTorch and Hugging-face ${}^{1}$ . All the training and evaluation are conducted on 8 NVIDIA Tesla A100 GPUs (with 40G RAM).
+
+我们提出的模型使用PyTorch和Hugging - face ${}^{1}$ 实现。所有的训练和评估都在8块NVIDIA Tesla A100 GPU（40G内存）上进行。
+
+## 6 EXPERIMENTAL RESULTS
+
+## 6 实验结果
+
+In this section, we present the experimental results and conduct thorough analysis of ${\mathrm{I}}^{3}$ to clarify its advantages.
+
+在本节中，我们展示实验结果并对${\mathrm{I}}^{3}$ 进行全面分析，以阐明其优势。
+
+### 6.1 Overall Comparison
+
+### 6.1 总体比较
+
+Effectiveness. We first compare the effectiveness of ${\mathrm{I}}^{3}$ with all the baselines. The results are shown in Table 2, where the detailed setting of each method is also included, i.e., whether a method employs single vector passage representation, negative mining or a particular interaction scheme. Notably, the baselines are categorized into three groups: methods without special pre-training or distillation, methods with special pre-training, and methods with distillation. We report MRR@10 and Recall@100 on MARCO DEV Passage, and NDCG@10 on TREC DL 19.
+
+有效性。我们首先将${\mathrm{I}}^{3}$ 的有效性与所有基线模型进行比较。结果如表2所示，其中还包括了每种方法的详细设置，即一种方法是否采用单向量段落表示、负采样或特定的交互方案。值得注意的是，基线模型分为三组：无特殊预训练或蒸馏的方法、有特殊预训练的方法和有蒸馏的方法。我们报告了MARCO DEV Passage上的MRR@10和Recall@100，以及TREC DL 19上的NDCG@10。
+
+First, we can draw several key findings from the first group (i.e., methods without pre-training or distillation):
+
+首先，我们可以从第一组（即无预训练或蒸馏的方法）中得出几个关键发现：
+
+- ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$ outperforms DPR by a large margin,while maintaining the same inference speed. This proves that the implicit interaction is beneficial for encoding relevance information in the final passage representation.
+
+- ${\mathrm{I}}^{3}$ 检索器${\mathrm{r}}_{1}$ 在保持相同推理速度的同时，性能大幅优于DPR。这证明了隐式交互有利于在最终的段落表示中编码相关性信息。
+
+- Among the PLM-based baselines, COIL and ColBERT significantly surpass other methods. This is because COIL and ColBERT apply effective late interaction between the multi-vector representations of actual query and passage. However, such effectiveness costs extensive computation and storage (i.e., caching multiple vectors for each passage). Compared with COIL and ColBERT,our ${\mathrm{I}}^{3}$ retriever ${}_{1}$ method is more efficient, and can achieve comparable performance w.r.t. Recall@1000 on MARCO DEV Passage, and better performance w.r.t. NDCG@10 on TREC DL 19.
+
+- 在基于预训练语言模型（PLM）的基线模型中，COIL和ColBERT显著优于其他方法。这是因为COIL和ColBERT在实际查询和段落的多向量表示之间应用了有效的后期交互。然而，这种有效性需要大量的计算和存储（即为每个段落缓存多个向量）。与COIL和ColBERT相比，我们的${\mathrm{I}}^{3}$ 检索器${}_{1}$ 方法更高效，并且在MARCO DEV Passage上的Recall@1000性能相当，在TREC DL 19上的NDCG@10性能更优。
+
+- ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$ is significantly better than DCE. Note that DCE also introduces interaction between pseudo-query and passage during passage encoding, where the pseudo-query is drawn from an off-the-shelf docT5query model [41]. As such, we can conclude that the superiority of ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$ can be attributed to the joint optimization of pseudo-query reconstruction and retrieval, which makes the implicit interaction more aligned with the downstream retrieval task.
+
+- ${\mathrm{I}}^{3}$ 检索器${\mathrm{r}}_{1}$ 明显优于DCE。请注意，DCE在段落编码期间也引入了伪查询和段落之间的交互，其中伪查询来自现成的docT5query模型[41]。因此，我们可以得出结论，${\mathrm{I}}^{3}$ 检索器${\mathrm{r}}_{1}$ 的优越性可归因于伪查询重构和检索的联合优化，这使得隐式交互更符合下游检索任务。
+
+- ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$ shows more significant improvement on TREC DL 19 than on MARCO-DEV. In particular, ${\mathrm{I}}^{3}$ retriever ${}_{1}$ beats all the baseline methods on TREC DL 19, including COIL and ColBERT. This implies that our proposed implicit interaction can more accurately captures fine-grained relevance ranking than the baselines.
+
+- ${\mathrm{I}}^{3}$检索器${\mathrm{r}}_{1}$在TREC DL 19上的改进比在MARCO-DEV上更为显著。特别是，${\mathrm{I}}^{3}$检索器${}_{1}$在TREC DL 19上击败了所有基线方法，包括COIL和ColBERT。这意味着我们提出的隐式交互比基线方法能更准确地捕捉细粒度的相关性排序。
+
+Next, we draw more findings from the second and third groups (i.e., methods with pre-training or distillation):
+
+接下来，我们从第二组和第三组（即采用预训练或蒸馏的方法）中得出更多结论：
+
+- ${\mathrm{I}}^{3}$ can further improve those methods that leverage special pre-training or knowledge distillation, which shows that implicit interaction is compatible with these commonly-used techniques to achieve better results.
+
+- ${\mathrm{I}}^{3}$可以进一步改进那些利用特殊预训练或知识蒸馏的方法，这表明隐式交互与这些常用技术兼容，能够取得更好的结果。
+
+- By combining implicit interaction, pre-training and distillation, ${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{4}$ is able to achieve the state-of-the-art performance on both datasets and across all metrics.
+
+- 通过结合隐式交互、预训练和蒸馏，${\mathrm{I}}^{3}$检索器${\mathrm{r}}_{4}$能够在两个数据集上的所有指标上达到最先进的性能。
+
+Efficiency. Tabel 3 shows the efficiency comparison of ${\mathrm{I}}^{3}$ and four representative models. We report the inference (i.e., relevance computation) time per query for 1,000,100,000 and all (around 8.8 million) candidate passages as the key metrics. First, dual-encoders are without doubt the most efficient, as no query-passage interaction is involved. All the passage representations can be pre-computed and cached, which significantly saves the inference time. Second, late-interaction encoders, such as COIL and ColBERT, usually require extra computation to perform effective late interaction during inference. Third,our ${\mathrm{I}}^{3}$ model is a promising solution that achieves remarkable performance on both effectiveness and efficiency. Unlike late-interaction that often undermines the inference efficiency, the implicit interaction introduced by ${\mathrm{I}}^{3}$ can be pre-computed,and the final query-aware passage representation can be cached. This allows ${\mathrm{I}}^{3}$ to be as efficient as vanilla dual-encoders.
+
+效率。表3展示了${\mathrm{I}}^{3}$与四个代表性模型的效率比较。我们报告了每个查询对1000、100000和所有（约880万）候选段落的推理（即相关性计算）时间作为关键指标。首先，毫无疑问，双编码器是最有效的，因为不涉及查询 - 段落交互。所有段落表示都可以预先计算并缓存，这显著节省了推理时间。其次，后期交互编码器，如COIL和ColBERT，通常需要额外的计算来在推理过程中进行有效的后期交互。第三，我们的${\mathrm{I}}^{3}$模型是一个很有前途的解决方案，在有效性和效率方面都取得了显著的性能。与后期交互通常会降低推理效率不同，${\mathrm{I}}^{3}$引入的隐式交互可以预先计算，并且最终的查询感知段落表示可以缓存。这使得${\mathrm{I}}^{3}$与普通双编码器一样高效。
+
+### 6.2 Investigation on Implicit Interaction
+
+### 6.2 隐式交互的研究
+
+In this section, we investigate how the implicit interaction affects the model performance on different passages. Specifically, it worth noting that some passages (namely Type 1 passages) have relevant queries in the training data. On the other hand, there are many other passages (namely Type 0 passages) that do not have relevant queries in the training data. In real-world scenarios, Type 1 passages might be those articles with abundant information that is desired by many queries, while Type 0 passages might be articles with specific information that can only be retrieved by a specific query. To investigate the performance of ${\mathrm{I}}^{3}$ on the two types of passages, we divide the queries in MSMARCO DEV into two validation sets, namely Set0and Set1,where all the relevant passages in Set 0 are Type 0 passages, and all the relevant passages in Set 1 are Type 1 passages.
+
+在本节中，我们研究隐式交互如何影响模型在不同段落上的性能。具体来说，值得注意的是，一些段落（即1型段落）在训练数据中有相关查询。另一方面，还有许多其他段落（即0型段落）在训练数据中没有相关查询。在现实场景中，1型段落可能是那些包含许多查询所需丰富信息的文章，而0型段落可能是那些包含只能由特定查询检索到的特定信息的文章。为了研究${\mathrm{I}}^{3}$在这两种类型段落上的性能，我们将MSMARCO DEV中的查询分为两个验证集，即Set0和Set1，其中Set 0中的所有相关段落都是0型段落，Set 1中的所有相关段落都是1型段落。
+
+---
+
+<!-- Footnote -->
+
+${}^{1}$ https://github.com/huggingface/transformers
+
+${}^{1}$ https://github.com/huggingface/transformers
+
+<!-- Footnote -->
+
+---
+
+<!-- Media -->
+
+Table 2: Performance comparison on MARCO-DEV and TREC DL 19.
+
+表2：在MARCO-DEV和TREC DL 19上的性能比较。
+
+<table><tr><td rowspan="2">Method</td><td colspan="3">Settings</td><td colspan="2">MARCO DEV Passage</td><td>TREC DL 19</td></tr><tr><td>Single vector?</td><td>Mined-negatives</td><td>Interaction</td><td>MRR@10</td><td>Recall@1000</td><td>NDCG@10</td></tr><tr><td>BM25 (anserini)</td><td>-</td><td>-</td><td>-</td><td>.187</td><td>.857</td><td>.501</td></tr><tr><td>DeepCT</td><td>-</td><td>-</td><td>-</td><td>.243</td><td>.905</td><td>.551</td></tr><tr><td colspan="7">Comparison with dense methods without pre-training or distillation</td></tr><tr><td>DPR</td><td>✓</td><td/><td>Non-interaction</td><td>.314</td><td>.953</td><td>.590</td></tr><tr><td>ANCE</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.330</td><td>.959</td><td>.648</td></tr><tr><td>DCE</td><td/><td/><td>Explicit-early</td><td>.338</td><td>-</td><td>-</td></tr><tr><td>DRPQ</td><td/><td>✓</td><td>Explicit-early</td><td>.345</td><td>.964</td><td>-</td></tr><tr><td>ME-BERT</td><td/><td>✓</td><td>Explicit-late</td><td>.334</td><td>-</td><td>.687</td></tr><tr><td>COIL</td><td/><td/><td>Explicit-late</td><td>.355</td><td>.963</td><td>.704</td></tr><tr><td>ColBERT</td><td/><td/><td>Explicit-late</td><td>.360</td><td>.968</td><td>.694</td></tr><tr><td>${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{1}$</td><td>✓</td><td/><td>Implicit-early</td><td>.349</td><td>.966</td><td>.720</td></tr><tr><td>${\mathrm{I}}^{3}{\text{retriever}}_{2}$</td><td>✓</td><td>✓</td><td>Implicit-early</td><td>.366</td><td>.976</td><td>.727</td></tr><tr><td colspan="7">Comparison with dense methods with special pre-training</td></tr><tr><td>coCondenser</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.382</td><td>.984</td><td>.684</td></tr><tr><td>SimLM</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.391</td><td>.986</td><td>-</td></tr><tr><td>Cot-MAE</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.394</td><td>.987</td><td>-</td></tr><tr><td>RetroMAE</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.393</td><td>.985</td><td>-</td></tr><tr><td>${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{3}$</td><td>✓</td><td>✓</td><td>Implicit-early</td><td>.403</td><td>.987</td><td>.729</td></tr><tr><td colspan="7">Comparison with dense methods with distillation</td></tr><tr><td>TAS-B</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.340</td><td>.975</td><td>.712</td></tr><tr><td>SPLADEv2</td><td/><td>✓</td><td>Explicit-late</td><td>.368</td><td>.979</td><td>.729</td></tr><tr><td>RocketOAv2</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.388</td><td>.981</td><td>-</td></tr><tr><td>ColBERTv2</td><td/><td>✓</td><td>Explicit-late</td><td>.397</td><td>.984</td><td>-</td></tr><tr><td>ERNIE-Search</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.401</td><td>.982</td><td>-</td></tr><tr><td>SimLM</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.411</td><td>.987</td><td>.714</td></tr><tr><td>Cot-MAE</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.404</td><td>.987</td><td>-</td></tr><tr><td>RetroMAE</td><td>✓</td><td>✓</td><td>Non-interaction</td><td>.416</td><td>.988</td><td>.681</td></tr><tr><td>${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{4}$</td><td>✓</td><td>✓</td><td>Implicit-early</td><td>.418</td><td>.988</td><td>.731</td></tr></table>
+
+<table><tbody><tr><td rowspan="2">方法</td><td colspan="3">设置</td><td colspan="2">MARCO开发段落</td><td>TREC DL 19</td></tr><tr><td>单向量？</td><td>挖掘负样本</td><td>交互</td><td>前10名平均倒数排名（MRR@10）</td><td>前1000名召回率（Recall@1000）</td><td>前10名归一化折损累积增益（NDCG@10）</td></tr><tr><td>BM25（anserini）</td><td>-</td><td>-</td><td>-</td><td>.187</td><td>.857</td><td>.501</td></tr><tr><td>深度上下文词项（DeepCT）</td><td>-</td><td>-</td><td>-</td><td>.243</td><td>.905</td><td>.551</td></tr><tr><td colspan="7">与无预训练或蒸馏的密集方法比较</td></tr><tr><td>密集段落检索器（DPR）</td><td>✓</td><td></td><td>非交互</td><td>.314</td><td>.953</td><td>.590</td></tr><tr><td>自适应神经索引（ANCE）</td><td>✓</td><td>✓</td><td>非交互</td><td>.330</td><td>.959</td><td>.648</td></tr><tr><td>动态上下文编码（DCE）</td><td></td><td></td><td>显式早期</td><td>.338</td><td>-</td><td>-</td></tr><tr><td>深度检索预训练查询（DRPQ）</td><td></td><td>✓</td><td>显式早期</td><td>.345</td><td>.964</td><td>-</td></tr><tr><td>多编码器BERT（ME - BERT）</td><td></td><td>✓</td><td>显式晚期</td><td>.334</td><td>-</td><td>.687</td></tr><tr><td>上下文感知交互学习（COIL）</td><td></td><td></td><td>显式晚期</td><td>.355</td><td>.963</td><td>.704</td></tr><tr><td>ColBERT</td><td></td><td></td><td>显式晚期</td><td>.360</td><td>.968</td><td>.694</td></tr><tr><td>${\mathrm{I}}^{3}$ 检索 ${\mathrm{r}}_{1}$</td><td>✓</td><td></td><td>隐式早期</td><td>.349</td><td>.966</td><td>.720</td></tr><tr><td>${\mathrm{I}}^{3}{\text{retriever}}_{2}$</td><td>✓</td><td>✓</td><td>隐式早期</td><td>.366</td><td>.976</td><td>.727</td></tr><tr><td colspan="7">与有特殊预训练的密集方法比较</td></tr><tr><td>协同冷凝器（coCondenser）</td><td>✓</td><td>✓</td><td>非交互</td><td>.382</td><td>.984</td><td>.684</td></tr><tr><td>相似语言模型（SimLM）</td><td>✓</td><td>✓</td><td>非交互</td><td>.391</td><td>.986</td><td>-</td></tr><tr><td>协同掩码自编码器（Cot - MAE）</td><td>✓</td><td>✓</td><td>非交互</td><td>.394</td><td>.987</td><td>-</td></tr><tr><td>回溯掩码自编码器（RetroMAE）</td><td>✓</td><td>✓</td><td>非交互</td><td>.393</td><td>.985</td><td>-</td></tr><tr><td>${\mathrm{I}}^{3}$ 检索 ${\mathrm{r}}_{3}$</td><td>✓</td><td>✓</td><td>隐式早期</td><td>.403</td><td>.987</td><td>.729</td></tr><tr><td colspan="7">与有蒸馏的密集方法比较</td></tr><tr><td>文本自适应语义表示（TAS - B）</td><td>✓</td><td>✓</td><td>非交互</td><td>.340</td><td>.975</td><td>.712</td></tr><tr><td>SPLADEv2</td><td></td><td>✓</td><td>显式晚期</td><td>.368</td><td>.979</td><td>.729</td></tr><tr><td>火箭优化器v2（RocketOAv2）</td><td>✓</td><td>✓</td><td>非交互</td><td>.388</td><td>.981</td><td>-</td></tr><tr><td>ColBERTv2</td><td></td><td>✓</td><td>显式晚期</td><td>.397</td><td>.984</td><td>-</td></tr><tr><td>ERNIE搜索</td><td>✓</td><td>✓</td><td>非交互</td><td>.401</td><td>.982</td><td>-</td></tr><tr><td>相似语言模型（SimLM）</td><td>✓</td><td>✓</td><td>非交互</td><td>.411</td><td>.987</td><td>.714</td></tr><tr><td>协同掩码自编码器（Cot - MAE）</td><td>✓</td><td>✓</td><td>非交互</td><td>.404</td><td>.987</td><td>-</td></tr><tr><td>回溯掩码自编码器（RetroMAE）</td><td>✓</td><td>✓</td><td>非交互</td><td>.416</td><td>.988</td><td>.681</td></tr><tr><td>${\mathrm{I}}^{3}$ 检索 ${\mathrm{r}}_{4}$</td><td>✓</td><td>✓</td><td>隐式早期</td><td>.418</td><td>.988</td><td>.731</td></tr></tbody></table>
+
+Table 3: Query latency and storage cost.
+
+表3：查询延迟和存储成本。
+
+<table><tr><td rowspan="2">Methods</td><td colspan="3">#Candidates</td><td rowspan="2">Space(GiBs)</td></tr><tr><td>1k</td><td>100k</td><td>8.8m</td></tr><tr><td>Dual-encoder</td><td>18ms</td><td>22ms</td><td>62.2</td><td>25.6</td></tr><tr><td>COIL</td><td>41ms</td><td>69ms</td><td>344ms</td><td>110.8</td></tr><tr><td>ColBERT</td><td>50ms</td><td>83ms</td><td>430ms</td><td>154</td></tr><tr><td>Cross-encoder</td><td>2.4s</td><td>4.0m</td><td>5.9h</td><td>-</td></tr><tr><td>${\mathrm{I}}^{3}$ retriever</td><td>18ms</td><td>22ms</td><td>62.2 $\mathbf{{ms}}$</td><td>25.6</td></tr></table>
+
+<table><tbody><tr><td rowspan="2">方法</td><td colspan="3">#候选对象</td><td rowspan="2">空间（吉字节）</td></tr><tr><td>1k</td><td>100k</td><td>8.8m</td></tr><tr><td>双编码器</td><td>18毫秒</td><td>22毫秒</td><td>62.2</td><td>25.6</td></tr><tr><td>COIL（原词）</td><td>41毫秒</td><td>69毫秒</td><td>344毫秒</td><td>110.8</td></tr><tr><td>ColBERT（原词）</td><td>50毫秒</td><td>83毫秒</td><td>430毫秒</td><td>154</td></tr><tr><td>交叉编码器</td><td>2.4s</td><td>4.0m</td><td>5.9h</td><td>-</td></tr><tr><td>${\mathrm{I}}^{3}$ 检索器</td><td>18毫秒</td><td>22毫秒</td><td>62.2 $\mathbf{{ms}}$</td><td>25.6</td></tr></tbody></table>
+
+<!-- Media -->
+
+Table 4 shows the performance comparison on MSMARCO DEV and the two divided validatation sets. We compare ${\mathrm{I}}^{3}$ retriever with our implementation of vanilla dual-encoder with the same negative sampling [63]. We also include cross-encoders in the comparison, where the results are obtained by directly reranking the candidates retrieved by ${\mathrm{I}}^{3}$ . We can see from the table that 1) ${\mathrm{I}}^{3}$ can consistently outperform dual-encoders on both Set 0 and Set 1, which means that the implicit interaction is effective for both types of passages; 2) ${\mathrm{I}}^{3}$ can achieve larger gain over dual-encoders on Set 1, and surprisingly outperform cross-encoders, which indicates that the implicit interaction is even more effective for Type 1 passages associated with multiple relevant training queries.
+
+表4展示了在MSMARCO开发集（MSMARCO DEV）以及两个划分后的验证集上的性能对比。我们将${\mathrm{I}}^{3}$检索器与我们实现的采用相同负采样方法的普通双编码器（vanilla dual-encoder）进行了比较[63]。我们还在比较中纳入了交叉编码器（cross-encoders），其结果是通过直接对${\mathrm{I}}^{3}$检索到的候选结果进行重排序得到的。从表中我们可以看出：1）${\mathrm{I}}^{3}$在集合0和集合1上都能持续优于双编码器，这意味着隐式交互对这两种类型的段落都有效；2）${\mathrm{I}}^{3}$在集合1上相较于双编码器能取得更大的提升，并且令人惊讶地优于交叉编码器，这表明隐式交互对于与多个相关训练查询关联的1型段落更为有效。
+
+### 6.3 Case Study on Query Reconstruction
+
+### 6.3 查询重构案例研究
+
+To better understand the implicit interaction incorporated in ${\mathrm{I}}^{3}$ ,we demonstrate two cases in Table 5, and interpret their query reconstruction. Notably, the reconstructed query terms in Table 5 are decoded by ${\mathbf{W}}^{R}$ in Eq. 10 and are only used for the purpose of this case study. For each of the two passages, its query reconstruction is trained on one training query, and we presents the rankings of
+
+为了更好地理解${\mathrm{I}}^{3}$中融入的隐式交互，我们在表5中展示了两个案例，并对它们的查询重构进行解释。值得注意的是，表5中重构的查询词是通过公式10中的${\mathbf{W}}^{R}$解码得到的，仅用于本案例研究。对于这两段文本，其查询重构是基于一个训练查询进行训练的，我们展示了
+
+<!-- Media -->
+
+Table 4: Performance on different groups of passages. The relative improvements are reported over dual-encoder.
+
+表4：不同段落组的性能。报告了相对于双编码器的相对改进。
+
+<table><tr><td rowspan="2">Model</td><td colspan="2">Overall</td><td colspan="2">Set 0</td><td colspan="2">Set 1</td></tr><tr><td>MRR@10</td><td>Imp.%</td><td>MRR@10</td><td>Imp.%</td><td>MRR@10</td><td>Imp.%</td></tr><tr><td>BM25</td><td>.187</td><td>-45.3</td><td>.192</td><td>-44.8</td><td>.072</td><td>-64.2</td></tr><tr><td>Dual-encoder</td><td>.342</td><td>-</td><td>.348</td><td>-</td><td>.201</td><td>-</td></tr><tr><td>Cross-encoder</td><td>.399</td><td>16.7</td><td>.407</td><td>17.0</td><td>.224</td><td>11.4</td></tr><tr><td>${\mathrm{I}}^{3}$ retrieve ${\mathrm{r}}_{2}$</td><td>.366</td><td>7.0</td><td>.372</td><td>6.9</td><td>.245</td><td>21.9</td></tr></table>
+
+<table><tbody><tr><td rowspan="2">模型</td><td colspan="2">总体</td><td colspan="2">集合0</td><td colspan="2">集合1</td></tr><tr><td>前10名平均倒数排名（MRR@10）</td><td>改进百分比（Imp.%）</td><td>前10名平均倒数排名（MRR@10）</td><td>改进百分比（Imp.%）</td><td>前10名平均倒数排名（MRR@10）</td><td>改进百分比（Imp.%）</td></tr><tr><td>二元独立模型（BM25）</td><td>.187</td><td>-45.3</td><td>.192</td><td>-44.8</td><td>.072</td><td>-64.2</td></tr><tr><td>双编码器（Dual-encoder）</td><td>.342</td><td>-</td><td>.348</td><td>-</td><td>.201</td><td>-</td></tr><tr><td>交叉编码器（Cross-encoder）</td><td>.399</td><td>16.7</td><td>.407</td><td>17.0</td><td>.224</td><td>11.4</td></tr><tr><td>${\mathrm{I}}^{3}$ 检索 ${\mathrm{r}}_{2}$</td><td>.366</td><td>7.0</td><td>.372</td><td>6.9</td><td>.245</td><td>21.9</td></tr></tbody></table>
+
+<!-- Media -->
+
+Table 5: The cases of passage with multiple relevant queries. The blue texts represent those terms that are consistent with the topic of the ${\mathrm{I}}^{3}$ and dual-encoder for two testing queries. Note that one of the testing query is similar to the training query, and the other one is dissimilar to the training query.
+
+表5：具有多个相关查询的段落案例。蓝色文本表示与${\mathrm{I}}^{3}$主题以及两个测试查询的双编码器一致的术语。请注意，其中一个测试查询与训练查询相似，另一个测试查询与训练查询不同。
+
+<!-- Media -->
+
+training query, and the red texts represent those terms that are inconsistent with the topic of the training query.
+
+训练查询，红色文本表示与训练查询主题不一致的术语。
+
+<table><tr><td>Passage</td><td colspan="3">Preheat the oven to 450 degrees F. Season salmon with salt and pepper. Place salmon, skin side down, on a non-stick baking sheet or in a non-stick pan with an oven-proof handle. Bake until salmon is cooked t- hrough, about 12 to 15 minutes.</td></tr><tr><td rowspan="3">Relevant queries</td><td>Training query</td><td colspan="2">best temperature to cook salmon</td></tr><tr><td rowspan="2">Testing queries</td><td>best oven temperature for baked salmon</td><td>Dual-encoder ranks the passage at #1 ${\mathrm{I}}^{3}$ ranks the passage at #1</td></tr><tr><td>how long to cook salmon cakes in oven</td><td>Dual-encoder ranks the passage at #7 ${\mathrm{I}}^{3}$ ranks the passage at #1</td></tr><tr><td>Reconstructed query terms</td><td colspan="3">how; long; what; salmon; minute; temperature; oven; bake; cook</td></tr><tr><td>Passage</td><td colspan="3">Tetanus, Diphtheria, Pertussis Vaccine for Adults tdap is a combination vaccine that protects against three potentially life-threatening bacterial diseases: tetanus, diphtheria, and pertussis (whooping cough). Td is a booster vaccine for tetanus and diphtheria. It does not protect against pertussis. Tetanus enters the body t- hrough a wound or cut.</td></tr><tr><td rowspan="3">Relevant queries</td><td>Training query</td><td colspan="2">what is a tdap immunization</td></tr><tr><td rowspan="2">Testing queries</td><td>what is the tdap vaccine</td><td>Dual-encoder ranks the passage at #1 ${\mathrm{I}}^{3}$ ranks the passage at #1</td></tr><tr><td>what is the tdap booster</td><td>Dual-encoder ranks the passage at #3 ${\mathrm{I}}^{3}$ ranks the passage at #1</td></tr><tr><td>Reconstructed query terms</td><td colspan="3">what; vaccine; immunity; bacterial; immune; booster; diseases</td></tr></table>
+
+<table><tbody><tr><td>段落</td><td colspan="3">将烤箱预热至华氏450度。用盐和胡椒给三文鱼调味。将三文鱼皮朝下放在不粘烤盘上或带有耐热手柄的不粘锅中。烘烤至三文鱼熟透，大约12到15分钟。</td></tr><tr><td rowspan="3">相关查询</td><td>训练查询</td><td colspan="2">烹饪三文鱼的最佳温度</td></tr><tr><td rowspan="2">测试查询</td><td>烤三文鱼的最佳烤箱温度</td><td>双编码器将该段落排在第1位 ${\mathrm{I}}^{3}$ 将该段落排在第1位</td></tr><tr><td>三文鱼饼在烤箱中烤多久</td><td>双编码器将该段落排在第7位 ${\mathrm{I}}^{3}$ 将该段落排在第1位</td></tr><tr><td>重构的查询词</td><td colspan="3">多久；多长；什么；三文鱼；分钟；温度；烤箱；烘烤；烹饪</td></tr><tr><td>段落</td><td colspan="3">成人破伤风、白喉、百日咳疫苗（Tdap）是一种联合疫苗，可预防三种可能危及生命的细菌性疾病：破伤风、白喉和百日咳。Td是破伤风和白喉的加强疫苗。它不能预防百日咳。破伤风通过伤口或割伤进入人体。</td></tr><tr><td rowspan="3">相关查询</td><td>训练查询</td><td colspan="2">什么是Tdap免疫接种</td></tr><tr><td rowspan="2">测试查询</td><td>什么是Tdap疫苗</td><td>双编码器将该段落排在第1位 ${\mathrm{I}}^{3}$ 将该段落排在第1位</td></tr><tr><td>什么是Tdap加强针</td><td>双编码器将该段落排在第3位 ${\mathrm{I}}^{3}$ 将该段落排在第1位</td></tr><tr><td>重构的查询词</td><td colspan="3">什么；疫苗；免疫力；细菌；免疫；加强针；疾病</td></tr></tbody></table>
+
+<!-- Media -->
+
+First, we find out that the reconstructed query terms can address several key concepts and terms that a query might ask for in a long passage. This indicates that our implicit interaction can help identifying important concepts during passage encoding and eventually boosting the final performance. This finding also justifies the results presented in Table 4,where the relative improvement of ${\mathrm{I}}^{3}$ over dual-encoder is larger on Type 1 passages. Second, it worth noting that the reconstructed query terms are not just the memorization of training query. In fact, they are also generalized to the key terms that are not covered by the training query. For example, the first passage contains information about the temperature and the time of cooking salmon. We note that both two aspects are able to be covered by the reconstructed query terms, while the model is only trained on the training query that asks for temperature. As such, both dual-encoder and ${\mathrm{I}}^{3}$ can perform well on the testing query that is similar to the training query (i.e., ranking the passage at #1), while ${\mathrm{I}}^{3}$ performs much better on the testing query that is dissimilar to the training query. This concludes that the generalization ability of extracting key concepts of passages might be the key of the success of ${\mathrm{I}}^{3}$ .
+
+首先，我们发现重构后的查询词能够涵盖长文本段落中查询可能涉及的几个关键概念和术语。这表明我们的隐式交互可以在段落编码过程中帮助识别重要概念，并最终提升最终性能。这一发现也证实了表4中呈现的结果，即${\mathrm{I}}^{3}$相对于双编码器在类型1段落上的相对改进更大。其次，值得注意的是，重构后的查询词并非仅仅是对训练查询的记忆。实际上，它们还能推广到训练查询未涵盖的关键术语。例如，第一段包含了关于三文鱼烹饪温度和时间的信息。我们注意到，重构后的查询词能够涵盖这两个方面，而模型仅在询问温度的训练查询上进行了训练。因此，双编码器和${\mathrm{I}}^{3}$在与训练查询相似的测试查询上都能表现良好（即，将段落排在第1位），而${\mathrm{I}}^{3}$在与训练查询不同的测试查询上表现得更好。这表明，提取段落关键概念的泛化能力可能是${\mathrm{I}}^{3}$成功的关键。
+
+## 7 CONCLUSION
+
+## 7 结论
+
+In this paper, we propose a new interaction paradigm for dense retrieval,namely ${\mathrm{I}}^{3}$ retriever,which incorporates implicit interaction into dual-encoders. Particularly, ${\mathrm{I}}^{3}$ advances conventional dual-encoders with 1) a lightweight query reconstructor and 2) a query-passage interactor, which generate pseudo-query for expressive interaction. By doing this,our ${\mathrm{I}}^{3}$ model is equipped with the capability of modeling implicit interaction, leading to an effective and efficient encoding of semantic relevance features in the final passage representations. The evaluation shows that the retrieval performance could be significantly improved without introducing extra computational overhead and space footprint. Besides, we also show that the proposed implicit interaction is compatible with special pretraining and distillation to achieve a better performance.
+
+在本文中，我们为密集检索提出了一种新的交互范式，即${\mathrm{I}}^{3}$检索器，它将隐式交互融入到双编码器中。具体而言，${\mathrm{I}}^{3}$通过以下两点改进了传统的双编码器：1）一个轻量级的查询重构器；2）一个查询 - 段落交互器，它们生成伪查询以进行富有表现力的交互。通过这样做，我们的${\mathrm{I}}^{3}$模型具备了对隐式交互进行建模的能力，从而在最终的段落表示中有效且高效地编码语义相关性特征。评估表明，在不引入额外计算开销和空间占用的情况下，检索性能可以显著提高。此外，我们还表明，所提出的隐式交互与特殊预训练和蒸馏兼容，以实现更好的性能。
+
+## ACKNOWLEDGMENTS
+
+## 致谢
+
+This work is supported by Quan Cheng Laboratory (Grant No. QCLZD202301).
+
+本工作得到了泉城实验室（资助编号：QCLZD202301）的支持。
+
+## REFERENCES
+
+## 参考文献
+
+[1] Luiz Bonifacio, Hugo Abonizio, Marzieh Fadaee, and Rodrigo Nogueira. 2022. InPars: Data Augmentation for Information Retrieval using Large Language Models. arXiv preprint arXiv:2202.05144 (2022).
+
+[1] Luiz Bonifacio、Hugo Abonizio、Marzieh Fadaee和Rodrigo Nogueira。2022年。InPars：使用大语言模型进行信息检索的数据增强。预印本arXiv：2202.05144（2022年）。
+
+[2] Wei-Cheng Chang, Felix X Yu, Yin-Wen Chang, Yiming Yang, and Sanjiv Kumar. 2020. Pre-training tasks for embedding-based large-scale retrieval. arXiv preprint arXiv:2002.03932 (2020).
+
+[2] Wei - Cheng Chang、Felix X Yu、Yin - Wen Chang、Yiming Yang和Sanjiv Kumar。2020年。基于嵌入的大规模检索的预训练任务。预印本arXiv：2002.03932（2020年）。
+
+[3] Anfeng Cheng, Yiding Liu, Weibin Li, Qian Dong, Shuaiqiang Wang, Zhengjie Huang, Shikun Feng, Zhicong Cheng, and Dawei Yin. 2023. Layout-aware Web-page Quality Assessment. arXiv preprint arXiv:2301.12152 (2023).
+
+[3] Anfeng Cheng、Yiding Liu、Weibin Li、Qian Dong、Shuaiqiang Wang、Zhengjie Huang、Shikun Feng、Zhicong Cheng和Dawei Yin。2023年。考虑布局的网页质量评估。预印本arXiv：2301.12152（2023年）。
+
+[4] Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Eric Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, et al. 2022. Scaling instruction-finetuned language models. arXiv preprint arXiv:2210.11416 (2022).
+
+[4] Hyung Won Chung、Le Hou、Shayne Longpre、Barret Zoph、Yi Tay、William Fedus、Eric Li、Xuezhi Wang、Mostafa Dehghani、Siddhartha Brahma等。2022年。扩展指令微调语言模型。预印本arXiv：2210.11416（2022年）。
+
+[5] Nick Craswell, Bhaskar Mitra, Emine Yilmaz, Daniel Campos, and Ellen M Voorhees. 2020. Overview of the trec 2019 deep learning track. arXiv preprint arXiv:2003.07820 (2020).
+
+[5] Nick Craswell、Bhaskar Mitra、Emine Yilmaz、Daniel Campos和Ellen M Voorhees。2020年。2019年TREC深度学习赛道概述。预印本arXiv：2003.07820（2020年）。
+
+[6] Zhuyun Dai and Jamie Callan. 2020. Context-aware term weighting for first stage passage retrieval. In Proceedings of the 43rd International ACM SIGIR conference on research and development in Information Retrieval. 1533-1536.
+
+[6] Zhuyun Dai和Jamie Callan。2020年。用于第一阶段段落检索的上下文感知词项加权。见第43届ACM SIGIR信息检索研究与发展国际会议论文集。1533 - 1536。
+
+[7] Zhuyun Dai, Chenyan Xiong, Jamie Callan, and Zhiyuan Liu. 2018. Convolutional neural networks for soft-matching n-grams in ad-hoc search. In Proceedings of the eleventh ACM international conference on web search and data mining. 126-134.
+
+[7] Zhuyun Dai、Chenyan Xiong、Jamie Callan和Zhiyuan Liu。2018年。用于即席搜索中n元组软匹配的卷积神经网络。见第十一届ACM网络搜索与数据挖掘国际会议论文集。126 - 134。
+
+[8] Zhuyun Dai, Vincent Y Zhao, Ji Ma, Yi Luan, Jianmo Ni, Jing Lu, Anton Bakalov, Kelvin Guu, Keith B Hall, and Ming-Wei Chang. 2022. Promptagator: Few-shot dense retrieval from 8 examples. arXiv preprint arXiv:2209.11755 (2022).
+
+[8] 戴竹云（Zhuyun Dai）、赵文森（Vincent Y Zhao）、马骥（Ji Ma）、栾毅（Yi Luan）、倪建墨（Jianmo Ni）、陆静（Jing Lu）、安东·巴卡洛夫（Anton Bakalov）、顾凯文（Kelvin Guu）、基思·B·霍尔（Keith B Hall）和张明伟（Ming-Wei Chang）。2022 年。Promptagator：基于 8 个示例的少样本密集检索。预印本 arXiv:2209.11755 (2022)。
+
+[9] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805 (2018).
+
+[9] 雅各布·德夫林（Jacob Devlin）、张明伟（Ming-Wei Chang）、肯顿·李（Kenton Lee）和克里斯蒂娜·图托纳娃（Kristina Toutanova）。2018 年。BERT：用于语言理解的深度双向变换器预训练。预印本 arXiv:1810.04805 (2018)。
+
+[10] Qian Dong, Yiding Liu, Suqi Cheng, Shuaiqiang Wang, Zhicong Cheng, Shuzi Niu, and Dawei Yin. 2022. Incorporating Explicit Knowledge in Pre-trained Language Models for Passage Re-ranking. arXiv preprint arXiv:2204.11673 (2022).
+
+[10] 董倩（Qian Dong）、刘一丁（Yiding Liu）、程苏琪（Suqi Cheng）、王帅强（Shuaiqiang Wang）、程志聪（Zhicong Cheng）、牛淑子（Shuzi Niu）和尹大为（Dawei Yin）。2022 年。在预训练语言模型中融入显式知识用于段落重排序。预印本 arXiv:2204.11673 (2022)。
+
+[11] Qian Dong and Shuzi Niu. 2021. Latent Graph Recurrent Network for Document Ranking. In Database Systems for Advanced Applications: 26th International Conference, DASFAA 2021, Taipei, Taiwan, April 11-14, 2021, Proceedings, Part II 26. Springer, 88-103.
+
+[11] 董倩（Qian Dong）和牛淑子（Shuzi Niu）。2021 年。用于文档排名的潜在图循环网络。见《高级应用数据库系统：第 26 届国际会议，DASFAA 2021，中国台湾台北，2021 年 4 月 11 - 14 日，会议录，第二部分》26。施普林格出版社，88 - 103。
+
+[12] Qian Dong and Shuzi Niu. 2021. Legal judgment prediction via relational learning. In Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval. 983-992.
+
+[12] 董倩（Qian Dong）和牛淑子（Shuzi Niu）。2021 年。通过关系学习进行法律判决预测。见《第 44 届 ACM SIGIR 国际信息检索研究与发展会议论文集》。983 - 992。
+
+[13] Qian Dong, Shuzi Niu, Tao Yuan, and Yucheng Li. 2022. Disentangled graph recurrent network for document ranking. Data Science and Engineering 7, 1 (2022), 30-43.
+
+[13] 董倩（Qian Dong）、牛淑子（Shuzi Niu）、袁涛（Tao Yuan）和李玉成（Yucheng Li）。2022 年。用于文档排名的解缠图循环网络。《数据科学与工程》7, 1 (2022)，30 - 43。
+
+[14] Thibault Formal, Carlos Lassance, Benjamin Piwowarski, and Stéphane Clinchant. 2021. SPLADE v2: Sparse lexical and expansion model for information retrieval. arXiv preprint arXiv:2109.10086 (2021).
+
+[14] 蒂博·福尔马尔（Thibault Formal）、卡洛斯·拉萨斯（Carlos Lassance）、本杰明·皮沃瓦尔斯基（Benjamin Piwowarski）和斯特凡·克林尚（Stéphane Clinchant）。2021 年。SPLADE v2：用于信息检索的稀疏词汇和扩展模型。预印本 arXiv:2109.10086 (2021)。
+
+[15] Luyu Gao and Jamie Callan. 2021. Unsupervised corpus aware language model pre-training for dense passage retrieval. arXiv preprint arXiv:2108.05540 (2021).
+
+[15] 高璐宇（Luyu Gao）和杰米·卡兰（Jamie Callan）。2021 年。用于密集段落检索的无监督语料感知语言模型预训练。预印本 arXiv:2108.05540 (2021)。
+
+[16] Luyu Gao, Zhuyun Dai, and Jamie Callan. 2021. COIL: Revisit exact lexical match in information retrieval with contextualized inverted list. arXiv preprint arXiv:2104.07186 (2021).
+
+[16] 高璐宇（Luyu Gao）、戴竹云（Zhuyun Dai）和杰米·卡兰（Jamie Callan）。2021 年。COIL：通过上下文倒排列表重新审视信息检索中的精确词汇匹配。预印本 arXiv:2104.07186 (2021)。
+
+[17] Jiafeng Guo, Yixing Fan, Qingyao Ai, and W Bruce Croft. 2016. A deep relevance matching model for ad-hoc retrieval. In Proceedings of the 25th ACM international on conference on information and knowledge management. 55- 64.
+
+[17] 郭佳峰（Jiafeng Guo）、范宜兴（Yixing Fan）、艾清瑶（Qingyao Ai）和 W·布鲁斯·克罗夫特（W Bruce Croft）。2016 年。用于临时检索的深度相关性匹配模型。见《第 25 届 ACM 国际信息与知识管理会议论文集》。55 - 64。
+
+[18] Jiafeng Guo, Yixing Fan, Liang Pang, Liu Yang, Qingyao Ai, Hamed Zamani, Chen Wu, W Bruce Croft, and Xueqi Cheng. 2020. A deep look into neural ranking models for information retrieval. Information Processing & Management 57, 6 (2020), 102067.
+
+[18] 郭佳峰（Jiafeng Guo）、范宜兴（Yixing Fan）、庞亮（Liang Pang）、刘洋（Liu Yang）、艾清瑶（Qingyao Ai）、哈米德·扎马尼（Hamed Zamani）、吴晨（Chen Wu）、W·布鲁斯·克罗夫特（W Bruce Croft）和程学旗（Xueqi Cheng）。2020 年。深入研究用于信息检索的神经排名模型。《信息处理与管理》57, 6 (2020)，102067。
+
+[19] Sebastian Hofstätter, Sheng-Chieh Lin, Jheng-Hong Yang, Jimmy Lin, and Allan Hanbury. 2021. Efficiently teaching an effective dense retriever with balanced topic aware sampling. In Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval. 113-122.
+
+[19] 塞巴斯蒂安·霍夫施泰特（Sebastian Hofstätter）、林盛杰（Sheng-Chieh Lin）、杨政宏（Jheng-Hong Yang）、林吉米（Jimmy Lin）和艾伦·汉伯里（Allan Hanbury）。2021 年。通过平衡主题感知采样高效训练有效的密集检索器。见《第 44 届 ACM SIGIR 国际信息检索研究与发展会议论文集》。113 - 122。
+
+[20] Baotian Hu, Zhengdong Lu, Hang Li, and Qingcai Chen. 2014. Convolutional neural network architectures for matching natural language sentences. Advances in neural information processing systems 27 (2014).
+
+[20] 胡宝田（Baotian Hu）、卢正东（Zhengdong Lu）、李航（Hang Li）和陈清才（Qingcai Chen）。2014 年。用于匹配自然语言句子的卷积神经网络架构。《神经信息处理系统进展》27 (2014)。
+
+[21] Po-Sen Huang, Xiaodong He, Jianfeng Gao, Li Deng, Alex Acero, and Larry Heck. 2013. Learning deep structured semantic models for web search using clickthrough data. In Proceedings of the 22nd ACM international conference on Information & Knowledge Management. 2333-2338.
+
+[21] 黄伯森（Po-Sen Huang）、何晓东（Xiaodong He）、高剑锋（Jianfeng Gao）、李立（Li Deng）、亚历克斯·阿塞罗（Alex Acero）和拉里·赫克（Larry Heck）。2013 年。使用点击数据学习用于网络搜索的深度结构化语义模型。见《第 22 届 ACM 国际信息与知识管理会议论文集》。2333 - 2338。
+
+[22] Samuel Humeau, Kurt Shuster, Marie-Anne Lachaux, and Jason Weston. 2019. Poly-encoders: Transformer architectures and pre-training strategies for fast and accurate multi-sentence scoring. arXiv preprint arXiv:1905.01969 (2019).
+
+[22] 塞缪尔·休莫（Samuel Humeau）、库尔特·舒斯特（Kurt Shuster）、玛丽 - 安妮·拉肖（Marie-Anne Lachaux）和杰森·韦斯顿（Jason Weston）。2019 年。多编码器：用于快速准确多句子评分的变换器架构和预训练策略。预印本 arXiv:1905.01969 (2019)。
+
+[23] Jeff Johnson, Matthijs Douze, and Hervé Jégou. 2019. Billion-scale similarity search with GPUs. IEEE Transactions on Big Data 7, 3 (2019), 535-547.
+
+[23] 杰夫·约翰逊（Jeff Johnson）、马蒂亚斯·杜泽（Matthijs Douze）和埃尔韦·热古（Hervé Jégou）。2019 年。使用 GPU 进行十亿级相似性搜索。《IEEE 大数据汇刊》7, 3 (2019)，535 - 547。
+
+[24] Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih. 2020. Dense passage retrieval for open-domain question answering. arXiv preprint arXiv:2004.04906 (2020).
+
+[24] 弗拉基米尔·卡尔普欣（Vladimir Karpukhin）、巴拉斯·奥古兹（Barlas Oğuz）、闵世元（Sewon Min）、帕特里克·刘易斯（Patrick Lewis）、莱德尔·吴（Ledell Wu）、谢尔盖·叶杜诺夫（Sergey Edunov）、陈丹琦（Danqi Chen）和易文涛（Wen-tau Yih）。2020年。用于开放域问答的密集段落检索。预印本arXiv:2004.04906 (2020)。
+
+[25] Omar Khattab and Matei Zaharia. 2020. Colbert: Efficient and effective passage search via contextualized late interaction over bert. In Proceedings of the 43rd International ACM SIGIR conference on research and development in Information Retrieval. 39-48.
+
+[25] 奥马尔·哈塔卜（Omar Khattab）和马特·扎哈里亚（Matei Zaharia）。2020年。ColBERT：通过基于BERT的上下文延迟交互实现高效有效的段落搜索。收录于第43届ACM SIGIR信息检索研究与发展国际会议论文集。第39 - 48页。
+
+[26] Canjia Li, Xiaoyang Wang, Dongdong Li, Yiding Liu, Yu Lu, Shuaiqiang Wang, Zhicong Cheng, Simiu Gu, and Dawei Yin. 2023. Pretrained Language Model based Web Search Ranking: From Relevance to Satisfaction. arXiv preprint arXiv:2306.01599 (2023).
+
+[26] 李灿佳、王晓阳、李冬冬、刘一丁、卢宇、王帅强、程志聪、顾思缪和尹大为。2023年。基于预训练语言模型的网络搜索排序：从相关性到满意度。预印本arXiv:2306.01599 (2023)。
+
+[27] Haitao Li, Qingyao Ai, Jia Chen, Qian Dong, Yueyue Wu, Yiqun Liu, Chong Chen, and Qi Tian. 2023. SAILER: Structure-aware Pre-trained Language Model for Legal Case Retrieval. arXiv preprint arXiv:2304.11370 (2023).
+
+[27] 李海涛、艾清瑶、陈佳、董倩、吴月月、刘奕群、陈冲和齐天。2023年。SAILER：用于法律案例检索的结构感知预训练语言模型。预印本arXiv:2304.11370 (2023)。
+
+[28] Haitao Li, Qingyao Ai, Jingtao Zhan, Jiaxin Mao, Yiqun Liu, Zheng Liu, and Zhao Cao. 2023. Constructing Tree-based Index for Efficient and Effective Dense Retrieval. arXiv preprint arXiv:2304.11943 (2023).
+
+[28] 李海涛、艾清瑶、詹景涛、毛佳欣、刘奕群、刘政和曹钊。2023年。构建基于树的索引以实现高效有效的密集检索。预印本arXiv:2304.11943 (2023)。
+
+[29] Zehan Li, Nan Yang, Liang Wang, and Furu Wei. 2022. Learning Diverse Document Representations with Deep Query Interactions for Dense Retrieval. arXiv preprint arXiv:2208.04232 (2022).
+
+[29] 李泽涵、杨楠、王亮和魏富如。2022年。通过深度查询交互学习多样化文档表示以进行密集检索。预印本arXiv:2208.04232 (2022)。
+
+[30] Davis Liang, Peng Xu, Siamak Shakeri, Cicero Nogueira dos Santos, Ramesh Nallapati, Zhiheng Huang, and Bing Xiang. 2020. Embedding-based zero-shot retrieval through query generation. arXiv preprint arXiv:2009.10270 (2020).
+
+[30] 戴维斯·梁（Davis Liang）、徐鹏、西亚马克·沙克里（Siamak Shakeri）、西塞罗·诺盖拉·多斯·桑托斯（Cicero Nogueira dos Santos）、拉梅什·纳拉帕蒂（Ramesh Nallapati）、黄志恒和向兵。2020年。通过查询生成实现基于嵌入的零样本检索。预印本arXiv:2009.10270 (2020)。
+
+[31] Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. 2019. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692 (2019).
+
+[31] 刘音涵、迈尔·奥特（Myle Ott）、纳曼·戈亚尔（Naman Goyal）、杜静飞、曼达尔·乔希（Mandar Joshi）、陈丹琦、奥默·利维（Omer Levy）、迈克·刘易斯（Mike Lewis）、卢克·泽特尔莫耶（Luke Zettlemoyer）和韦塞林·斯托扬诺夫（Veselin Stoyanov）。2019年。RoBERTa：一种稳健优化的BERT预训练方法。预印本arXiv:1907.11692 (2019)。
+
+[32] Zheng Liu and Yingxia Shao. 2022. Retromae: Pre-training retrieval-oriented transformers via masked auto-encoder. arXiv preprint arXiv:2205.12035 (2022).
+
+[32] 刘政和邵英霞。2022年。RetroMAE：通过掩码自编码器预训练面向检索的Transformer。预印本arXiv:2205.12035 (2022)。
+
+[33] Shuqi Lu, Di He, Chenyan Xiong, Guolin Ke, Waleed Malik, Zhicheng Dou, Paul Bennett, Tie-Yan Liu, and Arnold Overwijk. 2021. Less is More: Pretrain a Strong Siamese Encoder for Dense Text Retrieval Using a Weak Decoder. In Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing. 2780-2791.
+
+[33] 陆舒琪、何迪、熊晨彦、柯国霖、瓦利德·马利克（Waleed Malik）、窦志成、保罗·贝内特（Paul Bennett）、刘铁岩和阿诺德·奥弗维克（Arnold Overwijk）。2021年。少即是多：使用弱解码器预训练用于密集文本检索的强大孪生编码器。收录于2021年自然语言处理经验方法会议论文集。第2780 - 2791页。
+
+[34] Yuxiang Lu, Yiding Liu, Jiaxiang Liu, Yunsheng Shi, Zhengjie Huang, Shikun Feng Yu Sun, Hao Tian, Hua Wu, Shuaiqiang Wang, Dawei Yin, et al. 2022. Ernie-search: Bridging cross-encoder with dual-encoder via self on-the-fly distillation for dense passage retrieval. arXiv preprint arXiv:2205.09153 (2022).
+
+[34] 卢宇翔、刘一丁、刘佳祥、史云生、黄正杰、冯世坤、孙宇、田浩、吴华、王帅强、尹大为等。2022年。ERNIE - Search：通过实时自蒸馏将交叉编码器与双编码器相结合用于密集段落检索。预印本arXiv:2205.09153 (2022)。
+
+[35] Yi Luan, Jacob Eisenstein, Kristina Toutanova, and Michael Collins. 2021. Sparse, dense, and attentional representations for text retrieval. Transactions of the Association for Computational Linguistics 9 (2021), 329-345.
+
+[35] 栾义、雅各布·艾森斯坦（Jacob Eisenstein）、克里斯蒂娜·图托纳娃（Kristina Toutanova）和迈克尔·柯林斯（Michael Collins）。2021年。用于文本检索的稀疏、密集和注意力表示。计算语言学协会汇刊9 (2021)，第329 - 345页。
+
+[36] Ji Ma, Ivan Korotkov, Yinfei Yang, Keith Hall, and Ryan McDonald. 2020. Zero-shot neural passage retrieval via domain-targeted synthetic question generation. arXiv preprint arXiv:2004.14503 (2020).
+
+[36] 马骥、伊万·科罗特科夫（Ivan Korotkov）、杨音飞、基思·霍尔（Keith Hall）和瑞安·麦克唐纳（Ryan McDonald）。2020年。通过领域目标合成问题生成实现零样本神经段落检索。预印本arXiv:2004.14503 (2020)。
+
+[37] Xinyu Ma, Jiafeng Guo, Ruqing Zhang, Yixing Fan, and Xueqi Cheng. 2022. Pretrain a Discriminative Text Encoder for Dense Retrieval via Contrastive Span Prediction. arXiv preprint arXiv:2204.10641 (2022).
+
+[37] 马新宇、郭佳峰、张汝清、范一星和程学旗。2022年。通过对比跨度预测预训练用于密集检索的判别式文本编码器。预印本arXiv:2204.10641 (2022)。
+
+[38] Yu A Malkov and Dmitry A Yashunin. 2018. Efficient and robust approximate nearest neighbor search using hierarchical navigable small world graphs. IEEE transactions on pattern analysis and machine intelligence 42, 4 (2018), 824-836.
+
+[38] 尤·A·马尔科夫（Yu A Malkov）和德米特里·A·亚舒宁（Dmitry A Yashunin）。2018年。使用层次可导航小世界图进行高效且稳健的近似最近邻搜索。《电气与电子工程师协会模式分析与机器智能汇刊》（IEEE transactions on pattern analysis and machine intelligence）42卷，第4期（2018年），824 - 836页。
+
+[39] Tri Nguyen, Mir Rosenberg, Xia Song, Jianfeng Gao, Saurabh Tiwary, Rangan Majumder, and Li Deng. 2016. MS MARCO: A human generated machine reading comprehension dataset. In CoCo@ NIPS.
+
+[39] 特里·阮（Tri Nguyen）、米尔·罗森伯格（Mir Rosenberg）、宋霞（Xia Song）、高剑锋（Jianfeng Gao）、索拉布·蒂瓦里（Saurabh Tiwary）、兰甘·马朱姆德（Rangan Majumder）和李登（Li Deng）。2016年。MS MARCO：一个人工生成的机器阅读理解数据集。发表于神经信息处理系统大会计算与认知研讨会（CoCo@ NIPS）。
+
+[40] Rodrigo Nogueira and Kyunghyun Cho. 2019. Passage Re-ranking with BERT. arXiv preprint arXiv:1901.04085 (2019).
+
+[40] 罗德里戈·诺盖拉（Rodrigo Nogueira）和赵京焕（Kyunghyun Cho）。2019年。使用BERT进行段落重排序。预印本arXiv：1901.04085（2019年）。
+
+[41] Rodrigo Nogueira, Jimmy Lin, and AI Epistemic. 2019. From doc2query to docTTTTTquery. Online preprint 6 (2019).
+
+[41] 罗德里戈·诺盖拉（Rodrigo Nogueira）、吉米·林（Jimmy Lin）和人工智能认知（AI Epistemic）。2019年。从doc2query到docTTTTTquery。在线预印本6（2019年）。
+
+[42] Rodrigo Nogueira, Wei Yang, Kyunghyun Cho, and Jimmy Lin. 2019. Multi-stage document ranking with bert. arXiv preprint arXiv:1910.14424 (2019).
+
+[42] 罗德里戈·诺盖拉（Rodrigo Nogueira）、杨威（Wei Yang）、赵京焕（Kyunghyun Cho）和吉米·林（Jimmy Lin）。2019年。使用BERT进行多阶段文档排序。预印本arXiv：1910.14424（2019年）。
+
+[43] Rodrigo Nogueira, Wei Yang, Jimmy Lin, and Kyunghyun Cho. 2019. Document expansion by query prediction. arXiv preprint arXiv:1904.08375 (2019).
+
+[43] 罗德里戈·诺盖拉（Rodrigo Nogueira）、杨威（Wei Yang）、吉米·林（Jimmy Lin）和赵京焕（Kyunghyun Cho）。2019年。通过查询预测进行文档扩展。预印本arXiv：1904.08375（2019年）。
+
+[44] Hamid Palangi, Li Deng, Yelong Shen, Jianfeng Gao, Xiaodong He, Jianshu Chen, Xinying Song, and Rabab Ward. 2016. Deep sentence embedding using long short-term memory networks: Analysis and application to information retrieval. IEEE/ACM Transactions on Audio, Speech, and Language Processing 24, 4 (2016), 694-707.
+
+[44] 哈米德·帕兰吉（Hamid Palangi）、李登（Li Deng）、沈业龙（Yelong Shen）、高剑锋（Jianfeng Gao）、何晓东（Xiaodong He）、陈建树（Jianshu Chen）、宋新英（Xinying Song）和拉巴布·沃德（Rabab Ward）。2016年。使用长短期记忆网络进行深度句子嵌入：分析及其在信息检索中的应用。《电气与电子工程师协会/美国计算机协会音频、语音和语言处理汇刊》（IEEE/ACM Transactions on Audio, Speech, and Language Processing）24卷，第4期（2016年），694 - 707页。
+
+[45] Xipeng Qiu and Xuanjing Huang. 2015. Convolutional neural tensor network architecture for community-based question answering. In Twenty-Fourth international joint conference on artificial intelligence.
+
+[45] 邱锡鹏（Xipeng Qiu）和黄萱菁（Xuanjing Huang）。2015年。基于社区问答的卷积神经张量网络架构。发表于第24届国际人工智能联合会议。
+
+[46] Yingqi Qu, Yuchen Ding, Jing Liu, Kai Liu, Ruiyang Ren, Wayne Xin Zhao, Daxiang Dong, Hua Wu, and Haifeng Wang. 2021. RocketQA: An optimized training approach to dense passage retrieval for open-domain question answering. In Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies. 5835-5847.
+
+[46] 曲英琪（Yingqi Qu）、丁雨晨（Yuchen Ding）、刘静（Jing Liu）、刘凯（Kai Liu）、任瑞阳（Ruiyang Ren）、赵鑫（Wayne Xin Zhao）、董大祥（Daxiang Dong）、吴华（Hua Wu）和王海峰（Haifeng Wang）。2021年。RocketQA：一种用于开放域问答的密集段落检索优化训练方法。发表于2021年北美计算语言学协会人类语言技术会议论文集，5835 - 5847页。
+
+[47] Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever, et al. 2018. Improving language understanding by generative pre-training. (2018).
+
+[47] 亚历克·拉德福德（Alec Radford）、卡尔蒂克·纳拉辛汉（Karthik Narasimhan）、蒂姆·萨利曼斯（Tim Salimans）、伊利亚·苏茨克维（Ilya Sutskever）等。2018年。通过生成式预训练提高语言理解能力。（2018年）
+
+[48] Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, Peter J Liu, et al. 2020. Exploring the limits of transfer learning with a unified text-to-text transformer. J. Mach. Learn. Res. 21, 140 (2020), 1-67.
+
+[48] 科林·拉菲尔（Colin Raffel）、诺姆·沙泽尔（Noam Shazeer）、亚当·罗伯茨（Adam Roberts）、凯瑟琳·李（Katherine Lee）、沙兰·纳朗（Sharan Narang）、迈克尔·马泰纳（Michael Matena）、周燕琪（Yanqi Zhou）、李伟（Wei Li）、彼得·J·刘（Peter J Liu）等。2020年。使用统一的文本到文本转换器探索迁移学习的极限。《机器学习研究杂志》（J. Mach. Learn. Res.）21卷，第140期（2020年），1 - 67页。
+
+[49] Ruiyang Ren, Yingqi Qu, Jing Liu, Wayne Xin Zhao, Qiaoqiao She, Hua Wu, Haifeng Wang, and Ji-Rong Wen. 2021. RocketQAv2: A Joint Training Method for Dense Passage Retrieval and Passage Re-ranking. arXiv preprint arXiv:2110.07367 (2021).
+
+[49] 任瑞阳（Ruiyang Ren）、曲英琪（Yingqi Qu）、刘静（Jing Liu）、赵鑫（Wayne Xin Zhao）、佘巧巧（Qiaoqiao She）、吴华（Hua Wu）、王海峰（Haifeng Wang）和文继荣（Ji - Rong Wen）。2021年。RocketQAv2：一种用于密集段落检索和段落重排序的联合训练方法。预印本arXiv：2110.07367（2021年）。
+
+[50] Stephen Robertson, Hugo Zaragoza, et al. 2009. The probabilistic relevance framework: BM25 and beyond. Foundations and Trends® in Information Retrieval 3, 4 (2009), 333-389.
+
+[50] 斯蒂芬·罗伯逊（Stephen Robertson）、雨果·萨拉戈萨（Hugo Zaragoza）等。2009年。概率相关性框架：BM25及其扩展。《信息检索基础与趋势》（Foundations and Trends® in Information Retrieval）3卷，第4期（2009年），333 - 389页。
+
+[51] Stuart Rose, Dave Engel, Nick Cramer, and Wendy Cowley. 2010. Automatic keyword extraction from individual documents. Text mining: applications and theory (2010), 1-20.
+
+[51] 斯图尔特·罗斯（Stuart Rose）、戴夫·恩格尔（Dave Engel）、尼克·克莱默（Nick Cramer）和温迪·考利（Wendy Cowley）。2010年。从单篇文档中自动提取关键词。《文本挖掘：应用与理论》（Text mining: applications and theory）（2010年），1 - 20页。
+
+[52] Keshav Santhanam, Omar Khattab, Jon Saad-Falcon, Christopher Potts, and Matei Zaharia. 2022. ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction. In Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies. 3715-3734.
+
+[52] 凯沙夫·桑塔南姆（Keshav Santhanam）、奥马尔·哈塔布（Omar Khattab）、乔恩·萨德 - 法尔孔（Jon Saad - Falcon）、克里斯托弗·波茨（Christopher Potts）和马特·扎哈里亚（Matei Zaharia）。2022年。ColBERTv2：通过轻量级后期交互实现高效检索。发表于2022年北美计算语言学协会人类语言技术会议论文集，3715 - 3734页。
+
+[53] Yelong Shen, Xiaodong He, Jianfeng Gao, Li Deng, and Grégoire Mesnil. 2014. A latent semantic model with convolutional-pooling structure for information retrieval. In Proceedings of the ${23}\mathrm{{rd}}$ ACM international conference on conference on information and knowledge management. 101-110.
+
+[53] 沈业龙（Yelong Shen）、何晓东（Xiaodong He）、高剑锋（Jianfeng Gao）、李登（Li Deng）和格雷瓜尔·梅斯尼尔（Grégoire Mesnil）。2014年。一种用于信息检索的具有卷积 - 池化结构的潜在语义模型。发表于${23}\mathrm{{rd}}$美国计算机协会信息与知识管理国际会议论文集，101 - 110页。
+
+[54] Hongyin Tang, Xingwu Sun, Beihong Jin, Jingang Wang, Fuzheng Zhang, and Wei Wu. 2021. Improving document representations by generating pseudo query embeddings for dense retrieval. arXiv preprint arXiv:2105.03599 (2021).
+
+[54] 唐红印（Hongyin Tang）、孙兴武（Xingwu Sun）、金贝宏（Beihong Jin）、王金刚（Jingang Wang）、张福正（Fuzheng Zhang）和吴伟（Wei Wu）。2021年。通过生成伪查询嵌入来改进文档表示以进行密集检索。预印本arXiv:2105.03599 (2021)。
+
+[55] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. Attention is all you need. In Advances in neural information processing systems. 5998-6008.
+
+[55] 阿什什·瓦斯瓦尼（Ashish Vaswani）、诺姆·沙泽尔（Noam Shazeer）、尼基·帕尔马尔（Niki Parmar）、雅各布·乌斯库赖特（Jakob Uszkoreit）、利昂·琼斯（Llion Jones）、艾丹·N·戈麦斯（Aidan N Gomez）、卢卡斯·凯泽（Łukasz Kaiser）和伊利亚·波洛苏金（Illia Polosukhin）。2017年。注意力就是你所需要的一切。收录于《神经信息处理系统进展》。5998 - 6008。
+
+[56] Shengxian Wan, Yanyan Lan, Jiafeng Guo, Jun Xu, Liang Pang, and Xueqi Cheng. 2016. A deep architecture for semantic matching with multiple positional sentence representations. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 30.
+
+[56] 万胜贤（Shengxian Wan）、兰艳艳（Yanyan Lan）、郭佳峰（Jiafeng Guo）、徐军（Jun Xu）、庞亮（Liang Pang）和程学旗（Xueqi Cheng）。2016年。一种基于多位置句子表示的语义匹配深度架构。收录于《AAAI人工智能会议论文集》，第30卷。
+
+[57] Kexin Wang, Nandan Thakur, Nils Reimers, and Iryna Gurevych. 2021. Gpl: Generative pseudo labeling for unsupervised domain adaptation of dense retrieval. arXiv preprint arXiv:2112.07577 (2021).
+
+[57] 王可欣（Kexin Wang）、南丹·塔库尔（Nandan Thakur）、尼尔斯·赖默斯（Nils Reimers）和伊琳娜·古列维奇（Iryna Gurevych）。2021年。GPL：用于密集检索无监督领域适应的生成式伪标签。预印本arXiv:2112.07577 (2021)。
+
+[58] Liang Wang, Nan Yang, Xiaolong Huang, Binxing Jiao, Linjun Yang, Daxin Jiang, Rangan Majumder, and Furu Wei. 2022. Simlm: Pre-training with representation bottleneck for dense passage retrieval. arXiv preprint arXiv:2207.02578 (2022).
+
+[58] 王亮（Liang Wang）、杨楠（Nan Yang）、黄晓龙（Xiaolong Huang）、焦彬星（Binxing Jiao）、杨林军（Linjun Yang）、蒋大新（Daxin Jiang）、兰甘·马朱姆德（Rangan Majumder）和魏富如（Furu Wei）。2022年。Simlm：通过表示瓶颈预训练进行密集段落检索。预印本arXiv:2207.02578 (2022)。
+
+[59] Xing Wu, Guangyuan Ma, and Songlin Hu. 2022. Query-as-context Pre-training for Dense Passage Retrieval. arXiv preprint arXiv:2212.09598 (2022).
+
+[59] 吴星（Xing Wu）、马广元（Guangyuan Ma）和胡松林（Songlin Hu）。2022年。将查询作为上下文进行密集段落检索的预训练。预印本arXiv:2212.09598 (2022)。
+
+[60] Xing Wu, Guangyuan Ma, Meng Lin, Zijia Lin, Zhongyuan Wang, and Songlin Hu. 2022. Contextual mask auto-encoder for dense passage retrieval. arXiv preprint arXiv:2208.07670 (2022).
+
+[60] 吴星（Xing Wu）、马广元（Guangyuan Ma）、林梦（Meng Lin）、林紫佳（Zijia Lin）、王中原（Zhongyuan Wang）和胡松林（Songlin Hu）。2022年。用于密集段落检索的上下文掩码自编码器。预印本arXiv:2208.07670 (2022)。
+
+[61] Xuanji Xiao, Huaqiang Dai, Qian Dong, Shuzi Niu, Yuzhen Liu, and Pei Liu. 2023. Social4Rec: Distilling User Preference from Social Graph for Video Recommendation in Tencent. arXiv preprint arXiv:2302.09971 (2023).
+
+[61] 肖玄基（Xuanji Xiao）、戴华强（Huaqiang Dai）、董倩（Qian Dong）、牛淑子（Shuzi Niu）、刘玉珍（Yuzhen Liu）和刘培（Pei Liu）。2023年。Social4Rec：从社交图中提炼用户偏好用于腾讯视频推荐。预印本arXiv:2302.09971 (2023)。
+
+[62] Xiaohui Xie, Qian Dong, Bingning Wang, Feiyang Lv, Ting Yao, Weinan Gan, Zhijing Wu, Xiangsheng Li, Haitao Li, Yiqun Liu, et al. 2023. T2Ranking: A large-scale Chinese Benchmark for Passage Ranking. arXiv preprint arXiv:2304.03679 (2023).
+
+[62] 谢晓辉（Xiaohui Xie）、董倩（Qian Dong）、王冰宁（Bingning Wang）、吕飞扬（Feiyang Lv）、姚婷（Ting Yao）、甘伟南（Weinan Gan）、吴志静（Zhijing Wu）、李向升（Xiangsheng Li）、李海涛（Haitao Li）、刘一群（Yiqun Liu）等。2023年。T2Ranking：一个大规模中文段落排序基准。预印本arXiv:2304.03679 (2023)。
+
+[63] Lee Xiong, Chenyan Xiong, Ye Li, Kwok-Fung Tang, Jialin Liu, Paul Bennett, Junaid Ahmed, and Arnold Overwijk. 2020. Approximate nearest neighbor negative contrastive learning for dense text retrieval. arXiv preprint arXiv:2007.00808 (2020).
+
+[63] 熊李（Lee Xiong）、熊晨燕（Chenyan Xiong）、李烨（Ye Li）、邓国峰（Kwok - Fung Tang）、刘佳琳（Jialin Liu）、保罗·贝内特（Paul Bennett）、朱奈德·艾哈迈德（Junaid Ahmed）和阿诺德·奥弗维克（Arnold Overwijk）。2020年。用于密集文本检索的近似最近邻负对比学习。预印本arXiv:2007.00808 (2020)。
+
+[64] Ming Yan, Chenliang Li, Bin Bi, Wei Wang, and Songfang Huang. 2021. A Unified Pretraining Framework for Passage Ranking and Expansion. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 35. 4555-4563.
+
+[64] 严明（Ming Yan）、李晨亮（Chenliang Li）、毕斌（Bin Bi）、王巍（Wei Wang）和黄松芳（Songfang Huang）。2021年。一种用于段落排序和扩展的统一预训练框架。收录于《AAAI人工智能会议论文集》，第35卷。4555 - 4563。
+
+[65] Wenwen Ye, Yiding Liu, Lixin Zou, Hengyi Cai, Suqi Cheng, Shuaiqiang Wang, and Dawei Yin. 2022. Fast Semantic Matching via Flexible Contextualized Interaction. In Proceedings of the Fifteenth ACM International Conference on Web Search and Data Mining. 1275-1283.
+
+[65] 叶文文（Wenwen Ye）、刘一丁（Yiding Liu）、邹立新（Lixin Zou）、蔡恒毅（Hengyi Cai）、程苏琪（Suqi Cheng）、王帅强（Shuaiqiang Wang）和尹大为（Dawei Yin）。2022年。通过灵活的上下文交互实现快速语义匹配。收录于《第十五届ACM网络搜索与数据挖掘国际会议论文集》。1275 - 1283。
+
+[66] Yang You, Jing Li, Sashank Reddi, Jonathan Hseu, Sanjiv Kumar, Srinadh Bho-janapalli, Xiaodan Song, James Demmel, Kurt Keutzer, and Cho-Jui Hsieh. 2019. Large batch optimization for deep learning: Training bert in 76 minutes. arXiv preprint arXiv:1904.00962 (2019).
+
+[66] 游洋（Yang You）、李静（Jing Li）、萨沙克·雷迪（Sashank Reddi）、乔纳森·许（Jonathan Hseu）、桑吉夫·库马尔（Sanjiv Kumar）、斯里纳特·博贾纳帕利（Srinadh Bho - janapalli）、宋晓丹（Xiaodan Song）、詹姆斯·德梅尔（James Demmel）、库尔特·柯泽特（Kurt Keutzer）和谢卓睿（Cho - Jui Hsieh）。2019年。深度学习的大批量优化：76分钟训练BERT。预印本arXiv:1904.00962 (2019)。
+
+[67] Kun Zhou, Xiao Liu, Yeyun Gong, Wayne Xin Zhao, Daxin Jiang, Nan Duan, and Ji-Rong Wen. 2022. MASTER: Multi-task Pre-trained Bottlenecked Masked Au-toencoders are Better Dense Retrievers. arXiv preprint arXiv:2212.07841 (2022).
+
+[67] 周坤（Kun Zhou）、刘晓（Xiao Liu）、龚叶云（Yeyun Gong）、赵鑫（Wayne Xin Zhao）、蒋大新（Daxin Jiang）、段楠（Nan Duan）和文继荣（Ji - Rong Wen）。2022年。MASTER：多任务预训练的瓶颈掩码自编码器是更好的密集检索器。预印本arXiv:2212.07841 (2022)。
+
+[68] Lixin Zou, Weixue Lu, Yiding Liu, Hengyi Cai, Xiaokai Chu, Dehong Ma, Daiting Shi, Yu Sun, Zhicong Cheng, Simiu Gu, et al. 2022. Pre-trained language model-based retrieval and ranking for Web search. ACM Transactions on the Web 17, 1 (2022), 1-36.
+
+[68] 邹立鑫（Lixin Zou）、陆伟学（Weixue Lu）、刘一丁（Yiding Liu）、蔡恒毅（Hengyi Cai）、储晓凯（Xiaokai Chu）、马德宏（Dehong Ma）、史戴汀（Daiting Shi）、孙宇（Yu Sun）、程志聪（Zhicong Cheng）、顾思缪（Simiu Gu）等。2022年。基于预训练语言模型的网络搜索检索与排序。《ACM网络事务》第17卷，第1期（2022年），第1 - 36页。
